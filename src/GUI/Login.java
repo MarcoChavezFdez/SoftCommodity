@@ -33,6 +33,7 @@ public class Login extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jPass_Usuario = new javax.swing.JPasswordField();
         lblFondo = new javax.swing.JLabel();
+        jl_Mensajes = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 102, 0));
@@ -70,6 +71,7 @@ public class Login extends javax.swing.JFrame {
         });
         getContentPane().add(jPass_Usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 280, 90, -1));
         getContentPane().add(lblFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        getContentPane().add(jl_Mensajes, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 330, 220, 20));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -80,9 +82,17 @@ public class Login extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
        String texto = txtF_Usuario.getText();
-       Menu menu = new Menu();
-       menu.setVisible(true);
-       this.dispose();
+       char[] pass = jPass_Usuario.getPassword();
+       if("admin".equals(texto)){
+           menuPrincipalGUI menu =new menuPrincipalGUI();
+           menu.setVisible(true);
+           this.setVisible(false);
+       }
+       else{
+           jl_Mensajes.setText("Usuario y/o contraseñas incorrecctos");
+       }
+       
+
        
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -130,6 +140,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPasswordField jPass_Usuario;
+    private javax.swing.JLabel jl_Mensajes;
     private javax.swing.JLabel lblFondo;
     private javax.swing.JTextField txtF_Usuario;
     // End of variables declaration//GEN-END:variables
