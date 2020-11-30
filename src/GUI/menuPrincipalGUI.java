@@ -63,7 +63,7 @@ public class menuPrincipalGUI extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jButton4.setText("jButton4");
+        jButton4.setText("Usuarios");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
@@ -85,7 +85,7 @@ public class menuPrincipalGUI extends javax.swing.JFrame {
                 .addComponent(jButton3)
                 .addGap(79, 79, 79)
                 .addComponent(jButton4)
-                .addContainerGap(254, Short.MAX_VALUE))
+                .addContainerGap(252, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
