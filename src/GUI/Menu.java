@@ -43,10 +43,15 @@ public class Menu extends javax.swing.JFrame {
                 btn_cajaActionPerformed(evt);
             }
         });
-        getContentPane().add(btn_caja, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 80, -1, -1));
+        getContentPane().add(btn_caja, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 390, -1, -1));
 
         btn_Almacen.setText("Almacén");
-        getContentPane().add(btn_Almacen, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 80, -1, -1));
+        btn_Almacen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_AlmacenActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btn_Almacen, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 360, -1, -1));
 
         btn_logOut.setText("Cerrar Sesión");
         btn_logOut.addActionListener(new java.awt.event.ActionListener() {
@@ -54,7 +59,7 @@ public class Menu extends javax.swing.JFrame {
                 btn_logOutActionPerformed(evt);
             }
         });
-        getContentPane().add(btn_logOut, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 80, -1, -1));
+        getContentPane().add(btn_logOut, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 330, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -74,6 +79,10 @@ public class Menu extends javax.swing.JFrame {
         caja.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btn_cajaMouseClicked
+
+    private void btn_AlmacenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AlmacenActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_AlmacenActionPerformed
 
  
     public static void main(String args[]) {
