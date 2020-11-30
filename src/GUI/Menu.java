@@ -14,6 +14,7 @@ public class Menu extends javax.swing.JFrame {
     /**
      * Creates new form Menu
      */
+    
     public Menu() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -24,11 +25,55 @@ public class Menu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btn_caja = new javax.swing.JButton();
+        btn_Almacen = new javax.swing.JButton();
+        btn_logOut = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        btn_caja.setText("Caja");
+        btn_caja.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_cajaMouseClicked(evt);
+            }
+        });
+        btn_caja.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_cajaActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btn_caja, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 80, -1, -1));
+
+        btn_Almacen.setText("Almacén");
+        getContentPane().add(btn_Almacen, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 80, -1, -1));
+
+        btn_logOut.setText("Cerrar Sesión");
+        btn_logOut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_logOutActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btn_logOut, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 80, -1, -1));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btn_cajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cajaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_cajaActionPerformed
+
+    private void btn_logOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_logOutActionPerformed
+        Login login = new Login();
+        login.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btn_logOutActionPerformed
+
+    private void btn_cajaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_cajaMouseClicked
+        RealizarPago caja = new RealizarPago();
+        caja.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btn_cajaMouseClicked
 
  
     public static void main(String args[]) {
@@ -64,5 +109,8 @@ public class Menu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_Almacen;
+    private javax.swing.JButton btn_caja;
+    private javax.swing.JButton btn_logOut;
     // End of variables declaration//GEN-END:variables
 }

@@ -75,11 +75,15 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtF_UsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtF_UsuarioActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_txtF_UsuarioActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+       String texto = txtF_Usuario.getText();
+       Menu menu = new Menu();
+       menu.setVisible(true);
+       this.dispose();
+       
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jPass_UsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPass_UsuarioActionPerformed
