@@ -50,8 +50,9 @@ public class ConexionBD {
 
     }
     
-        public ArrayList<Producto> consultaProductoes(){
-        String sql="select idproducto,idcategoria,nombre,descripcion,preciomayoreo,preciomenudeo,preciocompra,presentacion,ean,contenido,tipocontenido,material,anchura,medidaanchura,color,estatus";
+        //Funcion la cual permite realizar la consulta general y devolver un Array list de objetos Producto
+        public ArrayList<Producto> consultaProductos(){
+        String sql="select idproducto,idcategoria,nombre,descripcion,preciomayoreo,preciomenudeo,preciocompra,presentacion,ean,contenido,tipocontenido,material,anchura,medidaanchura,color,estatus from productos";
         ArrayList<Producto> lista=new ArrayList<Producto>();
         try{
             Statement st=con.createStatement();
@@ -70,15 +71,14 @@ public class ConexionBD {
                 s.setContenido(rs.getInt("contenido"));
                 s.setTipoContenido(rs.getString("tipocontenido"));
                 s.setMaterial(rs.getString("material"));
-                s.setAnchura(rs.getFloat("ancgura"));
+                s.setAnchura(rs.getFloat("anchura"));
                 s.setMedidaAnchura(rs.getString("medidaanchura"));
                 s.setColor(rs.getString("color"));
-                s.setColor(rs.getString("estatus"));
+                s.setEstatus(rs.getString("estatus"));
                 lista.add(s);
             }
             rs.close();
             st.close();
-         
         }
         catch(SQLException e){
             System.out.println("Error:"+e.getMessage());

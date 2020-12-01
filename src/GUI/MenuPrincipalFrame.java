@@ -31,33 +31,33 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btn_Reportes = new javax.swing.JButton();
+        btn_Ventas = new javax.swing.JButton();
+        btn_Productos = new javax.swing.JButton();
         jp_User = new javax.swing.JPanel();
         lbl_Name = new javax.swing.JLabel();
         jButton6 = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
+        btn_Categorias = new javax.swing.JButton();
+        btn_Bodegas = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Menu Principal - SoftCommofity+");
 
-        jButton1.setText("Reportes");
+        btn_Reportes.setText("Reportes");
 
-        jButton2.setText("Ventas");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btn_Ventas.setText("Ventas");
+        btn_Ventas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btn_VentasActionPerformed(evt);
             }
         });
 
-        jButton3.setText("Productos");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btn_Productos.setText("Productos");
+        btn_Productos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btn_ProductosActionPerformed(evt);
             }
         });
 
@@ -115,17 +115,17 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jButton5.setText("Categorias");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        btn_Categorias.setText("Categorias");
+        btn_Categorias.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                btn_CategoriasActionPerformed(evt);
             }
         });
 
-        jButton7.setText("Bodegas");
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
+        btn_Bodegas.setText("Bodegas");
+        btn_Bodegas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
+                btn_BodegasActionPerformed(evt);
             }
         });
 
@@ -141,15 +141,15 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(504, 504, 504)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton5)
+                            .addComponent(btn_Categorias)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButton1)
+                                .addComponent(btn_Reportes)
                                 .addGap(139, 139, 139)
-                                .addComponent(jButton2)))))
+                                .addComponent(btn_Ventas)))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 173, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton3)
-                    .addComponent(jButton7))
+                    .addComponent(btn_Productos)
+                    .addComponent(btn_Bodegas))
                 .addGap(213, 213, 213))
         );
         layout.setVerticalGroup(
@@ -159,38 +159,38 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
                 .addComponent(jp_User, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(3, 3, 3)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3))
+                    .addComponent(btn_Reportes)
+                    .addComponent(btn_Ventas)
+                    .addComponent(btn_Productos))
                 .addGap(118, 118, 118)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton7)
-                    .addComponent(jButton5))
+                    .addComponent(btn_Bodegas)
+                    .addComponent(btn_Categorias))
                 .addContainerGap(168, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btn_VentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_VentasActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btn_VentasActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void btn_ProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ProductosActionPerformed
         ProductosMainFrame Productos = new ProductosMainFrame(this.conexion);
         Productos.setVisible(true);
         this.setVisible(false);
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_btn_ProductosActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void btn_CategoriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CategoriasActionPerformed
         CategoriasMainFrame categorias = new CategoriasMainFrame(this.conexion);
         categorias.setVisible(true);
         this.setVisible(false);
-    }//GEN-LAST:event_jButton5ActionPerformed
+    }//GEN-LAST:event_btn_CategoriasActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         if(jp_User.getWidth()==100){
@@ -201,9 +201,11 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
     }
     }//GEN-LAST:event_jButton6ActionPerformed
 
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton7ActionPerformed
+    private void btn_BodegasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_BodegasActionPerformed
+        BodegasMainFrame bodegas = new BodegasMainFrame (this.conexion);
+        bodegas.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btn_BodegasActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         // TODO add your handling code here:
@@ -215,13 +217,13 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton btn_Bodegas;
+    private javax.swing.JButton btn_Categorias;
+    private javax.swing.JButton btn_Productos;
+    private javax.swing.JButton btn_Reportes;
+    private javax.swing.JButton btn_Ventas;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JPanel jp_User;
     private javax.swing.JLabel lbl_Name;

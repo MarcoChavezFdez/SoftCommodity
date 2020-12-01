@@ -6,6 +6,9 @@
 package GUI;
 
 import Conexion.ConexionBD;
+import Modelos.Producto;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -20,6 +23,8 @@ public class ProductosMainFrame extends javax.swing.JFrame {
     public ProductosMainFrame(ConexionBD conexion) {
         initComponents();
         this.conexion=conexion;
+        ArrayList<Producto> lista=conexion.consultaProductos();
+        llenarTabla(lista);
     }
 
     /**
@@ -33,7 +38,7 @@ public class ProductosMainFrame extends javax.swing.JFrame {
 
         jScrollPane2 = new javax.swing.JScrollPane();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tbl_Datos = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -45,7 +50,7 @@ public class ProductosMainFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tbl_Datos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
@@ -64,8 +69,8 @@ public class ProductosMainFrame extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jTable1.setToolTipText("");
-        jScrollPane1.setViewportView(jTable1);
+        tbl_Datos.setToolTipText("");
+        jScrollPane1.setViewportView(tbl_Datos);
 
         jScrollPane2.setViewportView(jScrollPane1);
 
@@ -171,8 +176,35 @@ public class ProductosMainFrame extends javax.swing.JFrame {
         AddProductoFrame addProducto = new AddProductoFrame(this.conexion);
         addProducto.setVisible(true);
         this.setVisible(false);
+ 
     }//GEN-LAST:event_jButton1ActionPerformed
-
+        private void llenarTabla(ArrayList<Producto> lista){
+        String[] encabezado={"IdProducto","IdCategoria","Nombre","Descripcion","Precio Mayoreo","Pracio Menudeo","Precio Compra","Presentacion","EAN","Contenido","Tipo Contenido","Material","Anchura","Medida Anchura","Color","Estatus"};
+        Object[][] datos=new Object[lista.size()][16];
+        int ren=0;
+        for(Producto s:lista){
+            datos[ren][0]=s.getIdProducto();
+            datos[ren][1]=s.getIdCategoria();
+            datos[ren][2]=s.getNombre();
+            datos[ren][3]=s.getDescripcion();
+            datos[ren][4]=s.getPrecioMayoreo();
+            datos[ren][5]=s.getPrecioMenudeo();
+            datos[ren][6]=s.getPrecioCompra();
+            datos[ren][7]=s.getPresentacion();
+            datos[ren][8]=s.getEAN();
+            datos[ren][9]=s.getContenido();
+            datos[ren][10]=s.getTipoContenido();
+            datos[ren][11]=s.getMaterial();
+            datos[ren][12]=s.getAnchura();
+            datos[ren][13]=s.getMedidaAnchura();
+            datos[ren][14]=s.getColor();
+            datos[ren][15]=s.getEstatus();
+            ren++;
+        }
+        DefaultTableModel m=new DefaultTableModel(datos, encabezado);
+        tbl_Datos.setModel(m);
+        }
+       
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
@@ -202,7 +234,7 @@ public class ProductosMainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JTable tbl_Datos;
     // End of variables declaration//GEN-END:variables
 }
