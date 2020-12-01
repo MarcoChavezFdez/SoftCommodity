@@ -6,6 +6,7 @@
 package Conexion;
 
 import Modelos.Producto;
+import Modelos.Usuario;
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -16,7 +17,7 @@ public class ConexionBD {
     PreparedStatement psPrepararSentencia;          //Creamos un objeto de tipo  PreparedStatement para los querys que queramos hacer a la BD
     Connection con = null;                 //Como aun no tenemos conexion, con sera objeto de tipo connection que apunte a null
 
-     //Dentro del constructor de la clase, intentaremos conectarnos usando un try-catch para agarrar las excepciones
+    //Dentro del constructor de la clase, intentaremos conectarnos usando un try-catch para agarrar las excepciones
     public ConexionBD() {
         try {   //Inicio del try
 
@@ -49,16 +50,23 @@ public class ConexionBD {
         System.out.println("La conexion la BD se ha cerrado");
 
     }
+
+    /***************************************************************
+     *                  
+     * Funciones para el modelo Producto
+     * 
+     **************************************************************/
     
-        //Funcion la cual permite realizar la consulta general y devolver un Array list de objetos Producto
-        public ArrayList<Producto> consultaProductos(){
-        String sql="select idproducto,idcategoria,nombre,descripcion,preciomayoreo,preciomenudeo,preciocompra,presentacion,ean,contenido,tipocontenido,material,anchura,medidaanchura,color,estatus from productos";
-        ArrayList<Producto> lista=new ArrayList<Producto>();
-        try{
-            Statement st=con.createStatement();
-            ResultSet rs=st.executeQuery(sql);
-            while(rs.next()){
-                Producto s=new Producto();
+    
+    //Funcion la cual permite realizar la consulta general y devolver un Array list de objetos Producto
+    public ArrayList<Producto> consultaProductos() {
+        String sql = "select idproducto,idcategoria,nombre,descripcion,preciomayoreo,preciomenudeo,preciocompra,presentacion,ean,contenido,tipocontenido,material,anchura,medidaanchura,color,estatus from productos";
+        ArrayList<Producto> lista = new ArrayList<Producto>();
+        try {
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()) {
+                Producto s = new Producto();
                 s.setIdProducto(rs.getInt("idproducto"));
                 s.setIdCategoria(rs.getInt("idcategoria"));
                 s.setNombre(rs.getString("nombre"));
@@ -79,11 +87,40 @@ public class ConexionBD {
             }
             rs.close();
             st.close();
+        } catch (SQLException e) {
+            System.out.println("Error:" + e.getMessage());
+        }
+        return lista;
+    }
+    
+    /***************************************************************
+     *                  
+     * Funciones para el modelo Usuario
+     * 
+     * @param nombre
+     * @param Passw
+     * @return 
+     * 
+     **************************************************************/
+        public boolean consultarUsuario(String nombre,String Passw){
+        String sql="select idSucursal,nombre,direccion,activo,ciudad from Sucursales where idsucursal=?";
+        Usuario s=new Usuario();
+        try{
+            PreparedStatement st=con.prepareStatement(sql);
+            st.setInt(1, id);
+            ResultSet rs=st.executeQuery();
+            if(rs.next()){
+                s.setId(rs.getInt("idSucursal"));
+                s.setNombre(rs.getString("nombre"));
+                s.setDireccion(rs.getString("direccion"));
+                s.setCiudad(rs.getString("ciudad"));
+                s.setActivo(rs.getFloat("activo")); 
+            }
+            st.close();
         }
         catch(SQLException e){
             System.out.println("Error:"+e.getMessage());
         }
-        return lista;
+        return s;
     }
-
 }
