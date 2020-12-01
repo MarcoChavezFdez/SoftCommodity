@@ -9,10 +9,10 @@ package Modelos;
  *
  * @author Marco Chavez
  */
-public class Productos {
+public class Producto {
 
-    private final Integer IdProducto;
-    private final Integer idCategoria;
+    private Integer IdProducto;
+    private Integer IdCategoria;
     private String Nombre;
     private String Descripcion;
     private Float precioMayoreo;
@@ -28,9 +28,9 @@ public class Productos {
     private String Color;
     private String Estatus;
 
-    public Productos(Integer IdProducto, Integer idCategoria, String Nombre, String Descripcion, Float precioMayoreo, Float precioMenudeo, Float precioCompra, String presentacion, String EAN, Integer Contenido, String TipoContenido, String Material, Float Anchura, String MedidaAnchura, String Color, String Estatus) {
+    public Producto(Integer IdProducto, Integer IdCategoria, String Nombre, String Descripcion, Float precioMayoreo, Float precioMenudeo, Float precioCompra, String presentacion, String EAN, Integer Contenido, String TipoContenido, String Material, Float Anchura, String MedidaAnchura, String Color, String Estatus) {
         this.IdProducto = IdProducto;
-        this.idCategoria = idCategoria;
+        this.IdCategoria = IdCategoria;
         this.Nombre = Nombre;
         this.Descripcion = Descripcion;
         this.precioMayoreo = precioMayoreo;
@@ -47,9 +47,9 @@ public class Productos {
         this.Estatus = Estatus;
     }
 
-    public Productos() {
+    public Producto() {
         this.IdProducto = null;
-        this.idCategoria = null;
+        this.IdCategoria = null;
         this.Nombre = null;
         this.Descripcion = null;
         this.precioMayoreo = null;
@@ -65,9 +65,6 @@ public class Productos {
         this.Color = null;
         this.Estatus = null;
     }
-
-   
-
 
     public String getNombre() {
         return Nombre;
@@ -181,4 +178,24 @@ public class Productos {
         this.Estatus = Estatus;
     }
 
+    public Integer getIdCategoria() {
+        return IdCategoria;
+    }
+
+    public void setIdCategoria(Integer IdCategoria) {
+        this.IdCategoria = IdCategoria;
+    }
+
+    public Integer getIdProducto() {
+        return IdProducto;
+    }
+
+    public void setIdProducto(Integer IdProducto) {
+        this.IdProducto = IdProducto;
+    }
+
+   
+
+
+   
 }

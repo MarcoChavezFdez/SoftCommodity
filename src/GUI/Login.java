@@ -5,6 +5,8 @@
  */
 package GUI;
 
+import Conexion.ConexionBD;
+
 /**
  *
  * @author Marco Chavez
@@ -81,10 +83,12 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_txtF_UsuarioActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       String texto = txtF_Usuario.getText();
+       ConexionBD conexion = new ConexionBD();
+       conexion.conectado();
+        String texto = txtF_Usuario.getText();
        char[] pass = jPass_Usuario.getPassword();
        if("admin".equals(texto)){
-           menuPrincipalGUI menu =new menuPrincipalGUI();
+           menuPrincipalGUI menu =new menuPrincipalGUI(conexion);
            menu.setVisible(true);
            this.setVisible(false);
        }
