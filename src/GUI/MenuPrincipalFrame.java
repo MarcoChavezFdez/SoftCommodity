@@ -59,6 +59,14 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
         btn_Bodegas.setMaximumSize(new java.awt.Dimension(277, 305));
         btn_Bodegas.setMinimumSize(new java.awt.Dimension(277, 305));
         btn_Bodegas.setPreferredSize(new java.awt.Dimension(277, 305));
+        btn_Bodegas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btn_BodegasMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btn_BodegasMouseExited(evt);
+            }
+        });
         btn_Bodegas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_BodegasActionPerformed(evt);
@@ -216,7 +224,7 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1260, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1240, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -319,6 +327,14 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
     private void btn_ReportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ReportesActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_ReportesActionPerformed
+
+    private void btn_BodegasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_BodegasMouseEntered
+          btn_Bodegas.setContentAreaFilled(true);
+    }//GEN-LAST:event_btn_BodegasMouseEntered
+
+    private void btn_BodegasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_BodegasMouseExited
+           btn_Bodegas.setContentAreaFilled(false);
+    }//GEN-LAST:event_btn_BodegasMouseExited
                                       
 
                               
