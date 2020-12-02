@@ -102,7 +102,7 @@ public class ConexionBD {
      * @return 
      * 
      **************************************************************/
-        public boolean consultarUsuario(String nombre,String Passw){
+ /*       public boolean consultarUsuario(String nombre,String Passw){
         String sql="select idSucursal,nombre,direccion,activo,ciudad from Sucursales where idsucursal=?";
         Usuario s=new Usuario();
         try{
@@ -123,4 +123,5 @@ public class ConexionBD {
         }
         return s;
     }
+*/
 }
