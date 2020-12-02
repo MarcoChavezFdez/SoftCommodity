@@ -47,7 +47,6 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Menu Principal - SoftCommofity+");
         setBackground(new java.awt.Color(0, 0, 0));
-        setPreferredSize(new java.awt.Dimension(1250, 700));
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
@@ -92,6 +91,11 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 btn_ReportesMouseExited(evt);
+            }
+        });
+        btn_Reportes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_ReportesActionPerformed(evt);
             }
         });
         jPanel1.add(btn_Reportes, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 30, 260, 305));
@@ -311,6 +315,10 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
     private void btn_UsuariosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_UsuariosMouseExited
         btn_Usuarios.setContentAreaFilled(false);
     }//GEN-LAST:event_btn_UsuariosMouseExited
+
+    private void btn_ReportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ReportesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_ReportesActionPerformed
                                       
 
                               
