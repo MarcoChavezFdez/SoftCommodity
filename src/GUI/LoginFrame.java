@@ -99,12 +99,14 @@ public class LoginFrame extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
        ConexionBD conexion = new ConexionBD();
        conexion.conectado();
-        String texto = txtF_Usuario.getText();
-       char[] pass = jPass_Usuario.getPassword();
-       if("admin".equals(texto)){
+       String texto = txtF_Usuario.getText();
+       String pass = jPass_Usuario.getText();
+       if(conexion.consultarUsuario(texto, pass)){
            MenuPrincipalFrame menu =new MenuPrincipalFrame(conexion);
            menu.setVisible(true);
+           conexion.setUser(conexion.consultarUsuario(texto));
            this.setVisible(false);
+           
        }
        else{
            jl_Mensajes.setText("Usuario y/o contraseñas incorrecctos");

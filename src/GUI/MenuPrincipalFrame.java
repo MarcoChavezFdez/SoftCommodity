@@ -48,6 +48,11 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
         setTitle("Menu Principal - SoftCommofity+");
         setBackground(new java.awt.Color(0, 0, 0));
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
         jPanel1.setPreferredSize(new java.awt.Dimension(1250, 700));
@@ -237,9 +242,7 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_ProductosActionPerformed
 
     private void btn_UsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_UsuariosActionPerformed
-        CategoriasMainFrame categorias = new CategoriasMainFrame(this.conexion);
-        categorias.setVisible(true);
-        this.setVisible(false);
+
     }//GEN-LAST:event_btn_UsuariosActionPerformed
 
     private void btn_BodegasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_BodegasActionPerformed
@@ -249,7 +252,9 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_BodegasActionPerformed
 
     private void btn_CategoriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CategoriasActionPerformed
-        // TODO add your handling code here:
+        CategoriasMainFrame categorias = new CategoriasMainFrame(this.conexion);
+        categorias.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_btn_CategoriasActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
@@ -319,6 +324,10 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
     private void btn_ReportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ReportesActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_ReportesActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        lbl_Name.setText(conexion.getUser().getNombre());
+    }//GEN-LAST:event_formWindowOpened
                                       
 
                               

@@ -16,6 +16,7 @@ public class ConexionBD {
     //En este caso despues de la direccion "jdbc:mysql://localhost/" despues de localhost/ debemos escribit el nombre de la BD que queremos conectar
     PreparedStatement psPrepararSentencia;          //Creamos un objeto de tipo  PreparedStatement para los querys que queramos hacer a la BD
     Connection con = null;                 //Como aun no tenemos conexion, con sera objeto de tipo connection que apunte a null
+    private Usuario user;
 
     //Dentro del constructor de la clase, intentaremos conectarnos usando un try-catch para agarrar las excepciones
     public ConexionBD() {
@@ -51,13 +52,13 @@ public class ConexionBD {
 
     }
 
-    /***************************************************************
-     *                  
+    /**
+     * *************************************************************
+     *
      * Funciones para el modelo Producto
-     * 
-     **************************************************************/
-    
-    
+     *
+     *************************************************************
+     */
     //Funcion la cual permite realizar la consulta general y devolver un Array list de objetos Producto
     public ArrayList<Producto> consultaProductos() {
         String sql = "select idproducto,idcategoria,nombre,descripcion,preciomayoreo,preciomenudeo,preciocompra,presentacion,ean,contenido,tipocontenido,material,anchura,medidaanchura,color,estatus from productos";
@@ -92,36 +93,84 @@ public class ConexionBD {
         }
         return lista;
     }
-    
-    /***************************************************************
-     *                  
+
+    /**
+     * *************************************************************
+     *
      * Funciones para el modelo Usuario
-     * 
+     *
      * @param nombre
      * @param Passw
-     * @return 
-     * 
-     **************************************************************/
- /*       public boolean consultarUsuario(String nombre,String Passw){
-        String sql="select idSucursal,nombre,direccion,activo,ciudad from Sucursales where idsucursal=?";
-        Usuario s=new Usuario();
-        try{
-            PreparedStatement st=con.prepareStatement(sql);
-            st.setInt(1, id);
-            ResultSet rs=st.executeQuery();
-            if(rs.next()){
-                s.setId(rs.getInt("idSucursal"));
+     * @return
+     *
+     *************************************************************
+     */
+    public boolean consultarUsuario(String nombre, String Passw) {
+        String sql = "select idusuario,nombre,apellidopaterno,apellidomaterno,curp,direccion,telefono,email,rol,login,passw,estatus from usuarios where login=?";
+        Usuario s = new Usuario();
+        try {
+            PreparedStatement st = con.prepareStatement(sql);
+            st.setString(1, nombre);
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                s.setIdUsuario(rs.getInt("idusuario"));
                 s.setNombre(rs.getString("nombre"));
+                s.setApellidoPaterno(rs.getString("apellidopaterno"));
+                s.setApellidoMaterno(rs.getString("apellidoMaterno"));
+                s.setCURP(rs.getString("curp"));
                 s.setDireccion(rs.getString("direccion"));
-                s.setCiudad(rs.getString("ciudad"));
-                s.setActivo(rs.getFloat("activo")); 
+                s.setTelefono(rs.getString("telefono"));
+                s.setEmail(rs.getString("email"));
+                s.setRol(rs.getString("rol"));
+                s.setLogin("login");
+                s.setPassw(rs.getString("passw"));
+                s.setEstatus(rs.getString("estatus"));
             }
             st.close();
+            if (s.getPassw().equals(Passw)) {
+                return true;
+            }
+        } catch (SQLException e) {
+            System.out.println("Error:" + e.getMessage());
         }
-        catch(SQLException e){
-            System.out.println("Error:"+e.getMessage());
-        }
-        return s;
+        return false;
     }
-*/
+
+    public Usuario consultarUsuario(String nombre) {
+        String sql = "select idusuario,nombre,apellidopaterno,apellidomaterno,curp,direccion,telefono,email,rol,login,passw,estatus from usuarios where login=?";
+        Usuario s = new Usuario();
+        try {
+            PreparedStatement st = con.prepareStatement(sql);
+            st.setString(1, nombre);
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                s.setIdUsuario(rs.getInt("idusuario"));
+                s.setNombre(rs.getString("nombre"));
+                s.setApellidoPaterno(rs.getString("apellidopaterno"));
+                s.setApellidoMaterno(rs.getString("apellidoMaterno"));
+                s.setCURP(rs.getString("curp"));
+                s.setDireccion(rs.getString("direccion"));
+                s.setTelefono(rs.getString("telefono"));
+                s.setEmail(rs.getString("email"));
+                s.setRol(rs.getString("rol"));
+                s.setLogin("login");
+                s.setPassw(rs.getString("passw"));
+                s.setEstatus(rs.getString("estatus"));
+            }
+            st.close();
+            return s;
+        } catch (SQLException e) {
+            System.out.println("Error:" + e.getMessage());
+        }
+        return null;
+    }
+
+    public Usuario getUser() {
+        return user;
+    }
+
+    public void setUser(Usuario user) {
+        this.user = user;
+    }
+
 }
