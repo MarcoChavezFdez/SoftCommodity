@@ -96,25 +96,25 @@ public class ConexionBD {
     }
 
     public boolean insertarProducto(Producto p) {
-        String sql = "insert into productos values(default,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        String sql = "insert into productos values(null,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         boolean ban = false;
         try {
             PreparedStatement st = con.prepareStatement(sql);
-            st.setInt(1, p.getIdCategoria());
-            st.setString(2,p.getNombre());
-            st.setString(3,p.getDescripcion());
-            st.setFloat(4,p.getPrecioMayoreo());
-            st.setFloat(5,p.getPrecioMenudeo());
-            st.setFloat(6, p.getPrecioCompra());
-            st.setString(7, p.getPresentacion());
-            st.setString(8, p.getEAN());
-            st.setInt(9, p.getContenido());
-            st.setString(10, p.getTipoContenido());
-            st.setString(11,p.getMaterial());
-            st.setFloat(12, p.getAnchura());
-            st.setString(13,p.getMedidaAnchura());
-            st.setString(14, p.getColor());
-            st.setString(15,p.getEstatus());
+            st.setInt(2, p.getIdCategoria());
+            st.setString(3,p.getNombre());
+            st.setString(4,p.getDescripcion());
+            st.setFloat(5,p.getPrecioMayoreo());
+            st.setFloat(6,p.getPrecioMenudeo());
+            st.setFloat(7, p.getPrecioCompra());
+            st.setString(8, p.getPresentacion());
+            st.setString(9, p.getEAN());
+            st.setInt(10, p.getContenido());
+            st.setString(11, p.getTipoContenido());
+            st.setString(12,p.getMaterial());
+            st.setFloat(13, p.getAnchura());
+            st.setString(14,p.getMedidaAnchura());
+            st.setString(15, p.getColor());
+            st.setString(16,p.getEstatus());
             st.execute();
             st.close();
             ban = true;
