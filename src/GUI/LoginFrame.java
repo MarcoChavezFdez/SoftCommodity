@@ -51,8 +51,10 @@ public class LoginFrame extends javax.swing.JFrame {
         setBackground(new java.awt.Color(204, 82, 122));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setForeground(new java.awt.Color(204, 82, 122));
-        setMinimumSize(new java.awt.Dimension(1000, 800));
-        setResizable(false);
+        setLocation(new java.awt.Point(0, 0));
+        setMaximumSize(new java.awt.Dimension(500, 400));
+        setMinimumSize(new java.awt.Dimension(500, 400));
+        setSize(new java.awt.Dimension(500, 400));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         getContentPane().add(lblFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
@@ -61,9 +63,11 @@ public class LoginFrame extends javax.swing.JFrame {
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Arial Narrow", 0, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Usuario:");
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 190, -1, -1));
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 190, -1, -1));
 
+        txtF_Usuario.setBackground(new java.awt.Color(237, 174, 195));
         txtF_Usuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtF_UsuarioActionPerformed(evt);
@@ -72,31 +76,36 @@ public class LoginFrame extends javax.swing.JFrame {
         jPanel2.add(txtF_Usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 200, 90, -1));
 
         jLabel2.setFont(new java.awt.Font("Arial Narrow", 0, 24)); // NOI18N
-        jLabel2.setText("Contraseña");
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 270, -1, -1));
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Contraseña:");
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 230, -1, -1));
 
-        jButton1.setText("Ingresar");
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/btn_Ingresar.png"))); // NOI18N
+        jButton1.setActionCommand("");
+        jButton1.setBorderPainted(false);
+        jButton1.setContentAreaFilled(false);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 350, -1, -1));
+        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 310, -1, -1));
 
+        jPass_Usuario.setBackground(new java.awt.Color(237, 174, 195));
         jPass_Usuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jPass_UsuarioActionPerformed(evt);
             }
         });
-        jPanel2.add(jPass_Usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 280, 90, -1));
+        jPanel2.add(jPass_Usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 240, 90, -1));
 
         jl_Mensajes.setForeground(new java.awt.Color(204, 0, 51));
-        jPanel2.add(jl_Mensajes, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 320, 220, 20));
+        jPanel2.add(jl_Mensajes, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 320, 220, 20));
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Login.png"))); // NOI18N
-        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 20, -1, -1));
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/LOGO_SoftCommodity+_V1.png"))); // NOI18N
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 40, 290, 130));
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 490, 440));
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 510, 450));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

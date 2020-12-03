@@ -181,7 +181,7 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
         });
         jp_User.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 290, -1, -1));
 
-        jPanel1.add(jp_User, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 1, 80, 80));
+        jPanel1.add(jp_User, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 1, 70, 70));
 
         btn_Usuarios.setBackground(new java.awt.Color(0, 0, 0));
         btn_Usuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Login/Usuarios.png"))); // NOI18N
@@ -233,7 +233,10 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 657, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 635, Short.MAX_VALUE)
+                .addGap(33, 33, 33))
         );
 
         pack();
