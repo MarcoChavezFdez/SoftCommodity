@@ -9,6 +9,7 @@ import Conexion.ConexionBD;
 import Modelos.Producto;
 import javafx.scene.control.ComboBox;
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 import javax.swing.text.MaskFormatter;
 
 /**
@@ -56,10 +57,39 @@ public class AddProductoFrame extends javax.swing.JFrame {
         jTextField11 = new javax.swing.JTextField();
         jTextField7 = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        txf_Anchura = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        cmb_MedidaAnchura = new javax.swing.JComboBox<>();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        txf_Color = new javax.swing.JTextField();
+        cmb_Estatus = new javax.swing.JComboBox<>();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        cmb_Categoria = new javax.swing.JComboBox<>();
+        txf_Nombre = new javax.swing.JTextField();
+        txf_Descripcion = new javax.swing.JTextField();
+        btn_AddProducto = new javax.swing.JButton();
+        txf_PrecioMayoreo = new javax.swing.JTextField();
+        txf_PrecioMenudeo = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        txf_PrecioCompra = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        cmb_Presentacion = new javax.swing.JComboBox<>();
+        jLabel3 = new javax.swing.JLabel();
+        cmb_TipoContenido = new javax.swing.JComboBox<>();
+        jLabel4 = new javax.swing.JLabel();
+        txf_EAN = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jTextField8 = new javax.swing.JTextField();
+        txf_Material = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jTextField9 = new javax.swing.JTextField();
+        txf_Contenido = new javax.swing.JTextField();
         jLabel17 = new javax.swing.JLabel();
         btn_Atras = new javax.swing.JButton();
         jLabel12 = new javax.swing.JLabel();
@@ -84,6 +114,54 @@ public class AddProductoFrame extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
         jPanel1.setForeground(null);
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jLabel7.setText("Precio Compra");
+
+        jLabel8.setText("Presentacion");
+
+        cmb_MedidaAnchura.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Milimetros", "Pulgadas" }));
+        cmb_MedidaAnchura.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmb_MedidaAnchuraActionPerformed(evt);
+            }
+        });
+
+        jLabel9.setText("EAN");
+
+        jLabel10.setText("Contenido");
+
+        cmb_Estatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "A", "I" }));
+        cmb_Estatus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmb_EstatusActionPerformed(evt);
+            }
+        });
+
+        jLabel11.setText("Tipo Contenido");
+
+        jLabel12.setText("Material");
+
+        jLabel13.setText("Anchura");
+
+        jLabel14.setText("Color");
+
+        jLabel15.setText("Medida Anchura");
+
+        jLabel16.setText("Estatus");
+
+        jTextField1.setEditable(false);
+        jTextField1.setText("1");
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
+
+        cmb_Categoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4" }));
+        cmb_Categoria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmb_CategoriaActionPerformed(evt);
+            }
+        });
 
         txf_Descripcion.setBackground(new java.awt.Color(237, 174, 195));
         txf_Descripcion.setForeground(null);
@@ -97,8 +175,16 @@ public class AddProductoFrame extends javax.swing.JFrame {
         jTextField4.setBackground(new java.awt.Color(237, 174, 195));
         jTextField4.setForeground(null);
         jTextField4.addKeyListener(new java.awt.event.KeyAdapter() {
+        btn_AddProducto.setText("Añadir Producto");
+        btn_AddProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_AddProductoActionPerformed(evt);
+            }
+        });
+
+        txf_PrecioMayoreo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                jTextField4KeyPressed(evt);
+                txf_PrecioMayoreoKeyPressed(evt);
             }
         });
         jPanel1.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 240, 139, -1));
@@ -120,8 +206,9 @@ public class AddProductoFrame extends javax.swing.JFrame {
         jTextField6.setBackground(new java.awt.Color(237, 174, 195));
         jTextField6.setForeground(null);
         jTextField6.addActionListener(new java.awt.event.ActionListener() {
+        txf_PrecioCompra.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField6ActionPerformed(evt);
+                txf_PrecioCompraActionPerformed(evt);
             }
         });
         jPanel1.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 310, 139, -1));
@@ -154,6 +241,7 @@ public class AddProductoFrame extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jComboBox4, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 310, -1, -1));
+        cmb_Presentacion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Metro", "Pieza", "Gramos" }));
 
         jLabel3.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
@@ -174,6 +262,7 @@ public class AddProductoFrame extends javax.swing.JFrame {
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("Contenido");
         jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 170, -1, -1));
+        cmb_TipoContenido.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Metros", "Piezas", "Gramos" }));
 
         jLabel4.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
@@ -187,8 +276,9 @@ public class AddProductoFrame extends javax.swing.JFrame {
         jTextField7.setBackground(new java.awt.Color(237, 174, 195));
         jTextField7.setForeground(null);
         jTextField7.addActionListener(new java.awt.event.ActionListener() {
+        txf_EAN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField7ActionPerformed(evt);
+                txf_EANActionPerformed(evt);
             }
         });
         jPanel1.add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 130, 139, -1));
@@ -206,8 +296,9 @@ public class AddProductoFrame extends javax.swing.JFrame {
         jTextField8.setBackground(new java.awt.Color(237, 174, 195));
         jTextField8.setForeground(null);
         jTextField8.addActionListener(new java.awt.event.ActionListener() {
+        txf_Material.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField8ActionPerformed(evt);
+                txf_MaterialActionPerformed(evt);
             }
         });
         jPanel1.add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 240, 140, -1));
@@ -220,8 +311,9 @@ public class AddProductoFrame extends javax.swing.JFrame {
         jTextField9.setBackground(new java.awt.Color(237, 174, 195));
         jTextField9.setForeground(null);
         jTextField9.addActionListener(new java.awt.event.ActionListener() {
+        txf_Contenido.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField9ActionPerformed(evt);
+                txf_ContenidoActionPerformed(evt);
             }
         });
         jPanel1.add(jTextField9, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 170, 139, -1));
@@ -313,46 +405,210 @@ public class AddProductoFrame extends javax.swing.JFrame {
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 380, -1, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 850, 500));
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(138, 138, 138)
+                .addComponent(jLabel17)
+                .addContainerGap(151, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(46, 46, 46)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel10)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel14)
+                                    .addComponent(jLabel16))
+                                .addGap(162, 162, 162)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(cmb_Estatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txf_Color, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel1)
+                                        .addComponent(jLabel3)
+                                        .addComponent(jLabel2)
+                                        .addComponent(jLabel4)
+                                        .addComponent(jLabel5)
+                                        .addComponent(jLabel6)
+                                        .addComponent(jLabel7)
+                                        .addComponent(jLabel8)
+                                        .addComponent(jLabel11)
+                                        .addComponent(jLabel9)
+                                        .addComponent(jLabel12)
+                                        .addComponent(jLabel13)
+                                        .addComponent(jLabel15))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(btn_Atras)
+                                        .addGap(31, 31, 31)))
+                                .addGap(111, 111, 111)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(cmb_MedidaAnchura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(cmb_Categoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(txf_Nombre, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)
+                                        .addComponent(txf_Descripcion)
+                                        .addComponent(cmb_TipoContenido, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(cmb_Presentacion, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(txf_Contenido)
+                                        .addComponent(txf_EAN)
+                                        .addComponent(txf_PrecioCompra)
+                                        .addComponent(txf_PrecioMenudeo)
+                                        .addComponent(txf_PrecioMayoreo))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(txf_Anchura, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 69, Short.MAX_VALUE)
+                                        .addComponent(txf_Material, javax.swing.GroupLayout.Alignment.LEADING)))))
+                        .addGap(34, 34, 34)
+                        .addComponent(jFormattedTextField1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btn_AddProducto)))
+                .addGap(59, 59, 59))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(35, 35, 35)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel17)
+                    .addComponent(btn_Atras))
+                .addGap(30, 30, 30)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(cmb_Categoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(txf_Nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(txf_Descripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(txf_PrecioMayoreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(txf_PrecioMenudeo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel7)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txf_PrecioCompra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(17, 17, 17)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(cmb_Presentacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(txf_EAN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(txf_Contenido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11)
+                    .addComponent(cmb_TipoContenido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txf_Material, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel13)
+                    .addComponent(txf_Anchura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel15)
+                    .addComponent(cmb_MedidaAnchura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel14)
+                    .addComponent(txf_Color, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel16)
+                    .addComponent(cmb_Estatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(btn_AddProducto)
+                .addGap(41, 41, 41))
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jComboBox4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox4ActionPerformed
+    private void cmb_MedidaAnchuraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmb_MedidaAnchuraActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox4ActionPerformed
+    }//GEN-LAST:event_cmb_MedidaAnchuraActionPerformed
 
-    private void jComboBox5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox5ActionPerformed
+    private void cmb_EstatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmb_EstatusActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox5ActionPerformed
+    }//GEN-LAST:event_cmb_EstatusActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
 
-    private void cmb_CategoriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmb_CategoriasActionPerformed
+    private void cmb_CategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmb_CategoriaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_cmb_CategoriasActionPerformed
+    }//GEN-LAST:event_cmb_CategoriaActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Producto nuevoProducto = new Producto();
+    private void btn_AddProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AddProductoActionPerformed
+        Producto p = new Producto();
+        p.setIdCategoria(Integer.parseInt(cmb_Categoria.getItemAt(cmb_Categoria.getSelectedIndex())));
+        p.setNombre(txf_Nombre.getText());
+        p.setDescripcion(txf_Descripcion.getText());
+        p.setPrecioMayoreo(Float.parseFloat(txf_PrecioMayoreo.getText()));
+        p.setPrecioMenudeo(Float.parseFloat(txf_PrecioMenudeo.getText()));
+        p.setPrecioCompra(Float.parseFloat(txf_PrecioCompra.getText()));
+        p.setPresentacion(cmb_Presentacion.getItemAt(cmb_Presentacion.getSelectedIndex()));
+        p.setEAN(txf_EAN.getText());
+        p.setContenido((Integer.parseInt(txf_Contenido.getText())));
+        p.setTipoContenido(cmb_TipoContenido.getItemAt(cmb_TipoContenido.getSelectedIndex()));
+        p.setMaterial(txf_Material.getText());
+        p.setAnchura(Float.parseFloat(txf_Anchura.getText()));
+        p.setMedidaAnchura(cmb_MedidaAnchura.getItemAt(cmb_MedidaAnchura.getSelectedIndex()));
+        p.setColor(txf_Color.getText());
+        p.setEstatus(cmb_Estatus.getItemAt(cmb_Estatus.getSelectedIndex()));
+        if(conexion.insertarProducto(p)){
+            System.out.println("Exitoso");
+            JOptionPane.showMessageDialog(null, "Producto Añadido con exito");
+        }
+        else{
+            System.out.println("No exitoso");
+        }
+    }//GEN-LAST:event_btn_AddProductoActionPerformed
 
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
+    private void txf_PrecioCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txf_PrecioCompraActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField6ActionPerformed
+    }//GEN-LAST:event_txf_PrecioCompraActionPerformed
 
-    private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField7ActionPerformed
+    private void txf_EANActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txf_EANActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField7ActionPerformed
+    }//GEN-LAST:event_txf_EANActionPerformed
 
-    private void jTextField8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField8ActionPerformed
+    private void txf_MaterialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txf_MaterialActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField8ActionPerformed
+    }//GEN-LAST:event_txf_MaterialActionPerformed
 
-    private void jTextField9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField9ActionPerformed
+    private void txf_ContenidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txf_ContenidoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField9ActionPerformed
+    }//GEN-LAST:event_txf_ContenidoActionPerformed
 
     private void btn_AtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AtrasActionPerformed
         ProductosMainFrame productos = new ProductosMainFrame(this.conexion);
@@ -369,8 +625,13 @@ public class AddProductoFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowOpened
 
     private void jTextField4KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField4KeyPressed
+    private void jFormattedTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4KeyPressed
+    }//GEN-LAST:event_jFormattedTextField1ActionPerformed
+
+    private void txf_PrecioMayoreoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txf_PrecioMayoreoKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txf_PrecioMayoreoKeyPressed
     private MaskFormatter getNumFormat() {
         MaskFormatter MF = null;
 
@@ -388,6 +649,7 @@ public class AddProductoFrame extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_AddProducto;
     private javax.swing.JButton btn_Atras;
     private javax.swing.JComboBox<String> cmb_Categorias;
     private javax.swing.JButton jButton1;
@@ -395,6 +657,12 @@ public class AddProductoFrame extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JComboBox<String> jComboBox4;
     private javax.swing.JComboBox<String> jComboBox5;
+    private javax.swing.JComboBox<String> cmb_Categoria;
+    private javax.swing.JComboBox<String> cmb_Estatus;
+    private javax.swing.JComboBox<String> cmb_MedidaAnchura;
+    private javax.swing.JComboBox<String> cmb_Presentacion;
+    private javax.swing.JComboBox<String> cmb_TipoContenido;
+    private javax.swing.JFormattedTextField jFormattedTextField1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -414,15 +682,15 @@ public class AddProductoFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField10;
-    private javax.swing.JTextField jTextField11;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
+    private javax.swing.JTextField txf_Anchura;
+    private javax.swing.JTextField txf_Color;
+    private javax.swing.JTextField txf_Contenido;
     private javax.swing.JTextField txf_Descripcion;
+    private javax.swing.JTextField txf_EAN;
+    private javax.swing.JTextField txf_Material;
     private javax.swing.JTextField txf_Nombre;
+    private javax.swing.JTextField txf_PrecioCompra;
+    private javax.swing.JTextField txf_PrecioMayoreo;
+    private javax.swing.JTextField txf_PrecioMenudeo;
     // End of variables declaration//GEN-END:variables
 }
