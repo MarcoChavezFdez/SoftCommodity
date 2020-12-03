@@ -6,6 +6,7 @@
 package GUI;
 
 import Conexion.ConexionBD;
+import Modelos.Usuario;
 
 /**
  *
@@ -29,6 +30,8 @@ public class LoginFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jDialog1 = new javax.swing.JDialog();
+        lbl_Error = new javax.swing.JLabel();
         lblFondo = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -39,11 +42,15 @@ public class LoginFrame extends javax.swing.JFrame {
         jl_Mensajes = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
 
+        jDialog1.getContentPane().setLayout(new java.awt.GridLayout(3, 0, 0, 3));
+
+        lbl_Error.setText("Error");
+        jDialog1.getContentPane().add(lbl_Error);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(204, 82, 122));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setForeground(new java.awt.Color(204, 82, 122));
-        setMaximumSize(new java.awt.Dimension(1000, 800));
         setMinimumSize(new java.awt.Dimension(1000, 800));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -82,7 +89,9 @@ public class LoginFrame extends javax.swing.JFrame {
             }
         });
         jPanel2.add(jPass_Usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 280, 90, -1));
-        jPanel2.add(jl_Mensajes, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 330, 220, 20));
+
+        jl_Mensajes.setForeground(new java.awt.Color(204, 0, 51));
+        jPanel2.add(jl_Mensajes, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 320, 220, 20));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Login.png"))); // NOI18N
         jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 20, -1, -1));
@@ -93,27 +102,35 @@ public class LoginFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtF_UsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtF_UsuarioActionPerformed
-        
+
     }//GEN-LAST:event_txtF_UsuarioActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       ConexionBD conexion = new ConexionBD();
-       conexion.conectado();
-       String texto = txtF_Usuario.getText();
-       String pass = jPass_Usuario.getText();
-       if(conexion.consultarUsuario(texto, pass)){
-           MenuPrincipalFrame menu =new MenuPrincipalFrame(conexion);
-           menu.setVisible(true);
-           conexion.setUser(conexion.consultarUsuario(texto));
-           this.setVisible(false);
-           
-       }
-       else{
-           jl_Mensajes.setText("Usuario y/o contraseñas incorrecctos");
-       }
-       
+        ConexionBD conexion = new ConexionBD();
+        conexion.conectado();
+        try {
+            String login = txtF_Usuario.getText();
+            String pass = jPass_Usuario.getText();
+            Usuario currentUser = conexion.consultarUsuario(login);
 
-       
+            if (currentUser.getIdUsuario() == null) {
+                jl_Mensajes.setText("El usuario que ingreso no existe");
+            } else if (currentUser.getPassw().equals(pass)) {
+                MenuPrincipalFrame menu = new MenuPrincipalFrame(conexion);
+                menu.setVisible(true);
+                conexion.setUser(conexion.consultarUsuario(login));
+                this.setVisible(false);
+
+            } else {
+                jl_Mensajes.setText("Usuario y/o contraseñas incorrecctos");
+            }
+
+        } catch (Exception e) {
+            System.out.println("Error");
+            lbl_Error.setText(e.getMessage());
+        }
+
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jPass_UsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPass_UsuarioActionPerformed
@@ -158,6 +175,7 @@ public class LoginFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JDialog jDialog1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -165,6 +183,7 @@ public class LoginFrame extends javax.swing.JFrame {
     private javax.swing.JPasswordField jPass_Usuario;
     private javax.swing.JLabel jl_Mensajes;
     private javax.swing.JLabel lblFondo;
+    private javax.swing.JLabel lbl_Error;
     private javax.swing.JTextField txtF_Usuario;
     // End of variables declaration//GEN-END:variables
 }

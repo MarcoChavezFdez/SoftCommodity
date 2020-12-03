@@ -9,6 +9,7 @@ import Modelos.Producto;
 import Modelos.Usuario;
 import java.sql.*;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 public class ConexionBD {
 
@@ -67,31 +68,61 @@ public class ConexionBD {
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(sql);
             while (rs.next()) {
-                Producto s = new Producto();
-                s.setIdProducto(rs.getInt("idproducto"));
-                s.setIdCategoria(rs.getInt("idcategoria"));
-                s.setNombre(rs.getString("nombre"));
-                s.setDescripcion(rs.getString("descripcion"));
-                s.setPrecioMayoreo(rs.getFloat("preciomayoreo"));
-                s.setPrecioMenudeo(rs.getFloat("preciomenudeo"));
-                s.setPrecioCompra(rs.getFloat("preciocompra"));
-                s.setPresentacion(rs.getString("presentacion"));
-                s.setEAN(rs.getString("ean"));
-                s.setContenido(rs.getInt("contenido"));
-                s.setTipoContenido(rs.getString("tipocontenido"));
-                s.setMaterial(rs.getString("material"));
-                s.setAnchura(rs.getFloat("anchura"));
-                s.setMedidaAnchura(rs.getString("medidaanchura"));
-                s.setColor(rs.getString("color"));
-                s.setEstatus(rs.getString("estatus"));
-                lista.add(s);
+                Producto p = new Producto();
+                p.setIdProducto(rs.getInt("idproducto"));
+                p.setIdCategoria(rs.getInt("idcategoria"));
+                p.setNombre(rs.getString("nombre"));
+                p.setDescripcion(rs.getString("descripcion"));
+                p.setPrecioMayoreo(rs.getFloat("preciomayoreo"));
+                p.setPrecioMenudeo(rs.getFloat("preciomenudeo"));
+                p.setPrecioCompra(rs.getFloat("preciocompra"));
+                p.setPresentacion(rs.getString("presentacion"));
+                p.setEAN(rs.getString("ean"));
+                p.setContenido(rs.getInt("contenido"));
+                p.setTipoContenido(rs.getString("tipocontenido"));
+                p.setMaterial(rs.getString("material"));
+                p.setAnchura(rs.getFloat("anchura"));
+                p.setMedidaAnchura(rs.getString("medidaanchura"));
+                p.setColor(rs.getString("color"));
+                p.setEstatus(rs.getString("estatus"));
+                lista.add(p);
             }
             rs.close();
             st.close();
         } catch (SQLException e) {
-            System.out.println("Error:" + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Error:" + e.getMessage());
         }
         return lista;
+    }
+
+    public boolean insertarProducto(Producto p) {
+        String sql = "insert into productos values(null,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        boolean ban = false;
+        try {
+            PreparedStatement st = con.prepareStatement(sql);
+            st.setInt(2, p.getIdCategoria());
+            st.setString(3,p.getNombre());
+            st.setString(4,p.getDescripcion());
+            st.setFloat(5,p.getPrecioMayoreo());
+            st.setFloat(6,p.getPrecioMenudeo());
+            st.setFloat(7, p.getPrecioCompra());
+            st.setString(8, p.getPresentacion());
+            st.setString(9, p.getEAN());
+            st.setInt(10, p.getContenido());
+            st.setString(11, p.getTipoContenido());
+            st.setString(12,p.getMaterial());
+            st.setFloat(13, p.getAnchura());
+            st.setString(14,p.getMedidaAnchura());
+            st.setString(15, p.getColor());
+            st.setString(16,p.getEstatus());
+            st.execute();
+            st.close();
+            ban = true;
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error:" + e.getMessage());
+        }
+        return ban;
     }
 
     /**
@@ -107,27 +138,27 @@ public class ConexionBD {
      */
     public boolean consultarUsuario(String nombre, String Passw) {
         String sql = "select idusuario,nombre,apellidopaterno,apellidomaterno,curp,direccion,telefono,email,rol,login,passw,estatus from usuarios where login=?";
-        Usuario s = new Usuario();
+        Usuario u = new Usuario();
         try {
             PreparedStatement st = con.prepareStatement(sql);
             st.setString(1, nombre);
             ResultSet rs = st.executeQuery();
             if (rs.next()) {
-                s.setIdUsuario(rs.getInt("idusuario"));
-                s.setNombre(rs.getString("nombre"));
-                s.setApellidoPaterno(rs.getString("apellidopaterno"));
-                s.setApellidoMaterno(rs.getString("apellidoMaterno"));
-                s.setCURP(rs.getString("curp"));
-                s.setDireccion(rs.getString("direccion"));
-                s.setTelefono(rs.getString("telefono"));
-                s.setEmail(rs.getString("email"));
-                s.setRol(rs.getString("rol"));
-                s.setLogin("login");
-                s.setPassw(rs.getString("passw"));
-                s.setEstatus(rs.getString("estatus"));
+                u.setIdUsuario(rs.getInt("idusuario"));
+                u.setNombre(rs.getString("nombre"));
+                u.setApellidoPaterno(rs.getString("apellidopaterno"));
+                u.setApellidoMaterno(rs.getString("apellidoMaterno"));
+                u.setCURP(rs.getString("curp"));
+                u.setDireccion(rs.getString("direccion"));
+                u.setTelefono(rs.getString("telefono"));
+                u.setEmail(rs.getString("email"));
+                u.setRol(rs.getString("rol"));
+                u.setLogin("login");
+                u.setPassw(rs.getString("passw"));
+                u.setEstatus(rs.getString("estatus"));
             }
             st.close();
-            if (s.getPassw().equals(Passw)) {
+            if (u.getPassw().equals(Passw)) {
                 return true;
             }
         } catch (SQLException e) {
@@ -138,27 +169,27 @@ public class ConexionBD {
 
     public Usuario consultarUsuario(String nombre) {
         String sql = "select idusuario,nombre,apellidopaterno,apellidomaterno,curp,direccion,telefono,email,rol,login,passw,estatus from usuarios where login=?";
-        Usuario s = new Usuario();
+        Usuario u = new Usuario();
         try {
             PreparedStatement st = con.prepareStatement(sql);
             st.setString(1, nombre);
             ResultSet rs = st.executeQuery();
             if (rs.next()) {
-                s.setIdUsuario(rs.getInt("idusuario"));
-                s.setNombre(rs.getString("nombre"));
-                s.setApellidoPaterno(rs.getString("apellidopaterno"));
-                s.setApellidoMaterno(rs.getString("apellidoMaterno"));
-                s.setCURP(rs.getString("curp"));
-                s.setDireccion(rs.getString("direccion"));
-                s.setTelefono(rs.getString("telefono"));
-                s.setEmail(rs.getString("email"));
-                s.setRol(rs.getString("rol"));
-                s.setLogin("login");
-                s.setPassw(rs.getString("passw"));
-                s.setEstatus(rs.getString("estatus"));
+                u.setIdUsuario(rs.getInt("idusuario"));
+                u.setNombre(rs.getString("nombre"));
+                u.setApellidoPaterno(rs.getString("apellidopaterno"));
+                u.setApellidoMaterno(rs.getString("apellidoMaterno"));
+                u.setCURP(rs.getString("curp"));
+                u.setDireccion(rs.getString("direccion"));
+                u.setTelefono(rs.getString("telefono"));
+                u.setEmail(rs.getString("email"));
+                u.setRol(rs.getString("rol"));
+                u.setLogin(rs.getString("login"));
+                u.setPassw(rs.getString("passw"));
+                u.setEstatus(rs.getString("estatus"));
             }
             st.close();
-            return s;
+            return u;
         } catch (SQLException e) {
             System.out.println("Error:" + e.getMessage());
         }

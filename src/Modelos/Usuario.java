@@ -148,6 +148,11 @@ public class Usuario {
         this.Passw = null;
         this.Estatus = null;
     }
+
+    @Override
+    public String toString() {
+        return "Usuario{" + "IdUsuario=" + IdUsuario + ", Nombre=" + Nombre + ", ApellidoPaterno=" + ApellidoPaterno + ", ApellidoMaterno=" + ApellidoMaterno + ", CURP=" + CURP + ", Direccion=" + Direccion + ", Telefono=" + Telefono + ", Email=" + Email + ", Rol=" + Rol + ", Login=" + Login + ", Passw=" + Passw + ", Estatus=" + Estatus + '}';
+    }
      
     
 }
