@@ -60,7 +60,9 @@ public class ConexionBD {
      *
      *************************************************************
      */
-    //Funcion la cual permite realizar la consulta general y devolver un Array list de objetos Producto
+    
+    //Funcion la cual permite realizar la consulta general
+    //Devuelve un ArrayList de objetos Producto
     public ArrayList<Producto> consultaProductos() {
         String sql = "select idproducto,idcategoria,nombre,descripcion,preciomayoreo,preciomenudeo,preciocompra,presentacion,ean,contenido,tipocontenido,material,anchura,medidaanchura,color,estatus from productos";
         ArrayList<Producto> lista = new ArrayList<Producto>();

@@ -82,11 +82,9 @@ public class AddProductoFrame extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
-        jPanel1.setForeground(null);
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         txf_Descripcion.setBackground(new java.awt.Color(237, 174, 195));
-        txf_Descripcion.setForeground(null);
         txf_Descripcion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txf_DescripcionActionPerformed(evt);
@@ -95,7 +93,6 @@ public class AddProductoFrame extends javax.swing.JFrame {
         jPanel1.add(txf_Descripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 200, 139, -1));
 
         jTextField4.setBackground(new java.awt.Color(237, 174, 195));
-        jTextField4.setForeground(null);
         jTextField4.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jTextField4KeyPressed(evt);
@@ -104,7 +101,6 @@ public class AddProductoFrame extends javax.swing.JFrame {
         jPanel1.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 240, 139, -1));
 
         jTextField5.setBackground(new java.awt.Color(237, 174, 195));
-        jTextField5.setForeground(null);
         jPanel1.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 270, 139, -1));
 
         jLabel1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
@@ -118,7 +114,6 @@ public class AddProductoFrame extends javax.swing.JFrame {
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 310, -1, -1));
 
         jTextField6.setBackground(new java.awt.Color(237, 174, 195));
-        jTextField6.setForeground(null);
         jTextField6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField6ActionPerformed(evt);
@@ -127,7 +122,6 @@ public class AddProductoFrame extends javax.swing.JFrame {
         jPanel1.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 310, 139, -1));
 
         jTextField10.setBackground(new java.awt.Color(237, 174, 195));
-        jTextField10.setForeground(null);
         jPanel1.add(jTextField10, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 280, 140, -1));
 
         jLabel2.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
@@ -141,12 +135,10 @@ public class AddProductoFrame extends javax.swing.JFrame {
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 100, -1, -1));
 
         jComboBox2.setBackground(new java.awt.Color(237, 174, 195));
-        jComboBox2.setForeground(null);
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Metro", "Pieza", "Gramos" }));
         jPanel1.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 100, 139, -1));
 
         jComboBox4.setBackground(new java.awt.Color(237, 174, 195));
-        jComboBox4.setForeground(null);
         jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Milimetros", "Pulgadas" }));
         jComboBox4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -166,7 +158,6 @@ public class AddProductoFrame extends javax.swing.JFrame {
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 130, -1, -1));
 
         jComboBox3.setBackground(new java.awt.Color(237, 174, 195));
-        jComboBox3.setForeground(null);
         jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Metros", "Piezas", "Gramos" }));
         jPanel1.add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 210, 139, -1));
 
@@ -181,11 +172,9 @@ public class AddProductoFrame extends javax.swing.JFrame {
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 200, -1, -1));
 
         jTextField11.setBackground(new java.awt.Color(237, 174, 195));
-        jTextField11.setForeground(null);
         jPanel1.add(jTextField11, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 340, 140, -1));
 
         jTextField7.setBackground(new java.awt.Color(237, 174, 195));
-        jTextField7.setForeground(null);
         jTextField7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField7ActionPerformed(evt);
@@ -204,7 +193,6 @@ public class AddProductoFrame extends javax.swing.JFrame {
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 240, -1, -1));
 
         jTextField8.setBackground(new java.awt.Color(237, 174, 195));
-        jTextField8.setForeground(null);
         jTextField8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField8ActionPerformed(evt);
@@ -218,7 +206,6 @@ public class AddProductoFrame extends javax.swing.JFrame {
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 280, -1, -1));
 
         jTextField9.setBackground(new java.awt.Color(237, 174, 195));
-        jTextField9.setForeground(null);
         jTextField9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField9ActionPerformed(evt);
@@ -269,7 +256,6 @@ public class AddProductoFrame extends javax.swing.JFrame {
 
         jTextField1.setEditable(false);
         jTextField1.setBackground(new java.awt.Color(237, 174, 195));
-        jTextField1.setForeground(null);
         jTextField1.setText("1");
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -279,7 +265,6 @@ public class AddProductoFrame extends javax.swing.JFrame {
         jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 100, 37, -1));
 
         cmb_Categorias.setBackground(new java.awt.Color(237, 174, 195));
-        cmb_Categorias.setForeground(null);
         cmb_Categorias.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4" }));
         cmb_Categorias.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -289,11 +274,9 @@ public class AddProductoFrame extends javax.swing.JFrame {
         jPanel1.add(cmb_Categorias, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 130, -1, -1));
 
         txf_Nombre.setBackground(new java.awt.Color(237, 174, 195));
-        txf_Nombre.setForeground(null);
         jPanel1.add(txf_Nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 160, 139, -1));
 
         jComboBox5.setBackground(new java.awt.Color(237, 174, 195));
-        jComboBox5.setForeground(null);
         jComboBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Activo", "Inactivo" }));
         jComboBox5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
