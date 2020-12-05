@@ -81,7 +81,6 @@ public class LoginFrame extends javax.swing.JFrame {
         jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 230, -1, -1));
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/btn_Ingresar.png"))); // NOI18N
-        jButton1.setActionCommand("");
         jButton1.setBorderPainted(false);
         jButton1.setContentAreaFilled(false);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -120,14 +119,14 @@ public class LoginFrame extends javax.swing.JFrame {
         try {
             String login = txtF_Usuario.getText();
             String pass = jPass_Usuario.getText();
-            Usuario currentUser = conexion.consultarUsuario(login);
+            Usuario currentUser = conexion.consultarUsuarioLogin(login);
 
             if (currentUser.getIdUsuario() == null) {
                 jl_Mensajes.setText("El usuario que ingreso no existe");
             } else if (currentUser.getPassw().equals(pass)) {
                 MenuPrincipalFrame menu = new MenuPrincipalFrame(conexion);
                 menu.setVisible(true);
-                conexion.setUser(conexion.consultarUsuario(login));
+                conexion.setUser(conexion.consultarUsuarioLogin(login));
                 this.setVisible(false);
 
             } else {

@@ -60,7 +60,6 @@ public class ConexionBD {
      *
      *************************************************************
      */
-    
     //Funcion la cual permite realizar la consulta general
     //Devuelve un ArrayList de objetos Producto
     public ArrayList<Producto> consultaProductos() {
@@ -103,20 +102,20 @@ public class ConexionBD {
         try {
             PreparedStatement st = con.prepareStatement(sql);
             st.setInt(2, p.getIdCategoria());
-            st.setString(3,p.getNombre());
-            st.setString(4,p.getDescripcion());
-            st.setFloat(5,p.getPrecioMayoreo());
-            st.setFloat(6,p.getPrecioMenudeo());
+            st.setString(3, p.getNombre());
+            st.setString(4, p.getDescripcion());
+            st.setFloat(5, p.getPrecioMayoreo());
+            st.setFloat(6, p.getPrecioMenudeo());
             st.setFloat(7, p.getPrecioCompra());
             st.setString(8, p.getPresentacion());
             st.setString(9, p.getEAN());
             st.setInt(10, p.getContenido());
             st.setString(11, p.getTipoContenido());
-            st.setString(12,p.getMaterial());
+            st.setString(12, p.getMaterial());
             st.setFloat(13, p.getAnchura());
-            st.setString(14,p.getMedidaAnchura());
+            st.setString(14, p.getMedidaAnchura());
             st.setString(15, p.getColor());
-            st.setString(16,p.getEstatus());
+            st.setString(16, p.getEstatus());
             st.execute();
             st.close();
             ban = true;
@@ -138,7 +137,7 @@ public class ConexionBD {
      *
      *************************************************************
      */
-    public boolean consultarUsuario(String nombre, String Passw) {
+    public Usuario consultarUsuarioLogin(String nombre) {
         String sql = "select idusuario,nombre,apellidopaterno,apellidomaterno,curp,direccion,telefono,email,rol,login,passw,estatus from usuarios where login=?";
         Usuario u = new Usuario();
         try {
@@ -159,24 +158,23 @@ public class ConexionBD {
                 u.setPassw(rs.getString("passw"));
                 u.setEstatus(rs.getString("estatus"));
             }
+            rs.close();
             st.close();
-            if (u.getPassw().equals(Passw)) {
-                return true;
-            }
+            return u;
         } catch (SQLException e) {
             System.out.println("Error:" + e.getMessage());
         }
-        return false;
+        return null;
     }
 
-    public Usuario consultarUsuario(String nombre) {
-        String sql = "select idusuario,nombre,apellidopaterno,apellidomaterno,curp,direccion,telefono,email,rol,login,passw,estatus from usuarios where login=?";
+    public ArrayList<Usuario> consultarUsuarios() {
+        String sql = "select idusuario,nombre,apellidopaterno,apellidomaterno,curp,direccion,telefono,email,rol,login,passw,estatus from usuarios";
+        ArrayList<Usuario> lista = new ArrayList<Usuario>();
         Usuario u = new Usuario();
         try {
             PreparedStatement st = con.prepareStatement(sql);
-            st.setString(1, nombre);
             ResultSet rs = st.executeQuery();
-            if (rs.next()) {
+            while (rs.next()) {
                 u.setIdUsuario(rs.getInt("idusuario"));
                 u.setNombre(rs.getString("nombre"));
                 u.setApellidoPaterno(rs.getString("apellidopaterno"));
@@ -189,13 +187,40 @@ public class ConexionBD {
                 u.setLogin(rs.getString("login"));
                 u.setPassw(rs.getString("passw"));
                 u.setEstatus(rs.getString("estatus"));
+                lista.add(u);
             }
+            rs.close();
             st.close();
-            return u;
+            return lista;
         } catch (SQLException e) {
             System.out.println("Error:" + e.getMessage());
         }
         return null;
+    }
+
+    public boolean insertarUsuario(Usuario u) {
+        String sql = "insert into usuarios values(null,?,?,?,?,?,?,?,?,?,?,?)";
+        boolean ban = false;
+        try {
+            PreparedStatement st = con.prepareStatement(sql);
+            st.setString(2, u.getNombre());
+            st.setString(3, u.getApellidoPaterno());
+            st.setString(4, u.getApellidoMaterno());
+            st.setString(5, u.getCURP());
+            st.setString(6, u.getDireccion());
+            st.setString(7, u.getTelefono());
+            st.setString(8, u.getEmail());
+            st.setString(9, u.getRol());
+            st.setString(10, u.getLogin());
+            st.setString(11, u.getEstatus());
+            st.execute();
+            st.close();
+            ban = true;
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error:" + e.getMessage());
+        }
+        return ban;
     }
 
     public Usuario getUser() {

@@ -5,6 +5,12 @@
  */
 package GUI;
 
+import Conexion.ConexionBD;
+import Modelos.Producto;
+import Modelos.Usuario;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Marco Chavez
@@ -14,8 +20,13 @@ public class UsuariosMainFrame extends javax.swing.JFrame {
     /**
      * Creates new form UsuariosMain
      */
-    public UsuariosMainFrame() {
+    ConexionBD conexion;
+
+    public UsuariosMainFrame(ConexionBD conexion) {
         initComponents();
+        this.conexion = conexion;
+        ArrayList<Usuario> lista = conexion.consultarUsuarios();
+        llenarTabla(lista);
     }
 
     /**
@@ -27,27 +38,215 @@ public class UsuariosMainFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        btn_AddUsuario = new javax.swing.JButton();
+        btn_EliminarBodega = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        btn_ModificarUsuario = new javax.swing.JButton();
+        jTextField1 = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tbl_Datos = new javax.swing.JTable();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jButton4 = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
+
+        jLabel1.setText("Buscar por:");
+
+        btn_AddUsuario.setText("Añadir Usuario");
+        btn_AddUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_AddUsuarioActionPerformed(evt);
+            }
+        });
+
+        btn_EliminarBodega.setText("Eliminar Usuario");
+        btn_EliminarBodega.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_EliminarBodegaActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel2.setText("Usuarios Registrados");
+
+        btn_ModificarUsuario.setText("Modificar Usuario");
+
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
+
+        tbl_Datos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "IdBodega", "Nombre", "Apellido Paterno", "Apellido Materno", "CURP", "Direccion", "Telefono", "Email", "Rol", "Login", "Passw", "Estatus"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                true, false, true, false, true, true, true, true, true, true, true, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tbl_Datos.setColumnSelectionAllowed(true);
+        jScrollPane1.setViewportView(tbl_Datos);
+        tbl_Datos.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nombre" }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
+
+        jButton4.setText("Atras");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 637, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(29, 29, 29)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1013, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btn_ModificarUsuario)
+                                    .addComponent(btn_AddUsuario)
+                                    .addComponent(btn_EliminarBodega, javax.swing.GroupLayout.Alignment.TRAILING)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(34, 34, 34)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(40, 40, 40)
+                        .addComponent(jButton4)
+                        .addGap(88, 88, 88)
+                        .addComponent(jLabel2)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 409, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jButton4))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 384, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addComponent(btn_AddUsuario)
+                        .addGap(35, 35, 35)
+                        .addComponent(btn_ModificarUsuario)
+                        .addGap(33, 33, 33)
+                        .addComponent(btn_EliminarBodega)))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btn_AddUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AddUsuarioActionPerformed
+
+    }//GEN-LAST:event_btn_AddUsuarioActionPerformed
+
+    private void btn_EliminarBodegaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_EliminarBodegaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_EliminarBodegaActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        MenuPrincipalFrame menu = new MenuPrincipalFrame(this.conexion);
+        menu.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+
+
+    }//GEN-LAST:event_formWindowOpened
+
+    private void llenarTabla(ArrayList<Usuario> lista) {
+        String[] encabezado = {"IdUsuario", "Nombre", "Apellido Paterno", "Apellido Materno", "CURP", "Direccion", "Telefono", "Email", "Rol", "Login", "Contraseña", "Estatus"};
+        Object[][] datos = new Object[lista.size()][12];
+        int ren = 0;
+        for (Usuario u : lista) {
+            datos[ren][0] = u.getIdUsuario();
+            datos[ren][1] = u.getNombre();
+            datos[ren][2] = u.getApellidoPaterno();
+            datos[ren][3] = u.getApellidoMaterno();
+            datos[ren][4] = u.getCURP();
+            datos[ren][5] = u.getDireccion();
+            datos[ren][6] = u.getTelefono();
+            datos[ren][7] = u.getEmail();
+            datos[ren][8] = u.getRol();
+            datos[ren][9] = u.getLogin();
+            datos[ren][10] = u.getPassw();
+            datos[ren][11] = u.getEstatus();
+            ren++;
+        }
+        DefaultTableModel m = new DefaultTableModel(datos, encabezado) {
+            @Override
+            public boolean isCellEditable(int rowIndex, int colIndex) {
+                return false; //Disallow the editing of any cell
+            }
+        };
+        tbl_Datos.setModel(m);
+    }
     /**
      * @param args the command line arguments
      */
 
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_AddUsuario;
+    private javax.swing.JButton btn_EliminarBodega;
+    private javax.swing.JButton btn_ModificarUsuario;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTable tbl_Datos;
     // End of variables declaration//GEN-END:variables
 }

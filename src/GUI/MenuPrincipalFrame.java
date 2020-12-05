@@ -253,7 +253,9 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_ProductosActionPerformed
 
     private void btn_UsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_UsuariosActionPerformed
-
+        UsuariosMainFrame usuarios = new UsuariosMainFrame(this.conexion);
+        usuarios.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_btn_UsuariosActionPerformed
 
     private void btn_BodegasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_BodegasActionPerformed
