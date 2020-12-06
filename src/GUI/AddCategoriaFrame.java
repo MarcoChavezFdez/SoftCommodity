@@ -6,6 +6,9 @@
 package GUI;
 
 import Conexion.ConexionBD;
+import Modelos.Categoria;
+import java.awt.HeadlessException;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -34,7 +37,7 @@ public class AddCategoriaFrame extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        txf_Nombre = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -53,9 +56,9 @@ public class AddCategoriaFrame extends javax.swing.JFrame {
 
         jLabel2.setText("Nombre de la Categoria :");
 
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        txf_Nombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                txf_NombreActionPerformed(evt);
             }
         });
 
@@ -63,6 +66,11 @@ public class AddCategoriaFrame extends javax.swing.JFrame {
         jLabel3.setText("Añadir Una Nueva Categoria");
 
         jButton1.setText("Añadir Categoria");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Atras");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -84,7 +92,7 @@ public class AddCategoriaFrame extends javax.swing.JFrame {
                             .addComponent(jLabel1))
                         .addGap(86, 86, 86)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField2)
+                            .addComponent(txf_Nombre)
                             .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(210, 210, 210)
@@ -111,7 +119,7 @@ public class AddCategoriaFrame extends javax.swing.JFrame {
                 .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txf_Nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(94, 94, 94)
                 .addComponent(jButton1)
                 .addContainerGap(31, Short.MAX_VALUE))
@@ -124,15 +132,28 @@ public class AddCategoriaFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void txf_NombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txf_NombreActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_txf_NombreActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         CategoriasMainFrame categorias = new CategoriasMainFrame(this.conexion);
         categorias.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        Categoria nuevaCategoria = new Categoria();
+        nuevaCategoria.setNombre(txf_Nombre.getText());
+        try{
+            if(conexion.insertarCategoria(nuevaCategoria)){
+                JOptionPane.showMessageDialog(null, "Categoria añadida con exito");
+            }
+        }
+        catch(HeadlessException e){
+            JOptionPane.showMessageDialog(null, "Error:" + e.getMessage());
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -145,6 +166,6 @@ public class AddCategoriaFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField txf_Nombre;
     // End of variables declaration//GEN-END:variables
 }

@@ -6,6 +6,10 @@
 package GUI;
 
 import Conexion.ConexionBD;
+import Modelos.Categoria;
+import Modelos.Usuario;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -20,6 +24,9 @@ public class CategoriasMainFrame extends javax.swing.JFrame {
     public CategoriasMainFrame(ConexionBD conexion) {
         initComponents();
         this.conexion= conexion;
+        ArrayList<Categoria> lista = conexion.consultarCategorias();
+        llenarTabla(lista);
+        
     }
 
     /**
@@ -33,7 +40,7 @@ public class CategoriasMainFrame extends javax.swing.JFrame {
 
         jTextField1 = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tbl_Datos = new javax.swing.JTable();
         jComboBox1 = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
@@ -43,6 +50,11 @@ public class CategoriasMainFrame extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -50,7 +62,7 @@ public class CategoriasMainFrame extends javax.swing.JFrame {
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tbl_Datos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
                 {null, null},
@@ -69,7 +81,7 @@ public class CategoriasMainFrame extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tbl_Datos);
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "IdCategoria", "Nombre" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
@@ -191,6 +203,26 @@ public class CategoriasMainFrame extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_jButton4ActionPerformed
 
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        
+    }//GEN-LAST:event_formWindowOpened
+    private void llenarTabla(ArrayList<Categoria> lista) {
+        String[] encabezado = {"IdCategoria", "Nombre"};
+        Object[][] datos = new Object[lista.size()][2];
+        int ren = 0;
+        for (Categoria c : lista) {
+            datos[ren][0] = c.getIdCategoria();
+            datos[ren][1] = c.getNombre();
+            ren++;
+        }
+        DefaultTableModel m = new DefaultTableModel(datos, encabezado) {
+            @Override
+            public boolean isCellEditable(int rowIndex, int colIndex) {
+                return false; //Disallow the editing of any cell
+            }
+        };
+        tbl_Datos.setModel(m);
+    }
     /**
      * @param args the command line arguments
      */
@@ -205,7 +237,7 @@ public class CategoriasMainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JTable tbl_Datos;
     // End of variables declaration//GEN-END:variables
 }

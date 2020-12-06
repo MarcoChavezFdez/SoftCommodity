@@ -5,6 +5,7 @@
  */
 package Conexion;
 
+import Modelos.Categoria;
 import Modelos.Producto;
 import Modelos.Usuario;
 import java.sql.*;
@@ -223,8 +224,57 @@ public class ConexionBD {
         return ban;
     }
 
+    /**
+     * *************************************************************
+     *
+     * Funciones para el modelo Categorias
+     *
+     *
+     *
+     *
+     *
+     *************************************************************
+     */
+
+    public ArrayList<Categoria> consultarCategorias() {
+        String sql = "select idcategoria,nombre from categorias";
+        ArrayList<Categoria> lista = new ArrayList<Categoria>();
+        
+        try {
+            PreparedStatement st = con.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                Categoria c = new Categoria();
+                c.setIdCategoria(rs.getInt("idcategoria"));
+                c.setNombre(rs.getString("nombre"));
+                lista.add(c);
+            }
+            rs.close();
+            st.close();
+            return lista;
+        } catch (SQLException e) {
+            System.out.println("Error:" + e.getMessage());
+        }
+        return null;
+    }
+
     public Usuario getUser() {
         return user;
+    }
+        public boolean insertarCategoria(Categoria c) {
+        String sql = "insert into categorias values(null,?)";
+        boolean ban = false;
+        try {
+            PreparedStatement st = con.prepareStatement(sql);
+            st.setString(1, c.getNombre());
+            st.execute();
+            st.close();
+            ban = true;
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error:" + e.getMessage());
+        }
+        return ban;
     }
 
     public void setUser(Usuario user) {

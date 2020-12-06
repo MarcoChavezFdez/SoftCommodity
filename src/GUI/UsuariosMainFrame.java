@@ -180,7 +180,9 @@ public class UsuariosMainFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_AddUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AddUsuarioActionPerformed
-
+        AddUsuarioFrame addUsuarioFrame = new AddUsuarioFrame(this.conexion);
+        addUsuarioFrame.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_btn_AddUsuarioActionPerformed
 
     private void btn_EliminarBodegaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_EliminarBodegaActionPerformed
