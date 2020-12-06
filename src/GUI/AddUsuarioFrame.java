@@ -119,6 +119,11 @@ public class AddUsuarioFrame extends javax.swing.JFrame {
         cmb_Rol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrador", "Cajero" }));
 
         btn_AddUsuario.setText("Añadir Usuario");
+        btn_AddUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_AddUsuarioActionPerformed(evt);
+            }
+        });
 
         btn_Atras.setText("Atras");
         btn_Atras.addActionListener(new java.awt.event.ActionListener() {
@@ -228,7 +233,6 @@ public class AddUsuarioFrame extends javax.swing.JFrame {
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jLabel8)
                                 .addComponent(cmb_Rol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txf_Login, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel10))
                 .addGap(18, 18, 18)
@@ -259,8 +263,14 @@ public class AddUsuarioFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_cmb_EstatusActionPerformed
 
     private void btn_AtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AtrasActionPerformed
-        // TODO add your handling code here:
+        UsuariosMainFrame usuarios = new UsuariosMainFrame(this.conexion);
+        usuarios.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_btn_AtrasActionPerformed
+
+    private void btn_AddUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AddUsuarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_AddUsuarioActionPerformed
 
     /**
      * @param args the command line arguments

@@ -149,7 +149,6 @@
                               <Component id="cmb_Rol" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="txf_Login" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
@@ -322,6 +321,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="A&#xf1;adir Usuario"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_AddUsuarioActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btn_Atras">
       <Properties>
