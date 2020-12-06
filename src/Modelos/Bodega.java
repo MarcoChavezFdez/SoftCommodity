@@ -9,17 +9,17 @@ package Modelos;
  *
  * @author Marco Chavez
  */
-public class Bodegas {
+public class Bodega {
     //Propiedades de la clase
     private Integer IdBodega;
     private String Nombre;
 
     //Constructor de la clase como null
-    public Bodegas() {
+    public Bodega() {
     }
 
     //Constructor de la clase con todas sus propiedades
-    public Bodegas(Integer IdBodega, String Nombre) {
+    public Bodega(Integer IdBodega, String Nombre) {
         this.IdBodega = IdBodega;
         this.Nombre = Nombre;
     }

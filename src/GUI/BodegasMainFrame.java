@@ -6,6 +6,9 @@
 package GUI;
 
 import Conexion.ConexionBD;
+import Modelos.Bodega;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -20,6 +23,8 @@ public class BodegasMainFrame extends javax.swing.JFrame {
     public BodegasMainFrame(ConexionBD conexion) {
         initComponents();
         this.conexion=conexion;
+        ArrayList<Bodega> lista = conexion.consultarBodegas();
+        llenarTabla(lista);
     }
 
     /**
@@ -38,11 +43,16 @@ public class BodegasMainFrame extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tbl_Datos = new javax.swing.JTable();
         jComboBox1 = new javax.swing.JComboBox<>();
         jButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
 
         jLabel1.setText("Buscar por:");
 
@@ -71,7 +81,7 @@ public class BodegasMainFrame extends javax.swing.JFrame {
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tbl_Datos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
                 {null, null},
@@ -90,7 +100,7 @@ public class BodegasMainFrame extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tbl_Datos);
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "IdBodega", "Nombre" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
@@ -194,6 +204,26 @@ public class BodegasMainFrame extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_jButton4ActionPerformed
 
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        // TODO add your handling code here:
+    }//GEN-LAST:event_formWindowActivated
+        private void llenarTabla(ArrayList<Bodega> lista) {
+        String[] encabezado = {"IdBodega", "Nombre"};
+        Object[][] datos = new Object[lista.size()][2];
+        int ren = 0;
+        for (Bodega b : lista) {
+            datos[ren][0] = b.getIdBodega();
+            datos[ren][1] = b.getNombre();
+            ren++;
+        }
+        DefaultTableModel m = new DefaultTableModel(datos, encabezado) {
+            @Override
+            public boolean isCellEditable(int rowIndex, int colIndex) {
+                return false; //Disallow the editing of any cell
+            }
+        };
+        tbl_Datos.setModel(m);
+    }
     /**
      * @param args the command line arguments
      */
@@ -208,7 +238,7 @@ public class BodegasMainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JTable tbl_Datos;
     // End of variables declaration//GEN-END:variables
 }
