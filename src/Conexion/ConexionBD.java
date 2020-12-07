@@ -7,6 +7,7 @@ package Conexion;
 
 import Modelos.Bodega;
 import Modelos.Categoria;
+import Modelos.CorteVenta;
 import Modelos.Producto;
 import Modelos.Usuario;
 import Modelos.Venta;
@@ -128,11 +129,12 @@ public class ConexionBD {
         }
         return ban;
     }
-    public boolean actualizarProducto(Producto p){
-        String sql="update productos set idcategoria=?, nombre=?, descripcion=?, preciomayoreo=? ,preciomenudeo=?, preciocompra=?, presentacion=?, EAN=?, contenido=?, tipocontenido=?, material=?, anchura=?, medidaanchura=?, color=?, estatus=?  where idProducto=?";
-        boolean ban=false;
-        try{
-            PreparedStatement st=con.prepareStatement(sql);
+
+    public boolean actualizarProducto(Producto p) {
+        String sql = "update productos set idcategoria=?, nombre=?, descripcion=?, preciomayoreo=? ,preciomenudeo=?, preciocompra=?, presentacion=?, EAN=?, contenido=?, tipocontenido=?, material=?, anchura=?, medidaanchura=?, color=?, estatus=?  where idProducto=?";
+        boolean ban = false;
+        try {
+            PreparedStatement st = con.prepareStatement(sql);
             st.setInt(16, p.getIdProducto());
             st.setInt(1, p.getIdCategoria());
             st.setString(2, p.getNombre());
@@ -151,14 +153,14 @@ public class ConexionBD {
             st.setString(15, p.getEstatus());
             st.execute();
             st.close();
-            ban=true;
-            
-        }
-        catch(SQLException e){
-            JOptionPane.showMessageDialog(null,"Error actualizando:"+e.getMessage());
+            ban = true;
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error actualizando:" + e.getMessage());
         }
         return ban;
     }
+
     /**
      * *************************************************************
      *
@@ -356,7 +358,7 @@ public class ConexionBD {
     /**
      * *************************************************************
      *
-     * Funciones para el modelo Ventas
+     * Funciones para el modelo Venta
      *
      *
      *
@@ -381,40 +383,92 @@ public class ConexionBD {
         return ban;
     }
 
-    public Venta consultarVenta(Date fecha){
-        String sql="select idventa,fecha,totaleventa from ventas where fecha=?";
-        Venta v=new Venta();
-        try{
-            PreparedStatement st=con.prepareStatement(sql);
+    public Venta consultarVenta(Date fecha) {
+        String sql = "select idventa,fecha,totaleventa from ventas where fecha=?";
+        Venta v = new Venta();
+        try {
+            PreparedStatement st = con.prepareStatement(sql);
             st.setDate(1, fecha);
-            ResultSet rs=st.executeQuery();
-            if(rs.next()){
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
                 v.setIdVenta(rs.getInt("idventa"));
                 v.setTotalVenta(rs.getFloat("totalventa"));
             }
             st.close();
-        }
-        catch(SQLException e){
-            System.out.println("Error:"+e.getMessage());
+        } catch (SQLException e) {
+            System.out.println("Error:" + e.getMessage());
         }
         return v;
     }
-        public boolean actualizarVenta(Venta v){
-        String sql="update ventas set totalVenta=? where idVenta=?";
-        boolean ban=false;
-        try{
-            PreparedStatement st=con.prepareStatement(sql);
+
+    public boolean actualizarVenta(Venta v) {
+        String sql = "update ventas set totalVenta=? where idVenta=?";
+        boolean ban = false;
+        try {
+            PreparedStatement st = con.prepareStatement(sql);
             st.setInt(2, v.getIdVenta());
-            st.setFloat(1,v.getTotalVenta());
+            st.setFloat(1, v.getTotalVenta());
             st.execute();
             st.close();
-            ban=true;
-            
-        }
-        catch(SQLException e){
-            JOptionPane.showMessageDialog(null,"Error:"+e.getMessage());
+            ban = true;
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error:" + e.getMessage());
         }
         return ban;
+    }
+
+    /**
+     * *************************************************************
+     *
+     * Funciones para el modelo CorteVenta
+     *
+     *
+     *
+     *************************************************************
+     *
+     *
+     *
+     * @param c
+     * @return
+     */
+    public boolean insertarCorteVenta(CorteVenta c) {
+        String sql = "insert into cortesventas values(?,?)";
+        boolean ban = false;
+        try {
+            PreparedStatement st = con.prepareStatement(sql);
+            st.setInt(1, c.getIdVenta());
+            st.setInt(2, c.getIdCorte());
+            st.execute();
+            st.close();
+            ban = true;
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error:" + e.getMessage());
+        }
+        return ban;
+    }
+
+    public ArrayList<CorteVenta> consultarCortesVentas() {
+        String sql = "select idventa,idcorte from cortesventas";
+        ArrayList<CorteVenta> lista = new ArrayList<CorteVenta>();
+
+        try {
+            PreparedStatement st = con.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                CorteVenta cv = new CorteVenta();
+                cv.setIdVenta(rs.getInt("idventa"));
+                cv.setIdCorte(rs.getInt("idcorte"));
+                lista.add(cv);
+            }
+            rs.close();
+            st.close();
+            return lista;
+        } catch (SQLException e) {
+            System.out.println("Error:" + e.getMessage());
+        }
+        return null;
     }
 
     public void setUser(Usuario user) {
