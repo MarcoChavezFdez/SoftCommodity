@@ -7,6 +7,7 @@ package Conexion;
 
 import Modelos.Bodega;
 import Modelos.Categoria;
+import Modelos.CorteCaja;
 import Modelos.CorteVenta;
 import Modelos.Producto;
 import Modelos.Usuario;
@@ -471,6 +472,55 @@ public class ConexionBD {
         return null;
     }
 
+    /**
+     * *************************************************************
+     *
+     * Funciones para el modelo CorteCaja
+     *
+     *
+     *
+     *************************************************************
+     *
+     */
+    public boolean insertarCorteCaja(CorteCaja cc) {
+        String sql = "insert into cortescajas values(null,?,?,?,?,?,?,?,?,?)";
+        boolean ban = false;
+        try {
+            PreparedStatement st = con.prepareStatement(sql);
+            st.setInt(2, cc.getIdUsuario());
+            st.setFloat(3, cc.getFondoInicial());
+            st.setFloat(4, cc.getTotalVenta());
+            st.setFloat(5, cc.getTotalRetiros());
+            st.setFloat(6, cc.getTotalCorte());
+            st.setTimestamp(7,cc.getHoraInicial());
+            st.setTimestamp(8,cc.getHoraFinal());
+            st.setString(9, cc.getEstatus());
+            st.setDate(10,cc.getFecha());
+            st.execute();
+            st.close();
+            ban = true;
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error:" + e.getMessage());
+        }
+        return ban;
+    }
+        public boolean actualizarCorteCaja(CorteCaja cc) {
+        String sql = "update cortescaja set idUsuario=? , fondoincial=?, totalventa=?, totalretiros=?, totalcorte=?, horainicial=?, horafinal=?, estatus=? , fecha=?, where idcorte=?";
+        boolean ban = false;
+        try {
+            PreparedStatement st = con.prepareStatement(sql);
+            st.setInt(10, cc.getIdCorte());
+            st.setFloat(1, cc.getTotalVenta());
+            st.execute();
+            st.close();
+            ban = true;
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error:" + e.getMessage());
+        }
+        return ban;
+    }
     public void setUser(Usuario user) {
         this.user = user;
     }
