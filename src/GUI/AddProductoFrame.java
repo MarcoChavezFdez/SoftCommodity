@@ -9,6 +9,7 @@ import Conexion.ConexionBD;
 import Modelos.Producto;
 import javafx.scene.control.ComboBox;
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 import javax.swing.text.MaskFormatter;
 
 /**
@@ -40,7 +41,6 @@ public class AddProductoFrame extends javax.swing.JFrame {
         txf_Descripcion = new javax.swing.JTextField();
         jTextField4 = new javax.swing.JTextField();
         jTextField5 = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jTextField6 = new javax.swing.JTextField();
         jTextField10 = new javax.swing.JTextField();
@@ -67,11 +67,10 @@ public class AddProductoFrame extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
         cmb_Categorias = new javax.swing.JComboBox<>();
         txf_Nombre = new javax.swing.JTextField();
         jComboBox5 = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
+        btn_AddProducto = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -102,11 +101,6 @@ public class AddProductoFrame extends javax.swing.JFrame {
 
         jTextField5.setBackground(new java.awt.Color(237, 174, 195));
         jPanel1.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 270, 139, -1));
-
-        jLabel1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("IdProducto");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 100, -1, 16));
 
         jLabel7.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
@@ -254,16 +248,6 @@ public class AddProductoFrame extends javax.swing.JFrame {
         jLabel16.setText("Estatus");
         jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 350, -1, -1));
 
-        jTextField1.setEditable(false);
-        jTextField1.setBackground(new java.awt.Color(237, 174, 195));
-        jTextField1.setText("1");
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 100, 37, -1));
-
         cmb_Categorias.setBackground(new java.awt.Color(237, 174, 195));
         cmb_Categorias.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4" }));
         cmb_Categorias.addActionListener(new java.awt.event.ActionListener() {
@@ -285,15 +269,15 @@ public class AddProductoFrame extends javax.swing.JFrame {
         });
         jPanel1.add(jComboBox5, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 340, -1, -1));
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Productos/Añadir.png"))); // NOI18N
-        jButton1.setBorderPainted(false);
-        jButton1.setContentAreaFilled(false);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btn_AddProducto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Productos/Añadir.png"))); // NOI18N
+        btn_AddProducto.setBorderPainted(false);
+        btn_AddProducto.setContentAreaFilled(false);
+        btn_AddProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btn_AddProductoActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 380, -1, -1));
+        jPanel1.add(btn_AddProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 380, -1, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 850, 500));
 
@@ -308,18 +292,27 @@ public class AddProductoFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox5ActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
-
     private void cmb_CategoriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmb_CategoriasActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cmb_CategoriasActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btn_AddProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AddProductoActionPerformed
         Producto nuevoProducto = new Producto();
+        nuevoProducto.setNombre(txf_Nombre.getText());
+        try{
+            if(conexion.insertarProducto(nuevoProducto)){
+                JOptionPane.showMessageDialog(null, "Producto Añadido con exito");
+                ProductosMainFrame productos = new ProductosMainFrame(this.conexion);
+                productos.setVisible(true);
+                productos.setVisible(false);
+                
+            }
+        }
+        catch(Exception e){
+        JOptionPane.showMessageDialog(null, "Error:" + e.getMessage());
+    }
 
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btn_AddProductoActionPerformed
 
     private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
         // TODO add your handling code here:
@@ -371,14 +364,13 @@ public class AddProductoFrame extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_AddProducto;
     private javax.swing.JButton btn_Atras;
     private javax.swing.JComboBox<String> cmb_Categorias;
-    private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JComboBox<String> jComboBox4;
     private javax.swing.JComboBox<String> jComboBox5;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -396,7 +388,6 @@ public class AddProductoFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField11;
     private javax.swing.JTextField jTextField4;
