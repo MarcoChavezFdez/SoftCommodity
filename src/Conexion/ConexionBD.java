@@ -128,7 +128,37 @@ public class ConexionBD {
         }
         return ban;
     }
-
+    public boolean actualizarProducto(Producto p){
+        String sql="update productos set idcategoria=?, nombre=?, descripcion=?, preciomayoreo=? ,preciomenudeo=?, preciocompra=?, presentacion=?, EAN=?, contenido=?, tipocontenido=?, material=?, anchura=?, medidaanchura=?, color=?, estatus=?  where idProducto=?";
+        boolean ban=false;
+        try{
+            PreparedStatement st=con.prepareStatement(sql);
+            st.setInt(16, p.getIdProducto());
+            st.setInt(1, p.getIdCategoria());
+            st.setString(2, p.getNombre());
+            st.setString(3, p.getDescripcion());
+            st.setFloat(4, p.getPrecioMayoreo());
+            st.setFloat(5, p.getPrecioMenudeo());
+            st.setFloat(6, p.getPrecioCompra());
+            st.setString(7, p.getPresentacion());
+            st.setString(8, p.getEAN());
+            st.setInt(9, p.getContenido());
+            st.setString(10, p.getTipoContenido());
+            st.setString(11, p.getMaterial());
+            st.setFloat(12, p.getAnchura());
+            st.setString(13, p.getMedidaAnchura());
+            st.setString(14, p.getColor());
+            st.setString(15, p.getEstatus());
+            st.execute();
+            st.close();
+            ban=true;
+            
+        }
+        catch(SQLException e){
+            JOptionPane.showMessageDialog(null,"Error actualizando:"+e.getMessage());
+        }
+        return ban;
+    }
     /**
      * *************************************************************
      *
