@@ -9,6 +9,7 @@ import Modelos.Bodega;
 import Modelos.Categoria;
 import Modelos.Producto;
 import Modelos.Usuario;
+import Modelos.Venta;
 import java.sql.*;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -320,6 +321,70 @@ public class ConexionBD {
             System.out.println("Error:" + e.getMessage());
         }
         return null;
+    }
+
+    /**
+     * *************************************************************
+     *
+     * Funciones para el modelo Ventas
+     *
+     *
+     *
+     *************************************************************
+     * @param v
+     * @return
+     */
+    public boolean insertarVenta(Venta v) {
+        String sql = "insert into ventas values(null,?,?)";
+        boolean ban = false;
+        try {
+            PreparedStatement st = con.prepareStatement(sql);
+            st.setDate(1, v.getFechaGeneracion());
+            st.setFloat(2, v.getTotalVenta());
+            st.execute();
+            st.close();
+            ban = true;
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error:" + e.getMessage());
+        }
+        return ban;
+    }
+
+    public Venta consultarVenta(Date fecha){
+        String sql="select idventa,fecha,totaleventa from ventas where fecha=?";
+        Venta v=new Venta();
+        try{
+            PreparedStatement st=con.prepareStatement(sql);
+            st.setDate(1, fecha);
+            ResultSet rs=st.executeQuery();
+            if(rs.next()){
+                v.setIdVenta(rs.getInt("idventa"));
+                v.setTotalVenta(rs.getFloat("totalventa"));
+            }
+            st.close();
+        }
+        catch(SQLException e){
+            System.out.println("Error:"+e.getMessage());
+        }
+        return v;
+    }
+        public boolean actualizarVenta(Venta v){
+        String sql="update ventas set totalVenta=? where idVenta=?";
+        boolean ban=false;
+        try{
+            PreparedStatement st=con.prepareStatement(sql);
+            st.setInt(2, v.getIdVenta());
+            st.setFloat(1,v.getTotalVenta());
+            st.execute();
+            st.close();
+            ban=true;
+            
+        }
+        catch(SQLException e){
+            JOptionPane.showMessageDialog(null,"Error:"+e.getMessage());
+        }
+        return ban;
     }
 
     public void setUser(Usuario user) {
