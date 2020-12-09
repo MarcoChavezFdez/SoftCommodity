@@ -6,6 +6,9 @@
 package GUI;
 
 import Conexion.ConexionBD;
+import Modelos.Usuario;
+import java.awt.HeadlessException;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -17,9 +20,10 @@ public class AddUsuarioFrame extends javax.swing.JFrame {
      * Creates new form AddUsuario
      */
     ConexionBD conexion;
+
     public AddUsuarioFrame(ConexionBD conexion) {
         initComponents();
-        this.conexion=conexion;
+        this.conexion = conexion;
     }
 
     /**
@@ -57,6 +61,8 @@ public class AddUsuarioFrame extends javax.swing.JFrame {
         cmb_Rol = new javax.swing.JComboBox<>();
         btn_AddUsuario = new javax.swing.JButton();
         btn_Atras = new javax.swing.JButton();
+        lbl_MensajePassw = new javax.swing.JLabel();
+        lbl_MensajeLogin = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -100,11 +106,28 @@ public class AddUsuarioFrame extends javax.swing.JFrame {
 
         jLabel8.setText("Rol");
 
+        txf_Login.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txf_LoginKeyReleased(evt);
+            }
+        });
+
         jLabel9.setText("Contraseña");
 
         jLabel10.setText("Login");
 
         jLabel11.setText("Repita Contraseña");
+
+        txf_Passw2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txf_Passw2ActionPerformed(evt);
+            }
+        });
+        txf_Passw2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txf_Passw2KeyReleased(evt);
+            }
+        });
 
         jLabel12.setText("Estatus");
 
@@ -118,6 +141,7 @@ public class AddUsuarioFrame extends javax.swing.JFrame {
         cmb_Rol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrador", "Cajero" }));
 
         btn_AddUsuario.setText("Añadir Usuario");
+        btn_AddUsuario.setEnabled(false);
         btn_AddUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_AddUsuarioActionPerformed(evt);
@@ -131,11 +155,46 @@ public class AddUsuarioFrame extends javax.swing.JFrame {
             }
         });
 
+        lbl_MensajePassw.setForeground(new java.awt.Color(204, 0, 0));
+
+        lbl_MensajeLogin.setForeground(new java.awt.Color(204, 0, 0));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(86, 86, 86)
+                        .addComponent(jLabel6)
+                        .addGap(18, 18, 18)
+                        .addComponent(txf_Telefono, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(40, 40, 40)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel3)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jLabel5)))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(txf_Direccion, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txf_CURP, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txf_ApellidoMaterno))))
+                .addGap(307, 307, 307))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(36, 36, 36)
+                .addComponent(jLabel12)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(cmb_Estatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btn_AddUsuario)
+                .addGap(77, 77, 77))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -168,38 +227,14 @@ public class AddUsuarioFrame extends javax.swing.JFrame {
                                 .addGap(0, 53, Short.MAX_VALUE))
                             .addComponent(txf_Passw1)
                             .addComponent(txf_Passw2))))
-                .addGap(131, 307, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addComponent(jLabel12)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(cmb_Estatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btn_AddUsuario)
-                .addGap(93, 93, 93))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGap(44, 44, 44)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(86, 86, 86)
-                        .addComponent(jLabel6)
-                        .addGap(18, 18, 18)
-                        .addComponent(txf_Telefono))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(40, 40, 40)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel3)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel5)))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txf_Direccion, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txf_CURP, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txf_ApellidoMaterno))))
-                .addGap(307, 307, 307))
+                        .addComponent(lbl_MensajePassw, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(77, 77, 77))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lbl_MensajeLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -237,29 +272,32 @@ public class AddUsuarioFrame extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(cmb_Rol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(4, 4, 4)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txf_Login, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel10))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(txf_Login, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel10))
+                    .addComponent(lbl_MensajeLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txf_Passw1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel11)
-                    .addComponent(txf_Passw2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel11)
+                            .addComponent(txf_Passw2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lbl_MensajePassw, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel12)
                             .addComponent(cmb_Estatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap(41, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btn_AddUsuario)
-                        .addGap(52, 52, 52))))
+                        .addGap(25, 25, 25))))
         );
 
         pack();
@@ -280,7 +318,31 @@ public class AddUsuarioFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_AtrasActionPerformed
 
     private void btn_AddUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AddUsuarioActionPerformed
-        // TODO add your handling code here:
+        Usuario addUsuario = new Usuario();
+        addUsuario.setNombre(txf_Nombre.getText());
+        addUsuario.setApellidoPaterno(txf_ApellidoPaterno.getText());
+        addUsuario.setApellidoMaterno(txf_ApellidoMaterno.getText());
+        addUsuario.setCURP(txf_CURP.getText());
+        addUsuario.setDireccion(txf_Direccion.getText());
+        addUsuario.setTelefono(txf_Telefono.getText());
+        addUsuario.setEmail(txf_Email.getText());
+        addUsuario.setRol(cmb_Rol.getItemAt(cmb_Rol.getSelectedIndex()).substring(0,1));
+        addUsuario.setLogin(txf_Login.getText());
+        addUsuario.setPassw(txf_Passw1.getText());
+        addUsuario.setEstatus(cmb_Estatus.getItemAt(cmb_Estatus.getSelectedIndex()).substring(0, 1));
+        try {
+            if (conexion.insertarUsuario(addUsuario)) {
+                JOptionPane.showMessageDialog(null, "Usuario Añadido con exito");
+                UsuariosMainFrame usuarios = new UsuariosMainFrame(this.conexion);
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Error al intentar añadir el usuario");
+            }
+
+        } catch (HeadlessException e) {
+            JOptionPane.showMessageDialog(null, "Error al añadir el usuario" + e.getMessage());
+        }
+
     }//GEN-LAST:event_btn_AddUsuarioActionPerformed
 
     private void txf_ApellidoMaternoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txf_ApellidoMaternoActionPerformed
@@ -295,10 +357,33 @@ public class AddUsuarioFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txf_TelefonoActionPerformed
 
+    private void txf_Passw2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txf_Passw2KeyReleased
+        if (!txf_Passw2.getText().equals(txf_Passw1.getText())) {
+            lbl_MensajePassw.setText("Las Contraseñas no coinciden");
+            btn_AddUsuario.setEnabled(false);
+        } else {
+            lbl_MensajePassw.setText("");
+            btn_AddUsuario.setEnabled(true);
+        }
+    }//GEN-LAST:event_txf_Passw2KeyReleased
+
+    private void txf_Passw2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txf_Passw2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txf_Passw2ActionPerformed
+
+    private void txf_LoginKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txf_LoginKeyReleased
+        if(conexion.consultarUsuarioLoginRegistro(txf_Login.getText())){
+            lbl_MensajeLogin.setText("El Login seleccionado ya existe");
+            
+        }
+        else{
+            lbl_MensajeLogin.setText("");
+        }
+    }//GEN-LAST:event_txf_LoginKeyReleased
+
     /**
      * @param args the command line arguments
      */
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_AddUsuario;
@@ -317,6 +402,8 @@ public class AddUsuarioFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel lbl_MensajeLogin;
+    private javax.swing.JLabel lbl_MensajePassw;
     private javax.swing.JTextField txf_ApellidoMaterno;
     private javax.swing.JTextField txf_ApellidoPaterno;
     private javax.swing.JTextField txf_CURP;
