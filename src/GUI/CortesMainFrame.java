@@ -17,6 +17,7 @@ public class CortesMainFrame extends javax.swing.JFrame {
      * Creates new form CortesMainFrame
      */
     ConexionBD conexion;
+    Ventas venta;
     public CortesMainFrame(ConexionBD conexion) {
         initComponents();
         this.conexion=conexion;
@@ -34,10 +35,11 @@ public class CortesMainFrame extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setText("Continuar Corte");
+        jButton1.setText("Cerrar Corte");
 
         jButton2.setText("Reimprimir Ticket");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -53,16 +55,23 @@ public class CortesMainFrame extends javax.swing.JFrame {
             }
         });
 
+        jButton4.setText("Realizar Retiro");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(190, 190, 190)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3)
-                    .addComponent(jButton1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(190, 190, 190)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton2)
+                            .addComponent(jButton3)
+                            .addComponent(jButton1)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(198, 198, 198)
+                        .addComponent(jButton4)))
                 .addContainerGap(202, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -74,7 +83,9 @@ public class CortesMainFrame extends javax.swing.JFrame {
                 .addComponent(jButton3)
                 .addGap(45, 45, 45)
                 .addComponent(jButton2)
-                .addContainerGap(163, Short.MAX_VALUE))
+                .addGap(29, 29, 29)
+                .addComponent(jButton4)
+                .addContainerGap(109, Short.MAX_VALUE))
         );
 
         pack();
@@ -96,5 +107,6 @@ public class CortesMainFrame extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     // End of variables declaration//GEN-END:variables
 }
