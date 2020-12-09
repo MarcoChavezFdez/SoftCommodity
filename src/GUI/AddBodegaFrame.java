@@ -20,9 +20,10 @@ public class AddBodegaFrame extends javax.swing.JFrame {
      * Creates new form AddBodegaFrame
      */
     ConexionBD conexion;
+
     public AddBodegaFrame(ConexionBD conexion) {
         initComponents();
-        this.conexion=conexion;
+        this.conexion = conexion;
     }
 
     /**
@@ -34,18 +35,20 @@ public class AddBodegaFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
+        btn_AddBodega = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         txf_Nombre = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
+        lbl_Mensaje = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setText("Añadir Bodega");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btn_AddBodega.setText("Añadir Bodega");
+        btn_AddBodega.setEnabled(false);
+        btn_AddBodega.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btn_AddBodegaActionPerformed(evt);
             }
         });
 
@@ -63,9 +66,19 @@ public class AddBodegaFrame extends javax.swing.JFrame {
                 txf_NombreActionPerformed(evt);
             }
         });
+        txf_Nombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txf_NombreKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txf_NombreKeyReleased(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel3.setText("Añadir Una Nueva Bodega");
+
+        lbl_Mensaje.setForeground(new java.awt.Color(255, 0, 51));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -74,20 +87,25 @@ public class AddBodegaFrame extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(88, 88, 88)
-                        .addComponent(jLabel2)
-                        .addGap(86, 86, 86)
-                        .addComponent(txf_Nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(210, 210, 210)
-                        .addComponent(jButton1))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(29, 29, 29)
                         .addComponent(jButton2))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(103, 103, 103)
-                        .addComponent(jLabel3)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addGap(88, 88, 88)
+                            .addComponent(jLabel2)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txf_Nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addGap(103, 103, 103)
+                            .addComponent(jLabel3)))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(lbl_Mensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addGap(210, 210, 210)
+                            .addComponent(btn_AddBodega))))
+                .addContainerGap(53, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -100,8 +118,10 @@ public class AddBodegaFrame extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txf_Nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(94, 94, 94)
-                .addComponent(jButton1)
+                .addGap(18, 18, 18)
+                .addComponent(lbl_Mensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(57, 57, 57)
+                .addComponent(btn_AddBodega)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -118,30 +138,43 @@ public class AddBodegaFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txf_NombreActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btn_AddBodegaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AddBodegaActionPerformed
         Bodega addBodega = new Bodega();
         addBodega.setNombre(txf_Nombre.getText());
-        try{
-            if(conexion.insertarBodega(addBodega)){
+        try {
+            if (conexion.insertarBodega(addBodega)) {
                 JOptionPane.showMessageDialog(null, "Bodega Añadida con Exito");
                 BodegasMainFrame bodega = new BodegasMainFrame(this.conexion);
                 bodega.setVisible(true);
                 this.setVisible(false);
-                
+
             }
-        }
-        catch(HeadlessException e){
+        } catch (HeadlessException e) {
             JOptionPane.showMessageDialog(null, "Error:" + e.getMessage());
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btn_AddBodegaActionPerformed
 
-    
+    private void txf_NombreKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txf_NombreKeyPressed
+
+    }//GEN-LAST:event_txf_NombreKeyPressed
+
+    private void txf_NombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txf_NombreKeyReleased
+        if (conexion.consultarBodegaRegistrada(txf_Nombre.getText())) {
+            lbl_Mensaje.setText("Ya existe esa bodega");
+            btn_AddBodega.setEnabled(false);
+        } else {
+            lbl_Mensaje.setText("");
+            btn_AddBodega.setEnabled(true);
+        }
+    }//GEN-LAST:event_txf_NombreKeyReleased
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btn_AddBodega;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel lbl_Mensaje;
     private javax.swing.JTextField txf_Nombre;
     // End of variables declaration//GEN-END:variables
 }
