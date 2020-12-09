@@ -70,174 +70,218 @@ public class RealizarPago extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jpCantidad.setBackground(new java.awt.Color(249, 212, 35));
+        jpCantidad.setBackground(new java.awt.Color(0, 0, 0));
         jpCantidad.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jb100.setBackground(new java.awt.Color(246, 144, 61));
         jb100.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jb100.setText("$100");
+        jb100.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Realizar_Pago/100.png"))); // NOI18N
         jb100.setToolTipText("");
+        jb100.setBorderPainted(false);
+        jb100.setContentAreaFilled(false);
         jb100.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jb100ActionPerformed(evt);
             }
         });
-        jpCantidad.add(jb100, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 30, 80, 60));
+        jpCantidad.add(jb100, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 10, 120, 80));
 
         jb500.setBackground(new java.awt.Color(246, 144, 61));
         jb500.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jb500.setText("$500");
+        jb500.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Realizar_Pago/500.png"))); // NOI18N
         jb500.setToolTipText("");
-        jpCantidad.add(jb500, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 80, 60));
+        jb500.setBorderPainted(false);
+        jb500.setContentAreaFilled(false);
+        jpCantidad.add(jb500, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 120, 80));
 
         jbPagoExacto.setBackground(new java.awt.Color(246, 144, 61));
         jbPagoExacto.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jbPagoExacto.setText("$20");
+        jbPagoExacto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Realizar_Pago/Exacto.png"))); // NOI18N
         jbPagoExacto.setToolTipText("");
+        jbPagoExacto.setBorderPainted(false);
+        jbPagoExacto.setContentAreaFilled(false);
         jbPagoExacto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbPagoExactoActionPerformed(evt);
             }
         });
-        jpCantidad.add(jbPagoExacto, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 110, 80, 60));
+        jpCantidad.add(jbPagoExacto, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 100, 120, 80));
 
         jb200.setBackground(new java.awt.Color(246, 144, 61));
         jb200.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jb200.setText("$200");
+        jb200.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Realizar_Pago/200.png"))); // NOI18N
         jb200.setToolTipText("");
+        jb200.setBorderPainted(false);
+        jb200.setContentAreaFilled(false);
         jb200.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jb200ActionPerformed(evt);
             }
         });
-        jpCantidad.add(jb200, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 30, 80, 60));
+        jpCantidad.add(jb200, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 10, 120, 80));
 
         jb50.setBackground(new java.awt.Color(246, 144, 61));
         jb50.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jb50.setText("$50");
+        jb50.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Realizar_Pago/50.png"))); // NOI18N
         jb50.setToolTipText("");
+        jb50.setBorderPainted(false);
+        jb50.setContentAreaFilled(false);
         jb50.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jb50ActionPerformed(evt);
             }
         });
-        jpCantidad.add(jb50, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, 80, 60));
+        jpCantidad.add(jb50, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 120, 80));
 
+        jPanel2.setBackground(new java.awt.Color(0, 0, 0));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jbOk.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
-        jbOk.setText("OK");
-        jPanel2.add(jbOk, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 200, 130, 140));
+        jbOk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Realizar_Pago/Ok.png"))); // NOI18N
+        jbOk.setBorderPainted(false);
+        jbOk.setContentAreaFilled(false);
+        jbOk.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbOkActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jbOk, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 210, 130, 140));
 
         jb7.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
-        jb7.setText("7");
+        jb7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Realizar_Pago/7.png"))); // NOI18N
+        jb7.setContentAreaFilled(false);
+        jb7.setDefaultCapable(false);
         jb7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jb7ActionPerformed(evt);
             }
         });
-        jPanel2.add(jb7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 70, 70));
+        jPanel2.add(jb7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 70, 70));
 
         jb4.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
-        jb4.setText("4");
+        jb4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Realizar_Pago/4.png"))); // NOI18N
+        jb4.setAlignmentY(0.0F);
+        jb4.setBorderPainted(false);
+        jb4.setContentAreaFilled(false);
+        jb4.setDefaultCapable(false);
         jb4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jb4ActionPerformed(evt);
             }
         });
-        jPanel2.add(jb4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 70, 70));
+        jPanel2.add(jb4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 70, 70));
 
         jb1.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
-        jb1.setText("1");
+        jb1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Realizar_Pago/1.png"))); // NOI18N
+        jb1.setBorderPainted(false);
+        jb1.setContentAreaFilled(false);
         jb1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jb1ActionPerformed(evt);
             }
         });
-        jPanel2.add(jb1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 200, 70, 70));
+        jPanel2.add(jb1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 70, 70));
 
         jb8.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
-        jb8.setText("8");
+        jb8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Realizar_Pago/8.png"))); // NOI18N
+        jb8.setBorderPainted(false);
+        jb8.setContentAreaFilled(false);
         jb8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jb8ActionPerformed(evt);
             }
         });
-        jPanel2.add(jb8, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 60, 70, 70));
+        jPanel2.add(jb8, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 70, 70, 70));
 
         jb5.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
-        jb5.setText("5");
+        jb5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Realizar_Pago/5.png"))); // NOI18N
+        jb5.setBorderPainted(false);
+        jb5.setContentAreaFilled(false);
         jb5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jb5ActionPerformed(evt);
             }
         });
-        jPanel2.add(jb5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 130, 70, 70));
+        jPanel2.add(jb5, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 140, 70, 70));
 
         jb0.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
-        jb0.setText("0");
+        jb0.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Realizar_Pago/0.png"))); // NOI18N
+        jb0.setBorderPainted(false);
+        jb0.setContentAreaFilled(false);
         jb0.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jb0ActionPerformed(evt);
             }
         });
-        jPanel2.add(jb0, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 270, 70, 70));
+        jPanel2.add(jb0, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 280, 70, 70));
 
         jb3.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
-        jb3.setText("3");
+        jb3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Realizar_Pago/3.png"))); // NOI18N
+        jb3.setBorderPainted(false);
+        jb3.setContentAreaFilled(false);
         jb3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jb3ActionPerformed(evt);
             }
         });
-        jPanel2.add(jb3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 200, 70, 70));
+        jPanel2.add(jb3, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 210, 70, 70));
 
         jb6.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
-        jb6.setText("6");
+        jb6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Realizar_Pago/6.png"))); // NOI18N
+        jb6.setBorderPainted(false);
+        jb6.setContentAreaFilled(false);
         jb6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jb6ActionPerformed(evt);
             }
         });
-        jPanel2.add(jb6, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 130, 70, 70));
+        jPanel2.add(jb6, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 140, 70, 70));
 
         jb9.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
-        jb9.setText("9");
+        jb9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Realizar_Pago/9.png"))); // NOI18N
+        jb9.setBorderPainted(false);
+        jb9.setContentAreaFilled(false);
         jb9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jb9ActionPerformed(evt);
             }
         });
-        jPanel2.add(jb9, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 60, 70, 70));
+        jPanel2.add(jb9, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 70, 70, 70));
 
         jbBorrar.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
-        jbBorrar.setText("<-");
+        jbBorrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Realizar_Pago/Fle.png"))); // NOI18N
+        jbBorrar.setContentAreaFilled(false);
         jbBorrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbBorrarActionPerformed(evt);
             }
         });
-        jPanel2.add(jbBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 60, 130, 70));
+        jPanel2.add(jbBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 60, 140, 70));
 
         jbClear.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
-        jbClear.setText("C");
+        jbClear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Realizar_Pago/C.png"))); // NOI18N
+        jbClear.setBorderPainted(false);
+        jbClear.setContentAreaFilled(false);
         jbClear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbClearActionPerformed(evt);
             }
         });
-        jPanel2.add(jbClear, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 130, 130, 70));
+        jPanel2.add(jbClear, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 140, 130, 80));
 
         jb2.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
-        jb2.setText("2");
+        jb2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Realizar_Pago/2.png"))); // NOI18N
+        jb2.setBorderPainted(false);
+        jb2.setContentAreaFilled(false);
         jb2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jb2ActionPerformed(evt);
             }
         });
-        jPanel2.add(jb2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 200, 70, 70));
+        jPanel2.add(jb2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 210, 70, 70));
 
         jFormattedTextField1.setEditable(false);
+        jFormattedTextField1.setBackground(new java.awt.Color(237, 174, 195));
         jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("$.00"))));
         jFormattedTextField1.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         jFormattedTextField1.setToolTipText("");
@@ -246,24 +290,26 @@ public class RealizarPago extends javax.swing.JFrame {
                 jFormattedTextField1ActionPerformed(evt);
             }
         });
-        jPanel2.add(jFormattedTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 340, 60));
+        jPanel2.add(jFormattedTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 340, 60));
 
-        jpCantidad.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, 340, 340));
+        jpCantidad.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, 360, 350));
 
         jb20.setBackground(new java.awt.Color(246, 144, 61));
         jb20.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jb20.setText("$20");
+        jb20.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Realizar_Pago/20.png"))); // NOI18N
         jb20.setToolTipText("");
+        jb20.setBorderPainted(false);
+        jb20.setContentAreaFilled(false);
         jb20.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jb20ActionPerformed(evt);
             }
         });
-        jpCantidad.add(jb20, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 110, 80, 60));
+        jpCantidad.add(jb20, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 100, 120, 80));
 
         getContentPane().add(jpCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 390, 550));
 
-        jPanel3.setBackground(new java.awt.Color(246, 144, 61));
+        jPanel3.setBackground(new java.awt.Color(102, 102, 102));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -276,7 +322,7 @@ public class RealizarPago extends javax.swing.JFrame {
             .addGap(0, 550, Short.MAX_VALUE)
         );
 
-        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 0, 510, 550));
+        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 0, 510, 550));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -352,6 +398,10 @@ public class RealizarPago extends javax.swing.JFrame {
     private void jFormattedTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jFormattedTextField1ActionPerformed
+
+    private void jbOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbOkActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbOkActionPerformed
  
     
     /**
