@@ -298,6 +298,7 @@ public class AddProductoFrame extends javax.swing.JFrame {
 
     private void btn_AddProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AddProductoActionPerformed
         Producto nuevoProducto = new Producto();
+        
         nuevoProducto.setNombre(txf_Nombre.getText());
         try{
             if(conexion.insertarProducto(nuevoProducto)){
