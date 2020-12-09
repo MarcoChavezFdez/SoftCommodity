@@ -54,6 +54,7 @@ public class LoginFrame extends javax.swing.JFrame {
         setLocation(new java.awt.Point(0, 0));
         setMaximumSize(new java.awt.Dimension(500, 400));
         setMinimumSize(new java.awt.Dimension(500, 400));
+        setResizable(false);
         setSize(new java.awt.Dimension(500, 400));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         getContentPane().add(lblFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
