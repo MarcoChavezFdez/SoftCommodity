@@ -336,6 +336,25 @@ public class ConexionBD {
         }
         return null;
     }
+        public Categoria consultarCategoriasPorNombre(String nombre) {
+        String sql = "select idcategoria,nombre from categorias where nombre=? order by nombre asc";
+        try {
+            PreparedStatement st = con.prepareStatement(sql);
+            st.setString(1, nombre);
+            ResultSet rs = st.executeQuery();
+            Categoria c = new Categoria();
+            if (rs.next()) {
+                c.setIdCategoria(rs.getInt("idcategoria"));
+                c.setNombre(rs.getString("nombre"));
+            }
+            rs.close();
+            st.close();
+            return c;
+        } catch (SQLException e) {
+            System.out.println("Error:" + e.getMessage());
+        }
+        return null;
+    }
 
     public boolean insertarCategoria(Categoria c) {
         String sql = "insert into categorias values(null,?)";
