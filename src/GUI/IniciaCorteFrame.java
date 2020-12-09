@@ -91,7 +91,7 @@ public class IniciaCorteFrame extends javax.swing.JFrame {
     private void btn_SiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_SiguienteActionPerformed
         int reply = JOptionPane.showConfirmDialog(null, "Confirmme que ha recibido su fondo inicial de $"+txf_FondoInicial.getText(), "Confirmar Fondo Inicial Recibido", JOptionPane.YES_NO_OPTION);
         if (reply == JOptionPane.YES_OPTION) {
-            CortesMainFrame cortesMain = new CortesMainFrame(this.conexion,this.ventaActual);
+            CortesMainFrame cortesMain = new CortesMainFrame(this.conexion,this.ventaActual,Float.valueOf(txf_FondoInicial.getText()));
             cortesMain.setVisible(true);
             this.setVisible(false);
         } else {

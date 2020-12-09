@@ -6,6 +6,7 @@
 package GUI;
 
 import Conexion.ConexionBD;
+import Modelos.CorteCaja;
 import Modelos.Venta;
 
 /**
@@ -38,9 +39,10 @@ public class VentasMainFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btn_CrearCorte = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        btn_ContinuarCorte = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -51,16 +53,24 @@ public class VentasMainFrame extends javax.swing.JFrame {
 
         jLabel1.setText("Ventas");
 
-        jButton1.setText("Crear Corte");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btn_CrearCorte.setText("Crear Corte");
+        btn_CrearCorte.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btn_CrearCorteActionPerformed(evt);
             }
         });
 
         jLabel2.setText("Total de Venta del dia $");
 
         jLabel3.setText("0.00");
+
+        btn_ContinuarCorte.setText("Continuar Corte");
+        btn_ContinuarCorte.setEnabled(false);
+        btn_ContinuarCorte.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_ContinuarCorteActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -78,17 +88,22 @@ public class VentasMainFrame extends javax.swing.JFrame {
                         .addComponent(jLabel3))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(162, 162, 162)
-                        .addComponent(jButton1)))
-                .addContainerGap(241, Short.MAX_VALUE))
+                        .addComponent(btn_CrearCorte))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(153, 153, 153)
+                        .addComponent(btn_ContinuarCorte)))
+                .addContainerGap(226, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(39, 39, 39)
                 .addComponent(jLabel1)
-                .addGap(36, 36, 36)
-                .addComponent(jButton1)
-                .addGap(48, 48, 48)
+                .addGap(18, 18, 18)
+                .addComponent(btn_CrearCorte)
+                .addGap(18, 18, 18)
+                .addComponent(btn_ContinuarCorte)
+                .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jLabel3))
@@ -98,32 +113,51 @@ public class VentasMainFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        IniciaCorteFrame corte = new IniciaCorteFrame(this.conexion,ventaActual);
+    private void btn_CrearCorteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CrearCorteActionPerformed
+        IniciaCorteFrame corte = new IniciaCorteFrame(this.conexion, ventaActual);
         corte.setVisible(true);
         this.setVisible(false);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btn_CrearCorteActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         System.out.println(Fecha.toString());
-        if (conexion.consultarVentaDiaria(Fecha)){
-            ventaActual=conexion.consultarVenta(Fecha);
-        }
-        else{
+        if (conexion.consultarVentaDiaria(Fecha)) {
+            ventaActual = conexion.consultarVenta(Fecha);
+        } else {
             Venta ventaDiaria = new Venta();
             ventaDiaria.setFecha(Fecha);
             ventaDiaria.setTotalVenta(0);
             conexion.insertarVenta(ventaDiaria);
-            
+
+        }
+        CorteCaja corte;
+        corte = conexion.consultaCorteCaja(Fecha, conexion.getUser().getIdUsuario());
+        System.out.println(corte.toString());
+        System.out.println("YA");
+        if (corte == null) {
+            btn_CrearCorte.setEnabled(true);
+            btn_ContinuarCorte.setEnabled(false);
+        } else {
+            btn_CrearCorte.setEnabled(false);
+            btn_ContinuarCorte.setEnabled(true);
         }
     }//GEN-LAST:event_formWindowOpened
+
+    private void btn_ContinuarCorteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ContinuarCorteActionPerformed
+        CorteCaja corte;
+        corte = conexion.consultaCorteCaja(Fecha, conexion.getUser().getIdUsuario());
+        CortesMainFrame cortes = new CortesMainFrame(this.conexion, this.ventaActual, corte);
+        cortes.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btn_ContinuarCorteActionPerformed
 
     /**
      * @param args the command line arguments
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btn_ContinuarCorte;
+    private javax.swing.JButton btn_CrearCorte;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

@@ -619,19 +619,19 @@ public class ConexionBD {
      *
      */
     public boolean insertarCorteCaja(CorteCaja cc) {
-        String sql = "insert into cortescajas values(null,?,?,?,?,?,?,?,?,?)";
+        String sql = "insert into cortescaja values(null,?,?,?,?,?,?,?,?,?)";
         boolean ban = false;
         try {
             PreparedStatement st = con.prepareStatement(sql);
-            st.setInt(2, cc.getIdUsuario());
-            st.setFloat(3, cc.getFondoInicial());
-            st.setFloat(4, cc.getTotalVenta());
-            st.setFloat(5, cc.getTotalRetiros());
-            st.setFloat(6, cc.getTotalCorte());
-            st.setTimestamp(7, cc.getHoraInicial());
-            st.setTimestamp(8, cc.getHoraFinal());
-            st.setString(9, cc.getEstatus());
-            st.setDate(10, cc.getFecha());
+            st.setInt(1, cc.getIdUsuario());
+            st.setFloat(2, cc.getFondoInicial());
+            st.setFloat(3, cc.getTotalVenta());
+            st.setFloat(4, cc.getTotalRetiros());
+            st.setFloat(5, cc.getTotalCorte());
+            st.setTime(6, cc.getHoraInicial());
+            st.setTime(7, cc.getHoraFinal());
+            st.setString(8, cc.getEstatus());
+            st.setDate(9, cc.getFecha());
             st.execute();
             st.close();
             ban = true;
@@ -658,6 +658,37 @@ public class ConexionBD {
         }
         return ban;
     }
+    
+        public CorteCaja consultaCorteCaja(Date fecha,Integer idUsuario) {
+        String sql = "select idcorte,idusuario,fondoinicial,totalventa,totalretiros,totalcorte,horainicial,horafinal,estatus,fecha from cortescaja where fecha=? and idUsuario=? and estatus='A'";
+        CorteCaja cc = new CorteCaja();
+        try {
+            PreparedStatement st = con.prepareStatement(sql);
+            st.setDate(1, fecha);
+            st.setInt(2, idUsuario);
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                cc.setIdCorte(rs.getInt("idcorte"));
+                cc.setIdUsuario(rs.getInt("idusuario"));
+                cc.setFondoInicial(rs.getFloat("fondoinicial"));
+                cc.setTotalVenta(rs.getFloat("totalventa"));
+                cc.setTotalRetiros(rs.getFloat("totalretiros"));
+                cc.setTotalCorte(rs.getFloat("totalcorte"));
+                cc.setHoraInicial(rs.getTime("horainicial"));
+                cc.setHoraFinal(rs.getTime("horafinal"));
+                cc.setEstatus(rs.getString("estatus"));
+                cc.setFecha(rs.getDate("fecha"));
+            }
+            st.close();
+        } catch (SQLException e) {
+            System.out.println("Error:" + e.getMessage());
+        }
+        return cc;
+    }
+    
+    
+    
+    
 
     public void setUser(Usuario user) {
         this.user = user;

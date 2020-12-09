@@ -6,7 +6,9 @@
 package GUI;
 
 import Conexion.ConexionBD;
+import Modelos.CorteCaja;
 import Modelos.Venta;
+import java.sql.Date;
 
 /**
  *
@@ -19,16 +21,21 @@ public class CortesMainFrame extends javax.swing.JFrame {
      */
     ConexionBD conexion;
     Venta ventaActual;
-    Venta venta;
-    public CortesMainFrame(ConexionBD conexion,Venta ventaActual) {
+    CorteCaja CorteActual;
+
+    public CortesMainFrame(ConexionBD conexion, Venta ventaActual,CorteCaja corte) {
         initComponents();
-        this.conexion=conexion;
-        this.ventaActual=ventaActual;
+        this.conexion = conexion;
+        this.ventaActual = ventaActual;
+        this.CorteActual=corte;
+        recuperaCorte();
     }
-        public CortesMainFrame(ConexionBD conexion,Venta ventaActual,Float fondoInicial) {
+
+    public CortesMainFrame(ConexionBD conexion, Venta ventaActual, Float fondoInicial) {
         initComponents();
-        this.conexion=conexion;
-        this.ventaActual=ventaActual;
+        this.conexion = conexion;
+        this.ventaActual = ventaActual;
+        inicializarCorte(fondoInicial);
     }
 
     /**
@@ -44,8 +51,15 @@ public class CortesMainFrame extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        lbl_CorteId = new javax.swing.JLabel();
+        lbl_CorteId1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jButton1.setText("Cerrar Corte");
 
@@ -65,6 +79,8 @@ public class CortesMainFrame extends javax.swing.JFrame {
 
         jButton4.setText("Realizar Retiro");
 
+        lbl_CorteId1.setText("Corte ID");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -74,26 +90,33 @@ public class CortesMainFrame extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(190, 190, 190)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton4)
                             .addComponent(jButton2)
                             .addComponent(jButton3)
                             .addComponent(jButton1)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(198, 198, 198)
-                        .addComponent(jButton4)))
+                        .addContainerGap()
+                        .addComponent(lbl_CorteId1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lbl_CorteId, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(202, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(47, 47, 47)
-                .addComponent(jButton1)
-                .addGap(49, 49, 49)
+                .addGap(72, 72, 72)
                 .addComponent(jButton3)
-                .addGap(45, 45, 45)
-                .addComponent(jButton2)
-                .addGap(29, 29, 29)
+                .addGap(26, 26, 26)
                 .addComponent(jButton4)
-                .addContainerGap(109, Short.MAX_VALUE))
+                .addGap(31, 31, 31)
+                .addComponent(jButton2)
+                .addGap(28, 28, 28)
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 85, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbl_CorteId, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbl_CorteId1))
+                .addGap(21, 21, 21))
         );
 
         pack();
@@ -107,6 +130,38 @@ public class CortesMainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        lbl_CorteId.setText(String.valueOf(this.CorteActual.getIdCorte()));
+    }//GEN-LAST:event_formWindowOpened
+    private void inicializarCorte(Float fondoInicial) {
+        java.util.Date utilDate = new java.util.Date();
+        java.sql.Time hora = new java.sql.Time(utilDate.getTime());
+        java.sql.Date fecha = new java.sql.Date(utilDate.getTime());
+        CorteCaja nuevoCorte = new CorteCaja();
+        nuevoCorte.setIdUsuario(this.conexion.getUser().getIdUsuario());
+        nuevoCorte.setFondoInicial(fondoInicial);
+        nuevoCorte.setTotalVenta(0.0f);
+        nuevoCorte.setTotalRetiros(0.0f);
+        nuevoCorte.setTotalCorte(0.0f);
+        nuevoCorte.setHoraInicial(hora);
+        nuevoCorte.setEstatus("A");
+        nuevoCorte.setFecha(fecha);
+        if (conexion.insertarCorteCaja(nuevoCorte)) {
+            this.CorteActual = nuevoCorte;
+        }
+    }
+
+    private void recuperaCorte() {
+        java.util.Date utilDate = new java.util.Date();
+        java.sql.Date fecha = new java.sql.Date(utilDate.getTime());
+        this.CorteActual = conexion.consultaCorteCaja(fecha, conexion.getUser().getIdUsuario());
+        this.CorteActual.toString();
+    }
+
+    private void recuperaCorte(Date fecha) {
+
+    }
+
     /**
      * @param args the command line arguments
      */
@@ -116,5 +171,7 @@ public class CortesMainFrame extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JLabel lbl_CorteId;
+    private javax.swing.JLabel lbl_CorteId1;
     // End of variables declaration//GEN-END:variables
 }

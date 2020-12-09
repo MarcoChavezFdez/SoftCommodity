@@ -5,8 +5,7 @@
  */
 package Modelos;
 
-import java.sql.Date;
-import java.sql.Timestamp;
+import java.sql.*;
 
 /**
  *
@@ -19,8 +18,8 @@ public class CorteCaja {
     private Float TotalVenta;
     private Float TotalRetiros;
     private Float TotalCorte;
-    private java.sql.Timestamp HoraInicial;
-    private java.sql.Timestamp HoraFinal;
+    private java.sql.Time HoraInicial;
+    private java.sql.Time HoraFinal;
     private String Estatus;
     private java.sql.Date Fecha;
 
@@ -29,7 +28,7 @@ public class CorteCaja {
     }
 
     //Constructor de la clase con todas sus propiedades
-    public CorteCaja(Integer IdCorte, Integer IdUsuario, Float FondoInicial, Float TotalVenta, Float TotalRetiros, Float TotalCorte, Timestamp HoraInicial, Timestamp HoraFinal, String Estatus, Date Fecha) {
+    public CorteCaja(Integer IdCorte, Integer IdUsuario, Float FondoInicial, Float TotalVenta, Float TotalRetiros, Float TotalCorte, Time HoraInicial, Time HoraFinal, String Estatus, Date Fecha) {
         this.IdCorte = IdCorte;
         this.IdUsuario = IdUsuario;
         this.FondoInicial = FondoInicial;
@@ -92,21 +91,23 @@ public class CorteCaja {
         this.TotalCorte = TotalCorte;
     }
 
-    public Timestamp getHoraInicial() {
+    public Time getHoraInicial() {
         return HoraInicial;
     }
 
-    public void setHoraInicial(Timestamp HoraInicial) {
+    public void setHoraInicial(Time HoraInicial) {
         this.HoraInicial = HoraInicial;
     }
 
-    public Timestamp getHoraFinal() {
+    public Time getHoraFinal() {
         return HoraFinal;
     }
 
-    public void setHoraFinal(Timestamp HoraFinal) {
+    public void setHoraFinal(Time HoraFinal) {
         this.HoraFinal = HoraFinal;
     }
+
+
 
     public String getEstatus() {
         return Estatus;
