@@ -243,7 +243,9 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_VentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_VentasActionPerformed
-        // TODO add your handling code here:
+        VentasMainFrame ventas = new VentasMainFrame(this.conexion);
+        ventas.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_btn_VentasActionPerformed
 
     private void btn_ProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ProductosActionPerformed

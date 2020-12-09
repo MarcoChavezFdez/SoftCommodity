@@ -13,7 +13,7 @@ import java.sql.Date;
  */
 public class Venta {
     private Integer IdVenta;
-    private java.sql.Date FechaGeneracion;
+    private java.sql.Date Fecha;
     private Float TotalVenta;
 
     //Constructor de la clase en null
@@ -23,7 +23,7 @@ public class Venta {
     //Constructor de la clase con todas sus propiedades
     public Venta(Integer IdVenta, Date FechaGeneracion, float TotalVenta) {
         this.IdVenta = IdVenta;
-        this.FechaGeneracion = FechaGeneracion;
+        this.Fecha = FechaGeneracion;
         this.TotalVenta = TotalVenta;
     }
 
@@ -36,12 +36,12 @@ public class Venta {
         this.IdVenta = IdVenta;
     }
 
-    public Date getFechaGeneracion() {
-        return FechaGeneracion;
+    public Date getFecha() {
+        return Fecha;
     }
 
-    public void setFechaGeneracion(Date FechaGeneracion) {
-        this.FechaGeneracion = FechaGeneracion;
+    public void setFecha(Date Fecha) {
+        this.Fecha = Fecha;
     }
 
     public float getTotalVenta() {

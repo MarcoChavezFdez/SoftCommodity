@@ -336,7 +336,8 @@ public class ConexionBD {
         }
         return null;
     }
-        public Categoria consultarCategoriasPorNombre(String nombre) {
+
+    public Categoria consultarCategoriasPorNombre(String nombre) {
         String sql = "select idcategoria,nombre from categorias where nombre=? order by nombre asc";
         try {
             PreparedStatement st = con.prepareStatement(sql);
@@ -484,7 +485,7 @@ public class ConexionBD {
         boolean ban = false;
         try {
             PreparedStatement st = con.prepareStatement(sql);
-            st.setDate(1, v.getFechaGeneracion());
+            st.setDate(1, v.getFecha());
             st.setFloat(2, v.getTotalVenta());
             st.execute();
             st.close();
@@ -497,7 +498,7 @@ public class ConexionBD {
     }
 
     public Venta consultarVenta(Date fecha) {
-        String sql = "select idventa,fecha,totaleventa from ventas where fecha=?";
+        String sql = "select idventa,fecha,totalventa from ventas where fecha=?";
         Venta v = new Venta();
         try {
             PreparedStatement st = con.prepareStatement(sql);
@@ -512,6 +513,29 @@ public class ConexionBD {
             System.out.println("Error:" + e.getMessage());
         }
         return v;
+    }
+
+    public boolean consultarVentaDiaria(Date fecha) {
+        String sql = "select idventa,fecha,totalventa from ventas where fecha=?";
+        Venta v = new Venta();
+        try {
+            PreparedStatement st = con.prepareStatement(sql);
+            st.setDate(1, fecha);
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                rs.close();
+                st.close();
+                return true;
+
+            } else {
+                rs.close();
+                st.close();
+                return false;
+            }
+        } catch (SQLException e) {
+            System.out.println("Error:" + e.getMessage());
+        }
+        return false;
     }
 
     public boolean actualizarVenta(Venta v) {
