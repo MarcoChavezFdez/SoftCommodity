@@ -6,6 +6,7 @@
 package GUI;
 
 import Conexion.ConexionBD;
+import Modelos.Venta;
 
 /**
  *
@@ -17,10 +18,17 @@ public class CortesMainFrame extends javax.swing.JFrame {
      * Creates new form CortesMainFrame
      */
     ConexionBD conexion;
-    Ventas venta;
-    public CortesMainFrame(ConexionBD conexion) {
+    Venta ventaActual;
+    Venta venta;
+    public CortesMainFrame(ConexionBD conexion,Venta ventaActual) {
         initComponents();
         this.conexion=conexion;
+        this.ventaActual=ventaActual;
+    }
+        public CortesMainFrame(ConexionBD conexion,Venta ventaActual,Float fondoInicial) {
+        initComponents();
+        this.conexion=conexion;
+        this.ventaActual=ventaActual;
     }
 
     /**
