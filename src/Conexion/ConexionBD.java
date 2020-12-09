@@ -229,11 +229,12 @@ public class ConexionBD {
     public ArrayList<Usuario> consultarUsuarios() {
         String sql = "select idusuario,nombre,apellidopaterno,apellidomaterno,curp,direccion,telefono,email,rol,login,passw,estatus from usuarios";
         ArrayList<Usuario> lista = new ArrayList<Usuario>();
-        Usuario u = new Usuario();
+
         try {
             PreparedStatement st = con.prepareStatement(sql);
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
+                Usuario u = new Usuario();
                 u.setIdUsuario(rs.getInt("idusuario"));
                 u.setNombre(rs.getString("nombre"));
                 u.setApellidoPaterno(rs.getString("apellidopaterno"));
@@ -294,6 +295,28 @@ public class ConexionBD {
      */
     public ArrayList<Categoria> consultarCategorias() {
         String sql = "select idcategoria,nombre from categorias";
+        ArrayList<Categoria> lista = new ArrayList<Categoria>();
+
+        try {
+            PreparedStatement st = con.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                Categoria c = new Categoria();
+                c.setIdCategoria(rs.getInt("idcategoria"));
+                c.setNombre(rs.getString("nombre"));
+                lista.add(c);
+            }
+            rs.close();
+            st.close();
+            return lista;
+        } catch (SQLException e) {
+            System.out.println("Error:" + e.getMessage());
+        }
+        return null;
+    }
+
+    public ArrayList<Categoria> consultarCategoriasPorNombre() {
+        String sql = "select idcategoria,nombre from categorias order by nombre asc";
         ArrayList<Categoria> lista = new ArrayList<Categoria>();
 
         try {

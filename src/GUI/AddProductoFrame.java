@@ -6,7 +6,9 @@
 package GUI;
 
 import Conexion.ConexionBD;
+import Modelos.Categoria;
 import Modelos.Producto;
+import java.util.ArrayList;
 import javafx.scene.control.ComboBox;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
@@ -43,7 +45,7 @@ public class AddProductoFrame extends javax.swing.JFrame {
         jTextField5 = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jTextField6 = new javax.swing.JTextField();
-        jTextField10 = new javax.swing.JTextField();
+        txf_Anchura = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jComboBox2 = new javax.swing.JComboBox<>();
@@ -115,8 +117,8 @@ public class AddProductoFrame extends javax.swing.JFrame {
         });
         jPanel1.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 310, 139, -1));
 
-        jTextField10.setBackground(new java.awt.Color(237, 174, 195));
-        jPanel1.add(jTextField10, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 280, 140, -1));
+        txf_Anchura.setBackground(new java.awt.Color(237, 174, 195));
+        jPanel1.add(txf_Anchura, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 280, 140, -1));
 
         jLabel2.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -129,11 +131,16 @@ public class AddProductoFrame extends javax.swing.JFrame {
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 100, -1, -1));
 
         jComboBox2.setBackground(new java.awt.Color(237, 174, 195));
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Metro", "Pieza", "Gramos" }));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pieza", "Metro", "Gramos" }));
         jPanel1.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 100, 139, -1));
 
         jComboBox4.setBackground(new java.awt.Color(237, 174, 195));
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Milimetros", "Pulgadas" }));
+        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Milimetros", "Pulgadas", "Centimetros", "NA" }));
+        jComboBox4.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBox4ItemStateChanged(evt);
+            }
+        });
         jComboBox4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox4ActionPerformed(evt);
@@ -249,7 +256,7 @@ public class AddProductoFrame extends javax.swing.JFrame {
         jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 350, -1, -1));
 
         cmb_Categorias.setBackground(new java.awt.Color(237, 174, 195));
-        cmb_Categorias.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4" }));
+        cmb_Categorias.setMaximumRowCount(100);
         cmb_Categorias.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmb_CategoriasActionPerformed(evt);
@@ -342,12 +349,25 @@ public class AddProductoFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_txf_DescripcionActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-
+        ArrayList<Categoria> listaCategorias = conexion.consultarCategoriasPorNombre();
+        for (int i = 0; i <listaCategorias.size()-1; i++) {
+            cmb_Categorias.addItem(listaCategorias.get(i).getNombre()+" : "+String.valueOf(listaCategorias.get(i).getIdCategoria()));
+        }
     }//GEN-LAST:event_formWindowOpened
 
     private void jTextField4KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField4KeyPressed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField4KeyPressed
+
+    private void jComboBox4ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox4ItemStateChanged
+        if(jComboBox4.getSelectedIndex()==3){
+            txf_Anchura.setEnabled(false);
+            txf_Anchura.setText("0");
+        }
+        else{
+            txf_Anchura.setEnabled(true);
+        }
+    }//GEN-LAST:event_jComboBox4ItemStateChanged
     private MaskFormatter getNumFormat() {
         MaskFormatter MF = null;
 
@@ -389,7 +409,6 @@ public class AddProductoFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField11;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
@@ -397,6 +416,7 @@ public class AddProductoFrame extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
+    private javax.swing.JTextField txf_Anchura;
     private javax.swing.JTextField txf_Descripcion;
     private javax.swing.JTextField txf_Nombre;
     // End of variables declaration//GEN-END:variables

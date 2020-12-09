@@ -223,7 +223,7 @@ public class UsuariosMainFrame extends javax.swing.JFrame {
             datos[ren][7] = u.getEmail();
             datos[ren][8] = u.getRol();
             datos[ren][9] = u.getLogin();
-            datos[ren][10] = u.getPassw();
+            datos[ren][10] = "***********";
             datos[ren][11] = u.getEstatus();
             ren++;
         }
