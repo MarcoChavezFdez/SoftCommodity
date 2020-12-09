@@ -7,6 +7,7 @@ package GUI;
 
 import Conexion.ConexionBD;
 import Modelos.Usuario;
+import java.awt.event.KeyEvent;
 
 /**
  *
@@ -101,6 +102,11 @@ public class LoginFrame extends javax.swing.JFrame {
                 jPass_UsuarioActionPerformed(evt);
             }
         });
+        jPass_Usuario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jPass_UsuarioKeyReleased(evt);
+            }
+        });
         jPanel2.add(jPass_Usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 240, 90, -1));
 
         jl_Mensajes.setForeground(new java.awt.Color(204, 0, 51));
@@ -154,6 +160,34 @@ public class LoginFrame extends javax.swing.JFrame {
             lbl_Error.setText(e.getMessage());
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jPass_UsuarioKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPass_UsuarioKeyReleased
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER ){
+             ConexionBD conexion = new ConexionBD();
+        conexion.conectado();
+        try {
+            String login = txtF_Usuario.getText();
+            String pass = jPass_Usuario.getText();
+            Usuario currentUser = conexion.consultarUsuarioLogin(login);
+
+            if (currentUser.getIdUsuario() == null) {
+                jOptionPane1.showMessageDialog(rootPane, "El usuario que ingreso no existe");
+            } else if (currentUser.getPassw().equals(pass)) {
+                MenuPrincipalFrame menu = new MenuPrincipalFrame(conexion);
+                menu.setVisible(true);
+                conexion.setUser(conexion.consultarUsuarioLogin(login));
+                this.setVisible(false);
+
+            } else {
+                jOptionPane1.showMessageDialog(rootPane, "Usuario y/o contraseñas incorrecctos");
+            }
+
+        } catch (Exception e) {
+            System.out.println("Error");
+            lbl_Error.setText(e.getMessage());
+        }
+        }
+    }//GEN-LAST:event_jPass_UsuarioKeyReleased
 
     /**
      * @param args the command line arguments
