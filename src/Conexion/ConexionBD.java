@@ -106,21 +106,21 @@ public class ConexionBD {
         boolean ban = false;
         try {
             PreparedStatement st = con.prepareStatement(sql);
-            st.setInt(2, p.getIdCategoria());
-            st.setString(3, p.getNombre());
-            st.setString(4, p.getDescripcion());
-            st.setFloat(5, p.getPrecioMayoreo());
-            st.setFloat(6, p.getPrecioMenudeo());
-            st.setFloat(7, p.getPrecioCompra());
-            st.setString(8, p.getPresentacion());
-            st.setString(9, p.getEAN());
-            st.setInt(10, p.getContenido());
-            st.setString(11, p.getTipoContenido());
-            st.setString(12, p.getMaterial());
-            st.setFloat(13, p.getAnchura());
-            st.setString(14, p.getMedidaAnchura());
-            st.setString(15, p.getColor());
-            st.setString(16, p.getEstatus());
+            st.setInt(1, p.getIdCategoria());
+            st.setString(2, p.getNombre());
+            st.setString(3, p.getDescripcion());
+            st.setFloat(4, p.getPrecioMayoreo());
+            st.setFloat(5, p.getPrecioMenudeo());
+            st.setFloat(6, p.getPrecioCompra());
+            st.setString(7, p.getPresentacion());
+            st.setString(8, p.getEAN());
+            st.setInt(9, p.getContenido());
+            st.setString(10, p.getTipoContenido());
+            st.setString(11, p.getMaterial());
+            st.setFloat(12, p.getAnchura());
+            st.setString(13, p.getMedidaAnchura());
+            st.setString(14, p.getColor());
+            st.setString(15, p.getEstatus());
             st.execute();
             st.close();
             ban = true;
@@ -203,6 +203,29 @@ public class ConexionBD {
         return null;
     }
 
+    public boolean consultarUsuarioLoginRegistro(String nombre) {
+        String sql = "select idusuario,nombre,apellidopaterno,apellidomaterno,curp,direccion,telefono,email,rol,login,passw,estatus from usuarios where login=?";
+        try {
+            PreparedStatement st = con.prepareStatement(sql);
+            st.setString(1, nombre);
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                rs.close();
+                st.close();
+                return true;
+
+            } else {
+                rs.close();
+                st.close();
+                return false;
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Error:" + e.getMessage());
+        }
+        return false;
+    }
+
     public ArrayList<Usuario> consultarUsuarios() {
         String sql = "select idusuario,nombre,apellidopaterno,apellidomaterno,curp,direccion,telefono,email,rol,login,passw,estatus from usuarios";
         ArrayList<Usuario> lista = new ArrayList<Usuario>();
@@ -239,15 +262,16 @@ public class ConexionBD {
         boolean ban = false;
         try {
             PreparedStatement st = con.prepareStatement(sql);
-            st.setString(2, u.getNombre());
-            st.setString(3, u.getApellidoPaterno());
-            st.setString(4, u.getApellidoMaterno());
-            st.setString(5, u.getCURP());
-            st.setString(6, u.getDireccion());
-            st.setString(7, u.getTelefono());
-            st.setString(8, u.getEmail());
-            st.setString(9, u.getRol());
-            st.setString(10, u.getLogin());
+            st.setString(1, u.getNombre());
+            st.setString(2, u.getApellidoPaterno());
+            st.setString(3, u.getApellidoMaterno());
+            st.setString(4, u.getCURP());
+            st.setString(5, u.getDireccion());
+            st.setString(6, u.getTelefono());
+            st.setString(7, u.getEmail());
+            st.setString(8, u.getRol());
+            st.setString(9, u.getLogin());
+            st.setString(10, u.getPassw());
             st.setString(11, u.getEstatus());
             st.execute();
             st.close();
@@ -306,6 +330,29 @@ public class ConexionBD {
         return ban;
     }
 
+    public boolean consultarCategoriaRegistrada(String nombre) {
+        String sql = "select idcategoria, nombre from categorias where nombre=?";
+        try {
+            PreparedStatement st = con.prepareStatement(sql);
+            st.setString(1, nombre);
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                rs.close();
+                st.close();
+                return true;
+
+            } else {
+                rs.close();
+                st.close();
+                return false;
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Error:" + e.getMessage());
+        }
+        return false;
+    }
+
     /**
      * *************************************************************
      *
@@ -354,6 +401,29 @@ public class ConexionBD {
             System.out.println("Error:" + e.getMessage());
         }
         return null;
+    }
+
+    public boolean consultarBodegaRegistrada(String nombre) {
+        String sql = "select idbodega, nombre from bodegas where nombre=?";
+        try {
+            PreparedStatement st = con.prepareStatement(sql);
+            st.setString(1, nombre);
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                rs.close();
+                st.close();
+                return true;
+
+            } else {
+                rs.close();
+                st.close();
+                return false;
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Error:" + e.getMessage());
+        }
+        return false;
     }
 
     /**
@@ -492,10 +562,10 @@ public class ConexionBD {
             st.setFloat(4, cc.getTotalVenta());
             st.setFloat(5, cc.getTotalRetiros());
             st.setFloat(6, cc.getTotalCorte());
-            st.setTimestamp(7,cc.getHoraInicial());
-            st.setTimestamp(8,cc.getHoraFinal());
+            st.setTimestamp(7, cc.getHoraInicial());
+            st.setTimestamp(8, cc.getHoraFinal());
             st.setString(9, cc.getEstatus());
-            st.setDate(10,cc.getFecha());
+            st.setDate(10, cc.getFecha());
             st.execute();
             st.close();
             ban = true;
@@ -505,7 +575,8 @@ public class ConexionBD {
         }
         return ban;
     }
-        public boolean actualizarCorteCaja(CorteCaja cc) {
+
+    public boolean actualizarCorteCaja(CorteCaja cc) {
         String sql = "update cortescaja set idUsuario=? , fondoincial=?, totalventa=?, totalretiros=?, totalcorte=?, horainicial=?, horafinal=?, estatus=? , fecha=?, where idcorte=?";
         boolean ban = false;
         try {
@@ -521,6 +592,7 @@ public class ConexionBD {
         }
         return ban;
     }
+
     public void setUser(Usuario user) {
         this.user = user;
     }
