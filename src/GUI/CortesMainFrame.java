@@ -29,6 +29,7 @@ public class CortesMainFrame extends javax.swing.JFrame {
         this.ventaActual = ventaActual;
         this.CorteActual = corte;
         recuperaCorte();
+        llenaEtiquetas();
     }
 
     public CortesMainFrame(ConexionBD conexion, Venta ventaActual, Float fondoInicial) {
@@ -36,6 +37,7 @@ public class CortesMainFrame extends javax.swing.JFrame {
         this.conexion = conexion;
         this.ventaActual = ventaActual;
         inicializarCorte(fondoInicial);
+        llenaEtiquetas();
     }
 
     /**
@@ -105,13 +107,6 @@ public class CortesMainFrame extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(190, 190, 190)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton4)
-                            .addComponent(jButton2)
-                            .addComponent(jButton3)
-                            .addComponent(jButton1)))
-                    .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel1)
@@ -122,8 +117,18 @@ public class CortesMainFrame extends javax.swing.JFrame {
                             .addComponent(lbl_TotalCorte, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(btn_Atras)))
-                .addContainerGap(202, Short.MAX_VALUE))
+                        .addComponent(btn_Atras))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(174, 174, 174)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jButton2)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jButton4)
+                                .addComponent(jButton3))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(189, 189, 189)
+                        .addComponent(jButton1)))
+                .addContainerGap(218, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -136,9 +141,9 @@ public class CortesMainFrame extends javax.swing.JFrame {
                 .addComponent(jButton4)
                 .addGap(31, 31, 31)
                 .addComponent(jButton2)
-                .addGap(28, 28, 28)
+                .addGap(18, 18, 18)
                 .addComponent(jButton1)
-                .addGap(56, 56, 56)
+                .addGap(66, 66, 66)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(lbl_TotalCorte, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -157,24 +162,28 @@ public class CortesMainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+        TicketMainFrame addTicket = new TicketMainFrame(this.conexion,this.CorteActual);
+        addTicket.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+
+    }//GEN-LAST:event_formWindowOpened
+    private void llenaEtiquetas() {
         lbl_CorteId.setText(String.valueOf(this.CorteActual.getIdCorte()));
         this.CorteActual.setTotalVenta(conexion.calcularTotalVentaCorte(CorteActual));
         lbl_TotalCorte.setText(String.valueOf(this.CorteActual.getTotalVenta()));
-        System.out.println("TOTAL "+this.CorteActual.getTotalVenta());
-    }//GEN-LAST:event_formWindowOpened
-
+        System.out.println("TOTAL " + this.CorteActual.getTotalVenta());
+    }
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btn_AtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AtrasActionPerformed
-       VentasMainFrame ventas = new VentasMainFrame(this.conexion);
-       ventas.setVisible(true);
-       this.setVisible(false);
+        VentasMainFrame ventas = new VentasMainFrame(this.conexion);
+        ventas.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_btn_AtrasActionPerformed
     private void inicializarCorte(Float fondoInicial) {
         java.util.Date utilDate = new java.util.Date();

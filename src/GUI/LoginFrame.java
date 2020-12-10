@@ -74,6 +74,7 @@ public class LoginFrame extends javax.swing.JFrame {
         jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 190, -1, -1));
 
         txtF_Usuario.setBackground(new java.awt.Color(237, 174, 195));
+        txtF_Usuario.setText("Benja");
         txtF_Usuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtF_UsuarioActionPerformed(evt);
@@ -97,6 +98,7 @@ public class LoginFrame extends javax.swing.JFrame {
         jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 310, -1, -1));
 
         jPass_Usuario.setBackground(new java.awt.Color(237, 174, 195));
+        jPass_Usuario.setText("Hola.123");
         jPass_Usuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jPass_UsuarioActionPerformed(evt);

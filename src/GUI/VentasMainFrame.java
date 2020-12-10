@@ -131,10 +131,12 @@ public class VentasMainFrame extends javax.swing.JFrame {
         }
         CorteCaja corte;
         corte = conexion.consultaCorteCaja(Fecha, conexion.getUser().getIdUsuario());
-        if (corte == null) {
+        System.out.println(corte.toString());
+        if (corte.getIdUsuario() == null) {
             btn_CrearCorte.setEnabled(true);
             btn_ContinuarCorte.setEnabled(false);
         } else {
+
             btn_CrearCorte.setEnabled(false);
             btn_ContinuarCorte.setEnabled(true);
         }

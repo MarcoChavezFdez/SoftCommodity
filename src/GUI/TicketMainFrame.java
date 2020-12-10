@@ -6,6 +6,11 @@
 package GUI;
 
 import Conexion.ConexionBD;
+import Modelos.Bodega;
+import Modelos.CorteCaja;
+import Modelos.DetalleTicket;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -17,9 +22,13 @@ public class TicketMainFrame extends javax.swing.JFrame {
      * Creates new form TicketMainFrame
      */
     ConexionBD conexion;
-    public TicketMainFrame(ConexionBD conexion) {
+    CorteCaja corte;
+
+    public TicketMainFrame(ConexionBD conexion,CorteCaja corte) {
         initComponents();
-        this.conexion=conexion;
+        this.conexion = conexion;
+        this.corte=corte;
+        ArrayList(DetalleTicket)
     }
 
     /**
@@ -32,16 +41,23 @@ public class TicketMainFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tbl_Datos = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
-        button1 = new java.awt.Button();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         lbl_Total = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tbl_Datos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -52,19 +68,12 @@ public class TicketMainFrame extends javax.swing.JFrame {
                 "IdProducto", "Nombre", "Cantidad", "Precio Unitario", "Sub Total"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tbl_Datos);
 
         jButton1.setText("Cobrar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
-            }
-        });
-
-        button1.setLabel("Añadir Producto");
-        button1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                button1ActionPerformed(evt);
             }
         });
 
@@ -90,9 +99,7 @@ public class TicketMainFrame extends javax.swing.JFrame {
                         .addComponent(lbl_Total)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton1)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32))
+                .addGap(32, 145, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(306, 306, 306)
                 .addComponent(jLabel1)
@@ -111,11 +118,7 @@ public class TicketMainFrame extends javax.swing.JFrame {
                         .addGap(28, 28, 28)
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(37, 37, 37)
-                                .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton1)))
                 .addGap(27, 27, 27))
@@ -128,20 +131,45 @@ public class TicketMainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         // TODO add your handling code here:
-    }//GEN-LAST:event_button1ActionPerformed
+    }//GEN-LAST:event_formWindowActivated
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+
+    }//GEN-LAST:event_formWindowOpened
+
+    private void llenarTabla(ArrayList<DetalleTicket> lista) {
+        String[] encabezado = {"IdProducto", "Cantidad", "Precio Unitario", "SubTotal", "Precio Mayorista"};
+        Object[][] datos = new Object[lista.size()][5];
+        int ren = 0;
+        for (DetalleTicket dt : lista) {
+            datos[ren][0] = dt.getIdProducto();
+            datos[ren][1] = dt.getCantidad();
+            datos[ren][2] = dt.getPrecioUnitario();
+            datos[ren][3] = dt.getSubTotal();
+            datos[ren][4] = dt.getPrecioMayorista();
+
+            ren++;
+        }
+        DefaultTableModel m = new DefaultTableModel(datos, encabezado) {
+            @Override
+            public boolean isCellEditable(int rowIndex, int colIndex) {
+                return colIndex<4; //Disallow the editing of any cell
+            }
+
+        };
+    }
 
     /**
      * @param args the command line arguments
      */
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private java.awt.Button button1;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lbl_Total;
+    private javax.swing.JTable tbl_Datos;
     // End of variables declaration//GEN-END:variables
 }
