@@ -1,13 +1,25 @@
 /**
  *
- * @Autor Marco Alberto Chavez Fernandez
+ * @Autor  Marco Alberto Chávez Fernández
  * @Correo: mchavez297@accitesz.com
+ * 
+ * @Autor José Carlos Esparza de Anda
+ * @Correo: jesparza301@accitesz.com 
+ * 
+ * @Autor José Ángel Madrigal Plancarte
+ * @Correo: jmadrigal323@accitesz.com
+ * 
  * @Docente: Dr. Francisco Rodríguez Díaz
  * @Asignatura: Ing. de Software
  * @Escuela: Instituto Tecnologico de Estudios Superiores de Zamora
  * @Semestre : 7
  * @Grupo: B
  * @Carrera: Ing. en Sistemas Computacionales
+ * 
+ * La clase ConexionBD contiene todas las propiedades y metodos para interactuar
+ * con la Base de Datos SoftCommodity bajo MySQL 5.0 y en una infraestructura
+ * local
+ * @since   VER1.0
  */
 package Conexion;
 
@@ -771,6 +783,9 @@ public class ConexionBD {
         return null;
     }
 
+    //Funcion que permite saber cual es el siguiente Ticket a crear
+    //No recibe parametros
+    //Devuelve un Integer correspondiente al ticket que se debe de crear
     public Integer consultaUltimoTicket() {
         String fn = "{?=call ultimoTicket()}";
         try {
@@ -869,12 +884,13 @@ public class ConexionBD {
         }
     }
 
-    //Funcion que permite establecer el usuario de la propiedad Usuario de la clase
+    //Funcion que permite establecer el usuario de la propiedad @user de la clase
     //Recibe un usuario de objeto tipo Usuario
     public void setUser(Usuario user) {
         this.user = user;
     }
 
+    //Funcion que permite obtener un Objeto Usuario de la propiedad @user de la clase
     public Usuario getUser() {
         return user;
     }
