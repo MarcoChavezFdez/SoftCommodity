@@ -18,7 +18,7 @@ import javax.swing.JOptionPane;
 
 public class ConexionBD {
 
-    private final String url = "jdbc:mysql://localhost/softcommodity";        //Creamos un string de tipo privado y final, esto quiere decir que no cambiara su valor
+    private final String url = "jdbc:mysql://localhost/softcommodity?noAccessToProcedureBodies=true";        //Creamos un string de tipo privado y final, esto quiere decir que no cambiara su valor
     //En este caso despues de la direccion "jdbc:mysql://localhost/" despues de localhost/ debemos escribit el nombre de la BD que queremos conectar
     PreparedStatement psPrepararSentencia;          //Creamos un objeto de tipo  PreparedStatement para los querys que queramos hacer a la BD
     Connection con = null;                 //Como aun no tenemos conexion, con sera objeto de tipo connection que apunte a null
@@ -658,8 +658,8 @@ public class ConexionBD {
         }
         return ban;
     }
-    
-        public CorteCaja consultaCorteCaja(Date fecha,Integer idUsuario) {
+
+    public CorteCaja consultaCorteCaja(Date fecha, Integer idUsuario) {
         String sql = "select idcorte,idusuario,fondoinicial,totalventa,totalretiros,totalcorte,horainicial,horafinal,estatus,fecha from cortescaja where fecha=? and idUsuario=? and estatus='A'";
         CorteCaja cc = new CorteCaja();
         try {
@@ -685,10 +685,23 @@ public class ConexionBD {
         }
         return cc;
     }
+
+    public Float calcularTotalVentaCorte(CorteCaja cc) {
+        String sp = "{call calculaVentaCorte(?,?)}";
+        try {
+            CallableStatement proc = con.prepareCall(sp);
+            proc.setInt(1,cc.getIdCorte());
+            proc.registerOutParameter(2, Types.DECIMAL);
+            proc.execute();
+            cc.setTotalVenta(proc.getFloat(2));
     
-    
-    
-    
+            return cc.getTotalVenta();
+
+        } catch (SQLException e) {
+            System.out.println("Error al ejecutar calculaVentaCorte:" + e.getMessage());
+        }
+        return cc.getTotalVenta();
+    }
 
     public void setUser(Usuario user) {
         this.user = user;

@@ -107,6 +107,11 @@ public class CorteCaja {
         this.HoraFinal = HoraFinal;
     }
 
+    @Override
+    public String toString() {
+        return "CorteCaja{" + "IdCorte=" + IdCorte + ", IdUsuario=" + IdUsuario + ", FondoInicial=" + FondoInicial + ", TotalVenta=" + TotalVenta + ", TotalRetiros=" + TotalRetiros + ", TotalCorte=" + TotalCorte + ", HoraInicial=" + HoraInicial + ", HoraFinal=" + HoraFinal + ", Estatus=" + Estatus + ", Fecha=" + Fecha + '}';
+    }
+
 
 
     public String getEstatus() {

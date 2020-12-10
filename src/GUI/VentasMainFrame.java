@@ -120,7 +120,6 @@ public class VentasMainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_CrearCorteActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        System.out.println(Fecha.toString());
         if (conexion.consultarVentaDiaria(Fecha)) {
             ventaActual = conexion.consultarVenta(Fecha);
         } else {
@@ -132,8 +131,6 @@ public class VentasMainFrame extends javax.swing.JFrame {
         }
         CorteCaja corte;
         corte = conexion.consultaCorteCaja(Fecha, conexion.getUser().getIdUsuario());
-        System.out.println(corte.toString());
-        System.out.println("YA");
         if (corte == null) {
             btn_CrearCorte.setEnabled(true);
             btn_ContinuarCorte.setEnabled(false);
