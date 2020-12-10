@@ -6,6 +6,7 @@
 package Modelos;
 
 import java.sql.Date;
+import java.sql.Time;
 import java.sql.Timestamp;
 
 /**
@@ -17,7 +18,7 @@ public class Ticket {
     private Integer IdTicket;
     private Integer IdUsuario;
     private java.sql.Date Fecha;
-    private java.sql.Timestamp HoraVenta;
+    private java.sql.Time HoraVenta;
     private Float SubTotal;
     private Float IVA;
     private Float Total;
@@ -27,7 +28,7 @@ public class Ticket {
     }
     
     //Constructor de la clase con todas sus propiedades
-    public Ticket(Integer IdTicket, Integer IdUsuario, Date Fecha, Timestamp HoraVenta, Float SubTotal, Float IVA, Float Total) {
+    public Ticket(Integer IdTicket, Integer IdUsuario, Date Fecha, Time HoraVenta, Float SubTotal, Float IVA, Float Total) {
         this.IdTicket = IdTicket;
         this.IdUsuario = IdUsuario;
         this.Fecha = Fecha;
@@ -62,11 +63,11 @@ public class Ticket {
         this.Fecha = Fecha;
     }
 
-    public Timestamp getHoraVenta() {
+    public Time getHoraVenta() {
         return HoraVenta;
     }
 
-    public void setHoraVenta(Timestamp HoraVenta) {
+    public void setHoraVenta(Time HoraVenta) {
         this.HoraVenta = HoraVenta;
     }
 

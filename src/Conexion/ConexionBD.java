@@ -1,7 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ *
+ * @Autor Marco Alberto Chavez Fernandez
+ * @Correo: mchavez297@accitesz.com
+ * @Docente: Dr. Francisco Rodríguez Díaz
+ * @Asignatura: Ing. de Software
+ * @Escuela: Instituto Tecnologico de Estudios Superiores de Zamora
+ * @Semestre : 7
+ * @Grupo: B
+ * @Carrera: Ing. en Sistemas Computacionales
  */
 package Conexion;
 
@@ -9,7 +15,9 @@ import Modelos.Bodega;
 import Modelos.Categoria;
 import Modelos.CorteCaja;
 import Modelos.CorteVenta;
+import Modelos.DetalleTicket;
 import Modelos.Producto;
+import Modelos.Ticket;
 import Modelos.Usuario;
 import Modelos.Venta;
 import java.sql.*;
@@ -18,42 +26,47 @@ import javax.swing.JOptionPane;
 
 public class ConexionBD {
 
-    private final String url = "jdbc:mysql://localhost/softcommodity?noAccessToProcedureBodies=true";        //Creamos un string de tipo privado y final, esto quiere decir que no cambiara su valor
-    //En este caso despues de la direccion "jdbc:mysql://localhost/" despues de localhost/ debemos escribit el nombre de la BD que queremos conectar
-    PreparedStatement psPrepararSentencia;          //Creamos un objeto de tipo  PreparedStatement para los querys que queramos hacer a la BD
-    Connection con = null;                 //Como aun no tenemos conexion, con sera objeto de tipo connection que apunte a null
+    //Creamos un string de tipo privado y final, esto quiere decir que no cambiara su valor
+    private final String url = "jdbc:mysql://localhost/softcommodity?noAccessToProcedureBodies=true";
+
+    //Creamos un objeto de tipo  PreparedStatement para los querys que queramos hacer a la BD
+    PreparedStatement psPrepararSentencia;
+    Connection con = null;
     private Usuario user;
 
     //Dentro del constructor de la clase, intentaremos conectarnos usando un try-catch para agarrar las excepciones
     public ConexionBD() {
-        try {   //Inicio del try
+        try {
+            //Con el metodo de la clase forName, le pasamos el driver de MySQL para que lo cargue  
+            Class.forName("com.mysql.jdbc.Driver");
+            //Apuntamos nuestro objeto con a el intento de conectarse con los parametros o las credenciales que tenemos en MYSQL
+            con = DriverManager.getConnection(url, "root", "");
 
-            Class.forName("com.mysql.jdbc.Driver");     //Con el metodo de la clase forName, le pasamos el driver de MySQL para que lo cargue    
-            con = DriverManager.getConnection(url, "root", "");    //Apuntamos nuestro objeto con a el intento de conectarse con los parametros o las credenciales que tenemos en MYSQL
-            //Aqui mandamos la url donde viene la direccion de la BD, nuestro nombre de usuario y la contraseña, que por defecto al instalar viene vacia
-            if (con != null) {                         //Si logramos conectarnos, con deja de apuntar a null y obtenemos conexion
-                System.out.println("Conexión a base de datos funcionando");                //Sin funciona imprimimos en consola un mensaje
+            //Si logramos conectarnos, con deja de apuntar a null y obtenemos conexion
+            if (con != null) {
+                //Si funciona imprimimos en consola un mensaje
+                System.out.println("Conexión a base de datos funcionando");
             }
-        }//cerramos el try
-        catch (SQLException e) //Agarramos excepciones de tipo SQL
-        {
-            System.out.println(e);          //las mostramos en consola
-        } catch (ClassNotFoundException e) //agarramos excepciones de tipo clase en java
-        {
-            System.out.println(e);               //las mostramos en consola
+        } //Agarramos excepciones de tipo SQL
+        catch (SQLException e) {
+            //las mostramos en consola
+            System.out.println(e);
+            //agarramos excepciones de tipo clase en java
+        } catch (ClassNotFoundException e) {
+            //las mostramos en consola
+            System.out.println(e);
         }
     }
 
-    /**
-     *
-     * @return
-     */
-    public Connection conectado() {  //Este metodo de tipo Connection nos devuelve el estado del objeto
+    //Este metodo de tipo Connection nos devuelve el estado del objeto
+    public Connection conectado() {
         return con;
     }
 
-    public void desconectar() {     //Por seguridad, cuando terminemos sentencias, cerramos la conexion o si la necesitamos cerrar por otro caso
-        con = null;                  //Ahora de nuevo con sera null
+    //Por seguridad, cuando terminemos sentencias, cerramos la conexion o si la necesitamos cerrar por otro caso
+    public void desconectar() {
+        //Ahora de nuevo con sera null
+        con = null;
         System.out.println("La conexion la BD se ha cerrado");
 
     }
@@ -65,10 +78,12 @@ public class ConexionBD {
      *
      *************************************************************
      */
-    //Funcion la cual permite realizar la consulta general
+    //Funcion la cual permite realizar la consulta general de la tabla Productos de la Base de Datos
     //Devuelve un ArrayList de objetos Producto
     public ArrayList<Producto> consultaProductos() {
-        String sql = "select idproducto,idcategoria,nombre,descripcion,preciomayoreo,preciomenudeo,preciocompra,presentacion,ean,contenido,tipocontenido,material,anchura,medidaanchura,color,estatus from productos";
+        String sql = "select idproducto,idcategoria,nombre,descripcion,preciomayoreo,preciomenudeo,preciocompra,presentacion,"
+                + "ean,contenido,tipocontenido,material,anchura,medidaanchura,color,estatus "
+                + "from productos";
         ArrayList<Producto> lista = new ArrayList<Producto>();
         try {
             Statement st = con.createStatement();
@@ -132,7 +147,10 @@ public class ConexionBD {
     }
 
     public boolean actualizarProducto(Producto p) {
-        String sql = "update productos set idcategoria=?, nombre=?, descripcion=?, preciomayoreo=? ,preciomenudeo=?, preciocompra=?, presentacion=?, EAN=?, contenido=?, tipocontenido=?, material=?, anchura=?, medidaanchura=?, color=?, estatus=?  where idProducto=?";
+        String sql = "update productos set idcategoria=?, nombre=?, descripcion=?, preciomayoreo=? ,preciomenudeo=?,"
+                + " preciocompra=?, presentacion=?, EAN=?, contenido=?, tipocontenido=?, material=?, anchura=?,"
+                + " medidaanchura=?, color=?, estatus=?  "
+                + "where idProducto=?";
         boolean ban = false;
         try {
             PreparedStatement st = con.prepareStatement(sql);
@@ -174,7 +192,10 @@ public class ConexionBD {
      *************************************************************
      */
     public Usuario consultarUsuarioLogin(String nombre) {
-        String sql = "select idusuario,nombre,apellidopaterno,apellidomaterno,curp,direccion,telefono,email,rol,login,passw,estatus from usuarios where login=?";
+        String sql = "select idusuario,nombre,apellidopaterno,apellidomaterno,curp,direccion,telefono,email,rol,login,"
+                + "passw,estatus "
+                + "from usuarios "
+                + "where login=?";
         Usuario u = new Usuario();
         try {
             PreparedStatement st = con.prepareStatement(sql);
@@ -204,7 +225,10 @@ public class ConexionBD {
     }
 
     public boolean consultarUsuarioLoginRegistro(String nombre) {
-        String sql = "select idusuario,nombre,apellidopaterno,apellidomaterno,curp,direccion,telefono,email,rol,login,passw,estatus from usuarios where login=?";
+        String sql = "select idusuario,nombre,apellidopaterno,apellidomaterno,curp,direccion,telefono,email,rol,login,"
+                + "passw,estatus "
+                + "from usuarios "
+                + "where login=?";
         try {
             PreparedStatement st = con.prepareStatement(sql);
             st.setString(1, nombre);
@@ -227,7 +251,9 @@ public class ConexionBD {
     }
 
     public ArrayList<Usuario> consultarUsuarios() {
-        String sql = "select idusuario,nombre,apellidopaterno,apellidomaterno,curp,direccion,telefono,email,rol,login,passw,estatus from usuarios";
+        String sql = "select idusuario,nombre,apellidopaterno,apellidomaterno,curp,direccion,telefono,email,rol,login,"
+                + "passw,estatus "
+                + "from usuarios";
         ArrayList<Usuario> lista = new ArrayList<Usuario>();
 
         try {
@@ -643,7 +669,9 @@ public class ConexionBD {
     }
 
     public boolean actualizarCorteCaja(CorteCaja cc) {
-        String sql = "update cortescaja set idUsuario=? , fondoincial=?, totalventa=?, totalretiros=?, totalcorte=?, horainicial=?, horafinal=?, estatus=? , fecha=?, where idcorte=?";
+        String sql = "update cortescaja set idUsuario=? , fondoincial=?, totalventa=?, totalretiros=?, totalcorte=?,"
+                + "horainicial=?, horafinal=?, estatus=? , fecha=?, "
+                + "where idcorte=?";
         boolean ban = false;
         try {
             PreparedStatement st = con.prepareStatement(sql);
@@ -660,7 +688,10 @@ public class ConexionBD {
     }
 
     public CorteCaja consultaCorteCaja(Date fecha, Integer idUsuario) {
-        String sql = "select idcorte,idusuario,fondoinicial,totalventa,totalretiros,totalcorte,horainicial,horafinal,estatus,fecha from cortescaja where fecha=? and idUsuario=? and estatus='A'";
+        String sql = "select idcorte,idusuario,fondoinicial,totalventa,totalretiros,totalcorte,horainicial,horafinal,"
+                + "estatus,fecha "
+                + "from cortescaja "
+                + "where fecha=? and idUsuario=? and estatus='A'";
         CorteCaja cc = new CorteCaja();
         try {
             PreparedStatement st = con.prepareStatement(sql);
@@ -690,11 +721,11 @@ public class ConexionBD {
         String sp = "{call calculaVentaCorte(?,?)}";
         try {
             CallableStatement proc = con.prepareCall(sp);
-            proc.setInt(1,cc.getIdCorte());
+            proc.setInt(1, cc.getIdCorte());
             proc.registerOutParameter(2, Types.DECIMAL);
             proc.execute();
             cc.setTotalVenta(proc.getFloat(2));
-    
+
             return cc.getTotalVenta();
 
         } catch (SQLException e) {
@@ -703,6 +734,143 @@ public class ConexionBD {
         return cc.getTotalVenta();
     }
 
+    /**
+     * *************************************************************
+     *
+     * Funciones para el modelo Ticket
+     *
+     *************************************************************
+     *
+     */
+    public ArrayList<Ticket> consultarTicket(int idticket) {
+        String sql = "select idproducto,cantidad,preciounitario,subtotal,preciomayorista "
+                + "from detalleticket "
+                + "where idticket=?";
+        ArrayList<Ticket> lista = new ArrayList<Ticket>();
+        try {
+            PreparedStatement st = con.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
+            st.setInt(1, idticket);
+            while (rs.next()) {
+                Ticket t = new Ticket();
+                t.setIdTicket(rs.getInt("idticket"));
+                t.setIdTicket(rs.getInt("idusuario"));
+                t.setFecha(rs.getDate("fecha"));
+                t.setHoraVenta(rs.getTime("horaventa"));
+                t.setSubTotal(rs.getFloat("subtotal"));
+                t.setIVA(rs.getFloat("iva"));
+                t.setTotal(rs.getFloat("total"));
+                lista.add(t);
+            }
+            rs.close();
+            st.close();
+            return lista;
+        } catch (SQLException e) {
+            System.out.println("Error:" + e.getMessage());
+        }
+        return null;
+    }
+
+    public Integer consultaUltimoTicket() {
+        String fn = "{?=call ultimoTicket()}";
+        try {
+            Integer idTicket;
+            CallableStatement proc = con.prepareCall(fn);
+            proc.registerOutParameter(1, Types.DECIMAL);
+            proc.execute();
+            idTicket=proc.getInt(1)+1;
+            return idTicket;
+        } catch (SQLException e) {
+            System.out.println("Error al consulta el utlimo ticket:" + e.getMessage());
+        }
+        return null;
+    }
+
+    /**
+     *
+     *
+     * *************************************************************
+     *
+     * Funciones para el modelo DetalleTicket
+     *
+     *************************************************************
+     *
+     * @param idticket
+     * @return
+     */
+    //Funcion que permite consultar los productos por ticket de la Tabla DetalleTicket de la Base de Datos
+    //Recibe un int idticket
+    //Devuellve un ArrayList de tipo DetalleTicket ccrrespondiente a la consulta
+    public ArrayList<DetalleTicket> consultarDetalleTicket(int idticket) {
+        String sql = "select idproducto,cantidad,preciounitario,subtotal,preciomayorista "
+                + "from detalleticket "
+                + "where idticket=?";
+        ArrayList<DetalleTicket> lista = new ArrayList<DetalleTicket>();
+        try {
+            PreparedStatement st = con.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
+            st.setInt(1, idticket);
+            while (rs.next()) {
+                DetalleTicket dt = new DetalleTicket();
+                dt.setIdProducto(rs.getInt("idproducto"));
+                dt.setCantidad(rs.getInt("cantidad"));
+                dt.setPrecioUnitario(rs.getFloat("preciounitario"));
+                dt.setSubTotal(rs.getFloat("SubTotal"));
+                dt.setPrecioMayorista(rs.getBoolean("preciomayorista"));
+                lista.add(dt);
+            }
+            rs.close();
+            st.close();
+            return lista;
+        } catch (SQLException e) {
+            System.out.println("Error:" + e.getMessage());
+        }
+        return null;
+    }
+
+    //Funcion que permite agregar un producto al Ticket, agrega un registro a la tabla de DetalleTicket de la Base de Datos
+    //Recibe un objeto de DetalleTicket
+    //Retorna si fue exitosa la insercion 
+    public boolean insertarDetalleTicket(DetalleTicket dt) {
+        String sql = "insert into detalleticket values(null,?,?,?,?,?)";
+        boolean ban = false;
+        try {
+            PreparedStatement st = con.prepareStatement(sql);
+            st.setInt(1, dt.getIdProducto());
+            st.setInt(2, dt.getCantidad());
+            st.setFloat(3, dt.getPrecioUnitario());
+            st.setFloat(4, dt.getSubTotal());
+            st.setBoolean(5, dt.getPrecioMayorista());
+            st.execute();
+            st.close();
+            ban = true;
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error:" + e.getMessage());
+        }
+        return ban;
+    }
+
+    //Funcion que permite eliminar el producto del ticket de la tabla DetalleTciket de la Base de Datos
+    //Recibe el int de IdTicket y el int IdProducto
+    //Retorna si fue exitosa la eliminacion
+    public boolean eliminarProductoDetalleTicket(int idticket, int idproducto) {
+        String sql = "delete from detalleticket where idticket=? and idproducto=?";
+        try {
+            PreparedStatement st = con.prepareStatement(sql);
+            st.setInt(1, idticket);
+            st.setInt(2, idproducto);
+            st.execute();
+            st.close();
+            return true;
+        } catch (SQLException e) {
+            System.out.println("Error:" + e.getMessage());
+            return false;
+        }
+    }
+
+    //Funcion que permite establecer el usuario de la propiedad Usuario de la clase
+    //Recibe un usuario de objeto tipo Usuario
     public void setUser(Usuario user) {
         this.user = user;
     }
