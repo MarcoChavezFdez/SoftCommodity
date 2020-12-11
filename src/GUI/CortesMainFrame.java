@@ -37,7 +37,7 @@ public class CortesMainFrame extends javax.swing.JFrame {
         this.conexion = conexion;
         this.ventaActual = ventaActual;
         inicializarCorte(fondoInicial);
-        llenaEtiquetas();
+        
     }
 
     /**

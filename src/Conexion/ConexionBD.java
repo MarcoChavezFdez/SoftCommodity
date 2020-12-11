@@ -2,24 +2,24 @@
  *
  * @Autor  Marco Alberto Chávez Fernández
  * @Correo: mchavez297@accitesz.com
- * 
+ *
  * @Autor José Carlos Esparza de Anda
- * @Correo: jesparza301@accitesz.com 
- * 
+ * @Correo: jesparza301@accitesz.com
+ *
  * @Autor José Ángel Madrigal Plancarte
  * @Correo: jmadrigal323@accitesz.com
- * 
+ *
  * @Docente: Dr. Francisco Rodríguez Díaz
  * @Asignatura: Ing. de Software
  * @Escuela: Instituto Tecnologico de Estudios Superiores de Zamora
  * @Semestre : 7
  * @Grupo: B
  * @Carrera: Ing. en Sistemas Computacionales
- * 
+ *
  * La clase ConexionBD contiene todas las propiedades y metodos para interactuar
  * con la Base de Datos SoftCommodity bajo MySQL 5.0 y en una infraestructura
  * local
- * @since   VER1.0
+ * @since VER1.0
  */
 package Conexion;
 
@@ -90,12 +90,55 @@ public class ConexionBD {
      *
      *************************************************************
      */
-    //Funcion la cual permite realizar la consulta general de la tabla Productos de la Base de Datos
+    //Funcion la cual permite realizar la consulta general de todos los productos de la tabla Productos de la Base de Datos
     //Devuelve un ArrayList de objetos Producto
+    //No recibe parametros
     public ArrayList<Producto> consultaProductos() {
         String sql = "select idproducto,idcategoria,nombre,descripcion,preciomayoreo,preciomenudeo,preciocompra,presentacion,"
                 + "ean,contenido,tipocontenido,material,anchura,medidaanchura,color,estatus "
-                + "from productos";
+                + "from productos"
+                + " ORDER BY idproducto ASC";
+        ArrayList<Producto> lista = new ArrayList<Producto>();
+        try {
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()) {
+                Producto p = new Producto();
+                p.setIdProducto(rs.getInt("idproducto"));
+                p.setIdCategoria(rs.getInt("idcategoria"));
+                p.setNombre(rs.getString("nombre"));
+                p.setDescripcion(rs.getString("descripcion"));
+                p.setPrecioMayoreo(rs.getFloat("preciomayoreo"));
+                p.setPrecioMenudeo(rs.getFloat("preciomenudeo"));
+                p.setPrecioCompra(rs.getFloat("preciocompra"));
+                p.setPresentacion(rs.getString("presentacion"));
+                p.setEAN(rs.getString("ean"));
+                p.setContenido(rs.getInt("contenido"));
+                p.setTipoContenido(rs.getString("tipocontenido"));
+                p.setMaterial(rs.getString("material"));
+                p.setAnchura(rs.getFloat("anchura"));
+                p.setMedidaAnchura(rs.getString("medidaanchura"));
+                p.setColor(rs.getString("color"));
+                p.setEstatus(rs.getString("estatus"));
+                lista.add(p);
+            }
+            rs.close();
+            st.close();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error:" + e.getMessage());
+        }
+        return lista;
+    }
+    
+    //Funcion la cual permite realizar la consulta de los primeros 25 productos  de la tabla Productos de la Base de Datos
+    //Devuelve un ArrayList de objetos Producto
+    //No recibe parametros
+    public ArrayList<Producto> consultaProductosLimitado() {
+        String sql = "select idproducto,idcategoria,nombre,descripcion,preciomayoreo,preciomenudeo,preciocompra,presentacion,"
+                + "ean,contenido,tipocontenido,material,anchura,medidaanchura,color,estatus "
+                + "from productos"
+                + "order by nombre"
+                + "limit 25";
         ArrayList<Producto> lista = new ArrayList<Producto>();
         try {
             Statement st = con.createStatement();
@@ -787,13 +830,13 @@ public class ConexionBD {
     //No recibe parametros
     //Devuelve un Integer correspondiente al ticket que se debe de crear
     public Integer consultaUltimoTicket() {
-        String fn = "{?=call ultimoTicket()}";
+        String fn = "{ ? = call ultimoTicket()}";
         try {
             Integer idTicket;
             CallableStatement proc = con.prepareCall(fn);
             proc.registerOutParameter(1, Types.DECIMAL);
             proc.execute();
-            idTicket=proc.getInt(1)+1;
+            idTicket = proc.getInt(1) + 1;
             return idTicket;
         } catch (SQLException e) {
             System.out.println("Error al consulta el utlimo ticket:" + e.getMessage());

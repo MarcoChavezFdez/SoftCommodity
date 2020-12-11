@@ -194,8 +194,8 @@ public class Producto {
         this.IdProducto = IdProducto;
     }
 
-   
-
-
-   
+    @Override
+    public String toString() {
+        return   IdProducto + " : " + Nombre +" "+  Color  + " " + Contenido + " " + TipoContenido +" "+ Anchura +" "+ MedidaAnchura ;
+    }
 }
