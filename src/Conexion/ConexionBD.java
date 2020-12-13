@@ -939,14 +939,15 @@ public class ConexionBD {
     //Recibe un int idticket
     //Devuellve un ArrayList de tipo DetalleTicket ccrrespondiente a la consulta
     public ArrayList<DetalleTicket> consultarDetalleTicket(int idticket) {
-        String sql = "select idticket,idproductp,cantidad,preciounitario,subtotal,preciomayorista  "
+        String sql = "select *  "
                 + "from detalleticket "
                 + "where idticket=?";
         ArrayList<DetalleTicket> lista = new ArrayList<DetalleTicket>();
         try {
             PreparedStatement st = con.prepareStatement(sql);
-            ResultSet rs = st.executeQuery();
             st.setInt(1, idticket);
+            ResultSet rs = st.executeQuery();
+
             while (rs.next()) {
                 DetalleTicket dt = new DetalleTicket();
                 dt.setIdTicket(rs.getInt("idticket"));
@@ -956,12 +957,12 @@ public class ConexionBD {
                 dt.setSubTotal(rs.getFloat("SubTotal"));
                 dt.setPrecioMayorista(rs.getBoolean("preciomayorista"));
                 lista.add(dt);
-                System.out.println("Si enucentra");
             }
             rs.close();
             st.close();
             return lista;
-        } catch (SQLException e) {
+        }
+        catch (SQLException e) {
             System.out.println("Error:" + e.getMessage());
         }
         return null;
