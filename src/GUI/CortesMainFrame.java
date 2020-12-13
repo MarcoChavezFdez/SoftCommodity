@@ -15,9 +15,7 @@
  * @Grupo: B
  * @Carrera: Ing. en Sistemas Computacionales
  *
- * La clase ConexionBD contiene todas las propiedades y metodos para interactuar
- * con la Base de Datos SoftCommodity bajo MySQL 5.0 y en una infraestructura
- * local
+ * **Descripcion
  * @since VER1.0
  */
 package GUI;
@@ -89,12 +87,13 @@ public class CortesMainFrame extends javax.swing.JFrame {
         btn_Retirar = new javax.swing.JButton();
         lbl_CorteId = new javax.swing.JLabel();
         lbl_CorteId1 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        lbl_TotalCorte = new javax.swing.JLabel();
+        lbl_TotalVenta = new javax.swing.JLabel();
         btn_Atras = new javax.swing.JButton();
         btn_CerrarCorte = new javax.swing.JButton();
         lbl_Nombre = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("SoftCommodity+ by White Company® ");
@@ -173,14 +172,10 @@ public class CortesMainFrame extends javax.swing.JFrame {
         lbl_CorteId1.setText("Corte ID");
         jPanel1.add(lbl_CorteId1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 330, -1, -1));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Total $");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 300, -1, 20));
-
-        lbl_TotalCorte.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        lbl_TotalCorte.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel1.add(lbl_TotalCorte, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 300, 79, 20));
+        lbl_TotalVenta.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lbl_TotalVenta.setForeground(new java.awt.Color(255, 255, 255));
+        lbl_TotalVenta.setText("0.0");
+        jPanel1.add(lbl_TotalVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 300, -1, 20));
 
         btn_Atras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Volver.png"))); // NOI18N
         btn_Atras.setBorderPainted(false);
@@ -219,6 +214,14 @@ public class CortesMainFrame extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 310, 80, 40));
 
+        jLabel3.setText("jLabel3");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 300, -1, -1));
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("Total $");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 300, -1, 20));
+
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-30, -20, 770, 600));
 
         pack();
@@ -238,12 +241,11 @@ public class CortesMainFrame extends javax.swing.JFrame {
     private void llenaEtiquetas() {
         lbl_CorteId.setText(String.valueOf(this.CorteActual.getIdCorte()));
         this.CorteActual.setTotalVenta(conexion.calcularTotalVentaCorte(CorteActual));
-        System.out.println("CORte Actual" + this.CorteActual.getTotalVenta());
-        System.out.println(String.valueOf(this.CorteActual.getTotalVenta()));
+        System.out.println("Venta Actual "+String.valueOf(conexion.calcularTotalVentaCorte(CorteActual)));
         if (CorteActual.getTotalVenta() == null) {
-            lbl_TotalCorte.setText("0.00");
+            lbl_TotalVenta.setText("0.00");
         } else {
-            lbl_TotalCorte.setText(String.valueOf(this.CorteActual.getTotalVenta()));
+            lbl_TotalVenta.setText(String.valueOf(this.CorteActual.getTotalVenta()));
         }
 
     }
@@ -384,6 +386,7 @@ public class CortesMainFrame extends javax.swing.JFrame {
         java.util.Date utilDate = new java.util.Date();
         java.sql.Date fecha = new java.sql.Date(utilDate.getTime());
         this.CorteActual = conexion.consultaCorteCaja(fecha, conexion.getUser().getIdUsuario());
+       
 
     }
 
@@ -415,12 +418,13 @@ public class CortesMainFrame extends javax.swing.JFrame {
     private javax.swing.JButton btn_CreaTicket;
     private javax.swing.JButton btn_Imprimir;
     private javax.swing.JButton btn_Retirar;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lbl_CorteId;
     private javax.swing.JLabel lbl_CorteId1;
     private javax.swing.JLabel lbl_Nombre;
-    private javax.swing.JLabel lbl_TotalCorte;
+    private javax.swing.JLabel lbl_TotalVenta;
     // End of variables declaration//GEN-END:variables
 }

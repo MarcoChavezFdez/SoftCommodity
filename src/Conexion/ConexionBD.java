@@ -21,6 +21,7 @@
  * @since VER1.0
  */
 package Conexion;
+
 import static org.junit.Assert.*;
 import Modelos.Bodega;
 import Modelos.Categoria;
@@ -84,15 +85,21 @@ public class ConexionBD {
     }
 
     /**
+     * Modelo de Producto
+     *
      * *************************************************************
      *
-     * Funciones para el modelo Producto
+     * Funciones para el modeloProducto Esta seccion contiente todos los metodos
+     * necesarios para interactuar con la tabla de Productos
      *
      *************************************************************
      */
-    //Funcion la cual permite realizar la consulta general de todos los productos de la tabla Productos de la Base de Datos
-    //Devuelve un ArrayList de objetos Producto
-    //No recibe parametros
+    /**
+     * *****
+     * Esta Funcion permite realizar la consulta general de la tabla Productos
+     *
+     * @return regresa un ArrayList de tipo Producto con los productos generados
+     */
     public ArrayList<Producto> consultaProductos() {
         String sql = "select idproducto,idcategoria,nombre,descripcion,preciomayoreo,preciomenudeo,preciocompra,presentacion,"
                 + "ean,contenido,tipocontenido,material,anchura,medidaanchura,color,estatus "
@@ -130,14 +137,18 @@ public class ConexionBD {
         return lista;
     }
 
-    //Funcion la cual permite realizar la consulta de los primeros 25 productos  de la tabla Productos de la Base de Datos
-    //Devuelve un ArrayList de objetos Producto
-    //No recibe parametros
+    /**
+     * Funcion la cual permite realizar la consulta de los primeros 25 productos
+     * de la tabla Productos de la Base de Datos No recibe parametros
+     *
+     * @return Devuelve un ArrayList de objetos Producto
+     *
+     **
+     */
     public ArrayList<Producto> consultaProductosLimitado() {
-        String sql = "select idproducto,idcategoria,nombre,descripcion,preciomayoreo,preciomenudeo,preciocompra,presentacion,"
-                + "ean,contenido,tipocontenido,material,anchura,medidaanchura,color,estatus "
-                + "from productos"
-                + "order by nombre"
+        String sql = "select * "
+                + "from productos "
+                + "order by nombre "
                 + "limit 25";
         ArrayList<Producto> lista = new ArrayList<Producto>();
         try {
@@ -171,9 +182,15 @@ public class ConexionBD {
         return lista;
     }
 
-    //Funcion la cual permite realizar la consulta de un producto de la tabla Productos de la Base de Datos
-    //Devuelve un ArrayList de objetos Producto
-    //REcibe el idproducto como parametro
+    /**
+     * Funcion la cual permite realizar la consulta de un producto de la tabla
+     * Productos de la Base de Datos
+     *
+     * @param idProducto es el idProducto del producto a buscar
+     * @return Devuelve un objeto Producto generado de la busquedad
+     *
+     **
+     */
     public Producto consultaProducto(int idProducto) {
         String sql = (" select * "
                 + " from productos "
@@ -208,6 +225,13 @@ public class ConexionBD {
         return p;
     }
 
+    /**
+     * Funcion la cual permite realizar la insercion de un producto en la tabla
+     * de Productos de la Base de Datos
+     *
+     * @param p es el Objeto Producto que se desea insertar
+     * @return Devuelve si fue exitosa la consulta
+     */
     public boolean insertarProducto(Producto p) {
         String sql = "insert into productos values(null,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         boolean ban = false;
@@ -276,7 +300,7 @@ public class ConexionBD {
      * *************************************************************
      *
      * Funciones para el modelo Usuario
-     *     
+     *
      *************************************************************
      */
     public Usuario consultarUsuarioLogin(String nombre) {
@@ -516,9 +540,11 @@ public class ConexionBD {
      * Funciones para el modelo Bodegas
      *
      *************************************************************
+     */
+    /*Esta Funcion permite realizar la inserciion de un registro en la table de Bodegas
      * @param b Recibe el elemento tipo Bodega para realizar insercion en la
      * tabla de bodegas
-     * @return
+     * @return regresa si fue o no exitosa la insercion
      */
     public boolean insertarBodega(Bodega b) {
         String sql = "insert into bodegas values(null,?)";
@@ -536,6 +562,11 @@ public class ConexionBD {
         return ban;
     }
 
+    /*Esta Funcion permite realizar la consulta General la table de Bodegas
+     * No recibe parametros
+     * @return regresa un ArrayList tipo Bodega el cual contiene el resultado
+     * de la consulta
+     */
     public ArrayList<Bodega> consultarBodegas() {
         String sql = "select idbodega,nombre from bodegas";
         ArrayList<Bodega> lista = new ArrayList<Bodega>();
@@ -558,6 +589,12 @@ public class ConexionBD {
         return null;
     }
 
+    /* Esta Funcion permite consulta en la base de datos si existe una bodega con
+     * el mismo nombre
+     * @param nombre es el nombre con el que realizara la busqueda en la 
+     * tabla de bodegas
+     * @return regresa si existe una bodega con el mismo nombre
+     */
     public boolean consultarBodegaRegistrada(String nombre) {
         String sql = "select idbodega, nombre from bodegas where nombre=?";
         try {
@@ -588,7 +625,11 @@ public class ConexionBD {
      *
      *************************************************************
      */
-    
+    /*Esta Funcion permite realizar la insercion de un registro en la table de Ventas
+     * @param v Recibe el elemento tipo Venta para realizar insercion en la
+     * tabla de Ventas
+     * @return regresa si fue o no exitosa la insercion
+     */
     public boolean insertarVenta(Venta v) {
         String sql = "insert into ventas values(null,?,?)";
         boolean ban = false;
@@ -606,6 +647,11 @@ public class ConexionBD {
         return ban;
     }
 
+    /*Esta Funcion permite recuperar la venta del dia
+     * @param fecha es la fecha con la que buscara la venta
+     * @return regresa el Objeto Venta que se encontro
+     * 
+     */
     public Venta consultarVenta(Date fecha) {
         String sql = "select idventa,fecha,totalventa from ventas where fecha=?";
         Venta v = new Venta();
@@ -624,6 +670,11 @@ public class ConexionBD {
         return v;
     }
 
+    /*Esta Funcion verificar si se ha generado una venta
+     * @param fecha es la fecha con la que buscara la venta
+     * @return regresa si anteriormete se ha generado una venta
+     * 
+     */
     public boolean consultarVentaDiaria(Date fecha) {
         String sql = "select idventa,fecha,totalventa from ventas where fecha=?";
         Venta v = new Venta();
@@ -647,6 +698,46 @@ public class ConexionBD {
         return false;
     }
 
+    /* Esta Funcion permite calcular el total de una venta
+     * @param fecha es la fecha con la que buscara la venta
+     * @return regresa el total de la venta buscada
+     * 
+     */
+    public Float consultarVentaTotalVenta(Date fecha) {
+        Float TotalVenta = 0.0f;
+        String sql = "select SUM(cc.TotalVenta)as TotalVenta "
+                + "from ventas v "
+                + "join cortesventas cv "
+                + "on v.idventa=cv.idventa "
+                + "join cortescaja cc "
+                + "on cc.idcorte=cv.idcorte "
+                + "where v.fecha=?";
+        Venta v = new Venta();
+        try {
+            PreparedStatement st = con.prepareStatement(sql);
+            st.setDate(1, fecha);
+
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                TotalVenta = rs.getFloat("TotalVenta");
+            } else {
+
+                TotalVenta = 0.0f;
+            }
+            rs.close();
+            st.close();
+        } catch (SQLException e) {
+            System.out.println("Error:" + e.getMessage());
+        }
+
+        return TotalVenta;
+    }
+
+    /* Esta Funcion permite actualizar el registro de una venta
+     * @param v es el objeto Venta que se quiere actualizar
+     * @return regresa si fue exitosa la acutalizacion
+     * 
+     */
     public boolean actualizarVenta(Venta v) {
         String sql = "update ventas set totalVenta=? where idVenta=?";
         boolean ban = false;
@@ -665,13 +756,24 @@ public class ConexionBD {
     }
 
     /**
+     * Modelo de CorteVenta
+     *
      * *************************************************************
      *
-     * Funciones para el modelo CorteVenta
+     * Funciones para el modelo CorteVenta Esta seccion contiente todos los
+     * metodos necesarios para interactuar con la tabla de CorteVenta
      *
      *************************************************************
      */
-    
+    /**
+     * *****
+     * Esta Funcion permite realizar la insercion de un registro en la tabla
+     * corteVenta
+     *
+     * @param c Recibe el elemento tipo CorteVenta para realizar insercion en la
+     * tabla de CortesVentas
+     * @return regresa si fue o no exitosa la insercion ***
+     */
     public boolean insertarCorteVenta(CorteVenta c) {
         String sql = "insert into cortesventas values(?,?)";
         boolean ban = false;
@@ -689,6 +791,13 @@ public class ConexionBD {
         return ban;
     }
 
+    /**
+     * *****
+     * Esta Funcion permite realizar la consulta general de las tabla
+     * cortesVentas No recibe parametros
+     *
+     * @return un ArrayList de tipo corteVenta el cual contiene la consulta ***
+     */
     public ArrayList<CorteVenta> consultarCortesVentas() {
         String sql = "select idventa,idcorte from cortesventas";
         ArrayList<CorteVenta> lista = new ArrayList<CorteVenta>();
@@ -712,11 +821,23 @@ public class ConexionBD {
     }
 
     /**
+     * Modelo CorteCaja
+     *
      * *************************************************************
      *
-     * Funciones para el modelo CorteCaja
+     * Funciones para el modelo CorteCaja Esta seccion contiente todos los
+     * metodos necesarios para interactuar con la tabla de CortesCaja
      *
      *************************************************************
+     */
+    /**
+     * *****
+     * Esta Funcion permite realizar la insercion de un registro en la tabla
+     * cortesCaja
+     *
+     * @param cc Recibe el elemento tipo CorteCaja para realizar insercion en la
+     * tabla de CortesCaja
+     * @return regresa si fue o no exitosa la insercion ***
      */
     public boolean insertarCorteCaja(CorteCaja cc) {
         String sql = "insert into cortescaja values(null,?,?,?,?,?,?,?,?,?)";
@@ -742,6 +863,14 @@ public class ConexionBD {
         return ban;
     }
 
+    /**
+     * *****
+     * Esta Funcion permite actualizar un registro en la tabla cortesCaja
+     *
+     * @param cc Recibe el elemento tipo CorteCaja para realizar mdoficacion en
+     * la tabla de CortesCaja
+     * @return regresa si fue o no exitosa la actualizacion ***
+     */
     public boolean actualizarCorteCaja(CorteCaja cc) {
         String sql = "update cortescaja set idUsuario=? , fondoincial=?, totalventa=?, totalretiros=?, totalcorte=?,"
                 + "horainicial=?, horafinal=?, estatus=? , fecha=?, "
@@ -799,7 +928,7 @@ public class ConexionBD {
             proc.registerOutParameter(2, Types.DECIMAL);
             proc.execute();
             cc.setTotalVenta(proc.getFloat(2));
-
+            proc.close();
             return cc.getTotalVenta();
 
         } catch (SQLException e) {
@@ -898,6 +1027,7 @@ public class ConexionBD {
             proc.registerOutParameter(1, Types.INTEGER);
             proc.execute();
             idTicket = proc.getInt(1) + 1;
+            proc.close();
             return idTicket;
         } catch (SQLException e) {
             System.out.println("Error al consulta el utlimo ticket:" + e.getMessage());
@@ -913,7 +1043,7 @@ public class ConexionBD {
             proc.registerOutParameter(2, Types.DECIMAL);
             proc.executeQuery();
             BigDecimal TotalVenta = proc.getBigDecimal(2);
-            assertEquals(2.0, TotalVenta.doubleValue(),0.0);
+            assertEquals(2.0, TotalVenta.doubleValue(), 0.0);
             TotalVenta = proc.getBigDecimal(2);
             return TotalVenta;
         } catch (SQLException e) {
@@ -921,22 +1051,22 @@ public class ConexionBD {
         }
         return null;
     }
-        public Float calcularTotalTicketConsulta(Integer IdTicket) {
+
+    public Float calcularTotalTicketConsulta(Integer IdTicket) {
         String sql = "select SUM(dt.subtotal)as Total "
                 + "from tickets t "
                 + "join detalleticket dt "
                 + "on dt.idticket=t.idticket "
                 + "where t.idticket=?";
         Float totalTicket;
-        totalTicket=0.0f;
+        totalTicket = 0.0f;
         try {
             PreparedStatement st = con.prepareStatement(sql);
             st.setInt(1, IdTicket);
             ResultSet rs = st.executeQuery();
             if (rs.next()) {
-                totalTicket=(rs.getFloat("Total"));
-            }
-            else{
+                totalTicket = (rs.getFloat("Total"));
+            } else {
                 System.out.println("No recupero nada");
             }
             st.close();
@@ -959,7 +1089,6 @@ public class ConexionBD {
     //Funcion que permite consultar los productos por ticket de la Tabla DetalleTicket de la Base de Datos
     //Recibe un int idticket
     //Devuellve un ArrayList de tipo DetalleTicket ccrrespondiente a la consulta
-        
     public ArrayList<DetalleTicket> consultarDetalleTicket(int idticket) {
         String sql = "select *  "
                 + "from detalleticket "
@@ -1041,7 +1170,7 @@ public class ConexionBD {
     public Usuario getUser() {
         return user;
     }
-    
+
 //        public void assertDecimalSameValue(String message, String expected_s, 
 //        BigDecimal actual)
 //    {
@@ -1050,6 +1179,4 @@ public class ConexionBD {
 //            " expected:<" + expected + "> but was:<" + actual.toString() + ">", 
 //            expected.compareTo(actual)==0);
 //    }
-
-
 }

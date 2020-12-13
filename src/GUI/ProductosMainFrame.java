@@ -48,6 +48,7 @@ public class ProductosMainFrame extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tbl_Datos = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("SoftCommodity+ by White Company® ");
@@ -90,8 +91,8 @@ public class ProductosMainFrame extends javax.swing.JFrame {
 
         jComboBox1.setBackground(new java.awt.Color(204, 82, 122));
         jComboBox1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "IdProducto", "Nombre", "EAN", "Precio Menudeo" }));
-        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1120, 40, 119, 40));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "IdProducto", "Nombre", "EAN", "Anchura" }));
+        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1220, 40, 119, 40));
 
         btn_Eliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Productos/Eliminar.png"))); // NOI18N
         btn_Eliminar.setBorderPainted(false);
@@ -111,7 +112,7 @@ public class ProductosMainFrame extends javax.swing.JFrame {
                 jTextField1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 90, 403, 42));
+        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 90, 403, 42));
 
         tbl_Datos.setBackground(new java.awt.Color(237, 174, 195));
         tbl_Datos.setModel(new javax.swing.table.DefaultTableModel(
@@ -146,8 +147,14 @@ public class ProductosMainFrame extends javax.swing.JFrame {
         jLabel1.setBackground(new java.awt.Color(0, 0, 0));
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Buscar por:");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 40, 160, 40));
+        jLabel1.setText("Buscar:");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 90, 60, 40));
+
+        jLabel3.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Buscar por:");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(1110, 40, 100, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -237,6 +244,7 @@ public class ProductosMainFrame extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;

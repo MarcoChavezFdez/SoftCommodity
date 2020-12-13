@@ -5,7 +5,9 @@
  */
 package GUI;
 
-import java.awt.TextField;
+import Conexion.ConexionBD;
+import Modelos.CorteCaja;
+import Modelos.Ticket;
 
 /**
  *
@@ -16,8 +18,15 @@ public class RealizarPagoFrame extends javax.swing.JFrame {
     /**
      * Creates new form RealizarPago
      */
-    public RealizarPagoFrame() {
+    ConexionBD conexion;
+    Ticket ticketAcutal;
+    CorteCaja Corte;
+
+    public RealizarPagoFrame(ConexionBD conexion, Ticket ticketActual, CorteCaja corte) {
         initComponents();
+        this.conexion = conexion;
+        this.ticketAcutal = ticketActual;
+        this.Corte = corte;
         this.setLocationRelativeTo(null);
 
     }
@@ -34,7 +43,7 @@ public class RealizarPagoFrame extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jpCantidad = new javax.swing.JPanel();
         jb100 = new javax.swing.JButton();
-        jb500 = new javax.swing.JButton();
+        btn_500 = new javax.swing.JButton();
         jbPagoExacto = new javax.swing.JButton();
         jb200 = new javax.swing.JButton();
         jb50 = new javax.swing.JButton();
@@ -52,9 +61,16 @@ public class RealizarPagoFrame extends javax.swing.JFrame {
         jbBorrar = new javax.swing.JButton();
         jbClear = new javax.swing.JButton();
         jb2 = new javax.swing.JButton();
-        jFormattedTextField1 = new javax.swing.JFormattedTextField();
+        ftxf_Cantidad = new javax.swing.JFormattedTextField();
         jb20 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        txf_Total = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        txf_Efectivo = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        txf_Cambio = new javax.swing.JTextField();
+        btn_Cobrar = new javax.swing.JButton();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -70,6 +86,11 @@ public class RealizarPagoFrame extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("SoftCommodity+ by White Company® ");
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jpCantidad.setBackground(new java.awt.Color(0, 0, 0));
@@ -88,13 +109,18 @@ public class RealizarPagoFrame extends javax.swing.JFrame {
         });
         jpCantidad.add(jb100, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 10, 120, 80));
 
-        jb500.setBackground(new java.awt.Color(246, 144, 61));
-        jb500.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jb500.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Realizar_Pago/500.png"))); // NOI18N
-        jb500.setToolTipText("");
-        jb500.setBorderPainted(false);
-        jb500.setContentAreaFilled(false);
-        jpCantidad.add(jb500, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 120, 80));
+        btn_500.setBackground(new java.awt.Color(246, 144, 61));
+        btn_500.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        btn_500.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Realizar_Pago/500.png"))); // NOI18N
+        btn_500.setToolTipText("");
+        btn_500.setBorderPainted(false);
+        btn_500.setContentAreaFilled(false);
+        btn_500.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_500ActionPerformed(evt);
+            }
+        });
+        jpCantidad.add(btn_500, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 120, 80));
 
         jbPagoExacto.setBackground(new java.awt.Color(246, 144, 61));
         jbPagoExacto.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
@@ -282,17 +308,17 @@ public class RealizarPagoFrame extends javax.swing.JFrame {
         });
         jPanel2.add(jb2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 210, 70, 70));
 
-        jFormattedTextField1.setEditable(false);
-        jFormattedTextField1.setBackground(new java.awt.Color(237, 174, 195));
-        jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("$.00"))));
-        jFormattedTextField1.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        jFormattedTextField1.setToolTipText("");
-        jFormattedTextField1.addActionListener(new java.awt.event.ActionListener() {
+        ftxf_Cantidad.setEditable(false);
+        ftxf_Cantidad.setBackground(new java.awt.Color(237, 174, 195));
+        ftxf_Cantidad.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("$.00"))));
+        ftxf_Cantidad.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        ftxf_Cantidad.setToolTipText("");
+        ftxf_Cantidad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jFormattedTextField1ActionPerformed(evt);
+                ftxf_CantidadActionPerformed(evt);
             }
         });
-        jPanel2.add(jFormattedTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 340, 60));
+        jPanel2.add(ftxf_Cantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 340, 60));
 
         jpCantidad.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, 360, 350));
 
@@ -313,15 +339,60 @@ public class RealizarPagoFrame extends javax.swing.JFrame {
 
         jPanel3.setBackground(new java.awt.Color(102, 102, 102));
 
+        jLabel1.setText("Total Compra");
+
+        txf_Total.setText("0.00");
+
+        jLabel2.setText("Efectivo Recibido");
+
+        txf_Efectivo.setText("0.00");
+
+        jLabel3.setText("Cambio");
+
+        txf_Cambio.setText("jTextField3");
+
+        btn_Cobrar.setText("Cobrar");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 510, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(98, 98, 98)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3))
+                        .addGap(70, 70, 70)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txf_Efectivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txf_Total, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txf_Cambio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(188, 188, 188)
+                        .addComponent(btn_Cobrar)))
+                .addContainerGap(177, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 550, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(99, 99, 99)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(txf_Total, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(txf_Efectivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(29, 29, 29)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(txf_Cambio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(113, 113, 113)
+                .addComponent(btn_Cobrar)
+                .addContainerGap(200, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 0, 510, 550));
@@ -346,19 +417,19 @@ public class RealizarPagoFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jb50ActionPerformed
 
     private void jbBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBorrarActionPerformed
-       jFormattedTextField1.setText(jFormattedTextField1.getText().substring(0, jFormattedTextField1.getText().length()-1));
+        ftxf_Cantidad.setText(ftxf_Cantidad.getText().substring(0, ftxf_Cantidad.getText().length() - 1));
     }//GEN-LAST:event_jbBorrarActionPerformed
 
     private void jb8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb8ActionPerformed
-               jFormattedTextField1.setText(jFormattedTextField1.getText()+"8");
+        ftxf_Cantidad.setText(ftxf_Cantidad.getText() + "8");
     }//GEN-LAST:event_jb8ActionPerformed
 
     private void jb3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb3ActionPerformed
-             jFormattedTextField1.setText(jFormattedTextField1.getText()+"3");
+        ftxf_Cantidad.setText(ftxf_Cantidad.getText() + "3");
     }//GEN-LAST:event_jb3ActionPerformed
 
     private void jb1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb1ActionPerformed
-               jFormattedTextField1.setText(jFormattedTextField1.getText()+"1");
+        ftxf_Cantidad.setText(ftxf_Cantidad.getText() + "1");
     }//GEN-LAST:event_jb1ActionPerformed
 
     private void jb20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb20ActionPerformed
@@ -366,52 +437,77 @@ public class RealizarPagoFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jb20ActionPerformed
 
     private void jb7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb7ActionPerformed
-        jFormattedTextField1.setText(jFormattedTextField1.getText()+"7");
+        ftxf_Cantidad.setText(ftxf_Cantidad.getText() + "7");
     }//GEN-LAST:event_jb7ActionPerformed
 
     private void jb2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb2ActionPerformed
-             jFormattedTextField1.setText(jFormattedTextField1.getText()+"2");
+        ftxf_Cantidad.setText(ftxf_Cantidad.getText() + "2");
     }//GEN-LAST:event_jb2ActionPerformed
 
     private void jb4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb4ActionPerformed
-            jFormattedTextField1.setText(jFormattedTextField1.getText()+"4");
+        ftxf_Cantidad.setText(ftxf_Cantidad.getText() + "4");
     }//GEN-LAST:event_jb4ActionPerformed
 
     private void jb9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb9ActionPerformed
-             jFormattedTextField1.setText(jFormattedTextField1.getText()+"9");
+        ftxf_Cantidad.setText(ftxf_Cantidad.getText() + "9");
     }//GEN-LAST:event_jb9ActionPerformed
 
     private void jb5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb5ActionPerformed
-             jFormattedTextField1.setText(jFormattedTextField1.getText()+"5");
+        ftxf_Cantidad.setText(ftxf_Cantidad.getText() + "5");
     }//GEN-LAST:event_jb5ActionPerformed
 
     private void jb6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb6ActionPerformed
-              jFormattedTextField1.setText(jFormattedTextField1.getText()+"6");
+        ftxf_Cantidad.setText(ftxf_Cantidad.getText() + "6");
     }//GEN-LAST:event_jb6ActionPerformed
 
     private void jb0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb0ActionPerformed
-              jFormattedTextField1.setText(jFormattedTextField1.getText()+"0");
+        ftxf_Cantidad.setText(ftxf_Cantidad.getText() + "0");
     }//GEN-LAST:event_jb0ActionPerformed
 
     private void jbClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbClearActionPerformed
-        jFormattedTextField1.setText("");
+        ftxf_Cantidad.setText("");
     }//GEN-LAST:event_jbClearActionPerformed
 
-    private void jFormattedTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField1ActionPerformed
+    private void ftxf_CantidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ftxf_CantidadActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jFormattedTextField1ActionPerformed
+    }//GEN-LAST:event_ftxf_CantidadActionPerformed
 
     private void jbOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbOkActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jbOkActionPerformed
- 
-    
+
+    private void btn_500ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_500ActionPerformed
+        llenaFields("500");
+    }//GEN-LAST:event_btn_500ActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        txf_Total.setText(String.valueOf(this.ticketAcutal.getTotal()));
+    }//GEN-LAST:event_formWindowOpened
+
+    public void llenaFields(String cant) {
+        Float cambio;
+        cambio = Float.valueOf(cant) - this.ticketAcutal.getTotal();
+        if (cambio < 0) {
+            btn_Cobrar.setEnabled(false);
+            
+        } else {
+            txf_Efectivo.setText(cant);
+            txf_Cambio.setText(String.valueOf(cambio));
+        }
+
+    }
+
     /**
      * @param args the command line arguments
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JFormattedTextField jFormattedTextField1;
+    private javax.swing.JButton btn_500;
+    private javax.swing.JButton btn_Cobrar;
+    public javax.swing.JFormattedTextField ftxf_Cantidad;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -425,7 +521,6 @@ public class RealizarPagoFrame extends javax.swing.JFrame {
     private javax.swing.JButton jb4;
     private javax.swing.JButton jb5;
     private javax.swing.JButton jb50;
-    private javax.swing.JButton jb500;
     private javax.swing.JButton jb6;
     private javax.swing.JButton jb7;
     private javax.swing.JButton jb8;
@@ -435,5 +530,8 @@ public class RealizarPagoFrame extends javax.swing.JFrame {
     private javax.swing.JButton jbOk;
     private javax.swing.JButton jbPagoExacto;
     private javax.swing.JPanel jpCantidad;
+    private javax.swing.JTextField txf_Cambio;
+    private javax.swing.JTextField txf_Efectivo;
+    private javax.swing.JTextField txf_Total;
     // End of variables declaration//GEN-END:variables
 }

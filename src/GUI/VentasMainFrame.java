@@ -41,7 +41,7 @@ public class VentasMainFrame extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         btn_CrearCorte = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        lbl_TotalVenta = new javax.swing.JLabel();
         btn_ContinuarCorte = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         texto1 = new javax.swing.JLabel();
@@ -84,10 +84,10 @@ public class VentasMainFrame extends javax.swing.JFrame {
         jLabel2.setText("Total de Venta del dia $");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 430, -1, -1));
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(237, 174, 195));
-        jLabel3.setText("0.00");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 430, -1, -1));
+        lbl_TotalVenta.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lbl_TotalVenta.setForeground(new java.awt.Color(237, 174, 195));
+        lbl_TotalVenta.setText("0.00");
+        jPanel1.add(lbl_TotalVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 430, -1, -1));
 
         btn_ContinuarCorte.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Ventas/Continuar_Corte.png"))); // NOI18N
         btn_ContinuarCorte.setBorderPainted(false);
@@ -144,17 +144,18 @@ public class VentasMainFrame extends javax.swing.JFrame {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         if (conexion.consultarVentaDiaria(Fecha)) {
             ventaActual = conexion.consultarVenta(Fecha);
+            ventaActual.setTotalVenta(conexion.consultarVentaTotalVenta(Fecha));
+            lbl_TotalVenta.setText(String.valueOf(ventaActual.getTotalVenta()));
             //
         } else {
             Venta ventaDiaria = new Venta();
             ventaDiaria.setFecha(Fecha);
             ventaDiaria.setTotalVenta(0);
             conexion.insertarVenta(ventaDiaria);
-
+             ventaActual = conexion.consultarVenta(Fecha);
         }
         CorteCaja corte;
         corte = conexion.consultaCorteCaja(Fecha, conexion.getUser().getIdUsuario());
-        System.out.println(corte.toString());
         if (corte.getIdUsuario() == null) {
             btn_CrearCorte.setEnabled(true);
             btn_ContinuarCorte.setEnabled(false);
@@ -190,12 +191,18 @@ public class VentasMainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_ContinuarCorteMouseEntered
 
     private void btn_ContinuarCorteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_ContinuarCorteMouseExited
-            texto1.setText("");
+        texto1.setText("");
         texto2.setText("");// TODO add your handling code here:
     }//GEN-LAST:event_btn_ContinuarCorteMouseExited
 
+    /*
+    * Este evento regresa al menu principal y esta relacionado con el btn_Atras
+     */
     private void btn_AtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AtrasActionPerformed
-        // TODO add your handling code here:
+        MenuPrincipalFrame menu = new MenuPrincipalFrame(this.conexion);
+        this.setVisible(false);
+        menu.setVisible(true);
+
     }//GEN-LAST:event_btn_AtrasActionPerformed
 
     /**
@@ -208,8 +215,8 @@ public class VentasMainFrame extends javax.swing.JFrame {
     private javax.swing.JButton btn_CrearCorte;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lbl_TotalVenta;
     private javax.swing.JLabel texto1;
     private javax.swing.JLabel texto2;
     // End of variables declaration//GEN-END:variables

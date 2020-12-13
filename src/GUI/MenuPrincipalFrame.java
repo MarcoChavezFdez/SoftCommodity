@@ -40,8 +40,8 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
         btn_Productos = new javax.swing.JButton();
         jp_User = new javax.swing.JPanel();
         lbl_user = new javax.swing.JLabel();
-        jButton6 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
+        btn_Menu = new javax.swing.JButton();
+        btn_CerrarSesion = new javax.swing.JButton();
         lbl_name = new javax.swing.JLabel();
         btn_Usuarios = new javax.swing.JButton();
         btn_Categorias = new javax.swing.JButton();
@@ -170,25 +170,25 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
         lbl_user.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Login/Usuarios.png"))); // NOI18N
         jp_User.add(lbl_user, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 140, -1, -1));
 
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Login/Menu.png"))); // NOI18N
-        jButton6.setContentAreaFilled(false);
-        jButton6.setFocusPainted(false);
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        btn_Menu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Login/Menu.png"))); // NOI18N
+        btn_Menu.setContentAreaFilled(false);
+        btn_Menu.setFocusPainted(false);
+        btn_Menu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                btn_MenuActionPerformed(evt);
             }
         });
-        jp_User.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 50, 50));
+        jp_User.add(btn_Menu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 50, 50));
 
-        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Login/Cerrar.png"))); // NOI18N
-        jButton8.setBorderPainted(false);
-        jButton8.setContentAreaFilled(false);
-        jButton8.addActionListener(new java.awt.event.ActionListener() {
+        btn_CerrarSesion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Login/Cerrar.png"))); // NOI18N
+        btn_CerrarSesion.setBorderPainted(false);
+        btn_CerrarSesion.setContentAreaFilled(false);
+        btn_CerrarSesion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton8ActionPerformed(evt);
+                btn_CerrarSesionActionPerformed(evt);
             }
         });
-        jp_User.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 540, 200, -1));
+        jp_User.add(btn_CerrarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 540, 200, -1));
 
         lbl_name.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lbl_name.setForeground(new java.awt.Color(255, 255, 255));
@@ -297,7 +297,7 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_btn_CategoriasActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+    private void btn_MenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_MenuActionPerformed
         if(jp_User.getWidth()<=100){
             jp_User.setSize(350, 1200);
               jp_User.setBackground(micolor);
@@ -307,11 +307,13 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
               jp_User.setBackground(Color.BLACK );
         }
       
-    }//GEN-LAST:event_jButton6ActionPerformed
+    }//GEN-LAST:event_btn_MenuActionPerformed
 
-    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton8ActionPerformed
+    private void btn_CerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CerrarSesionActionPerformed
+        LoginFrame login = new LoginFrame();
+        this.setVisible(false);
+        login.setVisible(true);
+    }//GEN-LAST:event_btn_CerrarSesionActionPerformed
 
     private void btn_ReportesFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_btn_ReportesFocusGained
  
@@ -399,12 +401,12 @@ textoMenu.setText("Ventas");// TODO add your handling code here:
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_Bodegas;
     private javax.swing.JButton btn_Categorias;
+    private javax.swing.JButton btn_CerrarSesion;
+    private javax.swing.JButton btn_Menu;
     private javax.swing.JButton btn_Productos;
     private javax.swing.JButton btn_Reportes;
     private javax.swing.JButton btn_Usuarios;
     private javax.swing.JButton btn_Ventas;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton8;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jp_User;

@@ -79,12 +79,13 @@ public class TicketMainFrame extends javax.swing.JFrame {
         tbl_Datos = new javax.swing.JTable();
         txt_Producto = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btn_Cobrar = new javax.swing.JButton();
         cmb_Producto = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         cb_PrecioMayoreo = new javax.swing.JCheckBox();
         jLabel2 = new javax.swing.JLabel();
         btn_Atras = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("SoftCommodity+ by White Company® ");
@@ -178,15 +179,15 @@ public class TicketMainFrame extends javax.swing.JFrame {
         jLabel5.setText("Producto");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 160, -1, -1));
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Ticket/Cobrar.png"))); // NOI18N
-        jButton1.setBorderPainted(false);
-        jButton1.setContentAreaFilled(false);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btn_Cobrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Ticket/Cobrar.png"))); // NOI18N
+        btn_Cobrar.setBorderPainted(false);
+        btn_Cobrar.setContentAreaFilled(false);
+        btn_Cobrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btn_CobrarActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 500, -1, -1));
+        jPanel1.add(btn_Cobrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 500, -1, -1));
 
         cmb_Producto.setBackground(new java.awt.Color(237, 174, 195));
         cmb_Producto.addItemListener(new java.awt.event.ItemListener() {
@@ -236,14 +237,19 @@ public class TicketMainFrame extends javax.swing.JFrame {
         });
         jPanel1.add(btn_Atras, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
+        jLabel7.setText("jLabel7");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 70, -1, -1));
+
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1070, 620));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void btn_CobrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CobrarActionPerformed
+        RealizarPagoFrame cobrar = new RealizarPagoFrame(this.conexion,this.ticketActual,this.corte);
+        this.setVisible(false);
+        cobrar.setVisible(true);
+    }//GEN-LAST:event_btn_CobrarActionPerformed
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         // TODO add your handling code here:
@@ -285,9 +291,9 @@ public class TicketMainFrame extends javax.swing.JFrame {
         }
         conexion.insertarDetalleTicket(dt);
         ArrayList<DetalleTicket> lista = this.conexion.consultarDetalleTicket(this.ticketActual.getIdTicket());
-
         llenarTabla(lista);
         this.ticketActual.setSubTotal(conexion.calcularTotalTicketConsulta(this.ticketActual.getIdTicket()));
+        
         System.out.println("SubTotal Regresado "+this.ticketActual.getSubTotal());
         lbl_Total.setText(String.valueOf(this.ticketActual.getSubTotal()));
     }//GEN-LAST:event_btn_AddProductoActionPerformed
@@ -369,15 +375,16 @@ public class TicketMainFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_AddProducto;
     private javax.swing.JButton btn_Atras;
+    private javax.swing.JButton btn_Cobrar;
     private javax.swing.JCheckBox cb_PrecioMayoreo;
     private javax.swing.JComboBox<String> cmb_Producto;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbl_Precio;
