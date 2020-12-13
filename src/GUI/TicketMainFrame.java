@@ -319,7 +319,6 @@ public class TicketMainFrame extends javax.swing.JFrame {
             dt.setSubTotal(nuevoProducto.getPrecioMenudeo() * dt.getCantidad());
         }
         conexion.insertarDetalleTicket(dt);
-        System.out.println("Se inserto");
         ArrayList<DetalleTicket> lista = this.conexion.consultarDetalleTicket(this.ticketActual.getIdTicket());
         if (lista != null) {
             for (DetalleTicket dt2 : lista) {
