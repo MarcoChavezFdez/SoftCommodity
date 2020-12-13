@@ -37,6 +37,7 @@ public class CortesMainFrame extends javax.swing.JFrame {
         this.conexion = conexion;
         this.ventaActual = ventaActual;
         inicializarCorte(fondoInicial);
+        llenaEtiquetas();
         
     }
 
@@ -172,9 +173,17 @@ public class CortesMainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowOpened
     private void llenaEtiquetas() {
         lbl_CorteId.setText(String.valueOf(this.CorteActual.getIdCorte()));
-        this.CorteActual.setTotalVenta(conexion.calcularTotalVentaCorte(CorteActual));
-        lbl_TotalCorte.setText(String.valueOf(this.CorteActual.getTotalVenta()));
-        System.out.println("TOTAL " + this.CorteActual.getTotalVenta());
+        System.out.println("");
+         this.CorteActual.setTotalVenta(conexion.calcularTotalVentaCorte(CorteActual));
+         System.out.println(String.valueOf(this.CorteActual.getTotalVenta()));
+        if(CorteActual.getTotalVenta()==null){
+             lbl_TotalCorte.setText("0.00");
+        }
+        else{
+              lbl_TotalCorte.setText(String.valueOf(this.CorteActual.getTotalVenta()));
+        }
+        
+ 
     }
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
@@ -201,6 +210,7 @@ public class CortesMainFrame extends javax.swing.JFrame {
         if (conexion.insertarCorteCaja(nuevoCorte)) {
             this.CorteActual = nuevoCorte;
         }
+        recuperaCorte();
     }
 
     private void recuperaCorte() {
