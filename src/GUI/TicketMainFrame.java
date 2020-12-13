@@ -252,13 +252,11 @@ public class TicketMainFrame extends javax.swing.JFrame {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         Integer idTicket = conexion.consultaUltimoTicket();
         System.out.println(idTicket.toString());
-        System.out.println("ANTES");
         lbl_idTicket.setText(String.valueOf((int) idTicket));
         this.ticketActual.setIdTicket(idTicket);
         this.ticketActual.setIdUsuario(this.conexion.getUser().getIdUsuario());
         this.ticketActual.setFecha(this.corte.getFecha());
-        BigDecimal val= new BigDecimal(0);
-        this.ticketActual.setSubTotal(val);
+        this.ticketActual.setSubTotal(0.0f);
         this.ticketActual.setIVA(0.00f);
         this.ticketActual.setHoraVenta(Time.valueOf(LocalTime.now()));
         this.ticketActual.setTotal(0.00f);
@@ -266,7 +264,6 @@ public class TicketMainFrame extends javax.swing.JFrame {
         for (Producto p : lista) {
             cmb_Producto.addItem(p.toString());
         }
-        System.out.println("Ticket Acutal " + ticketActual.toString());
         this.conexion.insertarTicket(ticketActual);
 
     }//GEN-LAST:event_formWindowOpened
@@ -290,7 +287,7 @@ public class TicketMainFrame extends javax.swing.JFrame {
         ArrayList<DetalleTicket> lista = this.conexion.consultarDetalleTicket(this.ticketActual.getIdTicket());
 
         llenarTabla(lista);
-        this.ticketActual.setSubTotal(conexion.calcularTotalTicket(this.ticketActual.getIdTicket()));
+        this.ticketActual.setSubTotal(conexion.calcularTotalTicketConsulta(this.ticketActual.getIdTicket()));
         System.out.println("SubTotal Regresado "+this.ticketActual.getSubTotal());
         lbl_Total.setText(String.valueOf(this.ticketActual.getSubTotal()));
     }//GEN-LAST:event_btn_AddProductoActionPerformed
@@ -324,7 +321,9 @@ public class TicketMainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_cb_PrecioMayoreoMouseReleased
 
     private void btn_AtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AtrasActionPerformed
-          // TODO add your handling code here:
+          CortesMainFrame Cortes = new CortesMainFrame(this.conexion,this.corte);
+          this.setVisible(false);
+          Cortes.setVisible(true);
     }//GEN-LAST:event_btn_AtrasActionPerformed
 
     private void llenarTabla(ArrayList<DetalleTicket> lista) {

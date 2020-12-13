@@ -22,7 +22,7 @@
  * @since VER1.0
  */
 package Conexion;
-
+import static org.junit.Assert.*;
 import Modelos.Bodega;
 import Modelos.Categoria;
 import Modelos.CorteCaja;
@@ -873,7 +873,7 @@ public class ConexionBD {
             st.setInt(2, t.getIdUsuario());
             st.setDate(3, t.getFecha());
             st.setTime(4, t.getHoraVenta());
-            st.setBigDecimal(5, t.getSubTotal());
+            st.setFloat(5, t.getSubTotal());
             st.setFloat(6, t.getIVA());
             st.setFloat(7, t.getTotal());
             st.execute();
@@ -892,7 +892,7 @@ public class ConexionBD {
         try {
             PreparedStatement st = con.prepareStatement(sql);
             st.setTime(1, t.getHoraVenta());
-            st.setBigDecimal(2, t.getSubTotal());
+            st.setFloat(2, t.getSubTotal());
             st.setFloat(3, t.getIVA());
             st.setFloat(4, t.getTotal());
             st.setInt(5, t.getIdTicket());
@@ -930,11 +930,38 @@ public class ConexionBD {
             CallableStatement proc = con.prepareCall(sp);
             proc.setInt(1, idTicket);
             proc.registerOutParameter(2, Types.DECIMAL);
-            proc.execute();
-            assertDecimalSameValue("OUT 2", "33.3330", proc.getBigDecimal(2));
-            return proc.getBigDecimal(2);
+            proc.executeQuery();
+            BigDecimal TotalVenta = proc.getBigDecimal(2);
+            assertEquals(2.0, TotalVenta.doubleValue(),0.0);
+            TotalVenta = proc.getBigDecimal(2);
+            return TotalVenta;
         } catch (SQLException e) {
             System.out.println("Error al ejecutar calculaTotalTicket:" + e.getMessage());
+        }
+        return null;
+    }
+        public Float calcularTotalTicketConsulta(Integer IdTicket) {
+        String sql = "select SUM(dt.subtotal)as Total "
+                + "from tickets t "
+                + "join detalleticket dt "
+                + "on dt.idticket=t.idticket "
+                + "where t.idticket=?";
+        Float totalTicket;
+        totalTicket=0.0f;
+        try {
+            PreparedStatement st = con.prepareStatement(sql);
+            st.setInt(1, IdTicket);
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                totalTicket=(rs.getFloat("Total"));
+            }
+            else{
+                System.out.println("No recupero nada");
+            }
+            st.close();
+            return totalTicket;
+        } catch (SQLException e) {
+            System.out.println("Error:" + e.getMessage());
         }
         return null;
     }

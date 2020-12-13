@@ -144,6 +144,7 @@ public class VentasMainFrame extends javax.swing.JFrame {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         if (conexion.consultarVentaDiaria(Fecha)) {
             ventaActual = conexion.consultarVenta(Fecha);
+            //
         } else {
             Venta ventaDiaria = new Venta();
             ventaDiaria.setFecha(Fecha);
@@ -167,7 +168,7 @@ public class VentasMainFrame extends javax.swing.JFrame {
     private void btn_ContinuarCorteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ContinuarCorteActionPerformed
         CorteCaja corte;
         corte = conexion.consultaCorteCaja(Fecha, conexion.getUser().getIdUsuario());
-        CortesMainFrame cortes = new CortesMainFrame(this.conexion, this.ventaActual, corte);
+        CortesMainFrame cortes = new CortesMainFrame(this.conexion, corte);
         cortes.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btn_ContinuarCorteActionPerformed
