@@ -2,22 +2,22 @@
  *
  * @Autor  Marco Alberto Chávez Fernández
  * @Correo: mchavez297@accitesz.com
- * 
+ *
  * @Autor José Carlos Esparza de Anda
- * @Correo: jesparza301@accitesz.com 
- * 
+ * @Correo: jesparza301@accitesz.com
+ *
  * @Autor José Ángel Madrigal Plancarte
  * @Correo: jmadrigal323@accitesz.com
- * 
+ *
  * @Docente: Dr. Francisco Rodríguez Díaz
  * @Asignatura: Ing. de Software
  * @Escuela: Instituto Tecnologico de Estudios Superiores de Zamora
  * @Semestre : 7
  * @Grupo: B
  * @Carrera: Ing. en Sistemas Computacionales
- * 
- * 
- * @since   VER1.0
+ *
+ *
+ * @since VER1.0
  */
 package GUI;
 
@@ -27,6 +27,9 @@ import Modelos.CorteCaja;
 import Modelos.DetalleTicket;
 import Modelos.Producto;
 import Modelos.Ticket;
+import static java.lang.Boolean.*;
+import java.sql.Time;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
@@ -43,12 +46,14 @@ public class TicketMainFrame extends javax.swing.JFrame {
     CorteCaja corte;
     Ticket ticketActual;
     Producto nuevoProducto;
-    public TicketMainFrame(ConexionBD conexion,CorteCaja corte) {
+
+    public TicketMainFrame(ConexionBD conexion, CorteCaja corte) {
         initComponents();
         this.conexion = conexion;
-        this.corte=corte;
+        this.corte = corte;
+        this.ticketActual = new Ticket();
         ArrayList<DetalleTicket> lista = conexion.consultarDetalleTicket(corte.getIdCorte());
-        
+
     }
 
     /**
@@ -120,6 +125,7 @@ public class TicketMainFrame extends javax.swing.JFrame {
 
         jLabel4.setText("Cantidad");
 
+        sp_Cantidad.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
         sp_Cantidad.setEditor(new javax.swing.JSpinner.NumberEditor(sp_Cantidad, ""));
         sp_Cantidad.setName(""); // NOI18N
         sp_Cantidad.setValue(1);
@@ -146,6 +152,11 @@ public class TicketMainFrame extends javax.swing.JFrame {
         });
 
         cb_PrecioMayoreo.setText("Precio Mayoreo");
+        cb_PrecioMayoreo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                cb_PrecioMayoreoMouseReleased(evt);
+            }
+        });
         cb_PrecioMayoreo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cb_PrecioMayoreoActionPerformed(evt);
@@ -273,16 +284,53 @@ public class TicketMainFrame extends javax.swing.JFrame {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         Integer idTicket = conexion.consultaUltimoTicket();
         System.out.println(idTicket.toString());
-        lbl_idTicket.setText(String.valueOf((int)idTicket));
+        System.out.println("ANTES");
+        lbl_idTicket.setText(String.valueOf((int) idTicket));
+        this.ticketActual.setIdTicket(idTicket);
+        this.ticketActual.setIdUsuario(this.conexion.getUser().getIdUsuario());
+        this.ticketActual.setFecha(this.corte.getFecha());
+        this.ticketActual.setSubTotal(0.00f);
+        this.ticketActual.setIVA(0.00f);
+        this.ticketActual.setHoraVenta(Time.valueOf(LocalTime.now()));
+        this.ticketActual.setTotal(0.00f);
         ArrayList<Producto> lista = conexion.consultaProductos();
-        for(Producto p : lista){
+        for (Producto p : lista) {
             cmb_Producto.addItem(p.toString());
         }
-       
+        System.out.println("Ticket Acutal " + ticketActual.toString());
+        this.conexion.insertarTicket(ticketActual);
+
     }//GEN-LAST:event_formWindowOpened
 
     private void btn_AddProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AddProductoActionPerformed
-        // TODO add your handling code here:
+        DetalleTicket dt = new DetalleTicket();
+        dt.setIdTicket(this.ticketActual.getIdTicket());
+        System.out.println("Detalle Ticket ID" + ticketActual.getIdTicket());
+        System.out.println(dt.getIdTicket());
+        dt.setIdProducto(this.nuevoProducto.getIdProducto());
+        dt.setCantidad((Integer) sp_Cantidad.getValue());
+        if (cb_PrecioMayoreo.isSelected()) {
+            dt.setPrecioUnitario(nuevoProducto.getPrecioMayoreo());
+            dt.setPrecioMayorista(TRUE);
+            dt.setSubTotal(nuevoProducto.getPrecioMayoreo() * dt.getCantidad());
+        } else {
+            dt.setPrecioUnitario(nuevoProducto.getPrecioMayoreo());
+            dt.setPrecioMayorista(FALSE);
+            dt.setSubTotal(nuevoProducto.getPrecioMenudeo() * dt.getCantidad());
+        }
+        conexion.insertarDetalleTicket(dt);
+        System.out.println("Se inserto");
+        ArrayList<DetalleTicket> lista = this.conexion.consultarDetalleTicket(this.ticketActual.getIdTicket());
+        if (lista != null) {
+            for (DetalleTicket dt2 : lista) {
+                dt2.toString();
+            }
+        }
+        else{
+            System.out.println("Lista vacia");
+        }
+        llenarTabla(lista);
+
     }//GEN-LAST:event_btn_AddProductoActionPerformed
 
     private void txt_ProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_ProductoActionPerformed
@@ -290,55 +338,60 @@ public class TicketMainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_ProductoActionPerformed
 
     private void cb_PrecioMayoreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_PrecioMayoreoActionPerformed
-        // TODO add your handling code here:
+        llenaPrecio(this.nuevoProducto);
     }//GEN-LAST:event_cb_PrecioMayoreoActionPerformed
 
     private void cmb_ProductoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmb_ProductoItemStateChanged
 
-        String id =cmb_Producto.getItemAt(cmb_Producto.getSelectedIndex());
+        String id = cmb_Producto.getItemAt(cmb_Producto.getSelectedIndex());
         Integer idProducto;
         System.out.println(cmb_Producto.getItemAt(cmb_Producto.getSelectedIndex()));
         System.out.println(id.indexOf(":"));
-        idProducto = Integer.valueOf(id.substring(0,id.indexOf(":")-1));
-        this.nuevoProducto=conexion.consultaProducto((int)idProducto);
-        llenaEtiqueta(this.nuevoProducto);
+        idProducto = Integer.valueOf(id.substring(0, id.indexOf(":") - 1));
+        this.nuevoProducto = conexion.consultaProducto(idProducto);
+
+        llenaPrecio(this.nuevoProducto);
     }//GEN-LAST:event_cmb_ProductoItemStateChanged
 
     private void cb_PrecioMayoreoPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_cb_PrecioMayoreoPropertyChange
-        llenaEtiqueta(this.nuevoProducto);
+
     }//GEN-LAST:event_cb_PrecioMayoreoPropertyChange
 
+    private void cb_PrecioMayoreoMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cb_PrecioMayoreoMouseReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cb_PrecioMayoreoMouseReleased
+
     private void llenarTabla(ArrayList<DetalleTicket> lista) {
-        String[] encabezado = {"IdProducto", "Cantidad", "Precio Unitario", "SubTotal", "Precio Mayorista"};
-        Object[][] datos = new Object[lista.size()][5];
+        String[] encabezado = {"idTicket", "IdProducto", "Cantidad", "Precio Unitario", "SubTotal", "Precio Mayorista"};
+        Object[][] datos = new Object[lista.size()][6];
         int ren = 0;
         for (DetalleTicket dt : lista) {
-            datos[ren][0] = dt.getIdProducto();
-            datos[ren][1] = dt.getCantidad();
-            datos[ren][2] = dt.getPrecioUnitario();
-            datos[ren][3] = dt.getSubTotal();
-            datos[ren][4] = dt.getPrecioMayorista();
+            datos[ren][0] = dt.getIdTicket();
+            datos[ren][1] = dt.getIdProducto();
+            datos[ren][2] = dt.getCantidad();
+            datos[ren][3] = dt.getPrecioUnitario();
+            datos[ren][4] = dt.getSubTotal();
+            datos[ren][5] = dt.getPrecioMayorista();
             ren++;
         }
         DefaultTableModel m = new DefaultTableModel(datos, encabezado) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
-                return colIndex<4; //Disallow the editing of any cell
+                return false; //Disallow the editing of any cell
             }
 
         };
     }
-    private void llenaEtiqueta(Producto p){
-        
-       if(p==null){
+
+    private void llenaPrecio(Producto p) {
+
+        if (p == null) {
             lbl_Precio.setText("0.00");
-       }
-       else if(cb_PrecioMayoreo.isEnabled()){
+        } else if (cb_PrecioMayoreo.isSelected()) {
             lbl_Precio.setText(String.valueOf(p.getPrecioMayoreo()));
-       }
-       else{
+        } else {
             lbl_Precio.setText(String.valueOf(p.getPrecioMenudeo()));
-       }
+        }
     }
 
     /**

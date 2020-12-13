@@ -109,6 +109,11 @@ public class Ticket {
     public void setTotal(Float Total) {
         this.Total = Total;
     }
+
+    @Override
+    public String toString() {
+        return "Ticket{" + "IdTicket=" + IdTicket + ", IdUsuario=" + IdUsuario + ", Fecha=" + Fecha + ", HoraVenta=" + HoraVenta + ", SubTotal=" + SubTotal + ", IVA=" + IVA + ", Total=" + Total + '}';
+    }
     
     
     

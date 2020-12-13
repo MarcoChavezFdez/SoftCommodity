@@ -175,9 +175,9 @@ public class ConexionBD {
     //Devuelve un ArrayList de objetos Producto
     //REcibe el idproducto como parametro
     public Producto consultaProducto(int idProducto) {
-        String sql = (" select * " 
+        String sql = (" select * "
                 + " from productos "
-                + " where idproducto="+idProducto);
+                + " where idproducto=" + idProducto);
         Producto p = new Producto();
         try {
             PreparedStatement st = con.prepareStatement(sql);
@@ -863,6 +863,48 @@ public class ConexionBD {
         return null;
     }
 
+    public boolean insertarTicket(Ticket t) {
+        String sql = "insert into tickets values(?,?,?,?,?,?,?)";
+        boolean ban = false;
+        try {
+            PreparedStatement st = con.prepareStatement(sql);
+            st.setInt(1, t.getIdTicket());
+            st.setInt(2, t.getIdUsuario());
+            st.setDate(3, t.getFecha());
+            st.setTime(4, t.getHoraVenta());
+            st.setFloat(5, t.getSubTotal());
+            st.setFloat(6, t.getIVA());
+            st.setFloat(7, t.getTotal());
+            st.execute();
+            st.close();
+            ban = true;
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error:" + e.getMessage());
+        }
+        return ban;
+    }
+
+    public boolean actualizarTicket(Ticket t) {
+        String sql = "update tickets set horaventa=? , subtotal=? ,iva=?, total=? where idticket=?";
+        boolean ban = false;
+        try {
+            PreparedStatement st = con.prepareStatement(sql);
+            st.setTime(1, t.getHoraVenta());
+            st.setFloat(2, t.getSubTotal());
+            st.setFloat(3, t.getIVA());
+            st.setFloat(4, t.getTotal());
+            st.setInt(5, t.getIdTicket());
+            st.execute();
+            st.close();
+            ban = true;
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error:" + e.getMessage());
+        }
+        return ban;
+    }
+
     //Funcion que permite saber cual es el siguiente Ticket a crear
     //No recibe parametros
     //Devuelve un Integer correspondiente al ticket que se debe de crear
@@ -871,7 +913,7 @@ public class ConexionBD {
         try {
             Integer idTicket;
             CallableStatement proc = con.prepareCall(fn);
-            proc.registerOutParameter(1, Types.DECIMAL);
+            proc.registerOutParameter(1, Types.INTEGER);
             proc.execute();
             idTicket = proc.getInt(1) + 1;
             return idTicket;
@@ -897,7 +939,7 @@ public class ConexionBD {
     //Recibe un int idticket
     //Devuellve un ArrayList de tipo DetalleTicket ccrrespondiente a la consulta
     public ArrayList<DetalleTicket> consultarDetalleTicket(int idticket) {
-        String sql = "select idproducto,cantidad,preciounitario,subtotal,preciomayorista "
+        String sql = "select idticket,idproductp,cantidad,preciounitario,subtotal,preciomayorista  "
                 + "from detalleticket "
                 + "where idticket=?";
         ArrayList<DetalleTicket> lista = new ArrayList<DetalleTicket>();
@@ -907,12 +949,14 @@ public class ConexionBD {
             st.setInt(1, idticket);
             while (rs.next()) {
                 DetalleTicket dt = new DetalleTicket();
+                dt.setIdTicket(rs.getInt("idticket"));
                 dt.setIdProducto(rs.getInt("idproducto"));
                 dt.setCantidad(rs.getInt("cantidad"));
                 dt.setPrecioUnitario(rs.getFloat("preciounitario"));
                 dt.setSubTotal(rs.getFloat("SubTotal"));
                 dt.setPrecioMayorista(rs.getBoolean("preciomayorista"));
                 lista.add(dt);
+                System.out.println("Si enucentra");
             }
             rs.close();
             st.close();
@@ -927,15 +971,16 @@ public class ConexionBD {
     //Recibe un objeto de DetalleTicket
     //Retorna si fue exitosa la insercion 
     public boolean insertarDetalleTicket(DetalleTicket dt) {
-        String sql = "insert into detalleticket values(null,?,?,?,?,?)";
+        String sql = "insert into detalleticket values(?,?,?,?,?,?)";
         boolean ban = false;
         try {
             PreparedStatement st = con.prepareStatement(sql);
-            st.setInt(1, dt.getIdProducto());
-            st.setInt(2, dt.getCantidad());
-            st.setFloat(3, dt.getPrecioUnitario());
-            st.setFloat(4, dt.getSubTotal());
-            st.setBoolean(5, dt.getPrecioMayorista());
+            st.setInt(1, dt.getIdTicket());
+            st.setInt(2, dt.getIdProducto());
+            st.setInt(3, dt.getCantidad());
+            st.setFloat(4, dt.getPrecioUnitario());
+            st.setFloat(5, dt.getSubTotal());
+            st.setBoolean(6, dt.getPrecioMayorista());
             st.execute();
             st.close();
             ban = true;

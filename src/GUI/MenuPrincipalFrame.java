@@ -244,15 +244,17 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
 
     private void btn_VentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_VentasActionPerformed
         VentasMainFrame ventas = new VentasMainFrame(this.conexion);
-        ventas.setVisible(true);
         this.setVisible(false);
+        ventas.setVisible(true);
     }//GEN-LAST:event_btn_VentasActionPerformed
 
     private void btn_ProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ProductosActionPerformed
         ProductosMainFrame Productos = new ProductosMainFrame(this.conexion);
         Productos.setVisible(true);
      
+        
         this.setVisible(false);
+        Productos.setVisible(true);
     }//GEN-LAST:event_btn_ProductosActionPerformed
 
     private void btn_UsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_UsuariosActionPerformed
