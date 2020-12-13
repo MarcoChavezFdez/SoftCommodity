@@ -42,6 +42,7 @@ public class TicketMainFrame extends javax.swing.JFrame {
     ConexionBD conexion;
     CorteCaja corte;
     Ticket ticketActual;
+    Producto nuevoProducto;
     public TicketMainFrame(ConexionBD conexion,CorteCaja corte) {
         initComponents();
         this.conexion = conexion;
@@ -75,7 +76,7 @@ public class TicketMainFrame extends javax.swing.JFrame {
         cmb_Producto = new javax.swing.JComboBox<>();
         cb_PrecioMayoreo = new javax.swing.JCheckBox();
         jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
+        lbl_Precio = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -138,16 +139,27 @@ public class TicketMainFrame extends javax.swing.JFrame {
 
         jLabel5.setText("Producto");
 
+        cmb_Producto.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cmb_ProductoItemStateChanged(evt);
+            }
+        });
+
         cb_PrecioMayoreo.setText("Precio Mayoreo");
         cb_PrecioMayoreo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cb_PrecioMayoreoActionPerformed(evt);
             }
         });
+        cb_PrecioMayoreo.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                cb_PrecioMayoreoPropertyChange(evt);
+            }
+        });
 
         jLabel6.setText("Precio: $");
 
-        jLabel7.setText("0.00");
+        lbl_Precio.setText("0.00");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -191,20 +203,20 @@ public class TicketMainFrame extends javax.swing.JFrame {
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(cb_PrecioMayoreo)
                                         .addGap(60, 60, 60)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(btn_AddProducto)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(jLabel7)))
+                                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(lbl_Precio)
                                         .addGap(0, 0, Short.MAX_VALUE)))
                                 .addGap(12, 12, 12))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(45, 45, 45)
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(sp_Cantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(3, 3, 3))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btn_AddProducto)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(sp_Cantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -236,12 +248,12 @@ public class TicketMainFrame extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(cb_PrecioMayoreo)
                             .addComponent(jLabel6)
-                            .addComponent(jLabel7))
+                            .addComponent(lbl_Precio))
                         .addGap(28, 28, 28)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
                             .addComponent(sp_Cantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(21, 21, 21)
+                        .addGap(29, 29, 29)
                         .addComponent(btn_AddProducto)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
@@ -266,6 +278,7 @@ public class TicketMainFrame extends javax.swing.JFrame {
         for(Producto p : lista){
             cmb_Producto.addItem(p.toString());
         }
+       
     }//GEN-LAST:event_formWindowOpened
 
     private void btn_AddProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AddProductoActionPerformed
@@ -279,6 +292,21 @@ public class TicketMainFrame extends javax.swing.JFrame {
     private void cb_PrecioMayoreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_PrecioMayoreoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cb_PrecioMayoreoActionPerformed
+
+    private void cmb_ProductoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmb_ProductoItemStateChanged
+
+        String id =cmb_Producto.getItemAt(cmb_Producto.getSelectedIndex());
+        Integer idProducto;
+        System.out.println(cmb_Producto.getItemAt(cmb_Producto.getSelectedIndex()));
+        System.out.println(id.indexOf(":"));
+        idProducto = Integer.valueOf(id.substring(0,id.indexOf(":")-1));
+        this.nuevoProducto=conexion.consultaProducto((int)idProducto);
+        llenaEtiqueta(this.nuevoProducto);
+    }//GEN-LAST:event_cmb_ProductoItemStateChanged
+
+    private void cb_PrecioMayoreoPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_cb_PrecioMayoreoPropertyChange
+        llenaEtiqueta(this.nuevoProducto);
+    }//GEN-LAST:event_cb_PrecioMayoreoPropertyChange
 
     private void llenarTabla(ArrayList<DetalleTicket> lista) {
         String[] encabezado = {"IdProducto", "Cantidad", "Precio Unitario", "SubTotal", "Precio Mayorista"};
@@ -300,6 +328,18 @@ public class TicketMainFrame extends javax.swing.JFrame {
 
         };
     }
+    private void llenaEtiqueta(Producto p){
+        
+       if(p==null){
+            lbl_Precio.setText("0.00");
+       }
+       else if(cb_PrecioMayoreo.isEnabled()){
+            lbl_Precio.setText(String.valueOf(p.getPrecioMayoreo()));
+       }
+       else{
+            lbl_Precio.setText(String.valueOf(p.getPrecioMenudeo()));
+       }
+    }
 
     /**
      * @param args the command line arguments
@@ -315,8 +355,8 @@ public class TicketMainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lbl_Precio;
     private javax.swing.JLabel lbl_Total;
     private javax.swing.JLabel lbl_idTicket;
     private javax.swing.JSpinner sp_Cantidad;

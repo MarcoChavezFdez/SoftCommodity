@@ -129,7 +129,7 @@ public class ConexionBD {
         }
         return lista;
     }
-    
+
     //Funcion la cual permite realizar la consulta de los primeros 25 productos  de la tabla Productos de la Base de Datos
     //Devuelve un ArrayList de objetos Producto
     //No recibe parametros
@@ -169,6 +169,43 @@ public class ConexionBD {
             JOptionPane.showMessageDialog(null, "Error:" + e.getMessage());
         }
         return lista;
+    }
+
+    //Funcion la cual permite realizar la consulta de un producto de la tabla Productos de la Base de Datos
+    //Devuelve un ArrayList de objetos Producto
+    //REcibe el idproducto como parametro
+    public Producto consultaProducto(int idProducto) {
+        String sql = (" select * " 
+                + " from productos "
+                + " where idproducto="+idProducto);
+        Producto p = new Producto();
+        try {
+            PreparedStatement st = con.prepareStatement(sql);
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()) {
+                p.setIdProducto(rs.getInt("idproducto"));
+                p.setIdCategoria(rs.getInt("idcategoria"));
+                p.setNombre(rs.getString("nombre"));
+                p.setDescripcion(rs.getString("descripcion"));
+                p.setPrecioMayoreo(rs.getFloat("preciomayoreo"));
+                p.setPrecioMenudeo(rs.getFloat("preciomenudeo"));
+                p.setPrecioCompra(rs.getFloat("preciocompra"));
+                p.setPresentacion(rs.getString("presentacion"));
+                p.setEAN(rs.getString("ean"));
+                p.setContenido(rs.getInt("contenido"));
+                p.setTipoContenido(rs.getString("tipocontenido"));
+                p.setMaterial(rs.getString("material"));
+                p.setAnchura(rs.getFloat("anchura"));
+                p.setMedidaAnchura(rs.getString("medidaanchura"));
+                p.setColor(rs.getString("color"));
+                p.setEstatus(rs.getString("estatus"));
+            }
+            rs.close();
+            st.close();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error:" + e.getMessage());
+        }
+        return p;
     }
 
     public boolean insertarProducto(Producto p) {

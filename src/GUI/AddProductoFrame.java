@@ -160,6 +160,11 @@ public class AddProductoFrame extends javax.swing.JFrame {
 
         cmb_TipoContenido.setBackground(new java.awt.Color(237, 174, 195));
         cmb_TipoContenido.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Metros", "Piezas", "Gramos" }));
+        cmb_TipoContenido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmb_TipoContenidoActionPerformed(evt);
+            }
+        });
         jPanel1.add(cmb_TipoContenido, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 210, 139, -1));
 
         jLabel10.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
@@ -372,6 +377,10 @@ public class AddProductoFrame extends javax.swing.JFrame {
             txf_Anchura.setEnabled(true);
         }
     }//GEN-LAST:event_cmb_MedidaAnchuraItemStateChanged
+
+    private void cmb_TipoContenidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmb_TipoContenidoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmb_TipoContenidoActionPerformed
     private MaskFormatter getNumFormat() {
         MaskFormatter MF = null;
 

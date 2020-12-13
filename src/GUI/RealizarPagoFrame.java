@@ -11,12 +11,12 @@ import java.awt.TextField;
  *
  * @author Carlos EsparzadeAnda
  */
-public class RealizarPago extends javax.swing.JFrame {
+public class RealizarPagoFrame extends javax.swing.JFrame {
 
     /**
      * Creates new form RealizarPago
      */
-    public RealizarPago() {
+    public RealizarPagoFrame() {
         initComponents();
         this.setLocationRelativeTo(null);
 
