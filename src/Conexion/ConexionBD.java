@@ -923,17 +923,15 @@ public class ConexionBD {
         }
         return null;
     }
-    
-        public BigDecimal calcularTotalTicket(Integer idTicket) {
+
+    public BigDecimal calcularTotalTicket(Integer idTicket) {
         String sp = "{call calculaTotalTicket(?,?)}";
         try {
             CallableStatement proc = con.prepareCall(sp);
             proc.setInt(1, idTicket);
-            proc.registerOutParameter(2,Types.DECIMAL);
+            proc.registerOutParameter(2, Types.DECIMAL);
             proc.execute();
-            BigDecimal val =proc.getBigDecimal(2);
-            System.out.println("PRINTF");
-            System.out.printf("%.2f %n",val);
+            assertDecimalSameValue("OUT 2", "33.3330", proc.getBigDecimal(2));
             return proc.getBigDecimal(2);
         } catch (SQLException e) {
             System.out.println("Error al ejecutar calculaTotalTicket:" + e.getMessage());
@@ -979,8 +977,7 @@ public class ConexionBD {
             rs.close();
             st.close();
             return lista;
-        }
-        catch (SQLException e) {
+        } catch (SQLException e) {
             System.out.println("Error:" + e.getMessage());
         }
         return null;
@@ -1038,5 +1035,15 @@ public class ConexionBD {
     public Usuario getUser() {
         return user;
     }
+    
+//        public void assertDecimalSameValue(String message, String expected_s, 
+//        BigDecimal actual)
+//    {
+//        BigDecimal expected = (new BigDecimal(expected_s));
+//        assertTrue(message + 
+//            " expected:<" + expected + "> but was:<" + actual.toString() + ">", 
+//            expected.compareTo(actual)==0);
+//    }
+
 
 }
