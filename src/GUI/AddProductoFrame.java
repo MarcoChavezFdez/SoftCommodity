@@ -75,6 +75,7 @@ public class AddProductoFrame extends javax.swing.JFrame {
         btn_AddProducto = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("SoftCommodity+ by White Company® ");
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
@@ -289,7 +290,7 @@ public class AddProductoFrame extends javax.swing.JFrame {
                 btn_AddProductoActionPerformed(evt);
             }
         });
-        jPanel1.add(btn_AddProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 380, -1, -1));
+        jPanel1.add(btn_AddProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 380, -1, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 850, 500));
 
