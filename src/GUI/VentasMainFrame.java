@@ -46,6 +46,7 @@ public class VentasMainFrame extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         texto1 = new javax.swing.JLabel();
         texto2 = new javax.swing.JLabel();
+        btn_Atras = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("SoftCommodity+ by White Company® ");
@@ -76,7 +77,7 @@ public class VentasMainFrame extends javax.swing.JFrame {
                 btn_CrearCorteActionPerformed(evt);
             }
         });
-        jPanel1.add(btn_CrearCorte, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, 260, 260));
+        jPanel1.add(btn_CrearCorte, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 130, 260, 260));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -104,12 +105,12 @@ public class VentasMainFrame extends javax.swing.JFrame {
                 btn_ContinuarCorteActionPerformed(evt);
             }
         });
-        jPanel1.add(btn_ContinuarCorte, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 90, 260, 260));
+        jPanel1.add(btn_ContinuarCorte, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 130, 260, 260));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Ventas");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 30, -1, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 60, -1, -1));
 
         texto1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         texto1.setForeground(new java.awt.Color(255, 255, 255));
@@ -118,6 +119,16 @@ public class VentasMainFrame extends javax.swing.JFrame {
         texto2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         texto2.setForeground(new java.awt.Color(255, 255, 255));
         jPanel1.add(texto2, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 190, -1, -1));
+
+        btn_Atras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Volver.png"))); // NOI18N
+        btn_Atras.setBorderPainted(false);
+        btn_Atras.setContentAreaFilled(false);
+        btn_Atras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_AtrasActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btn_Atras, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 730, 500));
 
@@ -182,11 +193,16 @@ public class VentasMainFrame extends javax.swing.JFrame {
         texto2.setText("");// TODO add your handling code here:
     }//GEN-LAST:event_btn_ContinuarCorteMouseExited
 
+    private void btn_AtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AtrasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_AtrasActionPerformed
+
     /**
      * @param args the command line arguments
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_Atras;
     private javax.swing.JButton btn_ContinuarCorte;
     private javax.swing.JButton btn_CrearCorte;
     private javax.swing.JLabel jLabel1;
