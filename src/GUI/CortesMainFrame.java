@@ -22,7 +22,7 @@ public class CortesMainFrame extends javax.swing.JFrame {
     ConexionBD conexion;
     Venta ventaActual;
     CorteCaja CorteActual;
-
+ 
     public CortesMainFrame(ConexionBD conexion, Venta ventaActual, CorteCaja corte) {
         initComponents();
         this.conexion = conexion;
@@ -61,9 +61,11 @@ public class CortesMainFrame extends javax.swing.JFrame {
         btn_Atras = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         btn_Nombre = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("SoftCommodity+ by White Company® ");
+        setIconImage(getIconImage());
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
@@ -78,6 +80,14 @@ public class CortesMainFrame extends javax.swing.JFrame {
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Cortes/Reimprimir_Retiro.png"))); // NOI18N
         jButton2.setContentAreaFilled(false);
         jButton2.setDefaultCapable(false);
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButton2MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButton2MouseExited(evt);
+            }
+        });
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -88,7 +98,6 @@ public class CortesMainFrame extends javax.swing.JFrame {
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Cortes/Generar_Ticket.png"))); // NOI18N
         jButton3.setBorderPainted(false);
         jButton3.setContentAreaFilled(false);
-        jButton3.setPreferredSize(new java.awt.Dimension(243, 219));
         jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jButton3MouseEntered(evt);
@@ -107,6 +116,14 @@ public class CortesMainFrame extends javax.swing.JFrame {
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Cortes/Realizar_Retiro.png"))); // NOI18N
         jButton4.setBorderPainted(false);
         jButton4.setContentAreaFilled(false);
+        jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButton4MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButton4MouseExited(evt);
+            }
+        });
         jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 80, -1, -1));
 
         lbl_CorteId.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -140,6 +157,14 @@ public class CortesMainFrame extends javax.swing.JFrame {
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Cortes/Cerrar_Corte.png"))); // NOI18N
         jButton1.setBorderPainted(false);
         jButton1.setContentAreaFilled(false);
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButton1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButton1MouseExited(evt);
+            }
+        });
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -148,9 +173,13 @@ public class CortesMainFrame extends javax.swing.JFrame {
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 320, -1, -1));
 
         btn_Nombre.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        btn_Nombre.setForeground(new java.awt.Color(255, 0, 255));
+        btn_Nombre.setForeground(new java.awt.Color(255, 255, 255));
         btn_Nombre.setText("Cortes");
-        jPanel1.add(btn_Nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 290, -1, -1));
+        jPanel1.add(btn_Nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 280, -1, -1));
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 310, 80, 40));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-30, -20, 770, 600));
 
@@ -195,12 +224,45 @@ public class CortesMainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseEntered
-    btn_Nombre.setText("Generar Ticket");        // TODO add your handling code here:
+    btn_Nombre.setText("Generar");    
+    jLabel2.setText("Ticket");        // TODO add your handling code here:
+    // TODO add your handling code here:
     }//GEN-LAST:event_jButton3MouseEntered
 
     private void jButton3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseExited
-       btn_Nombre.setText("Cortes");   // TODO add your handling code here:
+       btn_Nombre.setText("Cortes");
+        jLabel2.setText("");// TODO add your handling code here:
     }//GEN-LAST:event_jButton3MouseExited
+
+    private void jButton4MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseEntered
+        btn_Nombre.setText("Realizar");    
+    jLabel2.setText("Retiro");    // TODO add your handling code here:
+    }//GEN-LAST:event_jButton4MouseEntered
+
+    private void jButton4MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseExited
+         btn_Nombre.setText("Cortes"); 
+ jLabel2.setText("");// TODO add your handling code here:
+    }//GEN-LAST:event_jButton4MouseExited
+
+    private void jButton2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseEntered
+          btn_Nombre.setText("Reimprimir");    
+    jLabel2.setText("Ticket"); // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2MouseEntered
+
+    private void jButton2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseExited
+           btn_Nombre.setText("Cortes"); 
+ jLabel2.setText("");/// TODO add your handling code here:
+    }//GEN-LAST:event_jButton2MouseExited
+
+    private void jButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseEntered
+            btn_Nombre.setText("Cerrar");    
+    jLabel2.setText("Corte"); /// TODO add your handling code here:
+    }//GEN-LAST:event_jButton1MouseEntered
+
+    private void jButton1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseExited
+          btn_Nombre.setText("Cortes"); 
+           jLabel2.setText(""); // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1MouseExited
     private void inicializarCorte(Float fondoInicial) {
         java.util.Date utilDate = new java.util.Date();
         java.sql.Time hora = new java.sql.Time(utilDate.getTime());
@@ -249,6 +311,7 @@ public class CortesMainFrame extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lbl_CorteId;
     private javax.swing.JLabel lbl_CorteId1;
