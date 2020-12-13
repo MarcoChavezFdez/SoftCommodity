@@ -38,77 +38,88 @@ public class VentasMainFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
         btn_CrearCorte = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         btn_ContinuarCorte = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        texto1 = new javax.swing.JLabel();
+        texto2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("SoftCommodity+ by White Company® ");
+        setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
             }
         });
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setText("Ventas");
+        jPanel1.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btn_CrearCorte.setText("Crear Corte");
+        btn_CrearCorte.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Ventas/Crear_Corte.png"))); // NOI18N
+        btn_CrearCorte.setBorderPainted(false);
+        btn_CrearCorte.setContentAreaFilled(false);
+        btn_CrearCorte.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btn_CrearCorteMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btn_CrearCorteMouseExited(evt);
+            }
+        });
         btn_CrearCorte.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_CrearCorteActionPerformed(evt);
             }
         });
+        jPanel1.add(btn_CrearCorte, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, 260, 260));
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Total de Venta del dia $");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 430, -1, -1));
 
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(237, 174, 195));
         jLabel3.setText("0.00");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 430, -1, -1));
 
-        btn_ContinuarCorte.setText("Continuar Corte");
-        btn_ContinuarCorte.setEnabled(false);
+        btn_ContinuarCorte.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Ventas/Continuar_Corte.png"))); // NOI18N
+        btn_ContinuarCorte.setBorderPainted(false);
+        btn_ContinuarCorte.setContentAreaFilled(false);
+        btn_ContinuarCorte.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btn_ContinuarCorteMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btn_ContinuarCorteMouseExited(evt);
+            }
+        });
         btn_ContinuarCorte.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_ContinuarCorteActionPerformed(evt);
             }
         });
+        jPanel1.add(btn_ContinuarCorte, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 90, 260, 260));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(185, 185, 185)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel3))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(162, 162, 162)
-                        .addComponent(btn_CrearCorte))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(153, 153, 153)
-                        .addComponent(btn_ContinuarCorte)))
-                .addContainerGap(226, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(39, 39, 39)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(btn_CrearCorte)
-                .addGap(18, 18, 18)
-                .addComponent(btn_ContinuarCorte)
-                .addGap(23, 23, 23)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3))
-                .addContainerGap(170, Short.MAX_VALUE))
-        );
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Ventas");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 30, -1, -1));
+
+        texto1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        texto1.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel1.add(texto1, new org.netbeans.lib.awtextra.AbsoluteConstraints(328, 160, -1, -1));
+
+        texto2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        texto2.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel1.add(texto2, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 190, -1, -1));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 730, 500));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -150,6 +161,27 @@ public class VentasMainFrame extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_btn_ContinuarCorteActionPerformed
 
+    private void btn_CrearCorteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_CrearCorteMouseEntered
+        texto1.setText("Crear");
+        texto2.setText("Corte");
+    }//GEN-LAST:event_btn_CrearCorteMouseEntered
+
+    private void btn_CrearCorteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_CrearCorteMouseExited
+        texto1.setText("");
+        texto2.setText(""); // TODO add your handling code here:
+
+    }//GEN-LAST:event_btn_CrearCorteMouseExited
+
+    private void btn_ContinuarCorteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_ContinuarCorteMouseEntered
+        texto1.setText("Continuar");
+        texto2.setText("Corte");
+    }//GEN-LAST:event_btn_ContinuarCorteMouseEntered
+
+    private void btn_ContinuarCorteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_ContinuarCorteMouseExited
+            texto1.setText("");
+        texto2.setText("");// TODO add your handling code here:
+    }//GEN-LAST:event_btn_ContinuarCorteMouseExited
+
     /**
      * @param args the command line arguments
      */
@@ -160,5 +192,8 @@ public class VentasMainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel texto1;
+    private javax.swing.JLabel texto2;
     // End of variables declaration//GEN-END:variables
 }

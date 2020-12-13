@@ -18,6 +18,7 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
      * Creates new form MenuPrincipalFrame
      */
     ConexionBD conexion;
+    Color micolor = new Color(42,42,42);
     public MenuPrincipalFrame(ConexionBD con) {
         this.conexion=con;
         initComponents();
@@ -38,11 +39,14 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
         btn_Ventas = new javax.swing.JButton();
         btn_Productos = new javax.swing.JButton();
         jp_User = new javax.swing.JPanel();
-        lbl_Name = new javax.swing.JLabel();
+        lbl_user = new javax.swing.JLabel();
         jButton6 = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
+        lbl_name = new javax.swing.JLabel();
         btn_Usuarios = new javax.swing.JButton();
         btn_Categorias = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        textoMenu = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("SoftCommodity+ by White Company®");
@@ -55,12 +59,14 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
         });
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel1.setEnabled(false);
         jPanel1.setPreferredSize(new java.awt.Dimension(1250, 700));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btn_Bodegas.setBackground(new java.awt.Color(0, 0, 0));
         btn_Bodegas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Login/Bodegas.png"))); // NOI18N
         btn_Bodegas.setContentAreaFilled(false);
+        btn_Bodegas.setEnabled(false);
         btn_Bodegas.setMaximumSize(new java.awt.Dimension(277, 305));
         btn_Bodegas.setMinimumSize(new java.awt.Dimension(277, 305));
         btn_Bodegas.setPreferredSize(new java.awt.Dimension(277, 305));
@@ -77,7 +83,7 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
                 btn_BodegasActionPerformed(evt);
             }
         });
-        jPanel1.add(btn_Bodegas, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 330, 260, 305));
+        jPanel1.add(btn_Bodegas, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 530, 160, 150));
 
         btn_Reportes.setBackground(new java.awt.Color(18, 17, 17));
         btn_Reportes.setForeground(new java.awt.Color(204, 204, 0));
@@ -86,6 +92,7 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
         btn_Reportes.setBorderPainted(false);
         btn_Reportes.setContentAreaFilled(false);
         btn_Reportes.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btn_Reportes.setEnabled(false);
         btn_Reportes.setFocusCycleRoot(true);
         btn_Reportes.setFocusPainted(true);
         btn_Reportes.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -111,11 +118,12 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
                 btn_ReportesActionPerformed(evt);
             }
         });
-        jPanel1.add(btn_Reportes, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 30, 260, 305));
+        jPanel1.add(btn_Reportes, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 50, 150, 150));
 
         btn_Ventas.setBackground(new java.awt.Color(0, 0, 0));
         btn_Ventas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Login/POS.png"))); // NOI18N
         btn_Ventas.setContentAreaFilled(false);
+        btn_Ventas.setEnabled(false);
         btn_Ventas.setMaximumSize(new java.awt.Dimension(277, 305));
         btn_Ventas.setMinimumSize(new java.awt.Dimension(277, 305));
         btn_Ventas.setPreferredSize(new java.awt.Dimension(277, 305));
@@ -132,11 +140,12 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
                 btn_VentasActionPerformed(evt);
             }
         });
-        jPanel1.add(btn_Ventas, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 30, 260, 305));
+        jPanel1.add(btn_Ventas, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 50, 170, 160));
 
         btn_Productos.setBackground(new java.awt.Color(0, 0, 0));
         btn_Productos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Login/Productos.png"))); // NOI18N
         btn_Productos.setContentAreaFilled(false);
+        btn_Productos.setEnabled(false);
         btn_Productos.setMaximumSize(new java.awt.Dimension(277, 305));
         btn_Productos.setMinimumSize(new java.awt.Dimension(277, 305));
         btn_Productos.setPreferredSize(new java.awt.Dimension(277, 305));
@@ -153,13 +162,13 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
                 btn_ProductosActionPerformed(evt);
             }
         });
-        jPanel1.add(btn_Productos, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 30, 260, 305));
+        jPanel1.add(btn_Productos, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 50, 150, 150));
 
         jp_User.setBackground(new java.awt.Color(0, 0, 0));
         jp_User.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lbl_Name.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Login/Usuario.png"))); // NOI18N
-        jp_User.add(lbl_Name, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 120, -1, -1));
+        lbl_user.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Login/Usuarios.png"))); // NOI18N
+        jp_User.add(lbl_user, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 140, -1, -1));
 
         jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Login/Menu.png"))); // NOI18N
         jButton6.setContentAreaFilled(false);
@@ -169,7 +178,7 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
                 jButton6ActionPerformed(evt);
             }
         });
-        jp_User.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 50, 50));
+        jp_User.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 50, 50));
 
         jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Login/Cerrar.png"))); // NOI18N
         jButton8.setBorderPainted(false);
@@ -179,13 +188,18 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
                 jButton8ActionPerformed(evt);
             }
         });
-        jp_User.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 290, -1, -1));
+        jp_User.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 540, 200, -1));
 
-        jPanel1.add(jp_User, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 1, 70, 70));
+        lbl_name.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lbl_name.setForeground(new java.awt.Color(255, 255, 255));
+        jp_User.add(lbl_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 380, 140, 50));
+
+        jPanel1.add(jp_User, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, -9, 60, 90));
 
         btn_Usuarios.setBackground(new java.awt.Color(0, 0, 0));
-        btn_Usuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Login/Usuarios.png"))); // NOI18N
+        btn_Usuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Login/Usuario.png"))); // NOI18N
         btn_Usuarios.setContentAreaFilled(false);
+        btn_Usuarios.setEnabled(false);
         btn_Usuarios.setMaximumSize(new java.awt.Dimension(277, 305));
         btn_Usuarios.setMinimumSize(new java.awt.Dimension(277, 305));
         btn_Usuarios.setPreferredSize(new java.awt.Dimension(277, 305));
@@ -202,11 +216,12 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
                 btn_UsuariosActionPerformed(evt);
             }
         });
-        jPanel1.add(btn_Usuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 330, 260, 305));
+        jPanel1.add(btn_Usuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 530, 150, 150));
 
         btn_Categorias.setBackground(new java.awt.Color(0, 0, 0));
         btn_Categorias.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Login/Categorias.png"))); // NOI18N
         btn_Categorias.setContentAreaFilled(false);
+        btn_Categorias.setEnabled(false);
         btn_Categorias.setMaximumSize(new java.awt.Dimension(277, 305));
         btn_Categorias.setMinimumSize(new java.awt.Dimension(277, 305));
         btn_Categorias.setPreferredSize(new java.awt.Dimension(277, 305));
@@ -223,7 +238,15 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
                 btn_CategoriasActionPerformed(evt);
             }
         });
-        jPanel1.add(btn_Categorias, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 330, 260, 305));
+        jPanel1.add(btn_Categorias, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 530, 150, 150));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Logo_Cuadrado.png"))); // NOI18N
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 240, -1, -1));
+
+        textoMenu.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        textoMenu.setForeground(new java.awt.Color(255, 255, 255));
+        textoMenu.setText("SoftCommodity+");
+        jPanel1.add(textoMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 290, 220, 160));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -235,8 +258,7 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 635, Short.MAX_VALUE)
-                .addGap(33, 33, 33))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 761, Short.MAX_VALUE))
         );
 
         pack();
@@ -276,12 +298,12 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_CategoriasActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        if(jp_User.getWidth()==100){
+        if(jp_User.getWidth()<=100){
             jp_User.setSize(350, 1200);
-              jp_User.setBackground(Color.LIGHT_GRAY );
+              jp_User.setBackground(micolor);
         }
         else{
-            jp_User.setSize(100, 100);
+            jp_User.setSize(80, 80);
               jp_User.setBackground(Color.BLACK );
         }
       
@@ -300,43 +322,53 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_ReportesMouseDragged
 
     private void btn_ReportesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_ReportesMouseEntered
-         btn_Reportes.setContentAreaFilled(true);
+         btn_Reportes.setEnabled(true);
+         textoMenu.setText("Reportes");
     }//GEN-LAST:event_btn_ReportesMouseEntered
 
     private void btn_ReportesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_ReportesMouseExited
-         btn_Reportes.setContentAreaFilled(false);// TODO add your handling code here:
+         btn_Reportes.setEnabled(false);
+ textoMenu.setText("SoftCommodity+");
     }//GEN-LAST:event_btn_ReportesMouseExited
 
     private void btn_VentasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_VentasMouseEntered
-           btn_Ventas.setContentAreaFilled(true); // TODO add your handling code here:
+           btn_Ventas.setEnabled(true); 
+textoMenu.setText("Ventas");// TODO add your handling code here:
     }//GEN-LAST:event_btn_VentasMouseEntered
 
     private void btn_VentasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_VentasMouseExited
-            btn_Ventas.setContentAreaFilled(false);
+            btn_Ventas.setEnabled(false);
+             textoMenu.setText("SoftCommodity+");
     }//GEN-LAST:event_btn_VentasMouseExited
 
     private void btn_ProductosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_ProductosMouseExited
-      btn_Productos.setContentAreaFilled(false);
+      btn_Productos.setEnabled(false);
+       textoMenu.setText("SoftCommodity+");
     }//GEN-LAST:event_btn_ProductosMouseExited
 
     private void btn_ProductosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_ProductosMouseEntered
- btn_Productos.setContentAreaFilled(true);
+ btn_Productos.setEnabled(true);
+   textoMenu.setText("Productos");
     }//GEN-LAST:event_btn_ProductosMouseEntered
 
     private void btn_CategoriasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_CategoriasMouseEntered
-        btn_Categorias.setContentAreaFilled(true);
+        btn_Categorias.setEnabled(true);
+          textoMenu.setText("Categorías");
     }//GEN-LAST:event_btn_CategoriasMouseEntered
 
     private void btn_CategoriasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_CategoriasMouseExited
-        btn_Categorias.setContentAreaFilled(false);
+        btn_Categorias.setEnabled(false);
+         textoMenu.setText("SoftCommodity+");
     }//GEN-LAST:event_btn_CategoriasMouseExited
 
     private void btn_UsuariosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_UsuariosMouseEntered
-        btn_Usuarios.setContentAreaFilled(true);
+        btn_Usuarios.setEnabled(true);
+          textoMenu.setText("Usuarios");
     }//GEN-LAST:event_btn_UsuariosMouseEntered
 
     private void btn_UsuariosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_UsuariosMouseExited
-        btn_Usuarios.setContentAreaFilled(false);
+        btn_Usuarios.setEnabled(false);
+         textoMenu.setText("SoftCommodity+");
     }//GEN-LAST:event_btn_UsuariosMouseExited
 
     private void btn_ReportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ReportesActionPerformed
@@ -344,14 +376,16 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_ReportesActionPerformed
 
     private void btn_BodegasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_BodegasMouseEntered
-          btn_Bodegas.setContentAreaFilled(true);
+          btn_Bodegas.setEnabled(true);
+          textoMenu.setText("Bodegas");
     }//GEN-LAST:event_btn_BodegasMouseEntered
 
     private void btn_BodegasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_BodegasMouseExited
-           btn_Bodegas.setContentAreaFilled(false);
+           btn_Bodegas.setEnabled(false);
+            textoMenu.setText("SoftCommodity+");
     }//GEN-LAST:event_btn_BodegasMouseExited
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        lbl_Name.setText(conexion.getUser().getNombre());
+        lbl_name.setText(conexion.getUser().getNombre());
     }//GEN-LAST:event_formWindowOpened
                                       
 
@@ -371,8 +405,11 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
     private javax.swing.JButton btn_Ventas;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton8;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jp_User;
-    private javax.swing.JLabel lbl_Name;
+    private javax.swing.JLabel lbl_name;
+    private javax.swing.JLabel lbl_user;
+    private javax.swing.JLabel textoMenu;
     // End of variables declaration//GEN-END:variables
 }
