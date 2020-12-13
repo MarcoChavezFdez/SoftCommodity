@@ -45,7 +45,7 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
         btn_Categorias = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Menu Principal - SoftCommofity+");
+        setTitle("SoftCommodity+ by White Company®");
         setBackground(new java.awt.Color(0, 0, 0));
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -250,6 +250,8 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
 
     private void btn_ProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ProductosActionPerformed
         ProductosMainFrame Productos = new ProductosMainFrame(this.conexion);
+        Productos.setVisible(true);
+     
         
         this.setVisible(false);
         Productos.setVisible(true);

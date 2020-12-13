@@ -53,6 +53,7 @@ public class LoginFrame extends javax.swing.JFrame {
         jDialog1.getContentPane().add(lbl_Error);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("SoftCommodity+ by White Company® ");
         setBackground(new java.awt.Color(204, 82, 122));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setForeground(new java.awt.Color(204, 82, 122));
@@ -71,7 +72,7 @@ public class LoginFrame extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Arial Narrow", 0, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Usuario:");
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 190, -1, -1));
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 190, -1, -1));
 
         txtF_Usuario.setBackground(new java.awt.Color(237, 174, 195));
         txtF_Usuario.setText("Benja");
@@ -80,12 +81,12 @@ public class LoginFrame extends javax.swing.JFrame {
                 txtF_UsuarioActionPerformed(evt);
             }
         });
-        jPanel2.add(txtF_Usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 200, 90, -1));
+        jPanel2.add(txtF_Usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 190, 90, -1));
 
         jLabel2.setFont(new java.awt.Font("Arial Narrow", 0, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Contraseña:");
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 230, -1, -1));
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 230, -1, -1));
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/btn_Ingresar.png"))); // NOI18N
         jButton1.setBorderPainted(false);

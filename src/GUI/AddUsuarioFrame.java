@@ -35,12 +35,20 @@ public class AddUsuarioFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel12 = new javax.swing.JLabel();
+        cmb_Estatus = new javax.swing.JComboBox<>();
         txf_Nombre = new javax.swing.JTextField();
+        cmb_Rol = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
+        btn_AddUsuario = new javax.swing.JButton();
         txf_ApellidoPaterno = new javax.swing.JTextField();
+        btn_Atras = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
+        lbl_MensajePassw = new javax.swing.JLabel();
         txf_ApellidoMaterno = new javax.swing.JTextField();
+        lbl_MensajeLogin = new javax.swing.JLabel();
         txf_CURP = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -56,68 +64,156 @@ public class AddUsuarioFrame extends javax.swing.JFrame {
         txf_Passw1 = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         txf_Passw2 = new javax.swing.JTextField();
-        jLabel12 = new javax.swing.JLabel();
-        cmb_Estatus = new javax.swing.JComboBox<>();
-        cmb_Rol = new javax.swing.JComboBox<>();
-        btn_AddUsuario = new javax.swing.JButton();
-        btn_Atras = new javax.swing.JButton();
-        lbl_MensajePassw = new javax.swing.JLabel();
-        lbl_MensajeLogin = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+
+        jTextField1.setText("jTextField1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("SoftCommodity+ by White Company® ");
+        setResizable(false);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setText("Nombre");
+        jPanel1.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel12.setText("Estatus");
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 350, -1, -1));
+
+        cmb_Estatus.setBackground(new java.awt.Color(237, 174, 195));
+        cmb_Estatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Activo", "Inactivo" }));
+        cmb_Estatus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmb_EstatusActionPerformed(evt);
+            }
+        });
+        jPanel1.add(cmb_Estatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 350, -1, -1));
+
+        txf_Nombre.setBackground(new java.awt.Color(237, 174, 195));
         txf_Nombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txf_NombreActionPerformed(evt);
             }
         });
+        jPanel1.add(txf_Nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 140, 158, -1));
 
+        cmb_Rol.setBackground(new java.awt.Color(237, 174, 195));
+        cmb_Rol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrador", "Cajero" }));
+        jPanel1.add(cmb_Rol, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 210, -1, -1));
+
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Apellido Paterno");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 190, -1, -1));
 
+        btn_AddUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Usuario/Añadir.png"))); // NOI18N
+        btn_AddUsuario.setBorderPainted(false);
+        btn_AddUsuario.setContentAreaFilled(false);
+        btn_AddUsuario.setEnabled(false);
+        btn_AddUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_AddUsuarioActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btn_AddUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 390, -1, -1));
+
+        txf_ApellidoPaterno.setBackground(new java.awt.Color(237, 174, 195));
+        jPanel1.add(txf_ApellidoPaterno, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 180, 158, -1));
+
+        btn_Atras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Volver.png"))); // NOI18N
+        btn_Atras.setBorderPainted(false);
+        btn_Atras.setContentAreaFilled(false);
+        btn_Atras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_AtrasActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btn_Atras, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, -1, -1));
+
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Apellido Materno");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 230, -1, -1));
 
+        lbl_MensajePassw.setForeground(new java.awt.Color(204, 0, 0));
+        jPanel1.add(lbl_MensajePassw, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 340, 193, 22));
+
+        txf_ApellidoMaterno.setBackground(new java.awt.Color(237, 174, 195));
         txf_ApellidoMaterno.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txf_ApellidoMaternoActionPerformed(evt);
             }
         });
+        jPanel1.add(txf_ApellidoMaterno, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 220, 168, -1));
 
+        lbl_MensajeLogin.setForeground(new java.awt.Color(204, 0, 0));
+        jPanel1.add(lbl_MensajeLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 370, 260, 22));
+
+        txf_CURP.setBackground(new java.awt.Color(237, 174, 195));
         txf_CURP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txf_CURPActionPerformed(evt);
             }
         });
+        jPanel1.add(txf_CURP, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 260, 168, -1));
 
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("CURP");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 260, -1, -1));
 
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Direccion");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 300, -1, -1));
 
+        txf_Direccion.setBackground(new java.awt.Color(237, 174, 195));
+        jPanel1.add(txf_Direccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 300, 168, -1));
+
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Telefono");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 140, -1, -1));
 
+        txf_Telefono.setBackground(new java.awt.Color(237, 174, 195));
         txf_Telefono.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txf_TelefonoActionPerformed(evt);
             }
         });
+        jPanel1.add(txf_Telefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 140, 160, -1));
 
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Email");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 180, -1, -1));
 
+        txf_Email.setBackground(new java.awt.Color(237, 174, 195));
+        jPanel1.add(txf_Email, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 180, 160, -1));
+
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Rol");
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 210, -1, -1));
 
+        txf_Login.setBackground(new java.awt.Color(237, 174, 195));
         txf_Login.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txf_LoginKeyReleased(evt);
             }
         });
+        jPanel1.add(txf_Login, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 240, 160, -1));
 
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Contraseña");
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 280, -1, -1));
 
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("Login");
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 240, -1, -1));
 
+        txf_Passw1.setBackground(new java.awt.Color(237, 174, 195));
+        jPanel1.add(txf_Passw1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 280, 160, -1));
+
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText("Repita Contraseña");
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 310, -1, -1));
 
+        txf_Passw2.setBackground(new java.awt.Color(237, 174, 195));
         txf_Passw2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txf_Passw2ActionPerformed(evt);
@@ -128,177 +224,18 @@ public class AddUsuarioFrame extends javax.swing.JFrame {
                 txf_Passw2KeyReleased(evt);
             }
         });
+        jPanel1.add(txf_Passw2, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 310, 160, -1));
 
-        jLabel12.setText("Estatus");
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Nombre");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 150, -1, -1));
 
-        cmb_Estatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Activo", "Inactivo" }));
-        cmb_Estatus.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmb_EstatusActionPerformed(evt);
-            }
-        });
+        jLabel13.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel13.setText("Añadir Nuevo Usuario");
+        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 70, -1, -1));
 
-        cmb_Rol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrador", "Cajero" }));
-
-        btn_AddUsuario.setText("Añadir Usuario");
-        btn_AddUsuario.setEnabled(false);
-        btn_AddUsuario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_AddUsuarioActionPerformed(evt);
-            }
-        });
-
-        btn_Atras.setText("Atras");
-        btn_Atras.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_AtrasActionPerformed(evt);
-            }
-        });
-
-        lbl_MensajePassw.setForeground(new java.awt.Color(204, 0, 0));
-
-        lbl_MensajeLogin.setForeground(new java.awt.Color(204, 0, 0));
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(86, 86, 86)
-                        .addComponent(jLabel6)
-                        .addGap(18, 18, 18)
-                        .addComponent(txf_Telefono, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(40, 40, 40)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel3)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel5)))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txf_Direccion, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txf_CURP, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txf_ApellidoMaterno))))
-                .addGap(307, 307, 307))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addComponent(jLabel12)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(cmb_Estatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btn_AddUsuario)
-                .addGap(77, 77, 77))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(btn_Atras)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel1))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(40, 40, 40)
-                                .addComponent(jLabel2)))
-                        .addGap(23, 23, 23)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txf_Nombre, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
-                            .addComponent(txf_ApellidoPaterno)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel10)
-                            .addComponent(jLabel9)
-                            .addComponent(jLabel11))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txf_Email)
-                            .addComponent(txf_Login)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(cmb_Rol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 53, Short.MAX_VALUE))
-                            .addComponent(txf_Passw1)
-                            .addComponent(txf_Passw2))))
-                .addGap(44, 44, 44)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lbl_MensajePassw, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(77, 77, 77))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lbl_MensajeLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(txf_Nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_Atras))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(txf_ApellidoPaterno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(txf_ApellidoMaterno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txf_CURP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
-                .addGap(16, 16, 16)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txf_Direccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txf_Telefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txf_Email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7))
-                .addGap(14, 14, 14)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(cmb_Rol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(txf_Login, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel10))
-                    .addComponent(lbl_MensajeLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txf_Passw1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel11)
-                            .addComponent(txf_Passw2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lbl_MensajePassw, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel12)
-                            .addComponent(cmb_Estatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(41, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btn_AddUsuario)
-                        .addGap(25, 25, 25))))
-        );
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 790, 510));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -394,6 +331,7 @@ public class AddUsuarioFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -402,6 +340,8 @@ public class AddUsuarioFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel lbl_MensajeLogin;
     private javax.swing.JLabel lbl_MensajePassw;
     private javax.swing.JTextField txf_ApellidoMaterno;
