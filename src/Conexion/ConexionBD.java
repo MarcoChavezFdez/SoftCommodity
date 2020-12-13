@@ -1,5 +1,4 @@
 /**
- *
  * @Autor  Marco Alberto Chávez Fernández
  * @Correo: mchavez297@accitesz.com
  *
@@ -277,11 +276,7 @@ public class ConexionBD {
      * *************************************************************
      *
      * Funciones para el modelo Usuario
-     *
-     * @param nombre
-     * @param Passw
-     * @return
-     *
+     *     
      *************************************************************
      */
     public Usuario consultarUsuarioLogin(String nombre) {
@@ -520,8 +515,6 @@ public class ConexionBD {
      *
      * Funciones para el modelo Bodegas
      *
-     *
-     *
      *************************************************************
      * @param b Recibe el elemento tipo Bodega para realizar insercion en la
      * tabla de bodegas
@@ -593,12 +586,9 @@ public class ConexionBD {
      *
      * Funciones para el modelo Venta
      *
-     *
-     *
      *************************************************************
-     * @param v
-     * @return
      */
+    
     public boolean insertarVenta(Venta v) {
         String sql = "insert into ventas values(null,?,?)";
         boolean ban = false;
@@ -679,15 +669,9 @@ public class ConexionBD {
      *
      * Funciones para el modelo CorteVenta
      *
-     *
-     *
      *************************************************************
-     *
-     *
-     *
-     * @param c
-     * @return
      */
+    
     public boolean insertarCorteVenta(CorteVenta c) {
         String sql = "insert into cortesventas values(?,?)";
         boolean ban = false;
@@ -732,10 +716,7 @@ public class ConexionBD {
      *
      * Funciones para el modelo CorteCaja
      *
-     *
-     *
      *************************************************************
-     *
      */
     public boolean insertarCorteCaja(CorteCaja cc) {
         String sql = "insert into cortescaja values(null,?,?,?,?,?,?,?,?,?)";
@@ -974,13 +955,11 @@ public class ConexionBD {
      * Funciones para el modelo DetalleTicket
      *
      *************************************************************
-     *
-     * @param idticket
-     * @return
      */
     //Funcion que permite consultar los productos por ticket de la Tabla DetalleTicket de la Base de Datos
     //Recibe un int idticket
     //Devuellve un ArrayList de tipo DetalleTicket ccrrespondiente a la consulta
+        
     public ArrayList<DetalleTicket> consultarDetalleTicket(int idticket) {
         String sql = "select *  "
                 + "from detalleticket "

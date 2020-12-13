@@ -1,28 +1,52 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * @Autor  Marco Alberto Chávez Fernández
+ * @Correo: mchavez297@accitesz.com
+ *
+ * @Autor José Carlos Esparza de Anda
+ * @Correo: jesparza301@accitesz.com
+ *
+ * @Autor José Ángel Madrigal Plancarte
+ * @Correo: jmadrigal323@accitesz.com
+ *
+ * @Docente: Dr. Francisco Rodríguez Díaz
+ * @Asignatura: Ing. de Software
+ * @Escuela: Instituto Tecnologico de Estudios Superiores de Zamora
+ * @Semestre : 7
+ * @Grupo: B
+ * @Carrera: Ing. en Sistemas Computacionales
+ *
+ * La clase ConexionBD contiene todas las propiedades y metodos para interactuar
+ * con la Base de Datos SoftCommodity bajo MySQL 5.0 y en una infraestructura
+ * local
+ * @since VER1.0
  */
 package GUI;
 
+/*
+* Importacion de las clase requeridas
+ */
 import Conexion.ConexionBD;
 import Modelos.CorteCaja;
 import Modelos.CorteVenta;
 import Modelos.Venta;
-import java.sql.Date;
 
-/**
- *
- * @author Marco Chavez
- */
 public class CortesMainFrame extends javax.swing.JFrame {
 
     /**
      * Creates new form CortesMainFrame
      */
+    /*
+    *@param conexion es una propiedad de la clase ConexionBD que define la conexion de la base de datos
+    *@param CorteActutal es una propiedad de la clase CorteCaja para realizar operaciones con el corte actual de la venta
+     */
     ConexionBD conexion;
     CorteCaja CorteActual;
- 
+
+    /*
+    * Constructor de la clase cuando el usuario tiene un corte activo
+    *@param conexion define la conexion con la que se creara la clase
+    *@param corte define el corte actual de la interface
+     */
     public CortesMainFrame(ConexionBD conexion, CorteCaja corte) {
         initComponents();
         this.conexion = conexion;
@@ -31,21 +55,20 @@ public class CortesMainFrame extends javax.swing.JFrame {
         llenaEtiquetas();
     }
 
-    
     /*
-    * Constructor de la interfacce cuando el usuario no tiene ningun corte activo
+    * Constructor de la clase cuando el usuario no tiene ningun corte activo
     * @param conexion Recibe la conexion de la BD
     * @param ventaActual recibe la venta que se ha generado para continuar con las relaciones con los Cortes
     * @param fondoInicial indica la cantidad de dinero con la que se abrira el corteActual
-    */
+     */
     public CortesMainFrame(ConexionBD conexion, Venta ventaActual, Float fondoInicial) {
         initComponents();
         this.conexion = conexion;
         inicializarCorte(fondoInicial);
-        CorteVenta nuevaVentaCorte = new CorteVenta(ventaActual.getIdVenta(),this.CorteActual.getIdCorte());
+        CorteVenta nuevaVentaCorte = new CorteVenta(ventaActual.getIdVenta(), this.CorteActual.getIdCorte());
         conexion.insertarCorteVenta(nuevaVentaCorte);
         llenaEtiquetas();
-        
+
     }
 
     /**
@@ -56,7 +79,7 @@ public class CortesMainFrame extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     /*
      El Codigo initComponents es generado por Netbeans
-    */
+     */
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -70,7 +93,7 @@ public class CortesMainFrame extends javax.swing.JFrame {
         lbl_TotalCorte = new javax.swing.JLabel();
         btn_Atras = new javax.swing.JButton();
         btn_CerrarCorte = new javax.swing.JButton();
-        btn_Nombre = new javax.swing.JLabel();
+        lbl_Nombre = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -134,6 +157,11 @@ public class CortesMainFrame extends javax.swing.JFrame {
                 btn_RetirarMouseExited(evt);
             }
         });
+        btn_Retirar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_RetirarActionPerformed(evt);
+            }
+        });
         jPanel1.add(btn_Retirar, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 80, -1, -1));
 
         lbl_CorteId.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -182,10 +210,10 @@ public class CortesMainFrame extends javax.swing.JFrame {
         });
         jPanel1.add(btn_CerrarCorte, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 320, -1, -1));
 
-        btn_Nombre.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        btn_Nombre.setForeground(new java.awt.Color(255, 255, 255));
-        btn_Nombre.setText("Cortes");
-        jPanel1.add(btn_Nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 280, -1, -1));
+        lbl_Nombre.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        lbl_Nombre.setForeground(new java.awt.Color(255, 255, 255));
+        lbl_Nombre.setText("Cortes");
+        jPanel1.add(lbl_Nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 280, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -203,76 +231,130 @@ public class CortesMainFrame extends javax.swing.JFrame {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
 
     }//GEN-LAST:event_formWindowOpened
+    /*
+    * Metodo para rellenar las etiquetas de la inteface
+    * No Recibe ningun parametro
+     */
     private void llenaEtiquetas() {
         lbl_CorteId.setText(String.valueOf(this.CorteActual.getIdCorte()));
-         this.CorteActual.setTotalVenta(conexion.calcularTotalVentaCorte(CorteActual));
-         System.out.println("CORte Actual"+this.CorteActual.getTotalVenta());
-         System.out.println(String.valueOf(this.CorteActual.getTotalVenta()));
-        if(CorteActual.getTotalVenta()==null){
-             lbl_TotalCorte.setText("0.00");
+        this.CorteActual.setTotalVenta(conexion.calcularTotalVentaCorte(CorteActual));
+        System.out.println("CORte Actual" + this.CorteActual.getTotalVenta());
+        System.out.println(String.valueOf(this.CorteActual.getTotalVenta()));
+        if (CorteActual.getTotalVenta() == null) {
+            lbl_TotalCorte.setText("0.00");
+        } else {
+            lbl_TotalCorte.setText(String.valueOf(this.CorteActual.getTotalVenta()));
         }
-        else{
-              lbl_TotalCorte.setText(String.valueOf(this.CorteActual.getTotalVenta()));
-        }
-        
- 
+
     }
+
+    /*
+    * Este evento cierra el CorteActual del usuario y esta relacionado con el btn_CerrarCorte
+     */
     private void btn_CerrarCorteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CerrarCorteActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_CerrarCorteActionPerformed
 
+    /*
+    * Este evento regresa a la pagina principal de ventas y esta relacionado con el btn_Atras
+     */
     private void btn_AtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AtrasActionPerformed
         VentasMainFrame ventas = new VentasMainFrame(this.conexion);
         ventas.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btn_AtrasActionPerformed
 
+    /*
+    * Este evento genera un nuevo ticket y esta relacionado con el btn_CreaTicket
+     */
     private void btn_CreaTicketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CreaTicketActionPerformed
-        TicketMainFrame addTicket = new TicketMainFrame(this.conexion,this.CorteActual);
+        TicketMainFrame addTicket = new TicketMainFrame(this.conexion, this.CorteActual);
         addTicket.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btn_CreaTicketActionPerformed
 
+    /*
+    * Este evento es para mejoras visuales de la interface
+    * Escribe en el lbl_Nombre la opcion seleccionada
+     */
     private void btn_CreaTicketMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_CreaTicketMouseEntered
-    btn_Nombre.setText("Generar");    
-    jLabel2.setText("Ticket");        // TODO add your handling code here:
-    // TODO add your handling code here:
+        lbl_Nombre.setText("Generar");
+        jLabel2.setText("Ticket");
     }//GEN-LAST:event_btn_CreaTicketMouseEntered
 
+    /*
+    * Este evento es para mejoras visuales de la interface
+    * Escribe en el lbl_Nombre la opcion seleccionada
+     */
     private void btn_CreaTicketMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_CreaTicketMouseExited
-       btn_Nombre.setText("Cortes");
+        lbl_Nombre.setText("Cortes");
         jLabel2.setText("");// TODO add your handling code here:
     }//GEN-LAST:event_btn_CreaTicketMouseExited
 
+    /*
+    * Este evento es para mejoras visuales de la interface
+    * Escribe en el lbl_Nombre la opcion seleccionada
+     */
     private void btn_RetirarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_RetirarMouseEntered
-        btn_Nombre.setText("Realizar");    
-    jLabel2.setText("Retiro");    // TODO add your handling code here:
+        lbl_Nombre.setText("Realizar");
+        jLabel2.setText("Retiro");    // TODO add your handling code here:
     }//GEN-LAST:event_btn_RetirarMouseEntered
 
+    /*
+    * Este evento es para mejoras visuales de la interface
+    * Escribe en el lbl_Nombre la opcion seleccionada
+     */
     private void btn_RetirarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_RetirarMouseExited
-         btn_Nombre.setText("Cortes"); 
- jLabel2.setText("");// TODO add your handling code here:
+        lbl_Nombre.setText("Cortes");
+        jLabel2.setText("");// TODO add your handling code here:
     }//GEN-LAST:event_btn_RetirarMouseExited
 
+    /*
+    * Este evento es para mejoras visuales de la interface
+    * Escribe en el lbl_Nombre la opcion seleccionada
+     */
     private void btn_ImprimirMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_ImprimirMouseEntered
-          btn_Nombre.setText("Reimprimir");    
-    jLabel2.setText("Ticket"); // TODO add your handling code here:
+        lbl_Nombre.setText("Reimprimir");
+        jLabel2.setText("Ticket"); // TODO add your handling code here:
     }//GEN-LAST:event_btn_ImprimirMouseEntered
-
+    /*
+    * Este evento es para mejoras visuales de la interface
+    * Escribe en el lbl_Nombre la opcion seleccionada
+     */
     private void btn_ImprimirMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_ImprimirMouseExited
-           btn_Nombre.setText("Cortes"); 
- jLabel2.setText("");/// TODO add your handling code here:
+        lbl_Nombre.setText("Cortes");
+        jLabel2.setText("");/// TODO add your handling code here:
     }//GEN-LAST:event_btn_ImprimirMouseExited
-
+    /*
+    * Este evento es para mejoras visuales de la interface
+    * Escribe en el lbl_Nombre la opcion seleccionada
+     */
     private void btn_CerrarCorteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_CerrarCorteMouseEntered
-            btn_Nombre.setText("Cerrar");    
-    jLabel2.setText("Corte"); /// TODO add your handling code here:
+        lbl_Nombre.setText("Cerrar");
+        jLabel2.setText("Corte"); /// TODO add your handling code here:
     }//GEN-LAST:event_btn_CerrarCorteMouseEntered
-
+    /*
+    * Este evento es para mejoras visuales de la interface
+    * Escribe en el lbl_Nombre la opcion seleccionada
+     */
     private void btn_CerrarCorteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_CerrarCorteMouseExited
-          btn_Nombre.setText("Cortes"); 
-           jLabel2.setText(""); // TODO add your handling code here:
+        lbl_Nombre.setText("Cortes");
+        jLabel2.setText(""); // TODO add your handling code here:
     }//GEN-LAST:event_btn_CerrarCorteMouseExited
+
+    /*
+    * Este evento permite generar retiros de caja  y esta relacionado con el btn_Retirar
+     */
+    private void btn_RetirarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_RetirarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_RetirarActionPerformed
+    
+    /*
+    * La funcion inicializarCorte permite crear un nuevo corte e insertarlo 
+    *cuando el usuario no tienen ningun corte activo
+    *@param fondoInicial es la cantidad con la que se crea el corte y se 
+    *guarda en fondoInicial de la base de daatos
+    */
     private void inicializarCorte(Float fondoInicial) {
         java.util.Date utilDate = new java.util.Date();
         java.sql.Time hora = new java.sql.Time(utilDate.getTime());
@@ -291,14 +373,24 @@ public class CortesMainFrame extends javax.swing.JFrame {
         }
         recuperaCorte();
     }
-
+    
+    /*
+    * La funcion recupera corte permite recuperar el corte del usuario
+    * si este tiene activo uno
+    * No requiere parametros
+    */
+    
     private void recuperaCorte() {
         java.util.Date utilDate = new java.util.Date();
         java.sql.Date fecha = new java.sql.Date(utilDate.getTime());
         this.CorteActual = conexion.consultaCorteCaja(fecha, conexion.getUser().getIdUsuario());
-       
+
     }
 
+    /*
+    * La funcion recupera corte permite cerrar el corte del usuario
+    * No requiere parametros
+    */
     private void cierraCorte() {
         this.CorteActual.setEstatus("C");
         /*
@@ -312,19 +404,23 @@ public class CortesMainFrame extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-
+    
+    /*
+    * Variables creadas por NetBeans para el uso de los componentes de la 
+    * interface
+    */
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_Atras;
     private javax.swing.JButton btn_CerrarCorte;
     private javax.swing.JButton btn_CreaTicket;
     private javax.swing.JButton btn_Imprimir;
-    private javax.swing.JLabel btn_Nombre;
     private javax.swing.JButton btn_Retirar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lbl_CorteId;
     private javax.swing.JLabel lbl_CorteId1;
+    private javax.swing.JLabel lbl_Nombre;
     private javax.swing.JLabel lbl_TotalCorte;
     // End of variables declaration//GEN-END:variables
 }
