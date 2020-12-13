@@ -89,8 +89,8 @@ public class ConexionBD {
      *
      * *************************************************************
      *
-     * Funciones para el modeloProducto Esta seccion contiente todos los metodos
-     * necesarios para interactuar con la tabla de Productos
+     * Funciones para el modelo Producto. Esta seccion contiente todos los
+     * metodos necesarios para interactuar con la tabla de Productos
      *
      *************************************************************
      */
@@ -262,6 +262,15 @@ public class ConexionBD {
         return ban;
     }
 
+    /**
+     * Funcion la cual permite realizar la acutalizacion de un producto de la
+     * tabla Productos de la Base de Datos
+     *
+     * @param p es el Producto que se desea actualzar
+     * @return Devuelve si fue exitosa la actualzacion
+     *
+     **
+     */
     public boolean actualizarProducto(Producto p) {
         String sql = "update productos set idcategoria=?, nombre=?, descripcion=?, preciomayoreo=? ,preciomenudeo=?,"
                 + " preciocompra=?, presentacion=?, EAN=?, contenido=?, tipocontenido=?, material=?, anchura=?,"
@@ -297,11 +306,23 @@ public class ConexionBD {
     }
 
     /**
+     * Modelo de Usuario
+     *
      * *************************************************************
      *
-     * Funciones para el modelo Usuario
+     * Funciones para el modelo Usuario. Esta seccion contiente todos los
+     * metodos necesarios para interactuar con la tabla de Usuarios
      *
      *************************************************************
+     */
+    /**
+     * Funcion la cual permite realizar la consulta de un usuario con cierto
+     * login en la tabla de usuarios
+     *
+     * @param nombre es el nombre del login que se desea buscar
+     * @return Devuelve un objeto Usuario de la busqueda realizada
+     *
+     **
      */
     public Usuario consultarUsuarioLogin(String nombre) {
         String sql = "select idusuario,nombre,apellidopaterno,apellidomaterno,curp,direccion,telefono,email,rol,login,"
@@ -336,6 +357,15 @@ public class ConexionBD {
         return null;
     }
 
+    /**
+     * Funcion la cual permite verificar si existe un usuario con cierto login
+     * en la tabla de usuarios
+     *
+     * @param nombre es el nombre del login que se desea buscar
+     * @return Devuelve si encontro el usuario con el login
+     *
+     **
+     */
     public boolean consultarUsuarioLoginRegistro(String nombre) {
         String sql = "select idusuario,nombre,apellidopaterno,apellidomaterno,curp,direccion,telefono,email,rol,login,"
                 + "passw,estatus "
@@ -362,6 +392,16 @@ public class ConexionBD {
         return false;
     }
 
+    /**
+     * Funcion la cual permite realizar la consulta general de la tabla de
+     * usuarios
+     *
+     *
+     * @return Devuelve un ArrayList tipo Usuario con los registros de la tabla
+     * Usuarios
+     *
+     **
+     */
     public ArrayList<Usuario> consultarUsuarios() {
         String sql = "select idusuario,nombre,apellidopaterno,apellidomaterno,curp,direccion,telefono,email,rol,login,"
                 + "passw,estatus "
@@ -396,6 +436,15 @@ public class ConexionBD {
         return null;
     }
 
+    /**
+     * Funcion la cual permite insertar un nuevo usuario en la tabla de usuarios
+     *
+     * @param u es el objeto Usuario que se desea insertar en la tabla de
+     * usuarios
+     * @return Devuelve si fue exitosa la insercion
+     *
+     **
+     */
     public boolean insertarUsuario(Usuario u) {
         String sql = "insert into usuarios values(null,?,?,?,?,?,?,?,?,?,?,?)";
         boolean ban = false;
@@ -423,13 +472,24 @@ public class ConexionBD {
     }
 
     /**
+     * Modelo de Categoria
+     *
      * *************************************************************
      *
-     * Funciones para el modelo Categorias
-     *
-     *
+     * Funciones para el modelo Categoria Esta seccion contiente todos los
+     * metodos necesarios para interactuar con la tabla de Categorias
      *
      *************************************************************
+     */
+    /**
+     * Funcion la cual permite realizar la consulta general de la tabla de
+     * CAtegorias
+     *
+     *
+     * @return Devuelve un ArrayList tipo Categoria con los registros de la
+     * tabla Categorias
+     *
+     **
      */
     public ArrayList<Categoria> consultarCategorias() {
         String sql = "select idcategoria,nombre from categorias";
@@ -453,6 +513,16 @@ public class ConexionBD {
         return null;
     }
 
+    /**
+     * Funcion la cual permite realizar la consulta por nombre de la tabla de
+     * Categorias
+     *
+     *
+     * @return Devuelve un ArrayList tipo Categoria con los registros ordenas
+     * por nombre de la tabla Categorias
+     *
+     **
+     */
     public ArrayList<Categoria> consultarCategoriasPorNombre() {
         String sql = "select idcategoria,nombre from categorias order by nombre asc";
         ArrayList<Categoria> lista = new ArrayList<Categoria>();
