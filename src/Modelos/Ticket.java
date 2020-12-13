@@ -20,6 +20,7 @@
  */
 package Modelos;
 
+import java.math.BigDecimal;
 import java.sql.Date;
 import java.sql.Time;
 import java.sql.Timestamp;
@@ -34,7 +35,7 @@ public class Ticket {
     private Integer IdUsuario;
     private java.sql.Date Fecha;
     private java.sql.Time HoraVenta;
-    private Float SubTotal;
+    private BigDecimal SubTotal;
     private Float IVA;
     private Float Total;
 
@@ -43,7 +44,7 @@ public class Ticket {
     }
     
     //Constructor de la clase con todas sus propiedades
-    public Ticket(Integer IdTicket, Integer IdUsuario, Date Fecha, Time HoraVenta, Float SubTotal, Float IVA, Float Total) {
+    public Ticket(Integer IdTicket, Integer IdUsuario, Date Fecha, Time HoraVenta, BigDecimal SubTotal, Float IVA, Float Total) {
         this.IdTicket = IdTicket;
         this.IdUsuario = IdUsuario;
         this.Fecha = Fecha;
@@ -86,11 +87,11 @@ public class Ticket {
         this.HoraVenta = HoraVenta;
     }
 
-    public Float getSubTotal() {
+    public BigDecimal getSubTotal() {
         return SubTotal;
     }
 
-    public void setSubTotal(Float SubTotal) {
+    public void setSubTotal(BigDecimal SubTotal) {
         this.SubTotal = SubTotal;
     }
 
@@ -113,6 +114,10 @@ public class Ticket {
     @Override
     public String toString() {
         return "Ticket{" + "IdTicket=" + IdTicket + ", IdUsuario=" + IdUsuario + ", Fecha=" + Fecha + ", HoraVenta=" + HoraVenta + ", SubTotal=" + SubTotal + ", IVA=" + IVA + ", Total=" + Total + '}';
+    }
+
+    public void setSubTotal(double d) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     

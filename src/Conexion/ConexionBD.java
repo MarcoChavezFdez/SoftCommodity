@@ -32,6 +32,7 @@ import Modelos.Producto;
 import Modelos.Ticket;
 import Modelos.Usuario;
 import Modelos.Venta;
+import java.math.BigDecimal;
 import java.sql.*;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -39,7 +40,7 @@ import javax.swing.JOptionPane;
 public class ConexionBD {
 
     //Creamos un string de tipo privado y final, esto quiere decir que no cambiara su valor
-    private final String url = "jdbc:mysql://localhost/softcommodity?noAccessToProcedureBodies=true";
+    private final String url = "jdbc:mysql://localhost/softcommodity";
 
     //Creamos un objeto de tipo  PreparedStatement para los querys que queramos hacer a la BD
     PreparedStatement psPrepararSentencia;
@@ -872,7 +873,7 @@ public class ConexionBD {
             st.setInt(2, t.getIdUsuario());
             st.setDate(3, t.getFecha());
             st.setTime(4, t.getHoraVenta());
-            st.setFloat(5, t.getSubTotal());
+            st.setBigDecimal(5, t.getSubTotal());
             st.setFloat(6, t.getIVA());
             st.setFloat(7, t.getTotal());
             st.execute();
@@ -891,7 +892,7 @@ public class ConexionBD {
         try {
             PreparedStatement st = con.prepareStatement(sql);
             st.setTime(1, t.getHoraVenta());
-            st.setFloat(2, t.getSubTotal());
+            st.setBigDecimal(2, t.getSubTotal());
             st.setFloat(3, t.getIVA());
             st.setFloat(4, t.getTotal());
             st.setInt(5, t.getIdTicket());
@@ -919,6 +920,23 @@ public class ConexionBD {
             return idTicket;
         } catch (SQLException e) {
             System.out.println("Error al consulta el utlimo ticket:" + e.getMessage());
+        }
+        return null;
+    }
+    
+        public BigDecimal calcularTotalTicket(Integer idTicket) {
+        String sp = "{call calculaTotalTicket(?,?)}";
+        try {
+            CallableStatement proc = con.prepareCall(sp);
+            proc.setInt(1, idTicket);
+            proc.registerOutParameter(2,Types.DECIMAL);
+            proc.execute();
+            BigDecimal val =proc.getBigDecimal(2);
+            System.out.println("PRINTF");
+            System.out.printf("%.2f %n",val);
+            return proc.getBigDecimal(2);
+        } catch (SQLException e) {
+            System.out.println("Error al ejecutar calculaTotalTicket:" + e.getMessage());
         }
         return null;
     }

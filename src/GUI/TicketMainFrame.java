@@ -28,6 +28,7 @@ import Modelos.DetalleTicket;
 import Modelos.Producto;
 import Modelos.Ticket;
 import static java.lang.Boolean.*;
+import java.math.BigDecimal;
 import java.sql.Time;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -289,7 +290,8 @@ public class TicketMainFrame extends javax.swing.JFrame {
         this.ticketActual.setIdTicket(idTicket);
         this.ticketActual.setIdUsuario(this.conexion.getUser().getIdUsuario());
         this.ticketActual.setFecha(this.corte.getFecha());
-        this.ticketActual.setSubTotal(0.00f);
+        BigDecimal val= new BigDecimal(0);
+        this.ticketActual.setSubTotal(val);
         this.ticketActual.setIVA(0.00f);
         this.ticketActual.setHoraVenta(Time.valueOf(LocalTime.now()));
         this.ticketActual.setTotal(0.00f);
@@ -305,7 +307,6 @@ public class TicketMainFrame extends javax.swing.JFrame {
     private void btn_AddProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AddProductoActionPerformed
         DetalleTicket dt = new DetalleTicket();
         dt.setIdTicket(this.ticketActual.getIdTicket());
-        System.out.println("Detalle Ticket ID" + ticketActual.getIdTicket());
         System.out.println(dt.getIdTicket());
         dt.setIdProducto(this.nuevoProducto.getIdProducto());
         dt.setCantidad((Integer) sp_Cantidad.getValue());
@@ -314,22 +315,17 @@ public class TicketMainFrame extends javax.swing.JFrame {
             dt.setPrecioMayorista(TRUE);
             dt.setSubTotal(nuevoProducto.getPrecioMayoreo() * dt.getCantidad());
         } else {
-            dt.setPrecioUnitario(nuevoProducto.getPrecioMayoreo());
+            dt.setPrecioUnitario(nuevoProducto.getPrecioMenudeo());
             dt.setPrecioMayorista(FALSE);
             dt.setSubTotal(nuevoProducto.getPrecioMenudeo() * dt.getCantidad());
         }
         conexion.insertarDetalleTicket(dt);
         ArrayList<DetalleTicket> lista = this.conexion.consultarDetalleTicket(this.ticketActual.getIdTicket());
-        if (lista != null) {
-            for (DetalleTicket dt2 : lista) {
-                dt2.toString();
-            }
-        }
-        else{
-            System.out.println("Lista vacia");
-        }
-        llenarTabla(lista);
 
+        llenarTabla(lista);
+        this.ticketActual.setSubTotal(conexion.calcularTotalTicket(this.ticketActual.getIdTicket()));
+        System.out.println("SubTotal Regresado "+this.ticketActual.getSubTotal());
+        lbl_Total.setText(String.valueOf(this.ticketActual.getSubTotal()));
     }//GEN-LAST:event_btn_AddProductoActionPerformed
 
     private void txt_ProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_ProductoActionPerformed
@@ -361,16 +357,20 @@ public class TicketMainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_cb_PrecioMayoreoMouseReleased
 
     private void llenarTabla(ArrayList<DetalleTicket> lista) {
-        String[] encabezado = {"idTicket", "IdProducto", "Cantidad", "Precio Unitario", "SubTotal", "Precio Mayorista"};
-        Object[][] datos = new Object[lista.size()][6];
+        String[] encabezado = {"IdProducto", "Cantidad", "Precio Unitario", "SubTotal", "Precio Mayorista"};
+        Object[][] datos = new Object[lista.size()][5];
         int ren = 0;
         for (DetalleTicket dt : lista) {
-            datos[ren][0] = dt.getIdTicket();
-            datos[ren][1] = dt.getIdProducto();
-            datos[ren][2] = dt.getCantidad();
-            datos[ren][3] = dt.getPrecioUnitario();
-            datos[ren][4] = dt.getSubTotal();
-            datos[ren][5] = dt.getPrecioMayorista();
+            datos[ren][0] = dt.getIdProducto();
+            datos[ren][1] = dt.getCantidad();
+            datos[ren][2] = dt.getPrecioUnitario();
+            datos[ren][3] = dt.getSubTotal();
+            if(dt.getPrecioMayorista()){
+                datos[ren][4] = "Si";
+            }
+            else{
+                datos[ren][4] = "No";
+            }
             ren++;
         }
         DefaultTableModel m = new DefaultTableModel(datos, encabezado) {
@@ -378,8 +378,8 @@ public class TicketMainFrame extends javax.swing.JFrame {
             public boolean isCellEditable(int rowIndex, int colIndex) {
                 return false; //Disallow the editing of any cell
             }
-
         };
+        tbl_Datos.setModel(m);
     }
 
     private void llenaPrecio(Producto p) {
