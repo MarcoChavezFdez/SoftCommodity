@@ -107,7 +107,7 @@ public class ConexionBD {
     }
 
     /**
-     * Este metodo de cerra la conexion 
+     * Este metodo de cerra la conexion
      *
      */
     public void desconectar() {
@@ -134,11 +134,10 @@ public class ConexionBD {
      * @return regresa un ArrayList de tipo Producto con los productos generados
      */
     public ArrayList<Producto> consultaProductos() {
-        String sql = "select idproducto,idcategoria,nombre,descripcion,preciomayoreo,preciomenudeo,preciocompra,presentacion,"
-                + "ean,contenido,tipocontenido,material,anchura,medidaanchura,color,estatus "
+        String sql = "select * "
                 + "from productos"
                 + " ORDER BY idproducto ASC";
-        ArrayList<Producto> lista = new ArrayList<Producto>();
+        ArrayList<Producto> lista = new ArrayList<>();
         try {
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(sql);
@@ -1429,6 +1428,26 @@ public class ConexionBD {
             JOptionPane.showMessageDialog(null, "Error:" + e.getMessage());
         }
         return ban;
+    }
+
+    public Integer consultaUltimoRetiro() {
+        String sql = "select MAX(IdRetiro)";
+        Integer IdRetiro;
+        IdRetiro = 0;
+        try {
+            PreparedStatement st = con.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                IdRetiro = (rs.getInt("IdRetiro"))+1;
+            } else {
+                IdRetiro = 1;
+            }
+            st.close();
+            return IdRetiro;
+        } catch (SQLException e) {
+            System.out.println("Error:" + e.getMessage());
+        }
+        return IdRetiro;
     }
 
 //        public void assertDecimalSameValue(String message, String expected_s, 
