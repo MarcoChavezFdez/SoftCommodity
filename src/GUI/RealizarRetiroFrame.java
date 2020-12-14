@@ -7,11 +7,13 @@ package GUI;
 
 import Conexion.ConexionBD;
 import Modelos.CorteCaja;
+import Modelos.DetalleRetiro;
 import Modelos.Retiro;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.sql.Time;
 import java.time.LocalTime;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -253,8 +255,17 @@ public class RealizarRetiroFrame extends javax.swing.JFrame {
 
     private void btn_RetiroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_RetiroActionPerformed
         if (this.conexion.consultarUsuarioAutorizado(txf_Login.getText(), String.valueOf(psf_Password.getPassword()))) {
-            Retiro nuevoRetiro = new Retiro(null,conexion.consultarUsuarioLogin(txf_Login.getText()).getIdUsuario(),Float.valueOf(txf_MontoaRetirar.getText()),Time.valueOf(LocalTime.now()));
-            conexion.insertarRetiro(nuevoRetiro);
+            Retiro nuevoRetiro = new Retiro(null, conexion.consultarUsuarioLogin(txf_Login.getText()).getIdUsuario(), Float.valueOf(txf_MontoaRetirar.getText()), Time.valueOf(LocalTime.now()));
+            if (conexion.insertarRetiro(nuevoRetiro)) {
+                DetalleRetiro dt = new DetalleRetiro(conexion.consultaUltimoRetiro(), this.corteActual.getIdCorte());
+                if (conexion.insertarDetalleRetiro(dt)) {
+                    JOptionPane.showMessageDialog(null, "Retiro Exitoso");
+                    CortesMainFrame cortes = new CortesMainFrame(this.conexion, this.corteActual);
+                    this.setVisible(rootPaneCheckingEnabled);
+                    cortes.setVisible(true);
+                }
+            }
+            
         } else {
             lbl_Mensaje.setText("Usuario No Autorizado para realizar Retiros");
         }
@@ -267,7 +278,7 @@ public class RealizarRetiroFrame extends javax.swing.JFrame {
         }
     }
     
-        public static float redondeoDecimales(float numero, int numeroDecimales) {
+    public static float redondeoDecimales(float numero, int numeroDecimales) {
         BigDecimal redondeado = new BigDecimal(numero)
                 .setScale(numeroDecimales, RoundingMode.HALF_EVEN);
         return redondeado.floatValue();
