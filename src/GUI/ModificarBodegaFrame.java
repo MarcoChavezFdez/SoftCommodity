@@ -75,8 +75,8 @@ public class ModificarBodegaFrame extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Nombre de la Bodega :");
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 210, -1, -1));
+        jLabel2.setText("Nuevo Nombre de la Bodega :");
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 180, -1, -1));
 
         txf_Nombre.setBackground(new java.awt.Color(237, 174, 195));
         txf_Nombre.addActionListener(new java.awt.event.ActionListener() {
@@ -92,17 +92,17 @@ public class ModificarBodegaFrame extends javax.swing.JFrame {
                 txf_NombreKeyReleased(evt);
             }
         });
-        jPanel2.add(txf_Nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 210, 160, -1));
+        jPanel2.add(txf_Nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 180, 160, -1));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Modificar Bodega");
         jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 120, -1, -1));
 
-        lbl_Mensaje.setForeground(new java.awt.Color(255, 0, 51));
-        jPanel2.add(lbl_Mensaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 170, 139, 19));
+        lbl_Mensaje.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel2.add(lbl_Mensaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 220, 139, 19));
 
-        btn_GuardarBodega.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Bodega/Añadir.png"))); // NOI18N
+        btn_GuardarBodega.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Bodega/Modificar.png"))); // NOI18N
         btn_GuardarBodega.setBorderPainted(false);
         btn_GuardarBodega.setContentAreaFilled(false);
         btn_GuardarBodega.setEnabled(false);

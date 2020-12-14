@@ -36,6 +36,8 @@ public class ModificarUsuario extends javax.swing.JFrame {
     private void initComponents() {
 
         jTextField1 = new javax.swing.JTextField();
+        jSlider1 = new javax.swing.JSlider();
+        jSplitPane1 = new javax.swing.JSplitPane();
         jPanel1 = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
         cmb_Estatus = new javax.swing.JComboBox<>();
@@ -66,6 +68,7 @@ public class ModificarUsuario extends javax.swing.JFrame {
         txf_Passw2 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
 
         jTextField1.setText("jTextField1");
 
@@ -108,7 +111,7 @@ public class ModificarUsuario extends javax.swing.JFrame {
         jLabel2.setText("Apellido Paterno");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, -1, -1));
 
-        btn_AddUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Usuario/Añadir.png"))); // NOI18N
+        btn_AddUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Usuario/Modificar.png"))); // NOI18N
         btn_AddUsuario.setBorderPainted(false);
         btn_AddUsuario.setContentAreaFilled(false);
         btn_AddUsuario.setEnabled(false);
@@ -117,7 +120,7 @@ public class ModificarUsuario extends javax.swing.JFrame {
                 btn_AddUsuarioActionPerformed(evt);
             }
         });
-        jPanel1.add(btn_AddUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 390, -1, -1));
+        jPanel1.add(btn_AddUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 390, -1, -1));
 
         txf_ApellidoPaterno.setBackground(new java.awt.Color(237, 174, 195));
         jPanel1.add(txf_ApellidoPaterno, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 180, 158, -1));
@@ -137,7 +140,7 @@ public class ModificarUsuario extends javax.swing.JFrame {
         jLabel3.setText("Apellido Materno");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, -1, -1));
 
-        lbl_MensajePassw.setForeground(new java.awt.Color(204, 0, 0));
+        lbl_MensajePassw.setForeground(new java.awt.Color(255, 255, 255));
         jPanel1.add(lbl_MensajePassw, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 340, 193, 22));
 
         txf_ApellidoMaterno.setBackground(new java.awt.Color(237, 174, 195));
@@ -148,7 +151,7 @@ public class ModificarUsuario extends javax.swing.JFrame {
         });
         jPanel1.add(txf_ApellidoMaterno, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 220, 168, -1));
 
-        lbl_MensajeLogin.setForeground(new java.awt.Color(204, 0, 0));
+        lbl_MensajeLogin.setForeground(new java.awt.Color(255, 255, 255));
         jPanel1.add(lbl_MensajeLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 370, 260, 22));
 
         txf_CURP.setBackground(new java.awt.Color(237, 174, 195));
@@ -244,8 +247,13 @@ public class ModificarUsuario extends javax.swing.JFrame {
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel13.setText("Añadir Nuevo Usuario");
+        jLabel13.setText("Modificar Usuario");
         jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 70, -1, -1));
+
+        jLabel14.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel14.setText("Establece los nuevos parámetros para el usuario");
+        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 100, -1, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 790, 510));
 
@@ -344,6 +352,7 @@ public class ModificarUsuario extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -353,6 +362,8 @@ public class ModificarUsuario extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JSlider jSlider1;
+    private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel lbl_MensajeLogin;
     private javax.swing.JLabel lbl_MensajePassw;

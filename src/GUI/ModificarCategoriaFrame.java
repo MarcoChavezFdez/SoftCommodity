@@ -52,8 +52,8 @@ public class ModificarCategoriaFrame extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Nombre de la Categoria :");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 220, -1, 20));
+        jLabel2.setText(" Nuevo Nombre de la Categoria :");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, 260, 90));
 
         txf_Nombre.setBackground(new java.awt.Color(237, 174, 195));
         txf_Nombre.addActionListener(new java.awt.event.ActionListener() {
@@ -66,14 +66,14 @@ public class ModificarCategoriaFrame extends javax.swing.JFrame {
                 txf_NombreKeyReleased(evt);
             }
         });
-        jPanel1.add(txf_Nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 220, 148, 20));
+        jPanel1.add(txf_Nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 190, 148, 20));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Añadir Una Nueva Categoria");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 120, -1, -1));
+        jLabel3.setText("Modificar Categoría");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 130, -1, -1));
 
-        btn_AddCategoria.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Categoria/Añadir.png"))); // NOI18N
+        btn_AddCategoria.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Categoria/Modificar.png"))); // NOI18N
         btn_AddCategoria.setToolTipText("");
         btn_AddCategoria.setBorderPainted(false);
         btn_AddCategoria.setContentAreaFilled(false);
@@ -95,8 +95,8 @@ public class ModificarCategoriaFrame extends javax.swing.JFrame {
         });
         jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
-        lbl_Mensaje.setForeground(new java.awt.Color(204, 0, 51));
-        jPanel1.add(lbl_Mensaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 190, 139, 20));
+        lbl_Mensaje.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel1.add(lbl_Mensaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 260, 139, 20));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 520, 420));
 
