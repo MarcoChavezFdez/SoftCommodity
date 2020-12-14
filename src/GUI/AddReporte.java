@@ -76,7 +76,7 @@ public class AddReporte extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Nombre de la Bodega :");
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 210, -1, -1));
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 150, -1, -1));
 
         txf_Nombre.setBackground(new java.awt.Color(237, 174, 195));
         txf_Nombre.addActionListener(new java.awt.event.ActionListener() {
@@ -92,12 +92,12 @@ public class AddReporte extends javax.swing.JFrame {
                 txf_NombreKeyReleased(evt);
             }
         });
-        jPanel2.add(txf_Nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 210, 160, -1));
+        jPanel2.add(txf_Nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 150, 160, -1));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Añadir Una Nueva Bodega");
-        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 120, -1, -1));
+        jLabel3.setText("Crear un nuevo Reporte");
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 80, -1, -1));
 
         lbl_Mensaje.setForeground(new java.awt.Color(255, 0, 51));
         jPanel2.add(lbl_Mensaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 170, 139, 19));
