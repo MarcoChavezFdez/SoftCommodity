@@ -149,13 +149,15 @@ public class BodegasMainFrame extends javax.swing.JFrame {
         });
         jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 110, -1, -1));
 
-        Inventarios.setText("Inventarios");
+        Inventarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Bodega/Inv.png"))); // NOI18N
+        Inventarios.setBorderPainted(false);
+        Inventarios.setContentAreaFilled(false);
         Inventarios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 InventariosActionPerformed(evt);
             }
         });
-        jPanel1.add(Inventarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 130, -1, -1));
+        jPanel1.add(Inventarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 30, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));

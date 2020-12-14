@@ -46,6 +46,16 @@ public class RealizarPagoFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
+        jPanel4 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        txf_Efectivo = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        txf_Cambio = new javax.swing.JTextField();
+        btn_Cobrar = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        txf_Total = new javax.swing.JTextField();
+        btn_Atras = new javax.swing.JButton();
         jpCantidad = new javax.swing.JPanel();
         jb100 = new javax.swing.JButton();
         btn_500 = new javax.swing.JButton();
@@ -68,14 +78,6 @@ public class RealizarPagoFrame extends javax.swing.JFrame {
         jb2 = new javax.swing.JButton();
         ftxf_Cantidad = new javax.swing.JFormattedTextField();
         jb20 = new javax.swing.JButton();
-        jPanel3 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        txf_Total = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        txf_Efectivo = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        txf_Cambio = new javax.swing.JTextField();
-        btn_Cobrar = new javax.swing.JButton();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -98,6 +100,60 @@ public class RealizarPagoFrame extends javax.swing.JFrame {
         });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jPanel3.setBackground(new java.awt.Color(102, 102, 102));
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel4.setBackground(new java.awt.Color(29, 29, 29));
+        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Efectivo Recibido");
+        jPanel4.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, -1, -1));
+
+        txf_Efectivo.setText("0.00");
+        jPanel4.add(txf_Efectivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 190, 84, -1));
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Cambio");
+        jPanel4.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 240, -1, -1));
+
+        txf_Cambio.setText("0.00");
+        txf_Cambio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txf_CambioActionPerformed(evt);
+            }
+        });
+        jPanel4.add(txf_Cambio, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 240, 84, -1));
+
+        btn_Cobrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Realizar_Pago/Cobrar.png"))); // NOI18N
+        btn_Cobrar.setBorderPainted(false);
+        btn_Cobrar.setContentAreaFilled(false);
+        btn_Cobrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_CobrarActionPerformed(evt);
+            }
+        });
+        jPanel4.add(btn_Cobrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 330, -1, -1));
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Total Compra");
+        jPanel4.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, -1, -1));
+
+        txf_Total.setText("0.00");
+        jPanel4.add(txf_Total, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 150, 84, -1));
+
+        btn_Atras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Volver.png"))); // NOI18N
+        btn_Atras.setBorderPainted(false);
+        btn_Atras.setContentAreaFilled(false);
+        jPanel4.add(btn_Atras, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        jPanel3.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 380, 550));
+
+        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 350, 550));
+
         jpCantidad.setBackground(new java.awt.Color(0, 0, 0));
         jpCantidad.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -112,7 +168,7 @@ public class RealizarPagoFrame extends javax.swing.JFrame {
                 jb100ActionPerformed(evt);
             }
         });
-        jpCantidad.add(jb100, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 10, 120, 80));
+        jpCantidad.add(jb100, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 10, 120, 80));
 
         btn_500.setBackground(new java.awt.Color(246, 144, 61));
         btn_500.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
@@ -125,7 +181,7 @@ public class RealizarPagoFrame extends javax.swing.JFrame {
                 btn_500ActionPerformed(evt);
             }
         });
-        jpCantidad.add(btn_500, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 120, 80));
+        jpCantidad.add(btn_500, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 10, 120, 80));
 
         jbPagoExacto.setBackground(new java.awt.Color(246, 144, 61));
         jbPagoExacto.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
@@ -138,7 +194,7 @@ public class RealizarPagoFrame extends javax.swing.JFrame {
                 jbPagoExactoActionPerformed(evt);
             }
         });
-        jpCantidad.add(jbPagoExacto, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 100, 120, 80));
+        jpCantidad.add(jbPagoExacto, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 100, 120, 80));
 
         jb200.setBackground(new java.awt.Color(246, 144, 61));
         jb200.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
@@ -151,7 +207,7 @@ public class RealizarPagoFrame extends javax.swing.JFrame {
                 jb200ActionPerformed(evt);
             }
         });
-        jpCantidad.add(jb200, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 10, 120, 80));
+        jpCantidad.add(jb200, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 10, 120, 80));
 
         jb50.setBackground(new java.awt.Color(246, 144, 61));
         jb50.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
@@ -164,7 +220,7 @@ public class RealizarPagoFrame extends javax.swing.JFrame {
                 jb50ActionPerformed(evt);
             }
         });
-        jpCantidad.add(jb50, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 120, 80));
+        jpCantidad.add(jb50, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 100, 120, 80));
 
         jPanel2.setBackground(new java.awt.Color(0, 0, 0));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -178,7 +234,7 @@ public class RealizarPagoFrame extends javax.swing.JFrame {
                 jbOkActionPerformed(evt);
             }
         });
-        jPanel2.add(jbOk, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 210, 130, 140));
+        jPanel2.add(jbOk, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 220, 130, 140));
 
         jb7.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         jb7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Realizar_Pago/7.png"))); // NOI18N
@@ -224,7 +280,7 @@ public class RealizarPagoFrame extends javax.swing.JFrame {
                 jb8ActionPerformed(evt);
             }
         });
-        jPanel2.add(jb8, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 70, 70, 70));
+        jPanel2.add(jb8, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 70, 70, 70));
 
         jb5.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         jb5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Realizar_Pago/5.png"))); // NOI18N
@@ -235,7 +291,7 @@ public class RealizarPagoFrame extends javax.swing.JFrame {
                 jb5ActionPerformed(evt);
             }
         });
-        jPanel2.add(jb5, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 140, 70, 70));
+        jPanel2.add(jb5, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 140, 70, 70));
 
         jb0.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         jb0.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Realizar_Pago/0.png"))); // NOI18N
@@ -246,7 +302,7 @@ public class RealizarPagoFrame extends javax.swing.JFrame {
                 jb0ActionPerformed(evt);
             }
         });
-        jPanel2.add(jb0, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 280, 70, 70));
+        jPanel2.add(jb0, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 280, 70, 70));
 
         jb3.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         jb3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Realizar_Pago/3.png"))); // NOI18N
@@ -257,7 +313,7 @@ public class RealizarPagoFrame extends javax.swing.JFrame {
                 jb3ActionPerformed(evt);
             }
         });
-        jPanel2.add(jb3, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 210, 70, 70));
+        jPanel2.add(jb3, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 210, 70, 70));
 
         jb6.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         jb6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Realizar_Pago/6.png"))); // NOI18N
@@ -268,7 +324,7 @@ public class RealizarPagoFrame extends javax.swing.JFrame {
                 jb6ActionPerformed(evt);
             }
         });
-        jPanel2.add(jb6, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 140, 70, 70));
+        jPanel2.add(jb6, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 140, 70, 70));
 
         jb9.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         jb9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Realizar_Pago/9.png"))); // NOI18N
@@ -279,7 +335,7 @@ public class RealizarPagoFrame extends javax.swing.JFrame {
                 jb9ActionPerformed(evt);
             }
         });
-        jPanel2.add(jb9, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 70, 70, 70));
+        jPanel2.add(jb9, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 70, 70, 70));
 
         jbBorrar.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         jbBorrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Realizar_Pago/Fle.png"))); // NOI18N
@@ -289,7 +345,7 @@ public class RealizarPagoFrame extends javax.swing.JFrame {
                 jbBorrarActionPerformed(evt);
             }
         });
-        jPanel2.add(jbBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 60, 140, 70));
+        jPanel2.add(jbBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 70, 140, 70));
 
         jbClear.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         jbClear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Realizar_Pago/C.png"))); // NOI18N
@@ -300,7 +356,7 @@ public class RealizarPagoFrame extends javax.swing.JFrame {
                 jbClearActionPerformed(evt);
             }
         });
-        jPanel2.add(jbClear, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 140, 130, 80));
+        jPanel2.add(jbClear, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 150, 130, 80));
 
         jb2.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         jb2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Realizar_Pago/2.png"))); // NOI18N
@@ -311,7 +367,7 @@ public class RealizarPagoFrame extends javax.swing.JFrame {
                 jb2ActionPerformed(evt);
             }
         });
-        jPanel2.add(jb2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 210, 70, 70));
+        jPanel2.add(jb2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 210, 70, 70));
 
         ftxf_Cantidad.setEditable(false);
         ftxf_Cantidad.setBackground(new java.awt.Color(237, 174, 195));
@@ -323,9 +379,9 @@ public class RealizarPagoFrame extends javax.swing.JFrame {
                 ftxf_CantidadActionPerformed(evt);
             }
         });
-        jPanel2.add(ftxf_Cantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 340, 60));
+        jPanel2.add(ftxf_Cantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 390, 60));
 
-        jpCantidad.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, 360, 350));
+        jpCantidad.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 190, 390, 350));
 
         jb20.setBackground(new java.awt.Color(246, 144, 61));
         jb20.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
@@ -338,79 +394,9 @@ public class RealizarPagoFrame extends javax.swing.JFrame {
                 jb20ActionPerformed(evt);
             }
         });
-        jpCantidad.add(jb20, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 100, 120, 80));
+        jpCantidad.add(jb20, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 100, 120, 80));
 
-        getContentPane().add(jpCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 390, 550));
-
-        jPanel3.setBackground(new java.awt.Color(102, 102, 102));
-
-        jLabel1.setText("Total Compra");
-
-        txf_Total.setText("0.00");
-
-        jLabel2.setText("Efectivo Recibido");
-
-        txf_Efectivo.setText("0.00");
-
-        jLabel3.setText("Cambio");
-
-        txf_Cambio.setText("0.00");
-        txf_Cambio.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txf_CambioActionPerformed(evt);
-            }
-        });
-
-        btn_Cobrar.setText("Cobrar");
-        btn_Cobrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_CobrarActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(98, 98, 98)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3))
-                        .addGap(70, 70, 70)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txf_Total)
-                            .addComponent(txf_Efectivo)
-                            .addComponent(txf_Cambio, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE)))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(188, 188, 188)
-                        .addComponent(btn_Cobrar)))
-                .addContainerGap(162, Short.MAX_VALUE))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(99, 99, 99)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(txf_Total, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(txf_Efectivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(txf_Cambio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(113, 113, 113)
-                .addComponent(btn_Cobrar)
-                .addContainerGap(200, Short.MAX_VALUE))
-        );
-
-        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 0, 510, 550));
+        getContentPane().add(jpCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 0, 550, 550));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -541,6 +527,7 @@ public class RealizarPagoFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_500;
+    private javax.swing.JButton btn_Atras;
     private javax.swing.JButton btn_Cobrar;
     public javax.swing.JFormattedTextField ftxf_Cantidad;
     private javax.swing.JLabel jLabel1;
@@ -549,6 +536,7 @@ public class RealizarPagoFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JButton jb0;
     private javax.swing.JButton jb1;
     private javax.swing.JButton jb100;

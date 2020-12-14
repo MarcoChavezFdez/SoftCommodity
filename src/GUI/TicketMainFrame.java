@@ -114,12 +114,12 @@ public class TicketMainFrame extends javax.swing.JFrame {
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 280, 80, -1));
 
         lbl_IVA.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        lbl_IVA.setForeground(new java.awt.Color(255, 255, 255));
+        lbl_IVA.setForeground(new java.awt.Color(237, 174, 195));
         lbl_IVA.setText("0.00");
-        jPanel1.add(lbl_IVA, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 540, -1, -1));
+        jPanel1.add(lbl_IVA, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 540, -1, -1));
 
         lbl_Precio.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        lbl_Precio.setForeground(new java.awt.Color(255, 255, 255));
+        lbl_Precio.setForeground(new java.awt.Color(237, 174, 195));
         lbl_Precio.setText("0.00");
         jPanel1.add(lbl_Precio, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 280, -1, -1));
 
@@ -152,7 +152,7 @@ public class TicketMainFrame extends javax.swing.JFrame {
                 btn_AddProductoActionPerformed(evt);
             }
         });
-        jPanel1.add(btn_AddProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 380, -1, -1));
+        jPanel1.add(btn_AddProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 380, -1, -1));
 
         tbl_Datos.setAutoCreateRowSorter(true);
         tbl_Datos.setBackground(new java.awt.Color(237, 174, 195));
@@ -197,7 +197,7 @@ public class TicketMainFrame extends javax.swing.JFrame {
                 btn_CobrarActionPerformed(evt);
             }
         });
-        jPanel1.add(btn_Cobrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 500, -1, -1));
+        jPanel1.add(btn_Cobrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 500, -1, -1));
 
         cmb_Producto.setBackground(new java.awt.Color(237, 174, 195));
         cmb_Producto.addItemListener(new java.awt.event.ItemListener() {
@@ -235,7 +235,7 @@ public class TicketMainFrame extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("SubTotal: $");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 510, -1, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 510, -1, -1));
 
         btn_Atras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Volver.png"))); // NOI18N
         btn_Atras.setBorderPainted(false);
@@ -251,24 +251,24 @@ public class TicketMainFrame extends javax.swing.JFrame {
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 70, -1, -1));
 
         lbl_Total.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        lbl_Total.setForeground(new java.awt.Color(255, 255, 255));
+        lbl_Total.setForeground(new java.awt.Color(237, 174, 195));
         lbl_Total.setText("0.00");
-        jPanel1.add(lbl_Total, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 570, -1, -1));
+        jPanel1.add(lbl_Total, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 570, -1, -1));
 
         lbl_SubTotal.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        lbl_SubTotal.setForeground(new java.awt.Color(255, 255, 255));
+        lbl_SubTotal.setForeground(new java.awt.Color(237, 174, 195));
         lbl_SubTotal.setText("0.00");
-        jPanel1.add(lbl_SubTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 510, -1, -1));
+        jPanel1.add(lbl_SubTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 510, -1, -1));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Total: $");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 570, -1, -1));
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 570, -1, -1));
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("IVA: $");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 540, -1, -1));
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 540, -1, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1070, 620));
 
