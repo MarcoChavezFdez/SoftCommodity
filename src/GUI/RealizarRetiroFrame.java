@@ -262,6 +262,7 @@ public class RealizarRetiroFrame extends javax.swing.JFrame {
             nuevoRetiro.setFecha(this.corteActual.getFecha());
             if (conexion.insertarRetiro(nuevoRetiro)) {
                 DetalleRetiro dt = new DetalleRetiro(conexion.consultaUltimoRetiro(), this.corteActual.getIdCorte());
+                System.out.println(dt.toString());
                 if (conexion.insertarDetalleRetiro(dt)) {
                     JOptionPane.showMessageDialog(null, "Retiro Exitoso");
                     CortesMainFrame cortes = new CortesMainFrame(this.conexion, this.corteActual);

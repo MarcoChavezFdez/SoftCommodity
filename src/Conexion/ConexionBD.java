@@ -1101,7 +1101,8 @@ public class ConexionBD {
 
         return TotalVenta;
     }
-        public Float consultarCorteCajaTotalRetiros(Integer idCorte) {
+
+    public Float consultarCorteCajaTotalRetiros(Integer idCorte) {
         Float TotalRetiros = 0f;
         String sql = "select SUM(r.monto)as TotalRetiros from "
                 + "CortesCaja cc "
@@ -1430,14 +1431,14 @@ public class ConexionBD {
             PreparedStatement st = con.prepareStatement(sql);
             ResultSet rs = st.executeQuery();
             if (rs.next()) {
-                IdRetiro = (rs.getInt("IdRetiro")) + 1;
+                IdRetiro = (rs.getInt("IdRetiro"));
             } else {
                 IdRetiro = 1;
             }
             st.close();
             return IdRetiro;
         } catch (SQLException e) {
-            System.out.println("Error:" + e.getMessage()+" "+e.getSQLState());
+            System.out.println("Error:" + e.getMessage() + " " + e.getSQLState());
         }
         return IdRetiro;
     }

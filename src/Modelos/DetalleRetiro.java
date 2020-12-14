@@ -58,4 +58,9 @@ public class DetalleRetiro {
         this.IdCorte = IdCorte;
     }
 
+    @Override
+    public String toString() {
+        return "DetalleRetiro{" + "IdRetiro=" + IdRetiro + ", IdCorte=" + IdCorte + '}';
+    }
+
 }
