@@ -91,6 +91,7 @@ public class TicketMainFrame extends javax.swing.JFrame {
         lbl_SubTotal = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("SoftCommodity+ by White Company® ");
@@ -270,6 +271,9 @@ public class TicketMainFrame extends javax.swing.JFrame {
         jLabel9.setText("IVA: $");
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 540, -1, -1));
 
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Fondo5_Gra.png"))); // NOI18N
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, -20, 1040, 640));
+
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1070, 620));
 
         pack();
@@ -435,6 +439,7 @@ public class TicketMainFrame extends javax.swing.JFrame {
     private javax.swing.JCheckBox cb_PrecioMayoreo;
     private javax.swing.JComboBox<String> cmb_Producto;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

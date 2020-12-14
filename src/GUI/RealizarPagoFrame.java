@@ -46,6 +46,7 @@ public class RealizarPagoFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -77,7 +78,13 @@ public class RealizarPagoFrame extends javax.swing.JFrame {
         jbClear = new javax.swing.JButton();
         jb2 = new javax.swing.JButton();
         ftxf_Cantidad = new javax.swing.JFormattedTextField();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
         jb20 = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -89,6 +96,8 @@ public class RealizarPagoFrame extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 100, Short.MAX_VALUE)
         );
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Fondo3.png"))); // NOI18N
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("SoftCommodity+ by White Company® ");
@@ -384,6 +393,12 @@ public class RealizarPagoFrame extends javax.swing.JFrame {
         });
         jPanel2.add(ftxf_Cantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 390, 60));
 
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Fondo3.png"))); // NOI18N
+        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, -10, -1, -1));
+
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Fondo3.png"))); // NOI18N
+        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, -10, -1, -1));
+
         jpCantidad.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 190, 390, 350));
 
         jb20.setBackground(new java.awt.Color(246, 144, 61));
@@ -398,6 +413,18 @@ public class RealizarPagoFrame extends javax.swing.JFrame {
             }
         });
         jpCantidad.add(jb20, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 100, 120, 80));
+
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Fondo3.png"))); // NOI18N
+        jpCantidad.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, -1, -1));
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Fondo3.png"))); // NOI18N
+        jpCantidad.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -50, -1, -1));
+
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Fondo3.png"))); // NOI18N
+        jpCantidad.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 250, -1, -1));
+
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Fondo3.png"))); // NOI18N
+        jpCantidad.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, -10, -1, -1));
 
         getContentPane().add(jpCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 0, 550, 550));
 
@@ -534,8 +561,15 @@ public class RealizarPagoFrame extends javax.swing.JFrame {
     private javax.swing.JButton btn_Cobrar;
     public javax.swing.JFormattedTextField ftxf_Cantidad;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

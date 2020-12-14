@@ -41,6 +41,7 @@ public class ModificarCategoriaFrame extends javax.swing.JFrame {
         btn_AddCategoria = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         lbl_Mensaje = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("SoftCommodity+ by White Company® ");
@@ -98,6 +99,9 @@ public class ModificarCategoriaFrame extends javax.swing.JFrame {
         lbl_Mensaje.setForeground(new java.awt.Color(255, 255, 255));
         jPanel1.add(lbl_Mensaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 260, 139, 20));
 
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Fondo5.png"))); // NOI18N
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-50, -10, -1, -1));
+
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 520, 420));
 
         pack();
@@ -147,6 +151,7 @@ public class ModificarCategoriaFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_AddCategoria;
     private javax.swing.JButton jButton2;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;

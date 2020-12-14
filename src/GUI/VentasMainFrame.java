@@ -47,6 +47,7 @@ public class VentasMainFrame extends javax.swing.JFrame {
         texto1 = new javax.swing.JLabel();
         texto2 = new javax.swing.JLabel();
         btn_Atras = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("SoftCommodity+ by White Company® ");
@@ -129,6 +130,9 @@ public class VentasMainFrame extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btn_Atras, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Fondo5_Med.png"))); // NOI18N
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(-90, -10, -1, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 730, 500));
 
@@ -216,6 +220,7 @@ public class VentasMainFrame extends javax.swing.JFrame {
     private javax.swing.JButton btn_CrearCorte;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lbl_TotalVenta;
     private javax.swing.JLabel texto1;

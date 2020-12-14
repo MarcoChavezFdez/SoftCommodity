@@ -40,6 +40,7 @@ public class IniciaCorteFrame extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         txf_FondoInicial = new javax.swing.JTextField();
         btn_Siguiente = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("SoftCommodity+ by White Company® ");
@@ -72,6 +73,9 @@ public class IniciaCorteFrame extends javax.swing.JFrame {
         });
         jPanel1.add(btn_Siguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 170, -1, -1));
 
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Fondo5.png"))); // NOI18N
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-150, -70, 540, 370));
+
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 390, 300));
 
         pack();
@@ -99,6 +103,7 @@ public class IniciaCorteFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_Siguiente;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField txf_FondoInicial;
     // End of variables declaration//GEN-END:variables

@@ -43,6 +43,7 @@ public class AddReporte extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         lbl_Mensaje = new javax.swing.JLabel();
         btn_AddBodega = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -113,6 +114,9 @@ public class AddReporte extends javax.swing.JFrame {
         });
         jPanel2.add(btn_AddBodega, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 260, -1, -1));
 
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Fondo5.png"))); // NOI18N
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-90, -20, -1, -1));
+
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 540, 380));
 
         pack();
@@ -162,6 +166,7 @@ public class AddReporte extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_AddBodega;
     private javax.swing.JButton jButton2;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;

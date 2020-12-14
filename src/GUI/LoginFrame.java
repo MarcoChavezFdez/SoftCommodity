@@ -36,6 +36,9 @@ public class LoginFrame extends javax.swing.JFrame {
         lbl_Error = new javax.swing.JLabel();
         jPopupMenu1 = new javax.swing.JPopupMenu();
         jFrame1 = new javax.swing.JFrame();
+        swingTimerTimingSource1 = new org.jdesktop.swing.animation.timing.sources.SwingTimerTimingSource();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
         lblFondo = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -46,11 +49,17 @@ public class LoginFrame extends javax.swing.JFrame {
         jl_Mensajes = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jOptionPane1 = new javax.swing.JOptionPane();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
 
         jDialog1.getContentPane().setLayout(new java.awt.GridLayout(3, 0, 0, 3));
 
         lbl_Error.setText("Error");
         jDialog1.getContentPane().add(lbl_Error);
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Fondo4.png"))); // NOI18N
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Fondo4.png"))); // NOI18N
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("SoftCommodity+ by White Company® ");
@@ -116,7 +125,7 @@ public class LoginFrame extends javax.swing.JFrame {
         jPanel2.add(jl_Mensajes, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 320, 220, 20));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/LOGO_SoftCommodity+_V1.png"))); // NOI18N
-        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 40, 290, 130));
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 50, 290, 130));
 
         jOptionPane1.setBackground(new java.awt.Color(237, 174, 195));
         jOptionPane1.setForeground(new java.awt.Color(237, 174, 195));
@@ -124,6 +133,12 @@ public class LoginFrame extends javax.swing.JFrame {
         jOptionPane1.setEnabled(false);
         jOptionPane1.setFocusable(false);
         jPanel2.add(jOptionPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 270, -1, -1));
+
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Fondo3.png"))); // NOI18N
+        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, -1, -1));
+
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Fondo3.png"))); // NOI18N
+        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, -70, -1, -1));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 510, 450));
 
@@ -235,6 +250,10 @@ public class LoginFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JOptionPane jOptionPane1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPasswordField jPass_Usuario;
@@ -242,6 +261,7 @@ public class LoginFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jl_Mensajes;
     private javax.swing.JLabel lblFondo;
     private javax.swing.JLabel lbl_Error;
+    private org.jdesktop.swing.animation.timing.sources.SwingTimerTimingSource swingTimerTimingSource1;
     private javax.swing.JTextField txtF_Usuario;
     // End of variables declaration//GEN-END:variables
 }

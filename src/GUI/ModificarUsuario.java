@@ -69,6 +69,7 @@ public class ModificarUsuario extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
 
         jTextField1.setText("jTextField1");
 
@@ -255,6 +256,9 @@ public class ModificarUsuario extends javax.swing.JFrame {
         jLabel14.setText("Establece los nuevos parámetros para el usuario");
         jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 100, -1, -1));
 
+        jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Fondo5_Med.png"))); // NOI18N
+        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, -1, -1));
+
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 790, 510));
 
         pack();
@@ -353,6 +357,7 @@ public class ModificarUsuario extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

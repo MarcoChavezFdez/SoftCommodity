@@ -73,6 +73,7 @@ public class AddProductoFrame extends javax.swing.JFrame {
         txf_Nombre = new javax.swing.JTextField();
         cmb_Estatus = new javax.swing.JComboBox<>();
         btn_AddProducto = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("SoftCommodity+ by White Company® ");
@@ -293,6 +294,9 @@ public class AddProductoFrame extends javax.swing.JFrame {
         });
         jPanel1.add(btn_AddProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 380, -1, -1));
 
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Fondo5_Med.png"))); // NOI18N
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -30, -1, -1));
+
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 850, 500));
 
         pack();
@@ -407,6 +411,7 @@ public class AddProductoFrame extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cmb_MedidaAnchura;
     private javax.swing.JComboBox<String> cmb_Presentacion;
     private javax.swing.JComboBox<String> cmb_TipoContenido;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
