@@ -38,9 +38,9 @@ public class ReportesMainFrame extends javax.swing.JFrame {
         setTitle("SoftCommodity+ by White Company® ");
         setResizable(false);
 
-        jButton1.setText("Corte");
+        jButton1.setText("Reportes Cortes");
 
-        jButton2.setText("jButton2");
+        jButton2.setText("Reportes Ventas");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -52,11 +52,11 @@ public class ReportesMainFrame extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(169, 169, 169)
+                .addGap(120, 120, 120)
                 .addComponent(jButton2)
-                .addGap(134, 134, 134)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 139, Short.MAX_VALUE)
                 .addComponent(jButton1)
-                .addContainerGap(139, Short.MAX_VALUE))
+                .addGap(73, 73, 73))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
