@@ -22,7 +22,7 @@
  */
 package Conexion;
 
-import static org.junit.Assert.*;
+
 import Modelos.Bodega;
 import Modelos.Categoria;
 import Modelos.CorteCaja;
@@ -1256,23 +1256,6 @@ public class ConexionBD {
             return idTicket;
         } catch (SQLException e) {
             System.out.println("Error al consulta el utlimo ticket:" + e.getMessage());
-        }
-        return null;
-    }
-
-    public BigDecimal calcularTotalTicket(Integer idTicket) {
-        String sp = "{call calculaTotalTicket(?,?)}";
-        try {
-            CallableStatement proc = con.prepareCall(sp);
-            proc.setInt(1, idTicket);
-            proc.registerOutParameter(2, Types.DECIMAL);
-            proc.executeQuery();
-            BigDecimal TotalVenta = proc.getBigDecimal(2);
-            assertEquals(2.0, TotalVenta.doubleValue(), 0.0);
-            TotalVenta = proc.getBigDecimal(2);
-            return TotalVenta;
-        } catch (SQLException e) {
-            System.out.println("Error al ejecutar calculaTotalTicket:" + e.getMessage());
         }
         return null;
     }
