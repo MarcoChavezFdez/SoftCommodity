@@ -5,7 +5,7 @@
  */
 package Modelos;
 
-import java.sql.Timestamp;
+import java.sql.Time;
 
 /**
  *
@@ -16,14 +16,14 @@ public class Retiro {
     private Integer IdRetiro;
     private Integer IdUsuario;
     private Float Monto;
-    private java.sql.Timestamp Hora;
+    private java.sql.Time Hora;
 
     //Constructor de la clase coomo null
     public Retiro() {
     }
 
     //Constructor de la clase con todas las propiedades
-    public Retiro(Integer IdRetiro, Integer IdUsuario, Float Monto, Timestamp Hora) {
+    public Retiro(Integer IdRetiro, Integer IdUsuario, Float Monto, Time Hora) {
         this.IdRetiro = IdRetiro;
         this.IdUsuario = IdUsuario;
         this.Monto = Monto;
@@ -54,11 +54,11 @@ public class Retiro {
         this.Monto = Monto;
     }
 
-    public Timestamp getHora() {
+    public Time getHora() {
         return Hora;
     }
 
-    public void setHora(Timestamp Hora) {
+    public void setHora(Time Hora) {
         this.Hora = Hora;
     }
     

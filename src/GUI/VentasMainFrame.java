@@ -153,7 +153,7 @@ public class VentasMainFrame extends javax.swing.JFrame {
             ventaDiaria.setFecha(Fecha);
             ventaDiaria.setTotalVenta(0);
             conexion.insertarVenta(ventaDiaria);
-             ventaActual = conexion.consultarVenta(Fecha);
+            ventaActual = conexion.consultarVenta(Fecha);
         }
         CorteCaja corte;
         corte = conexion.consultaCorteCaja(Fecha, conexion.getUser().getIdUsuario());

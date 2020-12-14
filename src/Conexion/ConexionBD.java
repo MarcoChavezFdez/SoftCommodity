@@ -326,8 +326,7 @@ public class ConexionBD {
      **
      */
     public Usuario consultarUsuarioLogin(String nombre) {
-        String sql = "select idusuario,nombre,apellidopaterno,apellidomaterno,curp,direccion,telefono,email,rol,login,"
-                + "passw,estatus "
+        String sql = "select * "
                 + "from usuarios "
                 + "where login=?";
         Usuario u = new Usuario();
@@ -386,6 +385,37 @@ public class ConexionBD {
                 st.close();
                 return false;
             }
+
+        } catch (SQLException e) {
+            System.out.println("Error:" + e.getMessage());
+        }
+        return false;
+    }
+
+    /**
+     * Funcion la cual permite verificar si existe un usuario con cierto login
+     * en la tabla de usuarios
+     *
+     * @param nombre es el nombre del login que se desea buscar
+     * @param passw es la contraseña del usaurio
+     * @return Devuelve si encontro el usuario con el login y password
+     *
+     **
+     */
+    public boolean consultarUsuarioAutorizado(String nombre, String passw) {
+        String sql = "select * "
+                + "from usuarios "
+                + "where login=? and passw=? and rol='A' ";
+        try {
+            PreparedStatement st = con.prepareStatement(sql);
+            st.setString(1, nombre);
+            st.setString(2, passw);
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                return true;
+            }
+            rs.close();
+            st.close();
 
         } catch (SQLException e) {
             System.out.println("Error:" + e.getMessage());
@@ -776,7 +806,7 @@ public class ConexionBD {
      * 
      */
     public Float consultarVentaTotalVenta(Date fecha) {
-        Float TotalVenta = 0.0f;
+        Float TotalVenta = 0f;
         String sql = "select SUM(cc.TotalVenta)as TotalVenta "
                 + "from ventas v "
                 + "join cortesventas cv "
@@ -784,11 +814,9 @@ public class ConexionBD {
                 + "join cortescaja cc "
                 + "on cc.idcorte=cv.idcorte "
                 + "where v.fecha=?";
-        Venta v = new Venta();
         try {
             PreparedStatement st = con.prepareStatement(sql);
             st.setDate(1, fecha);
-
             ResultSet rs = st.executeQuery();
             if (rs.next()) {
                 TotalVenta = rs.getFloat("TotalVenta");
@@ -1017,6 +1045,33 @@ public class ConexionBD {
         return cc.getTotalVenta();
     }
 
+    public Float consultarCorteVentaTotal(Integer idCorte) {
+        Float TotalVenta = 0f;
+        String sql = "select SUM(t.total)as TotalVenta "
+                + "from cortescaja cc "
+                + "join detallecortes dc "
+                + "on cc.idcorte=dc.idcorte "
+                + "join tickets t "
+                + "on t.idticket=dc.idticket "
+                + "where cc.idcorte=?";
+        try {
+            PreparedStatement st = con.prepareStatement(sql);
+            st.setInt(1, idCorte);
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                TotalVenta = rs.getFloat("TotalVenta");
+            } else {
+                TotalVenta = 0.0f;
+            }
+            rs.close();
+            st.close();
+        } catch (SQLException e) {
+            System.out.println("Error:" + e.getMessage());
+        }
+
+        return TotalVenta;
+    }
+
     /**
      * Modelo DetalleCortes
      * *************************************************************
@@ -1026,7 +1081,6 @@ public class ConexionBD {
      *
      *************************************************************
      */
-    
     /**
      * *Esta Funcion permite realizar la insercion de un registro en la tabla
      * de DetalleCortes

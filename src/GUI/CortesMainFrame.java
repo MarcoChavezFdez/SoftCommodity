@@ -240,8 +240,7 @@ public class CortesMainFrame extends javax.swing.JFrame {
      */
     private void llenaEtiquetas() {
         lbl_CorteId.setText(String.valueOf(this.CorteActual.getIdCorte()));
-        this.CorteActual.setTotalVenta(conexion.calcularTotalVentaCorte(CorteActual));
-        System.out.println("Venta Actual "+String.valueOf(conexion.calcularTotalVentaCorte(CorteActual)));
+        this.CorteActual.setTotalVenta(conexion.consultarCorteVentaTotal(CorteActual.getIdCorte()));
         if (CorteActual.getTotalVenta() == null) {
             lbl_TotalVenta.setText("0.00");
         } else {
@@ -348,7 +347,9 @@ public class CortesMainFrame extends javax.swing.JFrame {
     * Este evento permite generar retiros de caja  y esta relacionado con el btn_Retirar
      */
     private void btn_RetirarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_RetirarActionPerformed
-        // TODO add your handling code here:
+        RealizarRetiroFrame retiros = new RealizarRetiroFrame(this.conexion,this.CorteActual);
+        this.setVisible(false);
+        retiros.setVisible(true);
     }//GEN-LAST:event_btn_RetirarActionPerformed
     
     /*

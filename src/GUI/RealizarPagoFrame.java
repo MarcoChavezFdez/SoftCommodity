@@ -9,6 +9,8 @@ import Conexion.ConexionBD;
 import Modelos.CorteCaja;
 import Modelos.DetalleCorte;
 import Modelos.Ticket;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.sql.Time;
 import java.time.LocalTime;
 
@@ -502,19 +504,19 @@ public class RealizarPagoFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_txf_CambioActionPerformed
 
     /**
-     * Este evento permite actualizar los datos del ticket que se cobro
-     * y regresar al menu principal de cortes
-     * Esta Relacionado con el btn_Cobrar
-    **/
+     * Este evento permite actualizar los datos del ticket que se cobro y
+     * regresar al menu principal de cortes Esta Relacionado con el btn_Cobrar
+    *
+     */
     private void btn_CobrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CobrarActionPerformed
         this.ticketAcutal.setHoraVenta(Time.valueOf(LocalTime.now()));
-        DetalleCorte dc = new DetalleCorte(this.Corte.getIdCorte(),this.ticketAcutal.getIdTicket());
+        DetalleCorte dc = new DetalleCorte(this.Corte.getIdCorte(), this.ticketAcutal.getIdTicket());
         this.conexion.actualizarTicket(ticketAcutal);
         this.conexion.insertarDetalleCorte(dc);
-        this.Corte.setTotalCorte(this.conexion.calcularTotalVentaCorte(Corte));
+        this.Corte.setTotalVenta(this.conexion.consultarCorteVentaTotal(Corte.getIdCorte()));
         this.conexion.actualizarCorteCaja(Corte);
-        CortesMainFrame cortesPrincipal = new CortesMainFrame(this.conexion,this.Corte);
-        
+        CortesMainFrame cortesPrincipal = new CortesMainFrame(this.conexion, this.Corte);
+
         this.setVisible(false);
         cortesPrincipal.setVisible(true);
     }//GEN-LAST:event_btn_CobrarActionPerformed
@@ -524,13 +526,14 @@ public class RealizarPagoFrame extends javax.swing.JFrame {
         cambio = Float.valueOf(cant) - this.ticketAcutal.getSubTotal();
         if (cambio < 0) {
             btn_Cobrar.setEnabled(false);
-            
+
         } else {
             txf_Efectivo.setText(cant);
             txf_Cambio.setText(String.valueOf(cambio));
         }
 
     }
+
 
     /**
      * @param args the command line arguments
