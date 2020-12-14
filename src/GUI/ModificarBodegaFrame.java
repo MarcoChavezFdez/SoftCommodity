@@ -20,10 +20,12 @@ public class ModificarBodegaFrame extends javax.swing.JFrame {
      * Creates new form AddBodegaFrame
      */
     ConexionBD conexion;
+    Bodega bodega;
 
-    public ModificarBodegaFrame(ConexionBD conexion) {
+    public ModificarBodegaFrame(ConexionBD conexion,Bodega b) {
         initComponents();
         this.conexion = conexion;
+        this.bodega=b;
     }
 
     /**
@@ -42,7 +44,7 @@ public class ModificarBodegaFrame extends javax.swing.JFrame {
         txf_Nombre = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         lbl_Mensaje = new javax.swing.JLabel();
-        btn_GuardarBodega = new javax.swing.JButton();
+        btn_ModificarBodega = new javax.swing.JButton();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -102,16 +104,16 @@ public class ModificarBodegaFrame extends javax.swing.JFrame {
         lbl_Mensaje.setForeground(new java.awt.Color(255, 255, 255));
         jPanel2.add(lbl_Mensaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 220, 139, 19));
 
-        btn_GuardarBodega.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Bodega/Modificar.png"))); // NOI18N
-        btn_GuardarBodega.setBorderPainted(false);
-        btn_GuardarBodega.setContentAreaFilled(false);
-        btn_GuardarBodega.setEnabled(false);
-        btn_GuardarBodega.addActionListener(new java.awt.event.ActionListener() {
+        btn_ModificarBodega.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Bodega/Modificar.png"))); // NOI18N
+        btn_ModificarBodega.setBorderPainted(false);
+        btn_ModificarBodega.setContentAreaFilled(false);
+        btn_ModificarBodega.setEnabled(false);
+        btn_ModificarBodega.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_GuardarBodegaActionPerformed(evt);
+                btn_ModificarBodegaActionPerformed(evt);
             }
         });
-        jPanel2.add(btn_GuardarBodega, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 260, -1, -1));
+        jPanel2.add(btn_ModificarBodega, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 260, -1, -1));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 540, 380));
 
@@ -128,11 +130,10 @@ public class ModificarBodegaFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txf_NombreActionPerformed
 
-    private void btn_GuardarBodegaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_GuardarBodegaActionPerformed
-        Bodega addBodega = new Bodega();
-        addBodega.setNombre(txf_Nombre.getText());
+    private void btn_ModificarBodegaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ModificarBodegaActionPerformed
+        this.bodega.setNombre(txf_Nombre.getText());
         try {
-            if (conexion.insertarBodega(addBodega)) {
+            if (conexion.actualizarBodega(this.bodega)) {
                 JOptionPane.showMessageDialog(null, "Bodega Añadida con Exito");
                 BodegasMainFrame bodega = new BodegasMainFrame(this.conexion);
                 bodega.setVisible(true);
@@ -142,7 +143,7 @@ public class ModificarBodegaFrame extends javax.swing.JFrame {
         } catch (HeadlessException e) {
             JOptionPane.showMessageDialog(null, "Error:" + e.getMessage());
         }
-    }//GEN-LAST:event_btn_GuardarBodegaActionPerformed
+    }//GEN-LAST:event_btn_ModificarBodegaActionPerformed
 
     private void txf_NombreKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txf_NombreKeyPressed
 
@@ -151,16 +152,16 @@ public class ModificarBodegaFrame extends javax.swing.JFrame {
     private void txf_NombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txf_NombreKeyReleased
         if (conexion.consultarBodegaRegistrada(txf_Nombre.getText())) {
             lbl_Mensaje.setText("Ya existe esa bodega");
-            btn_GuardarBodega.setEnabled(false);
+            btn_ModificarBodega.setEnabled(false);
         } else {
             lbl_Mensaje.setText("");
-            btn_GuardarBodega.setEnabled(true);
+            btn_ModificarBodega.setEnabled(true);
         }
     }//GEN-LAST:event_txf_NombreKeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn_GuardarBodega;
+    private javax.swing.JButton btn_ModificarBodega;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

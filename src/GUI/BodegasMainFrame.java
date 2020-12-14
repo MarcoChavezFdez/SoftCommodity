@@ -20,9 +20,10 @@ public class BodegasMainFrame extends javax.swing.JFrame {
      * Creates new form BodegasMain
      */
     ConexionBD conexion;
+
     public BodegasMainFrame(ConexionBD conexion) {
         initComponents();
-        this.conexion=conexion;
+        this.conexion = conexion;
         ArrayList<Bodega> lista = conexion.consultarBodegas();
         llenarTabla(lista);
     }
@@ -42,7 +43,7 @@ public class BodegasMainFrame extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
+        btn_ModificarBodega = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbl_Datos = new javax.swing.JTable();
@@ -103,10 +104,10 @@ public class BodegasMainFrame extends javax.swing.JFrame {
         jLabel2.setText("Bodegas Registradas");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 40, -1, -1));
 
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Bodega/Modificar.png"))); // NOI18N
-        jButton3.setBorderPainted(false);
-        jButton3.setContentAreaFilled(false);
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 280, -1, -1));
+        btn_ModificarBodega.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Bodega/Modificar.png"))); // NOI18N
+        btn_ModificarBodega.setBorderPainted(false);
+        btn_ModificarBodega.setContentAreaFilled(false);
+        jPanel1.add(btn_ModificarBodega, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 280, -1, -1));
 
         jTextField1.setBackground(new java.awt.Color(237, 174, 195));
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
@@ -134,6 +135,11 @@ public class BodegasMainFrame extends javax.swing.JFrame {
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
+            }
+        });
+        tbl_Datos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbl_DatosMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(tbl_Datos);
@@ -164,7 +170,7 @@ public class BodegasMainFrame extends javax.swing.JFrame {
         jLabel3.setText("Buscar por:");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 80, -1, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 780, 540));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -20, 780, 540));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -200,7 +206,14 @@ public class BodegasMainFrame extends javax.swing.JFrame {
     private void InventariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InventariosActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_InventariosActionPerformed
-        private void llenarTabla(ArrayList<Bodega> lista) {
+
+    private void tbl_DatosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_DatosMouseClicked
+        Integer id = Integer.parseInt(tbl_Datos.getValueAt(tbl_Datos.getSelectedRow(), 0).toString());
+        Bodega b = conexion.consultarBodega(id);
+        btn_ModificarBodega.setEnabled(true);
+        
+    }//GEN-LAST:event_tbl_DatosMouseClicked
+    private void llenarTabla(ArrayList<Bodega> lista) {
         String[] encabezado = {"IdBodega", "Nombre"};
         Object[][] datos = new Object[lista.size()][2];
         int ren = 0;
@@ -224,9 +237,9 @@ public class BodegasMainFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Inventarios;
+    private javax.swing.JButton btn_ModificarBodega;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;

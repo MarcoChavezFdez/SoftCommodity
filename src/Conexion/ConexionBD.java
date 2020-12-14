@@ -225,14 +225,14 @@ public class ConexionBD {
     public ArrayList<Producto> consultaProductosLimitadoPorNombre(String Nombre) {
         String sql = "select * "
                 + "from productos "
-                + "where nombre like CONCAT( '%"+Nombre+ "%')";
+                + "where nombre like CONCAT( '%" + Nombre + "%')";
         ArrayList<Producto> lista = new ArrayList<Producto>();
-        
+
         try {
             PreparedStatement st = con.prepareStatement(sql);
             System.out.println(sql);
             ResultSet rs = st.executeQuery(sql);
-            
+
             while (rs.next()) {
                 Producto p = new Producto();
                 p.setIdProducto(rs.getInt("idproducto"));
@@ -277,9 +277,9 @@ public class ConexionBD {
         Producto p = new Producto();
         try {
             PreparedStatement st = con.prepareStatement(sql);
-  
+
             ResultSet rs = st.executeQuery(sql);
-            
+
             while (rs.next()) {
                 p.setIdProducto(rs.getInt("idproducto"));
                 p.setIdCategoria(rs.getInt("idcategoria"));
@@ -447,8 +447,7 @@ public class ConexionBD {
      **
      */
     public boolean consultarUsuarioLoginRegistro(String nombre) {
-        String sql = "select idusuario,nombre,apellidopaterno,apellidomaterno,curp,direccion,telefono,email,rol,login,"
-                + "passw,estatus "
+        String sql = "select * "
                 + "from usuarios "
                 + "where login=?";
         try {
@@ -514,8 +513,7 @@ public class ConexionBD {
      **
      */
     public ArrayList<Usuario> consultarUsuarios() {
-        String sql = "select idusuario,nombre,apellidopaterno,apellidomaterno,curp,direccion,telefono,email,rol,login,"
-                + "passw,estatus "
+        String sql = "select * "
                 + "from usuarios";
         ArrayList<Usuario> lista = new ArrayList<Usuario>();
 
@@ -635,7 +633,7 @@ public class ConexionBD {
      **
      */
     public ArrayList<Categoria> consultarCategoriasPorNombre() {
-        String sql = "select idcategoria,nombre from categorias order by nombre asc";
+        String sql = "select * from categorias order by nombre asc";
         ArrayList<Categoria> lista = new ArrayList<Categoria>();
 
         try {
@@ -676,6 +674,36 @@ public class ConexionBD {
         return null;
     }
 
+    /**
+     * Esta Funcion permite realizar la consulta de una bodega mediante el
+     * IdBodega de la tabla de bodegas
+     *
+     * @param IdCategoria es el id con el que buscara la bodega
+     * @return regresa el objeto bodega encontrado
+     *
+     */
+    public Categoria consultarCategoria(Integer IdCategoria) {
+        String sql = "select * "
+                + "from categorias "
+                + "where idcategoria=?";
+        Categoria c = new Categoria();
+        try {
+            PreparedStatement st = con.prepareStatement(sql);
+            st.setInt(1, IdCategoria);
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                c.setIdCategoria(rs.getInt("idcategoria"));
+                c.setNombre(rs.getString("nombre"));
+            }
+            rs.close();
+            st.close();
+            return c;
+        } catch (SQLException e) {
+            System.out.println("Error:" + e.getMessage());
+        }
+        return c;
+    }
+
     public boolean insertarCategoria(Categoria c) {
         String sql = "insert into categorias values(null,?)";
         boolean ban = false;
@@ -714,7 +742,31 @@ public class ConexionBD {
         }
         return false;
     }
+    /**
+     * Esta Funcion permite actualizar una categoria con el idPropocionado
+     *
+     * @param c es la categoria que se desea modificar
+     * @return regresa si la operacion fue exitosa
+     *
+     */
+    public boolean actualizarCategoria(Categoria c) {
+        String sql = "update categorias set nombre=? where idcategoria=?";
+        boolean ban = false;
+        try {
+            PreparedStatement st = con.prepareStatement(sql);
+            st.setString(1, c.getNombre());
+            st.setInt(2, c.getIdCategoria());
+            st.execute();
+            st.close();
+            ban = true;
 
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error:" + e.getMessage());
+        }
+        return ban;
+    }
+    
+    
     /**
      * Modelo de Bodegas
      * *************************************************************
@@ -723,10 +775,14 @@ public class ConexionBD {
      *
      *************************************************************
      */
-    /*Esta Funcion permite realizar la insercion de un registro en la table de Bodegas
+    /**
+     * Esta Funcion permite realizar la insercion de un registro en la table de
+     * Bodegas
+     *
      * @param b Recibe el elemento tipo Bodega para realizar insercion en la
      * tabla de bodegas
      * @return regresa si fue o no exitosa la insercion
+     *
      */
     public boolean insertarBodega(Bodega b) {
         String sql = "insert into bodegas values(null,?)";
@@ -744,10 +800,43 @@ public class ConexionBD {
         return ban;
     }
 
-    /*Esta Funcion permite realizar la consulta General la table de Bodegas
-     * No recibe parametros
-     * @return regresa un ArrayList tipo Bodega el cual contiene el resultado
-     * de la consulta
+    /**
+     * Esta Funcion permite realizar la consulta de una bodega mediante el
+     * IdBodega de la tabla de bodegas
+     *
+     * @param IdBodega es el id con el que buscara la bodega
+     * @return regresa el objeto bodega encontrado
+     *
+     */
+    public Bodega consultarBodega(Integer IdBodega) {
+        String sql = "select * "
+                + "from bodegas "
+                + "where idbodega=?";
+        Bodega b = new Bodega();
+        try {
+            PreparedStatement st = con.prepareStatement(sql);
+            st.setInt(1, IdBodega);
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                b.setIdBodega(rs.getInt("idbodega"));
+                b.setNombre(rs.getString("nombre"));
+            }
+            rs.close();
+            st.close();
+            return b;
+        } catch (SQLException e) {
+            System.out.println("Error:" + e.getMessage());
+        }
+        return b;
+    }
+
+    /**
+     * Esta Funcion permite realizar la consulta General la table de Bodegas No
+     * recibe parametros
+     *
+     * @return regresa un ArrayList tipo Bodega el cual contiene el resultado de
+     * la consulta
+     *
      */
     public ArrayList<Bodega> consultarBodegas() {
         String sql = "select idbodega,nombre from bodegas";
@@ -771,11 +860,14 @@ public class ConexionBD {
         return null;
     }
 
-    /* Esta Funcion permite consulta en la base de datos si existe una bodega con
-     * el mismo nombre
-     * @param nombre es el nombre con el que realizara la busqueda en la 
-     * tabla de bodegas
+    /**
+     * Esta Funcion permite consulta en la base de datos si existe una bodega
+     * con el mismo nombre
+     *
+     * @param nombre es el nombre con el que realizara la busqueda en la tabla
+     * de bodegas
      * @return regresa si existe una bodega con el mismo nombre
+     *
      */
     public boolean consultarBodegaRegistrada(String nombre) {
         String sql = "select idbodega, nombre from bodegas where nombre=?";
@@ -798,6 +890,30 @@ public class ConexionBD {
             System.out.println("Error:" + e.getMessage());
         }
         return false;
+    }
+
+    /**
+     * Esta Funcion permite actualizar una bodega con el idPropocionado
+     *
+     * @param b es la bodega que se desea modificar
+     * @return regresa si la operacion fue exitosa
+     *
+     */
+    public boolean actualizarBodega(Bodega b) {
+        String sql = "update bodegas set nombre=? where idbodega=?";
+        boolean ban = false;
+        try {
+            PreparedStatement st = con.prepareStatement(sql);
+            st.setString(1, b.getNombre());
+            st.setInt(2, b.getIdBodega());
+            st.execute();
+            st.close();
+            ban = true;
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error:" + e.getMessage());
+        }
+        return ban;
     }
 
     /**
