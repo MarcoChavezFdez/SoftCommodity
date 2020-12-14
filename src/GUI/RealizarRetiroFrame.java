@@ -220,8 +220,10 @@ public class RealizarRetiroFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_AtrasActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        
-        this.montoDisponible = this.corteActual.getFondoInicial() + this.corteActual.getTotalVenta();
+
+        this.montoDisponible = this.corteActual.getTotalVenta();
+        Float totalRetiros = this.conexion.consultarCorteCajaTotalRetiros(this.corteActual.getIdCorte());
+        this.montoDisponible-=totalRetiros;
         txf_MontoDisponible.setText(String.valueOf(this.montoDisponible));
 
     }//GEN-LAST:event_formWindowOpened
