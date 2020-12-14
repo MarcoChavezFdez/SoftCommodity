@@ -1460,7 +1460,7 @@ public class ConexionBD {
      *
      */
     public boolean insertarDetalleRetiro(DetalleRetiro dt) {
-        String sql = "insert into retiros values(null,?,?,?)";
+        String sql = "insert into retiros values(?,?)";
         boolean ban = false;
         try {
             PreparedStatement st = con.prepareStatement(sql);
