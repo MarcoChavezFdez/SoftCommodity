@@ -112,6 +112,7 @@ public class RealizarPagoFrame extends javax.swing.JFrame {
         jPanel4.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, -1, -1));
 
         txf_Efectivo.setText("0.00");
+        txf_Efectivo.setEnabled(false);
         jPanel4.add(txf_Efectivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 190, 84, -1));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -120,6 +121,7 @@ public class RealizarPagoFrame extends javax.swing.JFrame {
         jPanel4.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 240, -1, -1));
 
         txf_Cambio.setText("0.00");
+        txf_Cambio.setEnabled(false);
         txf_Cambio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txf_CambioActionPerformed(evt);
@@ -143,6 +145,7 @@ public class RealizarPagoFrame extends javax.swing.JFrame {
         jPanel4.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, -1, -1));
 
         txf_Total.setText("0.00");
+        txf_Total.setEnabled(false);
         jPanel4.add(txf_Total, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 150, 84, -1));
 
         btn_Atras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Volver.png"))); // NOI18N
