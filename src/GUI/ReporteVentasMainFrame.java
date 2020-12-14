@@ -17,6 +17,7 @@ public class ReporteVentasMainFrame extends javax.swing.JFrame {
      * Creates new form ReporteVentasMainFrame
      */
     ConexionBD conexion;
+    
     public ReporteVentasMainFrame(ConexionBD conexion) {
         initComponents();
         this.conexion=conexion;
@@ -144,9 +145,7 @@ public class ReporteVentasMainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_AtrasActionPerformed
 
     private void btn_AddReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AddReporteActionPerformed
-        AddReporteVentaFrame addReporte = new AddReporteVentaFrame(this.conexion);
-        addReporte.setVisible(true);
-        this.setVisible(false);
+
     }//GEN-LAST:event_btn_AddReporteActionPerformed
 
     /**
