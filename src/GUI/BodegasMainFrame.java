@@ -20,9 +20,10 @@ public class BodegasMainFrame extends javax.swing.JFrame {
      * Creates new form BodegasMain
      */
     ConexionBD conexion;
+
     public BodegasMainFrame(ConexionBD conexion) {
         initComponents();
-        this.conexion=conexion;
+        this.conexion = conexion;
         ArrayList<Bodega> lista = conexion.consultarBodegas();
         llenarTabla(lista);
     }
@@ -37,10 +38,12 @@ public class BodegasMainFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tbl_Datos = new javax.swing.JTable();
         jButton4 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btn_Eliminar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         btn_ModificarBodega = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
@@ -51,8 +54,6 @@ public class BodegasMainFrame extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        tbl_DatosBodegas = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("SoftCommodity+ by White Company® ");
@@ -66,6 +67,38 @@ public class BodegasMainFrame extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        tbl_Datos.setBackground(new java.awt.Color(237, 174, 195));
+        tbl_Datos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
+            },
+            new String [] {
+                "IdBodega", "Nombre"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                true, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tbl_Datos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbl_DatosMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                tbl_DatosMousePressed(evt);
+            }
+        });
+        jScrollPane2.setViewportView(tbl_Datos);
+
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 538, 384));
 
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Bodega/Volver.png"))); // NOI18N
         jButton4.setBorderPainted(false);
@@ -92,15 +125,16 @@ public class BodegasMainFrame extends javax.swing.JFrame {
         });
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 180, -1, -1));
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Bodega/Eliminar.png"))); // NOI18N
-        jButton2.setBorderPainted(false);
-        jButton2.setContentAreaFilled(false);
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btn_Eliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Bodega/Eliminar.png"))); // NOI18N
+        btn_Eliminar.setBorderPainted(false);
+        btn_Eliminar.setContentAreaFilled(false);
+        btn_Eliminar.setEnabled(false);
+        btn_Eliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btn_EliminarActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 377, -1, 100));
+        jPanel1.add(btn_Eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 377, -1, 100));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -111,6 +145,11 @@ public class BodegasMainFrame extends javax.swing.JFrame {
         btn_ModificarBodega.setBorderPainted(false);
         btn_ModificarBodega.setContentAreaFilled(false);
         btn_ModificarBodega.setEnabled(false);
+        btn_ModificarBodega.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_ModificarBodegaActionPerformed(evt);
+            }
+        });
         jPanel1.add(btn_ModificarBodega, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 280, -1, -1));
 
         jTextField1.setBackground(new java.awt.Color(237, 174, 195));
@@ -157,35 +196,6 @@ public class BodegasMainFrame extends javax.swing.JFrame {
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Fondo3.png"))); // NOI18N
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, -280, 340, 520));
 
-        tbl_DatosBodegas.setBackground(new java.awt.Color(237, 174, 195));
-        tbl_DatosBodegas.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
-            },
-            new String [] {
-                "IdBodega", "Nombre"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                true, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        tbl_DatosBodegas.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tbl_DatosBodegasMouseClicked(evt);
-            }
-        });
-        jScrollPane2.setViewportView(tbl_DatosBodegas);
-
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 538, 384));
-
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -20, 780, 540));
 
         pack();
@@ -197,9 +207,9 @@ public class BodegasMainFrame extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btn_EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_EliminarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btn_EliminarActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
@@ -223,10 +233,22 @@ public class BodegasMainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_InventariosActionPerformed
 
-    private void tbl_DatosBodegasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_DatosBodegasMouseClicked
+    private void tbl_DatosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_DatosMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_tbl_DatosBodegasMouseClicked
-        private void llenarTabla(ArrayList<Bodega> lista) {
+    }//GEN-LAST:event_tbl_DatosMouseClicked
+
+    private void tbl_DatosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_DatosMousePressed
+        btn_ModificarBodega.setEnabled(true);
+        btn_Eliminar.setEnabled(true);
+    }//GEN-LAST:event_tbl_DatosMousePressed
+
+    private void btn_ModificarBodegaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ModificarBodegaActionPerformed
+        Integer IdBodega = Integer.parseInt(tbl_Datos.getValueAt(tbl_Datos.getSelectedRow(), 0).toString());
+        Bodega b = conexion.consultarBodega(IdBodega);
+        
+
+    }//GEN-LAST:event_btn_ModificarBodegaActionPerformed
+    private void llenarTabla(ArrayList<Bodega> lista) {
         String[] encabezado = {"IdBodega", "Nombre"};
         Object[][] datos = new Object[lista.size()][2];
         int ren = 0;
@@ -241,7 +263,7 @@ public class BodegasMainFrame extends javax.swing.JFrame {
                 return false; //Disallow the editing of any cell
             }
         };
-        tbl_DatosBodegas.setModel(m);
+        tbl_Datos.setModel(m);
     }
     /**
      * @param args the command line arguments
@@ -250,9 +272,9 @@ public class BodegasMainFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Inventarios;
+    private javax.swing.JButton btn_Eliminar;
     private javax.swing.JButton btn_ModificarBodega;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton4;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
@@ -265,6 +287,6 @@ public class BodegasMainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTable tbl_DatosBodegas;
+    private javax.swing.JTable tbl_Datos;
     // End of variables declaration//GEN-END:variables
 }

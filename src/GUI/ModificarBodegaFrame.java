@@ -20,10 +20,11 @@ public class ModificarBodegaFrame extends javax.swing.JFrame {
      * Creates new form AddBodegaFrame
      */
     ConexionBD conexion;
-
-    public ModificarBodegaFrame(ConexionBD conexion) {
+    Bodega bodega;
+    public ModificarBodegaFrame(ConexionBD conexion,Bodega b) {
         initComponents();
         this.conexion = conexion;
+        this.bodega=b;
     }
 
     /**
@@ -133,13 +134,13 @@ public class ModificarBodegaFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_txf_NombreActionPerformed
 
     private void btn_GuardarBodegaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_GuardarBodegaActionPerformed
-        Bodega addBodega = new Bodega();
-        addBodega.setNombre(txf_Nombre.getText());
+        
+        this.bodega.setNombre(txf_Nombre.getText());
         try {
-            if (conexion.insertarBodega(addBodega)) {
+            if (conexion.insertarBodega(this.bodega)) {
                 JOptionPane.showMessageDialog(null, "Bodega Añadida con Exito");
-                BodegasMainFrame bodega = new BodegasMainFrame(this.conexion);
-                bodega.setVisible(true);
+                BodegasMainFrame menuBodega = new BodegasMainFrame(this.conexion);
+                menuBodega.setVisible(true);
                 this.setVisible(false);
 
             }
