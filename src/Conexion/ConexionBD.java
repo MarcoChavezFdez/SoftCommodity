@@ -28,8 +28,10 @@ import Modelos.Categoria;
 import Modelos.CorteCaja;
 import Modelos.CorteVenta;
 import Modelos.DetalleCorte;
+import Modelos.DetalleRetiro;
 import Modelos.DetalleTicket;
 import Modelos.Producto;
+import Modelos.Retiro;
 import Modelos.Ticket;
 import Modelos.Usuario;
 import Modelos.Venta;
@@ -1328,6 +1330,76 @@ public class ConexionBD {
         }
     }
 
+    /**
+     * Modelo Retiro
+     * *************************************************************
+     *
+     * Funciones para el modelo Retiro. Esta seccion contiente todos los metodos
+     * necesarios para interactuar con la tabla de Retiros
+     *
+     *************************************************************
+     */
+    /**
+     * Esta Funcion permite realizar la insercion de un registro en la tabla
+     * retiros
+     *
+     * @param r Recibe el elemento tipo Retiro para realizar insercion en la
+     * tabla de retiros
+     * @return regresa si fue o no exitosa la insercion
+     *
+     */
+    public boolean insertarRetiro(Retiro r) {
+        String sql = "insert into retiros values(null,?,?,?)";
+        boolean ban = false;
+        try {
+            PreparedStatement st = con.prepareStatement(sql);
+            st.setInt(1, r.getIdUsuario());
+            st.setFloat(2, r.getMonto());
+            st.setTime(3, r.getHora());
+            st.execute();
+            st.close();
+            ban = true;
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error:" + e.getMessage());
+        }
+        return ban;
+    }
+    /**
+     * Modelo DetalleRetiro
+     * *************************************************************
+     *
+     * Funciones para el modelo DetalleRetiro. Esta seccion contiente todos los metodos
+     * necesarios para interactuar con la tabla de DetalleRetiros
+     *
+     *************************************************************
+     */
+    /**
+     * Esta Funcion permite realizar la insercion de un registro en la tabla
+     * retiros
+     *
+     * @param dt Recibe el elemento tipo Retiro para realizar insercion en la
+     * tabla de retiros
+     * @return regresa si fue o no exitosa la insercion
+     *
+     */
+    public boolean insertarDEtalleRetiro(DetalleRetiro dt) {
+        String sql = "insert into retiros values(null,?,?,?)";
+        boolean ban = false;
+        try {
+            PreparedStatement st = con.prepareStatement(sql);
+            st.setInt(1, dt.getIdUsuario());
+            st.setFloat(2, dt.getMonto());
+            st.setTime(3, dt.getHora());
+            st.execute();
+            st.close();
+            ban = true;
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error:" + e.getMessage());
+        }
+        return ban;
+    }
     //Funcion que permite establecer el usuario de la propiedad @user de la clase
     //Recibe un usuario de objeto tipo Usuario
     public void setUser(Usuario user) {
