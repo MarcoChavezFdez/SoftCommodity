@@ -255,7 +255,11 @@ public class RealizarRetiroFrame extends javax.swing.JFrame {
 
     private void btn_RetiroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_RetiroActionPerformed
         if (this.conexion.consultarUsuarioAutorizado(txf_Login.getText(), String.valueOf(psf_Password.getPassword()))) {
-            Retiro nuevoRetiro = new Retiro(null, conexion.consultarUsuarioLogin(txf_Login.getText()).getIdUsuario(), Float.valueOf(txf_MontoaRetirar.getText()), Time.valueOf(LocalTime.now()));
+            Retiro nuevoRetiro = new Retiro();
+            nuevoRetiro.setIdUsuario(conexion.consultarUsuarioLogin(txf_Login.getText()).getIdUsuario());
+            nuevoRetiro.setMonto(Float.valueOf(txf_MontoaRetirar.getText()));
+            nuevoRetiro.setHora(Time.valueOf(LocalTime.now()));
+            nuevoRetiro.setFecha(this.corteActual.getFecha());
             if (conexion.insertarRetiro(nuevoRetiro)) {
                 DetalleRetiro dt = new DetalleRetiro(conexion.consultaUltimoRetiro(), this.corteActual.getIdCorte());
                 if (conexion.insertarDetalleRetiro(dt)) {
