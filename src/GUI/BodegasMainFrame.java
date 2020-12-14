@@ -42,10 +42,8 @@ public class BodegasMainFrame extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
+        btn_ModificarBodega = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tbl_Datos = new javax.swing.JTable();
         jComboBox1 = new javax.swing.JComboBox<>();
         Inventarios = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
@@ -53,6 +51,8 @@ public class BodegasMainFrame extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tbl_DatosBodegas = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("SoftCommodity+ by White Company® ");
@@ -107,10 +107,11 @@ public class BodegasMainFrame extends javax.swing.JFrame {
         jLabel2.setText("Bodegas Registradas");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 40, -1, -1));
 
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Bodega/Modificar.png"))); // NOI18N
-        jButton3.setBorderPainted(false);
-        jButton3.setContentAreaFilled(false);
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 280, -1, -1));
+        btn_ModificarBodega.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Bodega/Modificar.png"))); // NOI18N
+        btn_ModificarBodega.setBorderPainted(false);
+        btn_ModificarBodega.setContentAreaFilled(false);
+        btn_ModificarBodega.setEnabled(false);
+        jPanel1.add(btn_ModificarBodega, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 280, -1, -1));
 
         jTextField1.setBackground(new java.awt.Color(237, 174, 195));
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
@@ -119,30 +120,6 @@ public class BodegasMainFrame extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 110, 233, -1));
-
-        tbl_Datos.setBackground(new java.awt.Color(237, 174, 195));
-        tbl_Datos.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
-            },
-            new String [] {
-                "IdBodega", "Nombre"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                true, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane1.setViewportView(tbl_Datos);
-
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 538, 384));
 
         jComboBox1.setBackground(new java.awt.Color(237, 174, 195));
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "IdBodega", "Nombre" }));
@@ -180,7 +157,36 @@ public class BodegasMainFrame extends javax.swing.JFrame {
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Fondo3.png"))); // NOI18N
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, -280, 340, 520));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 780, 540));
+        tbl_DatosBodegas.setBackground(new java.awt.Color(237, 174, 195));
+        tbl_DatosBodegas.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
+            },
+            new String [] {
+                "IdBodega", "Nombre"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                true, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tbl_DatosBodegas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbl_DatosBodegasMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(tbl_DatosBodegas);
+
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 538, 384));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -20, 780, 540));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -216,6 +222,10 @@ public class BodegasMainFrame extends javax.swing.JFrame {
     private void InventariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InventariosActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_InventariosActionPerformed
+
+    private void tbl_DatosBodegasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_DatosBodegasMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tbl_DatosBodegasMouseClicked
         private void llenarTabla(ArrayList<Bodega> lista) {
         String[] encabezado = {"IdBodega", "Nombre"};
         Object[][] datos = new Object[lista.size()][2];
@@ -231,7 +241,7 @@ public class BodegasMainFrame extends javax.swing.JFrame {
                 return false; //Disallow the editing of any cell
             }
         };
-        tbl_Datos.setModel(m);
+        tbl_DatosBodegas.setModel(m);
     }
     /**
      * @param args the command line arguments
@@ -240,9 +250,9 @@ public class BodegasMainFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Inventarios;
+    private javax.swing.JButton btn_ModificarBodega;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
@@ -253,8 +263,8 @@ public class BodegasMainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTable tbl_Datos;
+    private javax.swing.JTable tbl_DatosBodegas;
     // End of variables declaration//GEN-END:variables
 }

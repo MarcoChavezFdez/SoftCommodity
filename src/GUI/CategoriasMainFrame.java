@@ -147,6 +147,7 @@ public class CategoriasMainFrame extends javax.swing.JFrame {
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Categoria/Modificar.png"))); // NOI18N
         jButton3.setBorderPainted(false);
         jButton3.setContentAreaFilled(false);
+        jButton3.setEnabled(false);
         jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 240, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
