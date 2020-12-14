@@ -24,6 +24,7 @@
  */
 package Modelos;
 
+import java.sql.Date;
 import java.sql.Time;
 
 public class Retiro {
@@ -33,17 +34,19 @@ public class Retiro {
     private Integer IdUsuario;
     private Float Monto;
     private java.sql.Time Hora;
+    private java.sql.Date Fecha;
 
     //Constructor de la clase coomo null
     public Retiro() {
     }
 
     //Constructor de la clase con todas las propiedades
-    public Retiro(Integer IdRetiro, Integer IdUsuario, Float Monto, Time Hora) {
+    public Retiro(Integer IdRetiro, Integer IdUsuario, Float Monto, Time Hora,Date Fecha) {
         this.IdRetiro = IdRetiro;
         this.IdUsuario = IdUsuario;
         this.Monto = Monto;
         this.Hora = Hora;
+        this.Fecha=Fecha;
     }
 
     public Integer getIdRetiro() {
@@ -77,5 +80,16 @@ public class Retiro {
     public void setHora(Time Hora) {
         this.Hora = Hora;
     }
+
+    public Date getFecha() {
+        return Fecha;
+    }
+
+    public void setFecha(Date Fecha) {
+        this.Fecha = Fecha;
+    }
+    
+    
+    
 
 }
