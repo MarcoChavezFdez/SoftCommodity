@@ -29,6 +29,7 @@ import Modelos.Producto;
 import Modelos.Ticket;
 import static java.lang.Boolean.*;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.sql.Time;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -68,7 +69,7 @@ public class TicketMainFrame extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
-        lbl_Total = new javax.swing.JLabel();
+        lbl_IVA = new javax.swing.JLabel();
         lbl_Precio = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         lbl_idTicket = new javax.swing.JLabel();
@@ -86,6 +87,10 @@ public class TicketMainFrame extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         btn_Atras = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
+        lbl_Total = new javax.swing.JLabel();
+        lbl_SubTotal = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("SoftCommodity+ by White Company® ");
@@ -108,10 +113,10 @@ public class TicketMainFrame extends javax.swing.JFrame {
         jLabel6.setText("Precio: $");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 280, 80, -1));
 
-        lbl_Total.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        lbl_Total.setForeground(new java.awt.Color(255, 255, 255));
-        lbl_Total.setText("0.00");
-        jPanel1.add(lbl_Total, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 540, -1, -1));
+        lbl_IVA.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lbl_IVA.setForeground(new java.awt.Color(255, 255, 255));
+        lbl_IVA.setText("0.00");
+        jPanel1.add(lbl_IVA, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 540, -1, -1));
 
         lbl_Precio.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lbl_Precio.setForeground(new java.awt.Color(255, 255, 255));
@@ -224,8 +229,8 @@ public class TicketMainFrame extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Total: $");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 540, -1, -1));
+        jLabel2.setText("SubTotal: $");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 510, -1, -1));
 
         btn_Atras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Volver.png"))); // NOI18N
         btn_Atras.setBorderPainted(false);
@@ -240,13 +245,33 @@ public class TicketMainFrame extends javax.swing.JFrame {
         jLabel7.setText("jLabel7");
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 70, -1, -1));
 
+        lbl_Total.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lbl_Total.setForeground(new java.awt.Color(255, 255, 255));
+        lbl_Total.setText("0.00");
+        jPanel1.add(lbl_Total, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 570, -1, -1));
+
+        lbl_SubTotal.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lbl_SubTotal.setForeground(new java.awt.Color(255, 255, 255));
+        lbl_SubTotal.setText("0.00");
+        jPanel1.add(lbl_SubTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 510, -1, -1));
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel8.setText("Total: $");
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 570, -1, -1));
+
+        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel9.setText("IVA: $");
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 540, -1, -1));
+
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1070, 620));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_CobrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CobrarActionPerformed
-        RealizarPagoFrame cobrar = new RealizarPagoFrame(this.conexion,this.ticketActual,this.corte);
+        RealizarPagoFrame cobrar = new RealizarPagoFrame(this.conexion, this.ticketActual, this.corte);
         this.setVisible(false);
         cobrar.setVisible(true);
     }//GEN-LAST:event_btn_CobrarActionPerformed
@@ -292,10 +317,13 @@ public class TicketMainFrame extends javax.swing.JFrame {
         conexion.insertarDetalleTicket(dt);
         ArrayList<DetalleTicket> lista = this.conexion.consultarDetalleTicket(this.ticketActual.getIdTicket());
         llenarTabla(lista);
-        this.ticketActual.setSubTotal(conexion.calcularTotalTicketConsulta(this.ticketActual.getIdTicket()));
-        
-        System.out.println("SubTotal Regresado "+this.ticketActual.getSubTotal());
-        lbl_Total.setText(String.valueOf(this.ticketActual.getSubTotal()));
+        this.ticketActual.setSubTotal(redondeoDecimales(conexion.calcularTotalTicketConsulta(this.ticketActual.getIdTicket()),4));
+        this.ticketActual.setIVA(redondeoDecimales(this.ticketActual.getSubTotal()*0.16f,2));
+        this.ticketActual.setTotal(redondeoDecimales(this.ticketActual.getIVA() + this.ticketActual.getSubTotal(),2));
+
+        lbl_SubTotal.setText(String.valueOf(this.ticketActual.getSubTotal()));
+        lbl_IVA.setText(String.valueOf(this.ticketActual.getIVA()));
+        lbl_Total.setText(String.valueOf(this.ticketActual.getTotal()));
     }//GEN-LAST:event_btn_AddProductoActionPerformed
 
     private void txt_ProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_ProductoActionPerformed
@@ -327,9 +355,9 @@ public class TicketMainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_cb_PrecioMayoreoMouseReleased
 
     private void btn_AtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AtrasActionPerformed
-          CortesMainFrame Cortes = new CortesMainFrame(this.conexion,this.corte);
-          this.setVisible(false);
-          Cortes.setVisible(true);
+        CortesMainFrame Cortes = new CortesMainFrame(this.conexion, this.corte);
+        this.setVisible(false);
+        Cortes.setVisible(true);
     }//GEN-LAST:event_btn_AtrasActionPerformed
 
     private void llenarTabla(ArrayList<DetalleTicket> lista) {
@@ -341,10 +369,9 @@ public class TicketMainFrame extends javax.swing.JFrame {
             datos[ren][1] = dt.getCantidad();
             datos[ren][2] = dt.getPrecioUnitario();
             datos[ren][3] = dt.getSubTotal();
-            if(dt.getPrecioMayorista()){
+            if (dt.getPrecioMayorista()) {
                 datos[ren][4] = "Si";
-            }
-            else{
+            } else {
                 datos[ren][4] = "No";
             }
             ren++;
@@ -369,6 +396,12 @@ public class TicketMainFrame extends javax.swing.JFrame {
         }
     }
 
+    public static float redondeoDecimales(float numero, int numeroDecimales) {
+        BigDecimal redondeado = new BigDecimal(numero)
+                .setScale(numeroDecimales, RoundingMode.HALF_EVEN);
+        return redondeado.floatValue();
+    }
+
     /**
      * @param args the command line arguments
      */
@@ -385,9 +418,13 @@ public class TicketMainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lbl_IVA;
     private javax.swing.JLabel lbl_Precio;
+    private javax.swing.JLabel lbl_SubTotal;
     private javax.swing.JLabel lbl_Total;
     private javax.swing.JLabel lbl_idTicket;
     private javax.swing.JSpinner sp_Cantidad;

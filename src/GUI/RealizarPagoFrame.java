@@ -7,7 +7,10 @@ package GUI;
 
 import Conexion.ConexionBD;
 import Modelos.CorteCaja;
+import Modelos.DetalleCorte;
 import Modelos.Ticket;
+import java.sql.Time;
+import java.time.LocalTime;
 
 /**
  *
@@ -349,9 +352,19 @@ public class RealizarPagoFrame extends javax.swing.JFrame {
 
         jLabel3.setText("Cambio");
 
-        txf_Cambio.setText("jTextField3");
+        txf_Cambio.setText("0.00");
+        txf_Cambio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txf_CambioActionPerformed(evt);
+            }
+        });
 
         btn_Cobrar.setText("Cobrar");
+        btn_Cobrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_CobrarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -366,14 +379,14 @@ public class RealizarPagoFrame extends javax.swing.JFrame {
                             .addComponent(jLabel2)
                             .addComponent(jLabel3))
                         .addGap(70, 70, 70)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txf_Efectivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txf_Total, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txf_Cambio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txf_Total)
+                            .addComponent(txf_Efectivo)
+                            .addComponent(txf_Cambio, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE)))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(188, 188, 188)
                         .addComponent(btn_Cobrar)))
-                .addContainerGap(177, Short.MAX_VALUE))
+                .addContainerGap(162, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -481,12 +494,34 @@ public class RealizarPagoFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_500ActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        txf_Total.setText(String.valueOf(this.ticketAcutal.getTotal()));
+        txf_Total.setText(String.valueOf(this.ticketAcutal.getSubTotal()));
     }//GEN-LAST:event_formWindowOpened
+
+    private void txf_CambioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txf_CambioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txf_CambioActionPerformed
+
+    /**
+     * Este evento permite actualizar los datos del ticket que se cobro
+     * y regresar al menu principal de cortes
+     * Esta Relacionado con el btn_Cobrar
+    **/
+    private void btn_CobrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CobrarActionPerformed
+        this.ticketAcutal.setHoraVenta(Time.valueOf(LocalTime.now()));
+        DetalleCorte dc = new DetalleCorte(this.Corte.getIdCorte(),this.ticketAcutal.getIdTicket());
+        this.conexion.actualizarTicket(ticketAcutal);
+        this.conexion.insertarDetalleCorte(dc);
+        this.Corte.setTotalCorte(this.conexion.calcularTotalVentaCorte(Corte));
+        this.conexion.actualizarCorteCaja(Corte);
+        CortesMainFrame cortesPrincipal = new CortesMainFrame(this.conexion,this.Corte);
+        
+        this.setVisible(false);
+        cortesPrincipal.setVisible(true);
+    }//GEN-LAST:event_btn_CobrarActionPerformed
 
     public void llenaFields(String cant) {
         Float cambio;
-        cambio = Float.valueOf(cant) - this.ticketAcutal.getTotal();
+        cambio = Float.valueOf(cant) - this.ticketAcutal.getSubTotal();
         if (cambio < 0) {
             btn_Cobrar.setEnabled(false);
             

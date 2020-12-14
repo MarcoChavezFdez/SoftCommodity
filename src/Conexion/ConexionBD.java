@@ -27,6 +27,7 @@ import Modelos.Bodega;
 import Modelos.Categoria;
 import Modelos.CorteCaja;
 import Modelos.CorteVenta;
+import Modelos.DetalleCorte;
 import Modelos.DetalleTicket;
 import Modelos.Producto;
 import Modelos.Ticket;
@@ -605,13 +606,14 @@ public class ConexionBD {
     }
 
     /**
+     * Modelo de Bodegas
      * *************************************************************
      *
      * Funciones para el modelo Bodegas
      *
      *************************************************************
      */
-    /*Esta Funcion permite realizar la inserciion de un registro en la table de Bodegas
+    /*Esta Funcion permite realizar la insercion de un registro en la table de Bodegas
      * @param b Recibe el elemento tipo Bodega para realizar insercion en la
      * tabla de bodegas
      * @return regresa si fue o no exitosa la insercion
@@ -942,14 +944,22 @@ public class ConexionBD {
      * @return regresa si fue o no exitosa la actualizacion ***
      */
     public boolean actualizarCorteCaja(CorteCaja cc) {
-        String sql = "update cortescaja set idUsuario=? , fondoincial=?, totalventa=?, totalretiros=?, totalcorte=?,"
-                + "horainicial=?, horafinal=?, estatus=? , fecha=?, "
-                + "where idcorte=?";
+        String sql = "update cortescaja set idUsuario=? , fondoinicial=?, totalventa=?, totalretiros=?, totalcorte=?, "
+                + "horainicial=?, horafinal=?, estatus=? , fecha=? "
+                + "where idcorte=? ";
         boolean ban = false;
         try {
             PreparedStatement st = con.prepareStatement(sql);
+            st.setInt(1, cc.getIdUsuario());
+            st.setFloat(2, cc.getFondoInicial());
+            st.setFloat(3, cc.getTotalVenta());
+            st.setFloat(4, cc.getTotalRetiros());
+            st.setFloat(5, cc.getTotalCorte());
+            st.setTime(6, cc.getHoraInicial());
+            st.setTime(7, cc.getHoraFinal());
+            st.setString(8, cc.getEstatus());
+            st.setDate(9, cc.getFecha());
             st.setInt(10, cc.getIdCorte());
-            st.setFloat(1, cc.getTotalVenta());
             st.execute();
             st.close();
             ban = true;
@@ -1005,6 +1015,40 @@ public class ConexionBD {
             System.out.println("Error al ejecutar calculaVentaCorte:" + e.getMessage());
         }
         return cc.getTotalVenta();
+    }
+
+    /**
+     * Modelo DetalleCortes
+     * *************************************************************
+     *
+     * Funciones para el modelo DetalleCortes. Esta seccion contiente todos los
+     * metodos necesarios para interactuar con la tabla de DetalleCortes
+     *
+     *************************************************************
+     */
+    
+    /**
+     * *Esta Funcion permite realizar la insercion de un registro en la tabla
+     * de DetalleCortes
+     *
+     * @param dc es el DetalleCorte que se desea insertar en la tabla
+     * @return regresa si fue o no exitosa la insercion
+     */
+    public boolean insertarDetalleCorte(DetalleCorte dc) {
+        String sql = "insert into detallecortes values(?,?)";
+        boolean ban = false;
+        try {
+            PreparedStatement st = con.prepareStatement(sql);
+            st.setInt(1, dc.getIdCorte());
+            st.setFloat(2, dc.getIdTicket());
+            st.execute();
+            st.close();
+            ban = true;
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error:" + e.getMessage());
+        }
+        return ban;
     }
 
     /**

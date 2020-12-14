@@ -145,6 +145,7 @@ public class VentasMainFrame extends javax.swing.JFrame {
         if (conexion.consultarVentaDiaria(Fecha)) {
             ventaActual = conexion.consultarVenta(Fecha);
             ventaActual.setTotalVenta(conexion.consultarVentaTotalVenta(Fecha));
+            conexion.actualizarVenta(ventaActual);
             lbl_TotalVenta.setText(String.valueOf(ventaActual.getTotalVenta()));
             //
         } else {
