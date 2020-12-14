@@ -177,6 +177,11 @@ public class TicketMainFrame extends javax.swing.JFrame {
                 txt_ProductoActionPerformed(evt);
             }
         });
+        txt_Producto.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txt_ProductoKeyReleased(evt);
+            }
+        });
         jPanel1.add(txt_Producto, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 160, 359, -1));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -292,9 +297,7 @@ public class TicketMainFrame extends javax.swing.JFrame {
         this.ticketActual.setHoraVenta(Time.valueOf(LocalTime.now()));
         this.ticketActual.setTotal(0.00f);
         ArrayList<Producto> lista = conexion.consultaProductos();
-        for (Producto p : lista) {
-            cmb_Producto.addItem(p.toString());
-        }
+        llenaCombo(lista);
         this.conexion.insertarTicket(ticketActual);
 
     }//GEN-LAST:event_formWindowOpened
@@ -317,13 +320,14 @@ public class TicketMainFrame extends javax.swing.JFrame {
         conexion.insertarDetalleTicket(dt);
         ArrayList<DetalleTicket> lista = this.conexion.consultarDetalleTicket(this.ticketActual.getIdTicket());
         llenarTabla(lista);
-        this.ticketActual.setSubTotal(redondeoDecimales(conexion.calcularTotalTicketConsulta(this.ticketActual.getIdTicket()),4));
-        this.ticketActual.setIVA(redondeoDecimales(this.ticketActual.getSubTotal()*0.16f,2));
-        this.ticketActual.setTotal(redondeoDecimales(this.ticketActual.getIVA() + this.ticketActual.getSubTotal(),2));
+        this.ticketActual.setSubTotal(redondeoDecimales(conexion.calcularTotalTicketConsulta(this.ticketActual.getIdTicket()), 4));
+        this.ticketActual.setIVA(redondeoDecimales(this.ticketActual.getSubTotal() * 0.16f, 2));
+        this.ticketActual.setTotal(redondeoDecimales(this.ticketActual.getIVA() + this.ticketActual.getSubTotal(), 2));
 
         lbl_SubTotal.setText(String.valueOf(this.ticketActual.getSubTotal()));
         lbl_IVA.setText(String.valueOf(this.ticketActual.getIVA()));
         lbl_Total.setText(String.valueOf(this.ticketActual.getTotal()));
+        sp_Cantidad.getModel().setValue(1);
     }//GEN-LAST:event_btn_AddProductoActionPerformed
 
     private void txt_ProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_ProductoActionPerformed
@@ -338,12 +342,12 @@ public class TicketMainFrame extends javax.swing.JFrame {
 
         String id = cmb_Producto.getItemAt(cmb_Producto.getSelectedIndex());
         Integer idProducto;
-        System.out.println(cmb_Producto.getItemAt(cmb_Producto.getSelectedIndex()));
-        System.out.println(id.indexOf(":"));
-        idProducto = Integer.valueOf(id.substring(0, id.indexOf(":") - 1));
-        this.nuevoProducto = conexion.consultaProducto(idProducto);
+        if (id != null) {
+            idProducto = Integer.valueOf(id.substring(0, id.indexOf(":") - 1));
+            this.nuevoProducto = conexion.consultaProducto(idProducto);
+            llenaPrecio(this.nuevoProducto);
+        }
 
-        llenaPrecio(this.nuevoProducto);
     }//GEN-LAST:event_cmb_ProductoItemStateChanged
 
     private void cb_PrecioMayoreoPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_cb_PrecioMayoreoPropertyChange
@@ -359,6 +363,25 @@ public class TicketMainFrame extends javax.swing.JFrame {
         this.setVisible(false);
         Cortes.setVisible(true);
     }//GEN-LAST:event_btn_AtrasActionPerformed
+
+    private void txt_ProductoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_ProductoKeyReleased
+        ArrayList<Producto> lista = this.conexion.consultaProductosLimitadoPorNombre(txt_Producto.getText());
+        llenaCombo(lista);
+
+    }//GEN-LAST:event_txt_ProductoKeyReleased
+
+    private void llenaCombo(ArrayList<Producto> lista) {
+        if (lista == null) {
+            lista = conexion.consultaProductosLimitado();
+            llenaCombo(lista);
+        } else {
+            cmb_Producto.removeAllItems();
+            for (Producto p : lista) {
+                cmb_Producto.addItem(p.toString());
+            }
+        }
+
+    }
 
     private void llenarTabla(ArrayList<DetalleTicket> lista) {
         String[] encabezado = {"IdProducto", "Cantidad", "Precio Unitario", "SubTotal", "Precio Mayorista"};
