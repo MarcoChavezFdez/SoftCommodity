@@ -74,12 +74,42 @@ public class ConexionBD {
         }
     }
 
-    //Este metodo de tipo Connection nos devuelve el estado del objeto
+    /**
+     * Funciones de la clase
+     */
+    /**
+     * Funcion que permite establecer el usuario de la propiedad @user de la
+     * clase
+     *
+     * @param user es el valor que sera cambiado a la propiedad user del objeto
+     */
+    public void setUser(Usuario user) {
+        this.user = user;
+    }
+
+    /**
+     * Funcion que permite obtener un Objeto Usuario de la propiedad @user de la
+     * clase clase
+     *
+     * @return regresa el Usuario de la propiedad user del objeto
+     */
+    public Usuario getUser() {
+        return user;
+    }
+
+    /**
+     * Este metodo de tipo Connection nos devuelve el estado del objeto
+     *
+     * @return regresa el Usuario de la propiedad user del objeto
+     */
     public Connection conectado() {
         return con;
     }
 
-    //Por seguridad, cuando terminemos sentencias, cerramos la conexion o si la necesitamos cerrar por otro caso
+    /**
+     * Este metodo de cerra la conexion 
+     *
+     */
     public void desconectar() {
         //Ahora de nuevo con sera null
         con = null;
@@ -1365,12 +1395,13 @@ public class ConexionBD {
         }
         return ban;
     }
+
     /**
      * Modelo DetalleRetiro
      * *************************************************************
      *
-     * Funciones para el modelo DetalleRetiro. Esta seccion contiente todos los metodos
-     * necesarios para interactuar con la tabla de DetalleRetiros
+     * Funciones para el modelo DetalleRetiro. Esta seccion contiente todos los
+     * metodos necesarios para interactuar con la tabla de DetalleRetiros
      *
      *************************************************************
      */
@@ -1383,14 +1414,13 @@ public class ConexionBD {
      * @return regresa si fue o no exitosa la insercion
      *
      */
-    public boolean insertarDEtalleRetiro(DetalleRetiro dt) {
+    public boolean insertarDetalleRetiro(DetalleRetiro dt) {
         String sql = "insert into retiros values(null,?,?,?)";
         boolean ban = false;
         try {
             PreparedStatement st = con.prepareStatement(sql);
-            st.setInt(1, dt.getIdUsuario());
-            st.setFloat(2, dt.getMonto());
-            st.setTime(3, dt.getHora());
+            st.setInt(1, dt.getIdRetiro());
+            st.setInt(2, dt.getIdCorte());
             st.execute();
             st.close();
             ban = true;
@@ -1399,16 +1429,6 @@ public class ConexionBD {
             JOptionPane.showMessageDialog(null, "Error:" + e.getMessage());
         }
         return ban;
-    }
-    //Funcion que permite establecer el usuario de la propiedad @user de la clase
-    //Recibe un usuario de objeto tipo Usuario
-    public void setUser(Usuario user) {
-        this.user = user;
-    }
-
-    //Funcion que permite obtener un Objeto Usuario de la propiedad @user de la clase
-    public Usuario getUser() {
-        return user;
     }
 
 //        public void assertDecimalSameValue(String message, String expected_s, 
