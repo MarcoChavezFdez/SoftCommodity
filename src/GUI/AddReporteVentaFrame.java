@@ -14,14 +14,14 @@ import javax.swing.JOptionPane;
  *
  * @author Marco Chavez
  */
-public class AddReporte extends javax.swing.JFrame {
+public class AddReporteVentaFrame extends javax.swing.JFrame {
 
     /**
      * Creates new form AddBodegaFrame
      */
     ConexionBD conexion;
 
-    public AddReporte(ConexionBD conexion) {
+    public AddReporteVentaFrame(ConexionBD conexion) {
         initComponents();
         this.conexion = conexion;
     }

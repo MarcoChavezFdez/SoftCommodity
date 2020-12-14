@@ -31,20 +31,20 @@ public class ReportesMainFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btn_ReporteCortes = new javax.swing.JButton();
+        btn_ReporteVentas = new javax.swing.JButton();
         btn_Atras = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("SoftCommodity+ by White Company® ");
         setResizable(false);
 
-        jButton1.setText("Reportes Cortes");
+        btn_ReporteCortes.setText("Reportes Cortes");
 
-        jButton2.setText("Reportes Ventas");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btn_ReporteVentas.setText("Reportes Ventas");
+        btn_ReporteVentas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btn_ReporteVentasActionPerformed(evt);
             }
         });
 
@@ -61,9 +61,9 @@ public class ReportesMainFrame extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(120, 120, 120)
-                .addComponent(jButton2)
+                .addComponent(btn_ReporteVentas)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 139, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(btn_ReporteCortes)
                 .addGap(73, 73, 73))
             .addGroup(layout.createSequentialGroup()
                 .addGap(30, 30, 30)
@@ -77,17 +77,19 @@ public class ReportesMainFrame extends javax.swing.JFrame {
                 .addComponent(btn_Atras)
                 .addGap(85, 85, 85)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton1))
+                    .addComponent(btn_ReporteVentas)
+                    .addComponent(btn_ReporteCortes))
                 .addContainerGap(237, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void btn_ReporteVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ReporteVentasActionPerformed
+        ReporteVentasMainFrame reportesVentas = new ReporteVentasMainFrame(this.conexion);
+        this.setVisible(false);
+        reportesVentas.setVisible(true);
+    }//GEN-LAST:event_btn_ReporteVentasActionPerformed
 
     private void btn_AtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AtrasActionPerformed
        MenuPrincipalFrame menu= new MenuPrincipalFrame(this.conexion);
@@ -102,7 +104,7 @@ public class ReportesMainFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_Atras;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btn_ReporteCortes;
+    private javax.swing.JButton btn_ReporteVentas;
     // End of variables declaration//GEN-END:variables
 }
