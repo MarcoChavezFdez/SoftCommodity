@@ -1,35 +1,34 @@
 /**
+ *
  * @Autor  Marco Alberto Chávez Fernández
  * @Correo: mchavez297@accitesz.com
- * 
+ *
  * @Autor José Carlos Esparza de Anda
- * @Correo: jesparza301@accitesz.com 
- * 
+ * @Correo: jesparza301@accitesz.com
+ *
  * @Autor José Ángel Madrigal Plancarte
  * @Correo: jmadrigal323@accitesz.com
- * 
+ *
  * @Docente: Dr. Francisco Rodríguez Díaz
  * @Asignatura: Ing. de Software
  * @Escuela: Instituto Tecnologico de Estudios Superiores de Zamora
  * @Semestre : 7
  * @Grupo: B
  * @Carrera: Ing. en Sistemas Computacionales
- * 
- * 
- * @since   VER1.0
+ *
+ * La clase Ticket pertenece al paquete de Modelos tiene el proposito de modelar
+ * la estructura de la tabla de Tickets asi como los metodos necesarios para el
+ * manejo de datos que se intercambien entre las distintas clases
+ * @since VER1.0
+ *
  */
 package Modelos;
 
-
 import java.sql.Date;
 import java.sql.Time;
-import java.sql.Timestamp;
 
-/**
- *
- * @author Marco Chavez
- */
 public class Ticket {
+
     //Propiedades de la clase
     private Integer IdTicket;
     private Integer IdUsuario;
@@ -42,7 +41,7 @@ public class Ticket {
     //Constructor de la clase como null
     public Ticket() {
     }
-    
+
     //Constructor de la clase con todas sus propiedades
     public Ticket(Integer IdTicket, Integer IdUsuario, Date Fecha, Time HoraVenta, Float SubTotal, Float IVA, Float Total) {
         this.IdTicket = IdTicket;
@@ -53,7 +52,7 @@ public class Ticket {
         this.IVA = IVA;
         this.Total = Total;
     }
-    
+
     //Metodos Get Y Set de la Clase
     public Integer getIdTicket() {
         return IdTicket;
@@ -116,7 +115,4 @@ public class Ticket {
         return "Ticket{" + "IdTicket=" + IdTicket + ", IdUsuario=" + IdUsuario + ", Fecha=" + Fecha + ", HoraVenta=" + HoraVenta + ", SubTotal=" + SubTotal + ", IVA=" + IVA + ", Total=" + Total + '}';
     }
 
-
-    
-    
 }

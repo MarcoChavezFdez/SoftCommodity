@@ -16,8 +16,8 @@
  * @Grupo: B
  * @Carrera: Ing. en Sistemas Computacionales
  *
- * La clase Bodega pertenece al paquete de Modelos tiene el proposito de modelar
- * la estructura de la tabla de Bodegas asi como los metodos necesarios para el
+ * La clase Categoria pertenece al paquete de Modelos tiene el proposito de modelar
+ * la estructura de la tabla de Categorias asi como los metodos necesarios para el
  * manejo de datos que se intercambien entre las distintas clases
  * @since VER1.0
  */
@@ -46,30 +46,39 @@ public class Categoria {
     }
 
     //Metodos Get y Set de la clase
-    
     //Get de IdCategoria
     /**
      * @return IdCategoria del objeto
-     **/
+     *
+     */
     public Integer getIdCategoria() {
         return IdCategoria;
     }
-    
+
     //Get set de IdCategoria
     /**
-     * @param IdCategoria es el valor que sera cambiado a IdCategoria
+     * @param IdCategoria es el valor que sera cambiado a la propiedad
+     * IdCategoria del objeto
      */
     public void setIdCategoria(Integer IdCategoria) {
         this.IdCategoria = IdCategoria;
     }
 
+    //Get de Nombre
     /**
-     * @return 
-     **/
+     * @return la propiedad de Nombre del objeto
+     *
+     */
     public String getNombre() {
         return Nombre;
     }
 
+    //set de Nombre
+    /**
+     * @param Nombre es el valor que sera cambiado a la propiedad Nombre del
+     * objeto
+     *
+     */
     public void setNombre(String Nombre) {
         this.Nombre = Nombre;
     }

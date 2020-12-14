@@ -23,11 +23,9 @@ package Modelos;
 
 import java.sql.*;
 
-/**
- *
- * @author Marco Chavez
- */
 public class CorteCaja {
+    
+    //Propiedades de la clase
     private Integer IdCorte;
     private Integer IdUsuario;
     private Float FondoInicial;
@@ -122,13 +120,6 @@ public class CorteCaja {
     public void setHoraFinal(Time HoraFinal) {
         this.HoraFinal = HoraFinal;
     }
-
-    @Override
-    public String toString() {
-        return "CorteCaja{" + "IdCorte=" + IdCorte + ", IdUsuario=" + IdUsuario + ", FondoInicial=" + FondoInicial + ", TotalVenta=" + TotalVenta + ", TotalRetiros=" + TotalRetiros + ", TotalCorte=" + TotalCorte + ", HoraInicial=" + HoraInicial + ", HoraFinal=" + HoraFinal + ", Estatus=" + Estatus + ", Fecha=" + Fecha + '}';
-    }
-
-
 
     public String getEstatus() {
         return Estatus;

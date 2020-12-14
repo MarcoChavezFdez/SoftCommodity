@@ -33,38 +33,50 @@ public class Bodega {
     public Bodega() {
     }
 
+    //Constructor de la clase con todas sus propiedades
     /**
-     * 
      * @param IdBodega es el id con el que se inicializa la bodega
      * @param Nombre es cel nombre con el que se inicializa la bodega
      */
-    //Constructor de la clase con todas sus propiedades
     public Bodega(Integer IdBodega, String Nombre) {
         this.IdBodega = IdBodega;
         this.Nombre = Nombre;
     }
 
     //Metodos Get y Set de la clase
+    //Get de la propiedad IdBodega
     /**
-     * @return Regresa el idBodega del obejeto
-     *
+     * @return Regresa la propiedad IdBodega del objeto
      */
     public Integer getIdBodega() {
         return IdBodega;
     }
 
+    //Set de la propiedad IdBodega
+    /**
+     * @param IdBodega es es el valor que sera cambiado a la propiedad IdBodega
+     * del objeto
+    *
+     */
     public void setIdBodega(Integer IdBodega) {
         this.IdBodega = IdBodega;
     }
 
+    //Get de la propiedad Nombre
     /**
-     * @return Regresa el nombre del obejeto
+     * @return Regresa el nombre de la propiedad del objeto
      *
      */
     public String getNombre() {
         return Nombre;
     }
 
+    //Get de la propiedad Nombre
+    /**
+     *
+     * @param Nombre es es el valor que sera cambiado a la propiedad Nombre
+     * del objeto
+     */
     public void setNombre(String Nombre) {
         this.Nombre = Nombre;
     }
