@@ -1030,8 +1030,7 @@ public class ConexionBD {
     }
 
     public CorteCaja consultaCorteCaja(Date fecha, Integer idUsuario) {
-        String sql = "select idcorte,idusuario,fondoinicial,totalventa,totalretiros,totalcorte,horainicial,horafinal,"
-                + "estatus,fecha "
+        String sql = "select * "
                 + "from cortescaja "
                 + "where fecha=? and idUsuario=? and estatus='A'";
         CorteCaja cc = new CorteCaja();
@@ -1076,7 +1075,7 @@ public class ConexionBD {
         return cc.getTotalVenta();
     }
 
-    public Float consultarCorteVentaTotal(Integer idCorte) {
+    public Float consultarCorteCajaTotalVenta(Integer idCorte) {
         Float TotalVenta = 0f;
         String sql = "select SUM(t.total)as TotalVenta "
                 + "from cortescaja cc "
@@ -1101,6 +1100,32 @@ public class ConexionBD {
         }
 
         return TotalVenta;
+    }
+        public Float consultarCorteCajaTotalRetiros(Integer idCorte) {
+        Float TotalRetiros = 0f;
+        String sql = "select SUM(r.monto)as TotalRetiros from "
+                + "CortesCaja cc "
+                + "join DetalleRetiros dr "
+                + "on cc.idcorte=dr.idcorte "
+                + "join Retiros r "
+                + "on dr.idretiro=r.idretiro "
+                + "where cc.idcorte=?";
+        try {
+            PreparedStatement st = con.prepareStatement(sql);
+            st.setInt(1, idCorte);
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                TotalRetiros = rs.getFloat("TotalRetiros");
+            } else {
+                TotalRetiros = 0.0f;
+            }
+            rs.close();
+            st.close();
+        } catch (SQLException e) {
+            System.out.println("Error:" + e.getMessage());
+        }
+
+        return TotalRetiros;
     }
 
     /**
@@ -1395,6 +1420,27 @@ public class ConexionBD {
         return ban;
     }
 
+    public Integer consultaUltimoRetiro() {
+        String sql = "select MAX(IdRetiro)"
+                + " from retiros";
+        Integer IdRetiro;
+        IdRetiro = 0;
+        try {
+            PreparedStatement st = con.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                IdRetiro = (rs.getInt("IdRetiro")) + 1;
+            } else {
+                IdRetiro = 1;
+            }
+            st.close();
+            return IdRetiro;
+        } catch (SQLException e) {
+            System.out.println("Error:" + e.getMessage());
+        }
+        return IdRetiro;
+    }
+
     /**
      * Modelo DetalleRetiro
      * *************************************************************
@@ -1428,26 +1474,6 @@ public class ConexionBD {
             JOptionPane.showMessageDialog(null, "Error:" + e.getMessage());
         }
         return ban;
-    }
-
-    public Integer consultaUltimoRetiro() {
-        String sql = "select MAX(IdRetiro)";
-        Integer IdRetiro;
-        IdRetiro = 0;
-        try {
-            PreparedStatement st = con.prepareStatement(sql);
-            ResultSet rs = st.executeQuery();
-            if (rs.next()) {
-                IdRetiro = (rs.getInt("IdRetiro"))+1;
-            } else {
-                IdRetiro = 1;
-            }
-            st.close();
-            return IdRetiro;
-        } catch (SQLException e) {
-            System.out.println("Error:" + e.getMessage());
-        }
-        return IdRetiro;
     }
 
 //        public void assertDecimalSameValue(String message, String expected_s, 

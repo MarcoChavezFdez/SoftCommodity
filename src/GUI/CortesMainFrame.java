@@ -240,7 +240,7 @@ public class CortesMainFrame extends javax.swing.JFrame {
      */
     private void llenaEtiquetas() {
         lbl_CorteId.setText(String.valueOf(this.CorteActual.getIdCorte()));
-        this.CorteActual.setTotalVenta(conexion.consultarCorteVentaTotal(CorteActual.getIdCorte()));
+        this.CorteActual.setTotalVenta(conexion.consultarCorteCajaTotalVenta(CorteActual.getIdCorte()));
         if (CorteActual.getTotalVenta() == null) {
             lbl_TotalVenta.setText("0.00");
         } else {

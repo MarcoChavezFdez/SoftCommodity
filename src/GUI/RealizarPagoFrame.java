@@ -513,7 +513,7 @@ public class RealizarPagoFrame extends javax.swing.JFrame {
         DetalleCorte dc = new DetalleCorte(this.Corte.getIdCorte(), this.ticketAcutal.getIdTicket());
         this.conexion.actualizarTicket(ticketAcutal);
         this.conexion.insertarDetalleCorte(dc);
-        this.Corte.setTotalVenta(this.conexion.consultarCorteVentaTotal(Corte.getIdCorte()));
+        this.Corte.setTotalVenta(this.conexion.consultarCorteCajaTotalVenta(Corte.getIdCorte()));
         this.conexion.actualizarCorteCaja(Corte);
         CortesMainFrame cortesPrincipal = new CortesMainFrame(this.conexion, this.Corte);
 
