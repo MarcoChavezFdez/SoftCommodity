@@ -839,7 +839,8 @@ public class ConexionBD {
      *
      */
     public ArrayList<Bodega> consultarBodegas() {
-        String sql = "select idbodega,nombre from bodegas";
+        String sql = "select * from bodegas "
+                + "order by idbodega";
         ArrayList<Bodega> lista = new ArrayList<Bodega>();
 
         try {
