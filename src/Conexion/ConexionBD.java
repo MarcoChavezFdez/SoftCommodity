@@ -22,7 +22,6 @@
  */
 package Conexion;
 
-
 import Modelos.Bodega;
 import Modelos.Categoria;
 import Modelos.CorteCaja;
@@ -215,6 +214,54 @@ public class ConexionBD {
     }
 
     /**
+     * Funcion la cual permite realizar la consulta de los primeros 25 productos
+     * de la tabla Productos de la Base de Datos No recibe parametros
+     *
+     * @param Nombre es el parametro para realizar la busqueda
+     * @return Devuelve un ArrayList de objetos Producto
+     *
+     **
+     */
+    public ArrayList<Producto> consultaProductosLimitadoPorNombre(String Nombre) {
+        String sql = "select * "
+                + "from productos "
+                + "where nombre like CONCAT( '%"+Nombre+ "%')";
+        ArrayList<Producto> lista = new ArrayList<Producto>();
+        
+        try {
+            PreparedStatement st = con.prepareStatement(sql);
+            System.out.println(sql);
+            ResultSet rs = st.executeQuery(sql);
+            
+            while (rs.next()) {
+                Producto p = new Producto();
+                p.setIdProducto(rs.getInt("idproducto"));
+                p.setIdCategoria(rs.getInt("idcategoria"));
+                p.setNombre(rs.getString("nombre"));
+                p.setDescripcion(rs.getString("descripcion"));
+                p.setPrecioMayoreo(rs.getFloat("preciomayoreo"));
+                p.setPrecioMenudeo(rs.getFloat("preciomenudeo"));
+                p.setPrecioCompra(rs.getFloat("preciocompra"));
+                p.setPresentacion(rs.getString("presentacion"));
+                p.setEAN(rs.getString("ean"));
+                p.setContenido(rs.getInt("contenido"));
+                p.setTipoContenido(rs.getString("tipocontenido"));
+                p.setMaterial(rs.getString("material"));
+                p.setAnchura(rs.getFloat("anchura"));
+                p.setMedidaAnchura(rs.getString("medidaanchura"));
+                p.setColor(rs.getString("color"));
+                p.setEstatus(rs.getString("estatus"));
+                lista.add(p);
+            }
+            rs.close();
+            st.close();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error:" + e.getMessage());
+        }
+        return lista;
+    }
+
+    /**
      * Funcion la cual permite realizar la consulta de un producto de la tabla
      * Productos de la Base de Datos
      *
@@ -230,7 +277,9 @@ public class ConexionBD {
         Producto p = new Producto();
         try {
             PreparedStatement st = con.prepareStatement(sql);
+  
             ResultSet rs = st.executeQuery(sql);
+            
             while (rs.next()) {
                 p.setIdProducto(rs.getInt("idproducto"));
                 p.setIdCategoria(rs.getInt("idcategoria"));
