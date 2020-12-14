@@ -374,7 +374,9 @@ textoMenu.setText("Ventas");// TODO add your handling code here:
     }//GEN-LAST:event_btn_UsuariosMouseExited
 
     private void btn_ReportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ReportesActionPerformed
-        // TODO add your handling code here:
+        ReportesMainFrame reportes = new ReportesMainFrame(this.conexion);
+        this.setVisible(false);
+        reportes.setVisible(true);
     }//GEN-LAST:event_btn_ReportesActionPerformed
 
     private void btn_BodegasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_BodegasMouseEntered
