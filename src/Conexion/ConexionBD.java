@@ -1403,13 +1403,14 @@ public class ConexionBD {
      *
      */
     public boolean insertarRetiro(Retiro r) {
-        String sql = "insert into retiros values(null,?,?,?)";
+        String sql = "insert into retiros values(null,?,?,?,?)";
         boolean ban = false;
         try {
             PreparedStatement st = con.prepareStatement(sql);
             st.setInt(1, r.getIdUsuario());
             st.setFloat(2, r.getMonto());
             st.setTime(3, r.getHora());
+            st.setDate(4, r.getFecha());
             st.execute();
             st.close();
             ban = true;
@@ -1421,7 +1422,7 @@ public class ConexionBD {
     }
 
     public Integer consultaUltimoRetiro() {
-        String sql = "select MAX(IdRetiro)"
+        String sql = "select MAX(IdRetiro)as IdRetiro "
                 + " from retiros";
         Integer IdRetiro;
         IdRetiro = 0;
@@ -1436,7 +1437,7 @@ public class ConexionBD {
             st.close();
             return IdRetiro;
         } catch (SQLException e) {
-            System.out.println("Error:" + e.getMessage());
+            System.out.println("Error:" + e.getMessage()+" "+e.getSQLState());
         }
         return IdRetiro;
     }
@@ -1460,7 +1461,7 @@ public class ConexionBD {
      *
      */
     public boolean insertarDetalleRetiro(DetalleRetiro dt) {
-        String sql = "insert into retiros values(?,?)";
+        String sql = "insert into detalleretiros values(?,?)";
         boolean ban = false;
         try {
             PreparedStatement st = con.prepareStatement(sql);
