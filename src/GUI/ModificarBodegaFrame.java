@@ -137,8 +137,8 @@ public class ModificarBodegaFrame extends javax.swing.JFrame {
         
         this.bodega.setNombre(txf_Nombre.getText());
         try {
-            if (conexion.insertarBodega(this.bodega)) {
-                JOptionPane.showMessageDialog(null, "Bodega Añadida con Exito");
+            if (conexion.actualizarBodega(this.bodega)) {
+                JOptionPane.showMessageDialog(null, "Bodega Modificada con Exito");
                 BodegasMainFrame menuBodega = new BodegasMainFrame(this.conexion);
                 menuBodega.setVisible(true);
                 this.setVisible(false);

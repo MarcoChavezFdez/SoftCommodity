@@ -245,7 +245,9 @@ public class BodegasMainFrame extends javax.swing.JFrame {
     private void btn_ModificarBodegaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ModificarBodegaActionPerformed
         Integer IdBodega = Integer.parseInt(tbl_Datos.getValueAt(tbl_Datos.getSelectedRow(), 0).toString());
         Bodega b = conexion.consultarBodega(IdBodega);
-        
+        ModificarBodegaFrame modificarBodega = new ModificarBodegaFrame(this.conexion,b);
+        this.setVisible(false);
+        modificarBodega.setVisible(true);
 
     }//GEN-LAST:event_btn_ModificarBodegaActionPerformed
     private void llenarTabla(ArrayList<Bodega> lista) {
