@@ -34,7 +34,6 @@ import Modelos.Retiro;
 import Modelos.Ticket;
 import Modelos.Usuario;
 import Modelos.Venta;
-import java.math.BigDecimal;
 import java.sql.*;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;

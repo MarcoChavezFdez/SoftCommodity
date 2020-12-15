@@ -142,7 +142,12 @@ public class ModificarCategoriaFrame extends javax.swing.JFrame {
         }
         else{
             lbl_Mensaje.setText("");
-            btn_AddCategoria.setEnabled(true);
+            if(!"".equals(txf_Nombre.getText())){
+                btn_AddCategoria.setEnabled(true);
+            }
+            else{
+                 btn_AddCategoria.setEnabled(false);
+            }
         }
     }//GEN-LAST:event_txf_NombreKeyReleased
 
