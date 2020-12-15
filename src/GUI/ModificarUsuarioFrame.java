@@ -14,14 +14,14 @@ import javax.swing.JOptionPane;
  *
  * @author Marco Chavez
  */
-public class ModificarUsuario extends javax.swing.JFrame {
+public class ModificarUsuarioFrame extends javax.swing.JFrame {
 
     /**
      * Creates new form AddUsuario
      */
     ConexionBD conexion;
 
-    public ModificarUsuario(ConexionBD conexion) {
+    public ModificarUsuarioFrame(ConexionBD conexion) {
         initComponents();
         this.conexion = conexion;
     }
