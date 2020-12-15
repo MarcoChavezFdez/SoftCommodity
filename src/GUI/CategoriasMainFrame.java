@@ -46,7 +46,7 @@ public class CategoriasMainFrame extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tbl_Datos = new javax.swing.JTable();
         cmb_Opcion = new javax.swing.JComboBox<>();
-        jLabel1 = new javax.swing.JLabel();
+        lbl_Buscar = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         btn_Eliminar = new javax.swing.JButton();
         btn_Modificar = new javax.swing.JButton();
@@ -123,6 +123,7 @@ public class CategoriasMainFrame extends javax.swing.JFrame {
 
         cmb_Opcion.setBackground(new java.awt.Color(237, 174, 195));
         cmb_Opcion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "IdCategoria", "Nombre" }));
+        cmb_Opcion.setSelectedIndex(1);
         cmb_Opcion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmb_OpcionActionPerformed(evt);
@@ -130,10 +131,10 @@ public class CategoriasMainFrame extends javax.swing.JFrame {
         });
         jPanel1.add(cmb_Opcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 70, -1, -1));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Buscar:");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 100, -1, -1));
+        lbl_Buscar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lbl_Buscar.setForeground(new java.awt.Color(255, 255, 255));
+        lbl_Buscar.setText("Buscar:");
+        jPanel1.add(lbl_Buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 100, -1, -1));
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Categoria/Añadir.png"))); // NOI18N
         jButton1.setBorderPainted(false);
@@ -279,13 +280,13 @@ public class CategoriasMainFrame extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cmb_Opcion;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton4;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lbl_Buscar;
     private javax.swing.JTable tbl_Datos;
     private javax.swing.JTextField txf_Buscar;
     // End of variables declaration//GEN-END:variables

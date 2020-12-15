@@ -120,10 +120,10 @@ public class ModificarCategoriaFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void btn_AddCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AddCategoriaActionPerformed
-        Categoria nuevaCategoria = new Categoria();
-        nuevaCategoria.setNombre(txf_Nombre.getText());
+
+        this.categoria.setNombre(txf_Nombre.getText());
         try{
-            if(conexion.actualizarCategoria(nuevaCategoria)){
+            if(conexion.actualizarCategoria(this.categoria)){
                 JOptionPane.showMessageDialog(null, "Categoria Modificada con exito");
                 CategoriasMainFrame Categorias = new CategoriasMainFrame(this.conexion);
                 Categorias.setVisible(true);

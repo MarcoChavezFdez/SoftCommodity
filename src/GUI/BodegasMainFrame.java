@@ -162,6 +162,7 @@ public class BodegasMainFrame extends javax.swing.JFrame {
 
         jComboBox1.setBackground(new java.awt.Color(237, 174, 195));
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "IdBodega", "Nombre" }));
+        jComboBox1.setSelectedIndex(1);
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
@@ -230,7 +231,7 @@ public class BodegasMainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowActivated
 
     private void InventariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InventariosActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_InventariosActionPerformed
 
     private void tbl_DatosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_DatosMouseClicked

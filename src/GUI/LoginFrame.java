@@ -7,7 +7,9 @@ package GUI;
 
 import Conexion.ConexionBD;
 import Modelos.Usuario;
+import java.awt.HeadlessException;
 import java.awt.event.KeyEvent;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -162,48 +164,52 @@ public class LoginFrame extends javax.swing.JFrame {
             Usuario currentUser = conexion.consultarUsuarioLogin(login);
 
             if (currentUser.getIdUsuario() == null) {
-                jOptionPane1.showMessageDialog(rootPane, "El usuario que ingreso no existe");
+                JOptionPane.showMessageDialog(rootPane, "El usuario que ingreso no existe");
             } else if (currentUser.getPassw().equals(pass)) {
-                MenuPrincipalFrame menu = new MenuPrincipalFrame(conexion);
-                menu.setVisible(true);
-                conexion.setUser(conexion.consultarUsuarioLogin(login));
-                this.setVisible(false);
+                if ("I".equals(currentUser.getEstatus())) {
+                    JOptionPane.showMessageDialog(rootPane, "El usuario esta deshabilitado");
+                } else {
+                    MenuPrincipalFrame menu = new MenuPrincipalFrame(conexion);
+                    menu.setVisible(true);
+                    conexion.setUser(conexion.consultarUsuarioLogin(login));
+                    this.setVisible(false);
+                }
 
             } else {
-                jOptionPane1.showMessageDialog(rootPane, "Usuario y/o contraseñas incorrecctos");
+                JOptionPane.showMessageDialog(rootPane, "Usuario y/o contraseñas incorrecctos");
             }
 
-        } catch (Exception e) {
+        } catch (HeadlessException e) {
             System.out.println("Error");
             lbl_Error.setText(e.getMessage());
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jPass_UsuarioKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPass_UsuarioKeyReleased
-        if(evt.getKeyCode()==KeyEvent.VK_ENTER ){
-             ConexionBD conexion = new ConexionBD();
-        conexion.conectado();
-        try {
-            String login = txtF_Usuario.getText();
-            String pass = jPass_Usuario.getText();
-            Usuario currentUser = conexion.consultarUsuarioLogin(login);
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            ConexionBD conexion = new ConexionBD();
+            conexion.conectado();
+            try {
+                String login = txtF_Usuario.getText();
+                String pass = jPass_Usuario.getText();
+                Usuario currentUser = conexion.consultarUsuarioLogin(login);
 
-            if (currentUser.getIdUsuario() == null) {
-                jOptionPane1.showMessageDialog(rootPane, "El usuario que ingreso no existe");
-            } else if (currentUser.getPassw().equals(pass)) {
-                MenuPrincipalFrame menu = new MenuPrincipalFrame(conexion);
-                menu.setVisible(true);
-                conexion.setUser(conexion.consultarUsuarioLogin(login));
-                this.setVisible(false);
+                if (currentUser.getIdUsuario() == null) {
+                    jOptionPane1.showMessageDialog(rootPane, "El usuario que ingreso no existe");
+                } else if (currentUser.getPassw().equals(pass)) {
+                    MenuPrincipalFrame menu = new MenuPrincipalFrame(conexion);
+                    menu.setVisible(true);
+                    conexion.setUser(conexion.consultarUsuarioLogin(login));
+                    this.setVisible(false);
 
-            } else {
-                jOptionPane1.showMessageDialog(rootPane, "Usuario y/o contraseñas incorrecctos");
+                } else {
+                    jOptionPane1.showMessageDialog(rootPane, "Usuario y/o contraseñas incorrecctos");
+                }
+
+            } catch (Exception e) {
+                System.out.println("Error");
+                lbl_Error.setText(e.getMessage());
             }
-
-        } catch (Exception e) {
-            System.out.println("Error");
-            lbl_Error.setText(e.getMessage());
-        }
         }
     }//GEN-LAST:event_jPass_UsuarioKeyReleased
 

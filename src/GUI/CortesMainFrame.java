@@ -27,6 +27,7 @@ import Conexion.ConexionBD;
 import Modelos.CorteCaja;
 import Modelos.CorteVenta;
 import Modelos.Venta;
+import javax.swing.JOptionPane;
 
 public class CortesMainFrame extends javax.swing.JFrame {
 
@@ -260,7 +261,13 @@ public class CortesMainFrame extends javax.swing.JFrame {
     * Este evento cierra el CorteActual del usuario y esta relacionado con el btn_CerrarCorte
      */
     private void btn_CerrarCorteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CerrarCorteActionPerformed
-        // TODO add your handling code here:
+        int reply = JOptionPane.showConfirmDialog(null, "¿Esta seguro que desea cerrar el corte?. Ya no podra regresar", "Cierre Corte", JOptionPane.YES_NO_OPTION);
+        if (reply == JOptionPane.YES_OPTION) {
+            CierreCorteFrame cierraCorte = new CierreCorteFrame(this.conexion, CorteActual);
+            this.setVisible(false);
+            cierraCorte.setVisible(true);
+
+        }
     }//GEN-LAST:event_btn_CerrarCorteActionPerformed
 
     /*
@@ -354,17 +361,17 @@ public class CortesMainFrame extends javax.swing.JFrame {
     * Este evento permite generar retiros de caja  y esta relacionado con el btn_Retirar
      */
     private void btn_RetirarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_RetirarActionPerformed
-        RealizarRetiroFrame retiros = new RealizarRetiroFrame(this.conexion,this.CorteActual);
+        RealizarRetiroFrame retiros = new RealizarRetiroFrame(this.conexion, this.CorteActual);
         this.setVisible(false);
         retiros.setVisible(true);
     }//GEN-LAST:event_btn_RetirarActionPerformed
-    
+
     /*
     * La funcion inicializarCorte permite crear un nuevo corte e insertarlo 
     *cuando el usuario no tienen ningun corte activo
     *@param fondoInicial es la cantidad con la que se crea el corte y se 
     *guarda en fondoInicial de la base de daatos
-    */
+     */
     private void inicializarCorte(Float fondoInicial) {
         java.util.Date utilDate = new java.util.Date();
         java.sql.Time hora = new java.sql.Time(utilDate.getTime());
@@ -383,25 +390,23 @@ public class CortesMainFrame extends javax.swing.JFrame {
         }
         recuperaCorte();
     }
-    
+
     /*
     * La funcion recupera corte permite recuperar el corte del usuario
     * si este tiene activo uno
     * No requiere parametros
-    */
-    
+     */
     private void recuperaCorte() {
         java.util.Date utilDate = new java.util.Date();
         java.sql.Date fecha = new java.sql.Date(utilDate.getTime());
         this.CorteActual = conexion.consultaCorteCaja(fecha, conexion.getUser().getIdUsuario());
-       
 
     }
 
     /*
     * La funcion recupera corte permite cerrar el corte del usuario
     * No requiere parametros
-    */
+     */
     private void cierraCorte() {
         this.CorteActual.setEstatus("C");
         /*
@@ -415,11 +420,10 @@ public class CortesMainFrame extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    
     /*
     * Variables creadas por NetBeans para el uso de los componentes de la 
     * interface
-    */
+     */
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_Atras;
     private javax.swing.JButton btn_CerrarCorte;
