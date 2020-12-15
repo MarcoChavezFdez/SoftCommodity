@@ -364,7 +364,7 @@ public class AddProductoFrame extends javax.swing.JFrame {
 
     //Llena el ComboBox de categorias cuando se abre la ventana
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        ArrayList<Categoria> listaCategorias = conexion.consultarCategoriasPorNombre();
+        ArrayList<Categoria> listaCategorias = conexion.consultarCategoriasOrdenadasNombre();
         for (int i = 0; i <listaCategorias.size()-1; i++) {
             cmb_Categorias.addItem(listaCategorias.get(i).getNombre());
         }

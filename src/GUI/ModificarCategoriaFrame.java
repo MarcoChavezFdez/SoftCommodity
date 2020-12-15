@@ -20,9 +20,11 @@ public class ModificarCategoriaFrame extends javax.swing.JFrame {
      * Creates new form AddCategoriaFrame
      */
     ConexionBD conexion;
-    public ModificarCategoriaFrame(ConexionBD conexion) {
+    Categoria categoria;
+    public ModificarCategoriaFrame(ConexionBD conexion,Categoria categoria) {
         initComponents();
         this.conexion=conexion;
+        this.categoria=categoria;
     }
 
     /**
@@ -121,8 +123,8 @@ public class ModificarCategoriaFrame extends javax.swing.JFrame {
         Categoria nuevaCategoria = new Categoria();
         nuevaCategoria.setNombre(txf_Nombre.getText());
         try{
-            if(conexion.insertarCategoria(nuevaCategoria)){
-                JOptionPane.showMessageDialog(null, "Categoria añadida con exito");
+            if(conexion.actualizarCategoria(nuevaCategoria)){
+                JOptionPane.showMessageDialog(null, "Categoria Modificada con exito");
                 CategoriasMainFrame Categorias = new CategoriasMainFrame(this.conexion);
                 Categorias.setVisible(true);
                 this.setVisible(false);

@@ -60,16 +60,16 @@ public class ConexionBD {
             //Si logramos conectarnos, con deja de apuntar a null y obtenemos conexion
             if (con != null) {
                 //Si funciona imprimimos en consola un mensaje
-                System.out.println("Conexión a base de datos funcionando");
+
             }
         } //Agarramos excepciones de tipo SQL
         catch (SQLException e) {
             //las mostramos en consola
-            System.out.println(e);
+            JOptionPane.showMessageDialog(null, "Tenemos problemas al conectar a la Base de datos, verifique el servicio mysqld" + e.getMessage());
             //agarramos excepciones de tipo clase en java
         } catch (ClassNotFoundException e) {
             //las mostramos en consola
-            System.out.println(e);
+
         }
     }
 
@@ -112,8 +112,6 @@ public class ConexionBD {
     public void desconectar() {
         //Ahora de nuevo con sera null
         con = null;
-        System.out.println("La conexion la BD se ha cerrado");
-
     }
 
     /**
@@ -226,7 +224,7 @@ public class ConexionBD {
         String sql = "select * "
                 + "from productos "
                 + "where nombre like CONCAT( '%" + Nombre + "%')";
-        ArrayList<Producto> lista = new ArrayList<Producto>();
+        ArrayList<Producto> lista = new ArrayList<>();
 
         try {
             PreparedStatement st = con.prepareStatement(sql);
@@ -623,6 +621,78 @@ public class ConexionBD {
     }
 
     /**
+     * Funcion la cual permite realizar la consulta de las categorias que tienen
+     * el patron proporcionado en el campo nombre
+     *
+     * de la tabla Productos de la Base de Datos No recibe parametros
+     *
+     * @param Nombre es el parametro para realizar la busqueda
+     * @return Devuelve un ArrayList de objetos Categoria
+     *
+     **
+     */
+    public ArrayList<Categoria> consultaCategoriasPorNombre(String Nombre) {
+        String sql = "select * "
+                + "from categorias "
+                + "where nombre like CONCAT( '%" + Nombre + "%')";
+        ArrayList<Categoria> lista = new ArrayList<>();
+
+        try {
+            PreparedStatement st = con.prepareStatement(sql);
+            System.out.println(sql);
+            ResultSet rs = st.executeQuery(sql);
+
+            while (rs.next()) {
+                Categoria c = new Categoria();
+                c.setIdCategoria(rs.getInt("idcategoria"));
+                c.setNombre(rs.getString("nombre"));
+                lista.add(c);
+            }
+            rs.close();
+            st.close();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error:" + e.getMessage());
+        }
+        return lista;
+    }
+
+    /**
+     * Funcion la cual permite realizar la consulta de las categorias que tienen
+     * el patron proporcionado en el campo nombre
+     *
+     * de la tabla Productos de la Base de Datos No recibe parametros
+     *
+     * @param Nombre es el parametro para realizar la busqueda
+     * @return Devuelve un ArrayList de objetos Categoria
+     *
+     **
+     */
+    public ArrayList<Categoria> consultaCategoriasPorId(String Nombre) {
+        String sql = "select * "
+                + "from categorias "
+                + "where idcategoria like CONCAT( '%" + Nombre + "%')";
+        ArrayList<Categoria> lista = new ArrayList<>();
+
+        try {
+            PreparedStatement st = con.prepareStatement(sql);
+            System.out.println(sql);
+            ResultSet rs = st.executeQuery(sql);
+
+            while (rs.next()) {
+                Categoria c = new Categoria();
+                c.setIdCategoria(rs.getInt("idcategoria"));
+                c.setNombre(rs.getString("nombre"));
+                lista.add(c);
+            }
+            rs.close();
+            st.close();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error:" + e.getMessage());
+        }
+        return lista;
+    }
+
+    /**
      * Funcion la cual permite realizar la consulta por nombre de la tabla de
      * Categorias
      *
@@ -632,7 +702,7 @@ public class ConexionBD {
      *
      **
      */
-    public ArrayList<Categoria> consultarCategoriasPorNombre() {
+    public ArrayList<Categoria> consultarCategoriasOrdenadasNombre() {
         String sql = "select * from categorias order by nombre asc";
         ArrayList<Categoria> lista = new ArrayList<Categoria>();
 
@@ -742,6 +812,7 @@ public class ConexionBD {
         }
         return false;
     }
+
     /**
      * Esta Funcion permite actualizar una categoria con el idPropocionado
      *
@@ -765,8 +836,7 @@ public class ConexionBD {
         }
         return ban;
     }
-    
-    
+
     /**
      * Modelo de Bodegas
      * *************************************************************
@@ -840,7 +910,7 @@ public class ConexionBD {
      */
     public ArrayList<Bodega> consultarBodegas() {
         String sql = "select * from bodegas "
-                + "order by idbodega";
+                + "order by nombre";
         ArrayList<Bodega> lista = new ArrayList<Bodega>();
 
         try {
@@ -1407,9 +1477,12 @@ public class ConexionBD {
         return ban;
     }
 
-    //Funcion que permite saber cual es el siguiente Ticket a crear
-    //No recibe parametros
-    //Devuelve un Integer correspondiente al ticket que se debe de crear
+    /**
+     * Funcion que permite saber cual es el siguiente Ticket a crear //No recibe
+     * parametros /Devuelve un Integer correspondiente al ticket que se debe de
+     * crear
+     *
+     */
     public Integer consultaUltimoTicket() {
         String fn = "{ ? = call ultimoTicket()}";
         try {
@@ -1441,7 +1514,7 @@ public class ConexionBD {
             if (rs.next()) {
                 totalTicket = (rs.getFloat("Total"));
             } else {
-                System.out.println("No recupero nada");
+
             }
             st.close();
             return totalTicket;
@@ -1460,9 +1533,12 @@ public class ConexionBD {
      *
      *************************************************************
      */
-    //Funcion que permite consultar los productos por ticket de la Tabla DetalleTicket de la Base de Datos
-    //Recibe un int idticket
-    //Devuellve un ArrayList de tipo DetalleTicket ccrrespondiente a la consulta
+    /**
+     * uncion que permite consultar los productos por ticket de la Tabla
+     * DetalleTicket de la Base de Datos //Recibe un int idticket /Devuellve un
+     * ArrayList de tipo DetalleTicket ccrrespondiente a la consulta
+     *
+     */
     public ArrayList<DetalleTicket> consultarDetalleTicket(int idticket) {
         String sql = "select *  "
                 + "from detalleticket "
@@ -1492,9 +1568,11 @@ public class ConexionBD {
         return null;
     }
 
-    //Funcion que permite agregar un producto al Ticket, agrega un registro a la tabla de DetalleTicket de la Base de Datos
-    //Recibe un objeto de DetalleTicket
-    //Retorna si fue exitosa la insercion 
+    /**
+     * Funcion que permite agregar un producto al Ticket, agrega un registro a
+     * la tabla de DetalleTicket de la Base de Datos //Recibe un objeto de
+     * DetalleTicket /Retorna si fue exitosa la insercion
+     */
     public boolean insertarDetalleTicket(DetalleTicket dt) {
         String sql = "insert into detalleticket values(?,?,?,?,?,?)";
         boolean ban = false;
@@ -1516,9 +1594,13 @@ public class ConexionBD {
         return ban;
     }
 
-    //Funcion que permite eliminar el producto del ticket de la tabla DetalleTciket de la Base de Datos
-    //Recibe el int de IdTicket y el int IdProducto
-    //Retorna si fue exitosa la eliminacion
+    /**
+     * Funcion que permite eliminar el producto del ticket de la tabla
+     * DetalleTciket de la Base de Datos //Recibe el int de IdTicket y el int
+     * IdProducto /Retorna si fue exitosa la eliminacion
+     *
+     *
+     */
     public boolean eliminarProductoDetalleTicket(int idticket, int idproducto) {
         String sql = "delete from detalleticket where idticket=? and idproducto=?";
         try {

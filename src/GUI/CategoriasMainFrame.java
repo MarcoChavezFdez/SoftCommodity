@@ -6,6 +6,7 @@
 package GUI;
 
 import Conexion.ConexionBD;
+import Modelos.Bodega;
 import Modelos.Categoria;
 import Modelos.Usuario;
 import java.util.ArrayList;
@@ -21,12 +22,13 @@ public class CategoriasMainFrame extends javax.swing.JFrame {
      * Creates new form CategoriasMain
      */
     ConexionBD conexion;
+
     public CategoriasMainFrame(ConexionBD conexion) {
         initComponents();
-        this.conexion= conexion;
+        this.conexion = conexion;
         ArrayList<Categoria> lista = conexion.consultarCategorias();
         llenarTabla(lista);
-        
+
     }
 
     /**
@@ -40,14 +42,14 @@ public class CategoriasMainFrame extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jButton4 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        txf_Buscar = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbl_Datos = new javax.swing.JTable();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cmb_Opcion = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btn_Eliminar = new javax.swing.JButton();
+        btn_Modificar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -76,14 +78,18 @@ public class CategoriasMainFrame extends javax.swing.JFrame {
         });
         jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
-        jTextField1.setEditable(false);
-        jTextField1.setBackground(new java.awt.Color(237, 174, 195));
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        txf_Buscar.setBackground(new java.awt.Color(237, 174, 195));
+        txf_Buscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                txf_BuscarActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 100, 233, -1));
+        txf_Buscar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txf_BuscarKeyReleased(evt);
+            }
+        });
+        jPanel1.add(txf_Buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 100, 240, -1));
 
         tbl_Datos.setAutoCreateRowSorter(true);
         tbl_Datos.setBackground(new java.awt.Color(237, 174, 195));
@@ -106,18 +112,23 @@ public class CategoriasMainFrame extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tbl_Datos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbl_DatosMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tbl_Datos);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 538, 384));
 
-        jComboBox1.setBackground(new java.awt.Color(237, 174, 195));
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "IdCategoria", "Nombre" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        cmb_Opcion.setBackground(new java.awt.Color(237, 174, 195));
+        cmb_Opcion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "IdCategoria", "Nombre" }));
+        cmb_Opcion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                cmb_OpcionActionPerformed(evt);
             }
         });
-        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 70, -1, -1));
+        jPanel1.add(cmb_Opcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 70, -1, -1));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -134,21 +145,27 @@ public class CategoriasMainFrame extends javax.swing.JFrame {
         });
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 140, -1, -1));
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Categoria/Eliminar.png"))); // NOI18N
-        jButton2.setBorderPainted(false);
-        jButton2.setContentAreaFilled(false);
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btn_Eliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Categoria/Eliminar.png"))); // NOI18N
+        btn_Eliminar.setBorderPainted(false);
+        btn_Eliminar.setContentAreaFilled(false);
+        btn_Eliminar.setEnabled(false);
+        btn_Eliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btn_EliminarActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 340, -1, -1));
+        jPanel1.add(btn_Eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 340, -1, -1));
 
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Categoria/Modificar.png"))); // NOI18N
-        jButton3.setBorderPainted(false);
-        jButton3.setContentAreaFilled(false);
-        jButton3.setEnabled(false);
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 240, -1, -1));
+        btn_Modificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Categoria/Modificar.png"))); // NOI18N
+        btn_Modificar.setBorderPainted(false);
+        btn_Modificar.setContentAreaFilled(false);
+        btn_Modificar.setEnabled(false);
+        btn_Modificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_ModificarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btn_Modificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 240, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -171,13 +188,13 @@ public class CategoriasMainFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    private void cmb_OpcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmb_OpcionActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    }//GEN-LAST:event_cmb_OpcionActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void txf_BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txf_BuscarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_txf_BuscarActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         AddCategoriaFrame addCategoria = new AddCategoriaFrame(this.conexion);
@@ -185,9 +202,9 @@ public class CategoriasMainFrame extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btn_EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_EliminarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btn_EliminarActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         MenuPrincipalFrame menu = new MenuPrincipalFrame(this.conexion);
@@ -196,8 +213,43 @@ public class CategoriasMainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        
+
     }//GEN-LAST:event_formWindowOpened
+
+    private void tbl_DatosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_DatosMouseClicked
+        btn_Modificar.setEnabled(true);
+        btn_Eliminar.setEnabled(true);
+    }//GEN-LAST:event_tbl_DatosMouseClicked
+
+    private void btn_ModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ModificarActionPerformed
+        Integer IdCategoria = Integer.parseInt(tbl_Datos.getValueAt(tbl_Datos.getSelectedRow(), 0).toString());
+        Categoria c = conexion.consultarCategoria(IdCategoria);
+        ModificarCategoriaFrame modificarCategoria = new ModificarCategoriaFrame(this.conexion, c);
+        this.setVisible(false);
+        modificarCategoria.setVisible(true);
+    }//GEN-LAST:event_btn_ModificarActionPerformed
+
+    private void txf_BuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txf_BuscarKeyReleased
+        String nombre = txf_Buscar.getText();
+        ArrayList<Categoria> lista;
+        if (!nombre.isEmpty()) {
+            Integer opcion = cmb_Opcion.getSelectedIndex();
+            switch (opcion) {
+                case 0:
+                    lista = conexion.consultaCategoriasPorId(nombre);
+                    llenarTabla(lista);
+                    break;
+                case 1:
+                    lista = conexion.consultaCategoriasPorNombre(nombre);
+                    llenarTabla(lista);
+                    break;
+            }
+
+        } else {
+            lista = conexion.consultarCategorias();
+            llenarTabla(lista);
+        }
+    }//GEN-LAST:event_txf_BuscarKeyReleased
     private void llenarTabla(ArrayList<Categoria> lista) {
         String[] encabezado = {"IdCategoria", "Nombre"};
         Object[][] datos = new Object[lista.size()][2];
@@ -222,11 +274,11 @@ public class CategoriasMainFrame extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_Eliminar;
+    private javax.swing.JButton btn_Modificar;
+    private javax.swing.JComboBox<String> cmb_Opcion;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -234,7 +286,7 @@ public class CategoriasMainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTable tbl_Datos;
+    private javax.swing.JTextField txf_Buscar;
     // End of variables declaration//GEN-END:variables
 }
