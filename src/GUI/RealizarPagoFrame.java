@@ -391,6 +391,11 @@ public class RealizarPagoFrame extends javax.swing.JFrame {
                 ftxf_CantidadActionPerformed(evt);
             }
         });
+        ftxf_Cantidad.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                ftxf_CantidadPropertyChange(evt);
+            }
+        });
         jPanel2.add(ftxf_Cantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 390, 60));
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Fondo3.png"))); // NOI18N
@@ -432,23 +437,26 @@ public class RealizarPagoFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jb100ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb100ActionPerformed
-        // TODO add your handling code here:
+        ftxf_Cantidad.setText("100");
     }//GEN-LAST:event_jb100ActionPerformed
 
     private void jbPagoExactoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPagoExactoActionPerformed
-        // TODO add your handling code here:
+        ftxf_Cantidad.setText(String.valueOf(this.ticketAcutal.getTotal()));
     }//GEN-LAST:event_jbPagoExactoActionPerformed
 
     private void jb200ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb200ActionPerformed
-        // TODO add your handling code here:
+        ftxf_Cantidad.setText("200");
     }//GEN-LAST:event_jb200ActionPerformed
 
     private void jb50ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb50ActionPerformed
-        // TODO add your handling code here:
+        ftxf_Cantidad.setText("50");
     }//GEN-LAST:event_jb50ActionPerformed
 
     private void jbBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBorrarActionPerformed
-        ftxf_Cantidad.setText(ftxf_Cantidad.getText().substring(0, ftxf_Cantidad.getText().length() - 1));
+        if(!ftxf_Cantidad.getText().isEmpty()){
+            ftxf_Cantidad.setText(ftxf_Cantidad.getText().substring(0, ftxf_Cantidad.getText().length() - 1));
+        }
+        
     }//GEN-LAST:event_jbBorrarActionPerformed
 
     private void jb8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb8ActionPerformed
@@ -464,7 +472,7 @@ public class RealizarPagoFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jb1ActionPerformed
 
     private void jb20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb20ActionPerformed
-        // TODO add your handling code here:
+        ftxf_Cantidad.setText("20");
     }//GEN-LAST:event_jb20ActionPerformed
 
     private void jb7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb7ActionPerformed
@@ -504,15 +512,21 @@ public class RealizarPagoFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_ftxf_CantidadActionPerformed
 
     private void jbOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbOkActionPerformed
-        // TODO add your handling code here:
+       if(!ftxf_Cantidad.getText().isEmpty()){
+             txf_Efectivo.setText(ftxf_Cantidad.getText());
+             llenaFields();
+       }
+       else{
+             ftxf_Cantidad.setText("0");
+       }
     }//GEN-LAST:event_jbOkActionPerformed
 
     private void btn_500ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_500ActionPerformed
-        llenaFields("500");
+        ftxf_Cantidad.setText("500");
     }//GEN-LAST:event_btn_500ActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        txf_Total.setText(String.valueOf(this.ticketAcutal.getSubTotal()));
+        txf_Total.setText(String.valueOf(this.ticketAcutal.getTotal()));
     }//GEN-LAST:event_formWindowOpened
 
     private void txf_CambioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txf_CambioActionPerformed
@@ -522,7 +536,7 @@ public class RealizarPagoFrame extends javax.swing.JFrame {
     /**
      * Este evento permite actualizar los datos del ticket que se cobro y
      * regresar al menu principal de cortes Esta Relacionado con el btn_Cobrar
-    *
+     *
      */
     private void btn_CobrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CobrarActionPerformed
         this.ticketAcutal.setHoraVenta(Time.valueOf(LocalTime.now()));
@@ -537,19 +551,29 @@ public class RealizarPagoFrame extends javax.swing.JFrame {
         cortesPrincipal.setVisible(true);
     }//GEN-LAST:event_btn_CobrarActionPerformed
 
-    public void llenaFields(String cant) {
-        Float cambio;
-        cambio = Float.valueOf(cant) - this.ticketAcutal.getSubTotal();
-        if (cambio < 0) {
-            btn_Cobrar.setEnabled(false);
+    private void ftxf_CantidadPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_ftxf_CantidadPropertyChange
+        
+    }//GEN-LAST:event_ftxf_CantidadPropertyChange
 
+    
+    public void llenaFields() {
+        Float cambio;
+        String cant=ftxf_Cantidad.getText();
+        if (!cant.isEmpty()) {
+            cambio = Float.valueOf(cant) - this.ticketAcutal.getSubTotal();
+            if (cambio < 0) {
+                btn_Cobrar.setEnabled(false);
+
+            } else {
+                btn_Cobrar.setEnabled(true);
+                txf_Efectivo.setText(cant);
+                txf_Cambio.setText(String.valueOf(cambio));
+            }
         } else {
-            txf_Efectivo.setText(cant);
-            txf_Cambio.setText(String.valueOf(cambio));
+
         }
 
     }
-
 
     /**
      * @param args the command line arguments
