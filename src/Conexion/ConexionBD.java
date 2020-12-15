@@ -1238,8 +1238,9 @@ public class ConexionBD {
      * @return regresa si fue o no exitosa la actualizacion ***
      */
     public boolean actualizarCorteCaja(CorteCaja cc) {
-        String sql = "update cortescaja set idUsuario=? , fondoinicial=?, totalventa=?, totalretiros=?, totalcorte=?, "
-                + "horainicial=?, horafinal=?, estatus=? , fecha=? "
+        String sql = "update cortescaja set idUsuario=? , fondoinicial=?, totalventa=?, "
+                + "totalretiros=?, totalcorte=?, horainicial=?, horafinal=?, estatus=? "
+                + " , fecha=? "
                 + "where idcorte=? ";
         boolean ban = false;
         try {
