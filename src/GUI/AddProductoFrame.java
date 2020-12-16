@@ -1,7 +1,26 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ *
+ * @Autor  Marco Alberto Chávez Fernández
+ * @Correo: mchavez297@accitesz.com
+ *
+ * @Autor José Carlos Esparza de Anda
+ * @Correo: jesparza301@accitesz.com
+ *
+ * @Autor José Ángel Madrigal Plancarte
+ * @Correo: jmadrigal323@accitesz.com
+ *
+ * @Docente: Dr. Francisco Rodríguez Díaz
+ * @Asignatura: Ing. de Software
+ * @Escuela: Instituto Tecnologico de Estudios Superiores de Zamora
+ * @Semestre : 7
+ * @Grupo: B
+ * @Carrera: Ing. en Sistemas Computacionales
+ *
+ * La clase AddProductoFrene pertenece al paquete de Modelos tiene el proposito
+ * de generar la interface necesaia par qeu el producto sea insertado en la
+ * tabla
+ * @since VER1.0
+ *
  */
 package GUI;
 
@@ -356,7 +375,7 @@ public class AddProductoFrame extends javax.swing.JFrame {
         nuevoProducto.setMaterial(txf_Material.getText().toUpperCase());
         nuevoProducto.setAnchura(Float.valueOf(txf_Anchura.getText()));
         nuevoProducto.setMedidaAnchura(cmb_MedidaAnchura.getItemAt(cmb_MedidaAnchura.getSelectedIndex()));
-        nuevoProducto.setEstatus(cmb_Estatus.getItemAt(cmb_Estatus.getSelectedIndex()).substring(0,1));
+        nuevoProducto.setEstatus(cmb_Estatus.getItemAt(cmb_Estatus.getSelectedIndex()).substring(0, 1));
         try {
             if (conexion.insertarProducto(nuevoProducto)) {
                 JOptionPane.showMessageDialog(null, "Producto Añadido con exito");
