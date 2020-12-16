@@ -16,16 +16,21 @@
  * @Grupo: B
  * @Carrera: Ing. en Sistemas Computacionales
  *
- * Esta clase es la encargada generar la interface para que el usuario pueda
- * modificar un producto que previamente selecciono en el menu de Usuarios,
- * contiene todos los eventos necesarios para que el usuario navegue en la
- * interface
+ * La clase AddProductoFrene pertenece al paquete de Modelos tiene el proposito
+ * de generar la interface necesaia par qeu el producto sea insertado en la
+ * tabla
+ * @since VER1.0
  *
  */
 package GUI;
 
 import Conexion.ConexionBD;
+import Modelos.Categoria;
 import Modelos.Producto;
+import java.util.ArrayList;
+
+import javax.swing.JOptionPane;
+import javax.swing.text.MaskFormatter;
 
 /**
  *
@@ -34,12 +39,15 @@ import Modelos.Producto;
 public class ModificarProductoFrame extends javax.swing.JFrame {
 
     /**
-     * Creates new form ModificarProductoFrame
+     * Creates new form AddProductoFrame
      */
     ConexionBD conexion;
-    public ModificarProductoFrame(ConexionBD conexion) {
+    Producto producto;
+
+    public ModificarProductoFrame(ConexionBD conexion, Producto p) {
         initComponents();
-        this.conexion=conexion;
+        this.conexion = conexion;
+        this.producto = p;
     }
 
     /**
@@ -53,28 +61,27 @@ public class ModificarProductoFrame extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         txf_Descripcion = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
+        txf_PrecioMayoreo = new javax.swing.JTextField();
+        txf_PrecioMenudeo = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
-        jTextField10 = new javax.swing.JTextField();
+        txf_PrecioCompra = new javax.swing.JTextField();
+        txf_Anchura = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jComboBox4 = new javax.swing.JComboBox<>();
+        cmb_Presentacion = new javax.swing.JComboBox<>();
+        cmb_MedidaAnchura = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jComboBox3 = new javax.swing.JComboBox<>();
+        cmb_TipoContenido = new javax.swing.JComboBox<>();
         jLabel10 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jTextField11 = new javax.swing.JTextField();
-        jTextField7 = new javax.swing.JTextField();
+        txf_Color = new javax.swing.JTextField();
+        txf_EAN = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jTextField8 = new javax.swing.JTextField();
+        txf_Material = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jTextField9 = new javax.swing.JTextField();
+        txf_Contenido = new javax.swing.JTextField();
         jLabel17 = new javax.swing.JLabel();
         btn_Atras = new javax.swing.JButton();
         jLabel12 = new javax.swing.JLabel();
@@ -82,16 +89,20 @@ public class ModificarProductoFrame extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
         cmb_Categorias = new javax.swing.JComboBox<>();
         txf_Nombre = new javax.swing.JTextField();
-        jComboBox5 = new javax.swing.JComboBox<>();
-        btn_Modificar = new javax.swing.JButton();
-        jLabel18 = new javax.swing.JLabel();
-        jLabel19 = new javax.swing.JLabel();
+        cmb_Estatus = new javax.swing.JComboBox<>();
+        btn_AddProducto = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("SoftCommodity+ by White Company® ");
+        setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
@@ -103,132 +114,158 @@ public class ModificarProductoFrame extends javax.swing.JFrame {
                 txf_DescripcionActionPerformed(evt);
             }
         });
-        jPanel1.add(txf_Descripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 230, 139, -1));
+        jPanel1.add(txf_Descripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 200, 139, -1));
 
-        jTextField4.setBackground(new java.awt.Color(237, 174, 195));
-        jTextField4.addKeyListener(new java.awt.event.KeyAdapter() {
+        txf_PrecioMayoreo.setBackground(new java.awt.Color(237, 174, 195));
+        txf_PrecioMayoreo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                jTextField4KeyPressed(evt);
+                txf_PrecioMayoreoKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txf_PrecioMayoreoKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txf_PrecioMayoreoKeyTyped(evt);
             }
         });
-        jPanel1.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 270, 139, -1));
+        jPanel1.add(txf_PrecioMayoreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 240, 139, -1));
 
-        jTextField5.setBackground(new java.awt.Color(237, 174, 195));
-        jPanel1.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 300, 139, -1));
-
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("IdProducto");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 130, -1, 16));
+        txf_PrecioMenudeo.setBackground(new java.awt.Color(237, 174, 195));
+        txf_PrecioMenudeo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txf_PrecioMenudeoKeyReleased(evt);
+            }
+        });
+        jPanel1.add(txf_PrecioMenudeo, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 270, 139, -1));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Precio Compra");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 340, -1, -1));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 310, -1, -1));
 
-        jTextField6.setBackground(new java.awt.Color(237, 174, 195));
-        jTextField6.addActionListener(new java.awt.event.ActionListener() {
+        txf_PrecioCompra.setBackground(new java.awt.Color(237, 174, 195));
+        txf_PrecioCompra.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField6ActionPerformed(evt);
+                txf_PrecioCompraActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 340, 139, -1));
+        jPanel1.add(txf_PrecioCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 310, 139, -1));
 
-        jTextField10.setBackground(new java.awt.Color(237, 174, 195));
-        jPanel1.add(jTextField10, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 310, 140, -1));
+        txf_Anchura.setBackground(new java.awt.Color(237, 174, 195));
+        txf_Anchura.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txf_AnchuraKeyReleased(evt);
+            }
+        });
+        jPanel1.add(txf_Anchura, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 280, 140, -1));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("IdCategoria");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 160, -1, -1));
+        jLabel2.setText("IdCategoría");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 130, -1, -1));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Presentación");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 130, -1, -1));
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 100, -1, -1));
 
-        jComboBox2.setBackground(new java.awt.Color(237, 174, 195));
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Metro", "Pieza", "Gramos" }));
-        jPanel1.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 130, 139, -1));
+        cmb_Presentacion.setBackground(new java.awt.Color(237, 174, 195));
+        cmb_Presentacion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "PIEZA", "METRO", "GRAMOS" }));
+        jPanel1.add(cmb_Presentacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 100, 139, -1));
 
-        jComboBox4.setBackground(new java.awt.Color(237, 174, 195));
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Milimetros", "Pulgadas" }));
-        jComboBox4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox4ActionPerformed(evt);
+        cmb_MedidaAnchura.setBackground(new java.awt.Color(237, 174, 195));
+        cmb_MedidaAnchura.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "MILIMETROS", "PULGADAS", "CENTIMETROS", "NA" }));
+        cmb_MedidaAnchura.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cmb_MedidaAnchuraItemStateChanged(evt);
             }
         });
-        jPanel1.add(jComboBox4, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 340, -1, -1));
+        cmb_MedidaAnchura.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmb_MedidaAnchuraActionPerformed(evt);
+            }
+        });
+        jPanel1.add(cmb_MedidaAnchura, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 320, 130, -1));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Nombre");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 190, -1, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 160, -1, -1));
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("EAN");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 160, -1, -1));
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 130, -1, -1));
 
-        jComboBox3.setBackground(new java.awt.Color(237, 174, 195));
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Metros", "Piezas", "Gramos" }));
-        jPanel1.add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 240, 139, -1));
+        cmb_TipoContenido.setBackground(new java.awt.Color(237, 174, 195));
+        cmb_TipoContenido.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "METROS", "PIEZAS", "GRAMOS" }));
+        cmb_TipoContenido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmb_TipoContenidoActionPerformed(evt);
+            }
+        });
+        jPanel1.add(cmb_TipoContenido, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 210, 139, -1));
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("Contenido");
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 200, -1, -1));
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 170, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Descripción");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 230, -1, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 200, -1, -1));
 
-        jTextField11.setBackground(new java.awt.Color(237, 174, 195));
-        jPanel1.add(jTextField11, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 370, 140, -1));
+        txf_Color.setBackground(new java.awt.Color(237, 174, 195));
+        jPanel1.add(txf_Color, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 340, 140, -1));
 
-        jTextField7.setBackground(new java.awt.Color(237, 174, 195));
-        jTextField7.addActionListener(new java.awt.event.ActionListener() {
+        txf_EAN.setBackground(new java.awt.Color(237, 174, 195));
+        txf_EAN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField7ActionPerformed(evt);
+                txf_EANActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 160, 139, -1));
+        jPanel1.add(txf_EAN, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 130, 139, -1));
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText("Tipo Contenido");
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 240, -1, -1));
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 210, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Precio Mayoreo");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 270, -1, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 240, -1, -1));
 
-        jTextField8.setBackground(new java.awt.Color(237, 174, 195));
-        jTextField8.addActionListener(new java.awt.event.ActionListener() {
+        txf_Material.setBackground(new java.awt.Color(237, 174, 195));
+        txf_Material.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField8ActionPerformed(evt);
+                txf_MaterialActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 270, 140, -1));
+        jPanel1.add(txf_Material, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 240, 140, -1));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Precio Menudeo");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 310, -1, -1));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 280, -1, -1));
 
-        jTextField9.setBackground(new java.awt.Color(237, 174, 195));
-        jTextField9.addActionListener(new java.awt.event.ActionListener() {
+        txf_Contenido.setBackground(new java.awt.Color(237, 174, 195));
+        txf_Contenido.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField9ActionPerformed(evt);
+                txf_ContenidoActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField9, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 200, 139, -1));
+        txf_Contenido.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txf_ContenidoKeyReleased(evt);
+            }
+        });
+        jPanel1.add(txf_Contenido, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 170, 139, -1));
 
         jLabel17.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel17.setText("Modificación del Producto");
+        jLabel17.setText("Añadir Un Nuevo Producto");
         jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 50, -1, -1));
 
         btn_Atras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Login/Volver.png"))); // NOI18N
@@ -245,109 +282,137 @@ public class ModificarProductoFrame extends javax.swing.JFrame {
         jLabel12.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(255, 255, 255));
         jLabel12.setText("Material");
-        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 270, -1, 16));
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 240, -1, 16));
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(255, 255, 255));
         jLabel13.setText("Anchura");
-        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 310, -1, -1));
+        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 280, -1, -1));
 
         jLabel14.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(255, 255, 255));
         jLabel14.setText("Color");
-        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 370, -1, -1));
+        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 340, -1, -1));
 
         jLabel15.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(255, 255, 255));
         jLabel15.setText("Medida Anchura");
-        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 350, -1, -1));
+        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 320, -1, -1));
 
         jLabel16.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(255, 255, 255));
         jLabel16.setText("Estatus");
-        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 380, -1, -1));
-
-        jTextField1.setEditable(false);
-        jTextField1.setBackground(new java.awt.Color(237, 174, 195));
-        jTextField1.setText("1");
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 130, 37, -1));
+        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 350, -1, -1));
 
         cmb_Categorias.setBackground(new java.awt.Color(237, 174, 195));
-        cmb_Categorias.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4" }));
+        cmb_Categorias.setMaximumRowCount(100);
+        cmb_Categorias.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cmb_CategoriasMouseClicked(evt);
+            }
+        });
         cmb_Categorias.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmb_CategoriasActionPerformed(evt);
             }
         });
-        jPanel1.add(cmb_Categorias, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 160, -1, -1));
+        jPanel1.add(cmb_Categorias, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 130, -1, -1));
 
         txf_Nombre.setBackground(new java.awt.Color(237, 174, 195));
-        jPanel1.add(txf_Nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 190, 139, -1));
+        jPanel1.add(txf_Nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 160, 139, -1));
 
-        jComboBox5.setBackground(new java.awt.Color(237, 174, 195));
-        jComboBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Activo", "Inactivo" }));
-        jComboBox5.addActionListener(new java.awt.event.ActionListener() {
+        cmb_Estatus.setBackground(new java.awt.Color(237, 174, 195));
+        cmb_Estatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ACTIVO", "INACTIVO" }));
+        cmb_Estatus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox5ActionPerformed(evt);
+                cmb_EstatusActionPerformed(evt);
             }
         });
-        jPanel1.add(jComboBox5, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 370, -1, -1));
+        jPanel1.add(cmb_Estatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 350, -1, -1));
 
-        btn_Modificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Productos/Modificar.png"))); // NOI18N
-        btn_Modificar.setBorderPainted(false);
-        btn_Modificar.setContentAreaFilled(false);
-        btn_Modificar.addActionListener(new java.awt.event.ActionListener() {
+        btn_AddProducto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Productos/Añadir.png"))); // NOI18N
+        btn_AddProducto.setBorderPainted(false);
+        btn_AddProducto.setContentAreaFilled(false);
+        btn_AddProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_ModificarActionPerformed(evt);
+                btn_AddProductoActionPerformed(evt);
             }
         });
-        jPanel1.add(btn_Modificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 400, -1, -1));
+        jPanel1.add(btn_AddProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 380, -1, -1));
 
-        jLabel18.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel18.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel18.setText("Estable los nuevos parámetros para el producto");
-        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 80, -1, -1));
-
-        jLabel19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Fondo5_Med.png"))); // NOI18N
-        jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, -1, -1));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Fondo5_Med.png"))); // NOI18N
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -30, -1, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 850, 500));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txf_DescripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txf_DescripcionActionPerformed
+    private void cmb_MedidaAnchuraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmb_MedidaAnchuraActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txf_DescripcionActionPerformed
+    }//GEN-LAST:event_cmb_MedidaAnchuraActionPerformed
 
-    private void jTextField4KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField4KeyPressed
+    private void cmb_EstatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmb_EstatusActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4KeyPressed
+    }//GEN-LAST:event_cmb_EstatusActionPerformed
 
-    private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
+    private void cmb_CategoriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmb_CategoriasActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField6ActionPerformed
+    }//GEN-LAST:event_cmb_CategoriasActionPerformed
 
-    private void jComboBox4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox4ActionPerformed
+    private void btn_AddProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AddProductoActionPerformed
+        Categoria catSeleccionada;
+        catSeleccionada = conexion.consultarCategoriasPorNombre(cmb_Categorias.getItemAt(cmb_Categorias.getSelectedIndex()));
+        producto.setIdCategoria(catSeleccionada.getIdCategoria());
+        producto.setNombre(txf_Nombre.getText().toUpperCase().toUpperCase());
+        producto.setDescripcion(txf_Descripcion.getText().toUpperCase());
+        producto.setPrecioMayoreo(Float.valueOf(txf_PrecioMayoreo.getText()));
+        producto.setPrecioMenudeo(Float.valueOf(txf_PrecioMenudeo.getText()));
+        producto.setPrecioCompra(Float.valueOf(txf_PrecioCompra.getText()));
+        producto.setColor(txf_Color.getText().toUpperCase());
+        producto.setPresentacion(cmb_Presentacion.getItemAt(cmb_Presentacion.getSelectedIndex()));
+        producto.setEAN(txf_EAN.getText());
+        producto.setContenido(Integer.valueOf(txf_Contenido.getText()));
+        producto.setTipoContenido(cmb_TipoContenido.getItemAt(cmb_TipoContenido.getSelectedIndex()));
+        producto.setMaterial(txf_Material.getText().toUpperCase());
+        producto.setAnchura(Float.valueOf(txf_Anchura.getText()));
+        producto.setMedidaAnchura(cmb_MedidaAnchura.getItemAt(cmb_MedidaAnchura.getSelectedIndex()));
+        producto.setEstatus(cmb_Estatus.getItemAt(cmb_Estatus.getSelectedIndex()).substring(0, 1));
+        try {
+            if (conexion.insertarProducto(producto)) {
+                JOptionPane.showMessageDialog(null, "Producto Añadido con exito");
+                ProductosMainFrame productos = new ProductosMainFrame(this.conexion);
+                productos.setVisible(true);
+                productos.setVisible(false);
+                ProductosMainFrame menu = new ProductosMainFrame(this.conexion);
+                menu.setVisible(true);
+                this.setVisible(false);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error:" + e.getMessage());
+        }
 
-    private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField7ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField7ActionPerformed
+    }//GEN-LAST:event_btn_AddProductoActionPerformed
 
-    private void jTextField8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField8ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField8ActionPerformed
+    private void txf_PrecioCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txf_PrecioCompraActionPerformed
+        try {
+            this.producto.setPrecioCompra(Float.valueOf(txf_PrecioCompra.getText()));
+        } catch (NumberFormatException e) {
+            txf_PrecioCompra.setText("0.00");
+        }
+    }//GEN-LAST:event_txf_PrecioCompraActionPerformed
 
-    private void jTextField9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField9ActionPerformed
+    private void txf_EANActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txf_EANActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField9ActionPerformed
+    }//GEN-LAST:event_txf_EANActionPerformed
+
+    private void txf_MaterialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txf_MaterialActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txf_MaterialActionPerformed
+
+    private void txf_ContenidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txf_ContenidoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txf_ContenidoActionPerformed
 
     private void btn_AtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AtrasActionPerformed
         ProductosMainFrame productos = new ProductosMainFrame(this.conexion);
@@ -355,35 +420,104 @@ public class ModificarProductoFrame extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_btn_AtrasActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void txf_DescripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txf_DescripcionActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_txf_DescripcionActionPerformed
 
-    private void cmb_CategoriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmb_CategoriasActionPerformed
+    //Llena el ComboBox de categorias cuando se abre la ventana
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        Categoria cat= conexion.consultarCategoria(producto.getIdCategoria());
+        cmb_Categorias.addItem(cat.getNombre());
+        txf_Nombre.setText(producto.getNombre());
+        
+    }//GEN-LAST:event_formWindowOpened
+
+    private void txf_PrecioMayoreoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txf_PrecioMayoreoKeyPressed
+        try {
+            this.producto.setPrecioMayoreo(Float.valueOf(txf_PrecioMayoreo.getText()));
+        } catch (NumberFormatException e) {
+            txf_PrecioMayoreo.setText("");
+        }
+    }//GEN-LAST:event_txf_PrecioMayoreoKeyPressed
+
+    private void cmb_MedidaAnchuraItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmb_MedidaAnchuraItemStateChanged
+        if (cmb_MedidaAnchura.getSelectedIndex() == 3) {
+            txf_Anchura.setEnabled(false);
+            txf_Anchura.setText("0");
+        } else {
+            txf_Anchura.setEnabled(true);
+        }
+    }//GEN-LAST:event_cmb_MedidaAnchuraItemStateChanged
+
+    private void cmb_TipoContenidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmb_TipoContenidoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_cmb_CategoriasActionPerformed
+    }//GEN-LAST:event_cmb_TipoContenidoActionPerformed
 
-    private void jComboBox5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox5ActionPerformed
+    private void txf_PrecioMayoreoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txf_PrecioMayoreoKeyReleased
+        //
+    }//GEN-LAST:event_txf_PrecioMayoreoKeyReleased
+
+    private void txf_PrecioMenudeoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txf_PrecioMenudeoKeyReleased
+        try {
+            this.producto.setPrecioMenudeo(Float.valueOf(txf_PrecioMenudeo.getText()));
+        } catch (NumberFormatException e) {
+            txf_PrecioMenudeo.setText("");
+        }
+    }//GEN-LAST:event_txf_PrecioMenudeoKeyReleased
+
+    private void txf_ContenidoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txf_ContenidoKeyReleased
+
+        try {
+            this.producto.setContenido(Integer.valueOf(txf_Contenido.getText()));
+        } catch (NumberFormatException e) {
+            txf_Contenido.setText("");
+        }
+    }//GEN-LAST:event_txf_ContenidoKeyReleased
+
+    private void txf_AnchuraKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txf_AnchuraKeyReleased
+
+        try {
+            this.producto.setAnchura(Float.valueOf(txf_Anchura.getText()));
+        } catch (NumberFormatException e) {
+            txf_Anchura.setText("");
+        }
+    }//GEN-LAST:event_txf_AnchuraKeyReleased
+
+    private void txf_PrecioMayoreoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txf_PrecioMayoreoKeyTyped
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox5ActionPerformed
+    }//GEN-LAST:event_txf_PrecioMayoreoKeyTyped
 
-    private void btn_ModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ModificarActionPerformed
-        Producto nuevoProducto = new Producto();
-    }//GEN-LAST:event_btn_ModificarActionPerformed
+    private void cmb_CategoriasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmb_CategoriasMouseClicked
+        ArrayList<Categoria> listaCategorias = conexion.consultarCategoriasOrdenadasNombre();
+        cmb_Categorias.removeAllItems();
+        for (int i = 0; i < listaCategorias.size() - 1; i++) {
+            cmb_Categorias.addItem(listaCategorias.get(i).getNombre());
+        }
+    }//GEN-LAST:event_cmb_CategoriasMouseClicked
+    private MaskFormatter getNumFormat() {
+        MaskFormatter MF = null;
 
+        try {
+            MF = new MaskFormatter("###"); //Tres digitos.
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return MF;
+    }
     /**
      * @param args the command line arguments
      */
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_AddProducto;
     private javax.swing.JButton btn_Atras;
-    private javax.swing.JButton btn_Modificar;
     private javax.swing.JComboBox<String> cmb_Categorias;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
-    private javax.swing.JComboBox<String> jComboBox4;
-    private javax.swing.JComboBox<String> jComboBox5;
+    private javax.swing.JComboBox<String> cmb_Estatus;
+    private javax.swing.JComboBox<String> cmb_MedidaAnchura;
+    private javax.swing.JComboBox<String> cmb_Presentacion;
+    private javax.swing.JComboBox<String> cmb_TipoContenido;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -393,8 +527,6 @@ public class ModificarProductoFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -404,16 +536,15 @@ public class ModificarProductoFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField10;
-    private javax.swing.JTextField jTextField11;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
+    private javax.swing.JTextField txf_Anchura;
+    private javax.swing.JTextField txf_Color;
+    private javax.swing.JTextField txf_Contenido;
     private javax.swing.JTextField txf_Descripcion;
+    private javax.swing.JTextField txf_EAN;
+    private javax.swing.JTextField txf_Material;
     private javax.swing.JTextField txf_Nombre;
+    private javax.swing.JTextField txf_PrecioCompra;
+    private javax.swing.JTextField txf_PrecioMayoreo;
+    private javax.swing.JTextField txf_PrecioMenudeo;
     // End of variables declaration//GEN-END:variables
 }
