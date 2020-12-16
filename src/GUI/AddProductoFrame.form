@@ -69,6 +69,8 @@
           </Properties>
           <Events>
             <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txf_PrecioMayoreoKeyPressed"/>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txf_PrecioMayoreoKeyReleased"/>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txf_PrecioMayoreoKeyTyped"/>
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -82,6 +84,9 @@
               <Color blue="c3" green="ae" red="ed" type="rgb"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txf_PrecioMenudeoKeyReleased"/>
+          </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
               <AbsoluteConstraints x="290" y="270" width="139" height="-1"/>
@@ -125,6 +130,9 @@
               <Color blue="c3" green="ae" red="ed" type="rgb"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txf_AnchuraKeyReleased"/>
+          </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
               <AbsoluteConstraints x="600" y="280" width="140" height="-1"/>
@@ -170,9 +178,9 @@
             </Property>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="3">
-                <StringItem index="0" value="Pieza"/>
-                <StringItem index="1" value="Metro"/>
-                <StringItem index="2" value="Gramos"/>
+                <StringItem index="0" value="PIEZA"/>
+                <StringItem index="1" value="METRO"/>
+                <StringItem index="2" value="GRAMOS"/>
               </StringArray>
             </Property>
           </Properties>
@@ -191,11 +199,10 @@
               <Color blue="c3" green="ae" red="ed" type="rgb"/>
             </Property>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="4">
-                <StringItem index="0" value="Milimetros"/>
-                <StringItem index="1" value="Pulgadas"/>
-                <StringItem index="2" value="Centimetros"/>
-                <StringItem index="3" value="NA"/>
+              <StringArray count="3">
+                <StringItem index="0" value="MILIMETROS"/>
+                <StringItem index="1" value="PULGADAS"/>
+                <StringItem index="2" value="CENTIMETROS NA"/>
               </StringArray>
             </Property>
           </Properties>
@@ -208,7 +215,7 @@
           </AuxValues>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="670" y="310" width="-1" height="-1"/>
+              <AbsoluteConstraints x="610" y="320" width="130" height="-1"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -251,9 +258,9 @@
             </Property>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="3">
-                <StringItem index="0" value="Metros"/>
-                <StringItem index="1" value="Piezas"/>
-                <StringItem index="2" value="Gramos"/>
+                <StringItem index="0" value="METROS"/>
+                <StringItem index="1" value="PIEZAS"/>
+                <StringItem index="2" value="GRAMOS"/>
               </StringArray>
             </Property>
           </Properties>
@@ -399,6 +406,7 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txf_ContenidoActionPerformed"/>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txf_ContenidoKeyReleased"/>
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -561,8 +569,8 @@
             </Property>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="2">
-                <StringItem index="0" value="Activo"/>
-                <StringItem index="1" value="Inactivo"/>
+                <StringItem index="0" value="ACTIVO"/>
+                <StringItem index="1" value="INACTIVO"/>
               </StringArray>
             </Property>
           </Properties>
@@ -574,7 +582,7 @@
           </AuxValues>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="680" y="340" width="-1" height="-1"/>
+              <AbsoluteConstraints x="650" y="350" width="-1" height="-1"/>
             </Constraint>
           </Constraints>
         </Component>
