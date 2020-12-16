@@ -157,12 +157,13 @@ public class LoginFrame extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         ConexionBD conexion = new ConexionBD();
-        conexion.conectado();
+        
         try {
+            
             String login = txtF_Usuario.getText();
             String pass = jPass_Usuario.getText();
             Usuario currentUser = conexion.consultarUsuarioLogin(login);
-
+            
             if (currentUser.getIdUsuario() == null) {
                 JOptionPane.showMessageDialog(rootPane, "El usuario que ingreso no existe");
             } else if (currentUser.getPassw().equals(pass)) {

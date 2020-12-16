@@ -42,4 +42,22 @@ public class ReporteVenta {
         this.IdVenta = IdVenta;
     }
 
+    public Integer getIdReporte() {
+        return IdReporte;
+    }
+
+    public void setIdReporte(Integer IdReporte) {
+        this.IdReporte = IdReporte;
+    }
+
+    public Integer getIdVenta() {
+        return IdVenta;
+    }
+
+    public void setIdVenta(Integer IdVenta) {
+        this.IdVenta = IdVenta;
+    }
+    
+    
+
 }
