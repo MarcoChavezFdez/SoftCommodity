@@ -1,7 +1,25 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ *
+ * @Autor  Marco Alberto Chávez Fernández
+ * @Correo: mchavez297@accitesz.com
+ *
+ * @Autor José Carlos Esparza de Anda
+ * @Correo: jesparza301@accitesz.com
+ *
+ * @Autor José Ángel Madrigal Plancarte
+ * @Correo: jmadrigal323@accitesz.com
+ *
+ * @Docente: Dr. Francisco Rodríguez Díaz
+ * @Asignatura: Ing. de Software
+ * @Escuela: Instituto Tecnologico de Estudios Superiores de Zamora
+ * @Semestre : 7
+ * @Grupo: B
+ * @Carrera: Ing. en Sistemas Computacionales
+ *
+ * Esta clase es la encargada generar la interface para que el usuario pueda
+ * agregar un usuario nuevo a la tabla de usuario de la base de de datos, asi
+ * como todos los eventos necesarios para la interaccion con el usuario
+ *
  */
 package GUI;
 
@@ -279,7 +297,7 @@ public class AddUsuarioFrame extends javax.swing.JFrame {
         addUsuario.setDireccion(txf_Direccion.getText());
         addUsuario.setTelefono(txf_Telefono.getText());
         addUsuario.setEmail(txf_Email.getText());
-        addUsuario.setRol(cmb_Rol.getItemAt(cmb_Rol.getSelectedIndex()).substring(0,1));
+        addUsuario.setRol(cmb_Rol.getItemAt(cmb_Rol.getSelectedIndex()).substring(0, 1));
         addUsuario.setLogin(txf_Login.getText());
         addUsuario.setPassw(txf_Passw1.getText());
         addUsuario.setEstatus(cmb_Estatus.getItemAt(cmb_Estatus.getSelectedIndex()).substring(0, 1));
@@ -287,8 +305,7 @@ public class AddUsuarioFrame extends javax.swing.JFrame {
             if (conexion.insertarUsuario(addUsuario)) {
                 JOptionPane.showMessageDialog(null, "Usuario Añadido con exito");
                 UsuariosMainFrame usuarios = new UsuariosMainFrame(this.conexion);
-            }
-            else{
+            } else {
                 JOptionPane.showMessageDialog(null, "Error al intentar añadir el usuario");
             }
 
@@ -325,11 +342,10 @@ public class AddUsuarioFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_txf_Passw2ActionPerformed
 
     private void txf_LoginKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txf_LoginKeyReleased
-        if(conexion.consultarUsuarioLoginRegistro(txf_Login.getText())){
+        if (conexion.consultarUsuarioLoginRegistro(txf_Login.getText())) {
             lbl_MensajeLogin.setText("El Login seleccionado ya existe");
-            
-        }
-        else{
+
+        } else {
             lbl_MensajeLogin.setText("");
         }
     }//GEN-LAST:event_txf_LoginKeyReleased

@@ -1,12 +1,12 @@
 /**
  *
- * @Autor1  Marco Alberto Chávez Fernández
+ * @Autor  Marco Alberto Chávez Fernández
  * @Correo: mchavez297@accitesz.com
  *
- * @Autor2 José Carlos Esparza de Anda
+ * @Autor José Carlos Esparza de Anda
  * @Correo: jesparza301@accitesz.com
  *
- * @Autor3 José Ángel Madrigal Plancarte
+ * @Autor José Ángel Madrigal Plancarte
  * @Correo: jmadrigal323@accitesz.com
  *
  * @Docente: Dr. Francisco Rodríguez Díaz
@@ -17,8 +17,9 @@
  * @Carrera: Ing. en Sistemas Computacionales
  *
  * Esta clase es la encargada generar la interface para que el usuario pueda
- * ingresar al sistema, junto con todods los metotdos necesarios para inciar la
- * aplicacion
+ * ingresar al sistema de SoftCommodity+, contiene todos los eventos necesarios
+ * para que el usuario navegue en la interface
+ *
  */
 package GUI;
 

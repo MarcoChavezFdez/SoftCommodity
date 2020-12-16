@@ -1,7 +1,24 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ *
+ * @Autor  Marco Alberto Chávez Fernández
+ * @Correo: mchavez297@accitesz.com
+ *
+ * @Autor José Carlos Esparza de Anda
+ * @Correo: jesparza301@accitesz.com
+ *
+ * @Autor José Ángel Madrigal Plancarte
+ * @Correo: jmadrigal323@accitesz.com
+ *
+ * @Docente: Dr. Francisco Rodríguez Díaz
+ * @Asignatura: Ing. de Software
+ * @Escuela: Instituto Tecnologico de Estudios Superiores de Zamora
+ * @Semestre : 7
+ * @Grupo: B
+ * @Carrera: Ing. en Sistemas Computacionales
+ *
+ * Esta clase es la encargada generar la interface para que el usuario pueda
+ * realizar la administracion de las Bodegas asi como la consulta de las mismas
+ *
  */
 package GUI;
 
@@ -231,7 +248,7 @@ public class BodegasMainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowActivated
 
     private void InventariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InventariosActionPerformed
-        
+
     }//GEN-LAST:event_InventariosActionPerformed
 
     private void tbl_DatosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_DatosMouseClicked
@@ -246,7 +263,7 @@ public class BodegasMainFrame extends javax.swing.JFrame {
     private void btn_ModificarBodegaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ModificarBodegaActionPerformed
         Integer IdBodega = Integer.parseInt(tbl_Datos.getValueAt(tbl_Datos.getSelectedRow(), 0).toString());
         Bodega b = conexion.consultarBodega(IdBodega);
-        ModificarBodegaFrame modificarBodega = new ModificarBodegaFrame(this.conexion,b);
+        ModificarBodegaFrame modificarBodega = new ModificarBodegaFrame(this.conexion, b);
         this.setVisible(false);
         modificarBodega.setVisible(true);
 

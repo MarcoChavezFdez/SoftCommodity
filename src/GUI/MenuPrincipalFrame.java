@@ -1,7 +1,25 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ *
+ * @Autor  Marco Alberto Chávez Fernández
+ * @Correo: mchavez297@accitesz.com
+ *
+ * @Autor José Carlos Esparza de Anda
+ * @Correo: jesparza301@accitesz.com
+ *
+ * @Autor José Ángel Madrigal Plancarte
+ * @Correo: jmadrigal323@accitesz.com
+ *
+ * @Docente: Dr. Francisco Rodríguez Díaz
+ * @Asignatura: Ing. de Software
+ * @Escuela: Instituto Tecnologico de Estudios Superiores de Zamora
+ * @Semestre : 7
+ * @Grupo: B
+ * @Carrera: Ing. en Sistemas Computacionales
+ *
+ * Esta clase es la encargada generar la interface para que el usuario pueda ver
+ * las distintas opciones principal que contiene el sistema , contiene todos los
+ * eventos necesarios para que el usuario navegue en la interface
+ *
  */
 package GUI;
 
@@ -18,9 +36,10 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
      * Creates new form MenuPrincipalFrame
      */
     ConexionBD conexion;
-    Color micolor = new Color(42,42,42);
+    Color micolor = new Color(42, 42, 42);
+
     public MenuPrincipalFrame(ConexionBD con) {
-        this.conexion=con;
+        this.conexion = con;
         initComponents();
     }
 
@@ -279,8 +298,7 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
     private void btn_ProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ProductosActionPerformed
         ProductosMainFrame Productos = new ProductosMainFrame(this.conexion);
         Productos.setVisible(true);
-     
-        
+
         this.setVisible(false);
         Productos.setVisible(true);
     }//GEN-LAST:event_btn_ProductosActionPerformed
@@ -292,7 +310,7 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_UsuariosActionPerformed
 
     private void btn_BodegasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_BodegasActionPerformed
-        BodegasMainFrame bodegas = new BodegasMainFrame (this.conexion);
+        BodegasMainFrame bodegas = new BodegasMainFrame(this.conexion);
         bodegas.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btn_BodegasActionPerformed
@@ -304,15 +322,14 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_CategoriasActionPerformed
 
     private void btn_MenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_MenuActionPerformed
-        if(jp_User.getWidth()<=100){
+        if (jp_User.getWidth() <= 100) {
             jp_User.setSize(350, 1200);
-              jp_User.setBackground(micolor);
-        }
-        else{
+            jp_User.setBackground(micolor);
+        } else {
             jp_User.setSize(80, 80);
-              jp_User.setBackground(Color.BLACK );
+            jp_User.setBackground(Color.BLACK);
         }
-      
+
     }//GEN-LAST:event_btn_MenuActionPerformed
 
     private void btn_CerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CerrarSesionActionPerformed
@@ -322,61 +339,61 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_CerrarSesionActionPerformed
 
     private void btn_ReportesFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_btn_ReportesFocusGained
- 
+
     }//GEN-LAST:event_btn_ReportesFocusGained
 
     private void btn_ReportesMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_ReportesMouseDragged
-  
+
     }//GEN-LAST:event_btn_ReportesMouseDragged
 
     private void btn_ReportesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_ReportesMouseEntered
-         btn_Reportes.setEnabled(true);
-         textoMenu.setText("Reportes");
+        btn_Reportes.setEnabled(true);
+        textoMenu.setText("Reportes");
     }//GEN-LAST:event_btn_ReportesMouseEntered
 
     private void btn_ReportesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_ReportesMouseExited
-         btn_Reportes.setEnabled(false);
- textoMenu.setText("SoftCommodity+");
+        btn_Reportes.setEnabled(false);
+        textoMenu.setText("SoftCommodity+");
     }//GEN-LAST:event_btn_ReportesMouseExited
 
     private void btn_VentasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_VentasMouseEntered
-           btn_Ventas.setEnabled(true); 
-textoMenu.setText("Ventas");// TODO add your handling code here:
+        btn_Ventas.setEnabled(true);
+        textoMenu.setText("Ventas");// TODO add your handling code here:
     }//GEN-LAST:event_btn_VentasMouseEntered
 
     private void btn_VentasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_VentasMouseExited
-            btn_Ventas.setEnabled(false);
-             textoMenu.setText("SoftCommodity+");
+        btn_Ventas.setEnabled(false);
+        textoMenu.setText("SoftCommodity+");
     }//GEN-LAST:event_btn_VentasMouseExited
 
     private void btn_ProductosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_ProductosMouseExited
-      btn_Productos.setEnabled(false);
-       textoMenu.setText("SoftCommodity+");
+        btn_Productos.setEnabled(false);
+        textoMenu.setText("SoftCommodity+");
     }//GEN-LAST:event_btn_ProductosMouseExited
 
     private void btn_ProductosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_ProductosMouseEntered
- btn_Productos.setEnabled(true);
-   textoMenu.setText("Productos");
+        btn_Productos.setEnabled(true);
+        textoMenu.setText("Productos");
     }//GEN-LAST:event_btn_ProductosMouseEntered
 
     private void btn_CategoriasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_CategoriasMouseEntered
         btn_Categorias.setEnabled(true);
-          textoMenu.setText("Categorías");
+        textoMenu.setText("Categorías");
     }//GEN-LAST:event_btn_CategoriasMouseEntered
 
     private void btn_CategoriasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_CategoriasMouseExited
         btn_Categorias.setEnabled(false);
-         textoMenu.setText("SoftCommodity+");
+        textoMenu.setText("SoftCommodity+");
     }//GEN-LAST:event_btn_CategoriasMouseExited
 
     private void btn_UsuariosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_UsuariosMouseEntered
         btn_Usuarios.setEnabled(true);
-          textoMenu.setText("Usuarios");
+        textoMenu.setText("Usuarios");
     }//GEN-LAST:event_btn_UsuariosMouseEntered
 
     private void btn_UsuariosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_UsuariosMouseExited
         btn_Usuarios.setEnabled(false);
-         textoMenu.setText("SoftCommodity+");
+        textoMenu.setText("SoftCommodity+");
     }//GEN-LAST:event_btn_UsuariosMouseExited
 
     private void btn_ReportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ReportesActionPerformed
@@ -386,25 +403,21 @@ textoMenu.setText("Ventas");// TODO add your handling code here:
     }//GEN-LAST:event_btn_ReportesActionPerformed
 
     private void btn_BodegasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_BodegasMouseEntered
-          btn_Bodegas.setEnabled(true);
-          textoMenu.setText("Bodegas");
+        btn_Bodegas.setEnabled(true);
+        textoMenu.setText("Bodegas");
     }//GEN-LAST:event_btn_BodegasMouseEntered
 
     private void btn_BodegasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_BodegasMouseExited
-           btn_Bodegas.setEnabled(false);
-            textoMenu.setText("SoftCommodity+");
+        btn_Bodegas.setEnabled(false);
+        textoMenu.setText("SoftCommodity+");
     }//GEN-LAST:event_btn_BodegasMouseExited
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         lbl_name.setText(conexion.getUser().getNombre());
     }//GEN-LAST:event_formWindowOpened
-                                      
-
-                              
 
     /**
      * @param args the command line arguments
      */
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_Bodegas;

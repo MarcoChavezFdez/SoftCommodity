@@ -1,4 +1,5 @@
 /**
+ *
  * @Autor  Marco Alberto Chávez Fernández
  * @Correo: mchavez297@accitesz.com
  *
@@ -15,8 +16,12 @@
  * @Grupo: B
  * @Carrera: Ing. en Sistemas Computacionales
  *
- * **Descripcion
- * @since VER1.0
+ * Esta clase es la encargada generar la interface para que el usuario pueda
+ * realizar las distintas opciones dentro de un corte tal como generar un
+ * ticket, generar un retiro de efectivo, reimprimir un ticket y el cierrre de
+ * sy corte, contiene todos los eventos necesarios para que el usuario navegue
+ * en la interface
+ *
  */
 package GUI;
 

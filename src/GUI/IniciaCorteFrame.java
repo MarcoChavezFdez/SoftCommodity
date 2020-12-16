@@ -1,7 +1,25 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ *
+ * @Autor  Marco Alberto Chávez Fernández
+ * @Correo: mchavez297@accitesz.com
+ *
+ * @Autor José Carlos Esparza de Anda
+ * @Correo: jesparza301@accitesz.com
+ *
+ * @Autor José Ángel Madrigal Plancarte
+ * @Correo: jmadrigal323@accitesz.com
+ *
+ * @Docente: Dr. Francisco Rodríguez Díaz
+ * @Asignatura: Ing. de Software
+ * @Escuela: Instituto Tecnologico de Estudios Superiores de Zamora
+ * @Semestre : 7
+ * @Grupo: B
+ * @Carrera: Ing. en Sistemas Computacionales
+ *
+ * Esta clase es la encargada generar la interface para que el usuario pueda
+ * generar un nuevo corte, contiene todos los eventos necesarios para que el
+ * usuario navegue en la interface
+ *
  */
 package GUI;
 
@@ -20,11 +38,12 @@ public class IniciaCorteFrame extends javax.swing.JFrame {
      */
     ConexionBD conexion;
     Venta ventaActual;
-    public IniciaCorteFrame(ConexionBD conexion,Venta ventaActual) {
+
+    public IniciaCorteFrame(ConexionBD conexion, Venta ventaActual) {
         initComponents();
-        this.conexion=conexion;
-        this.ventaActual=ventaActual;
-       
+        this.conexion = conexion;
+        this.ventaActual = ventaActual;
+
     }
 
     /**
@@ -82,9 +101,9 @@ public class IniciaCorteFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_SiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_SiguienteActionPerformed
-        int reply = JOptionPane.showConfirmDialog(null, "Confirmme que ha recibido su fondo inicial de $"+txf_FondoInicial.getText(), "Confirmar Fondo Inicial Recibido", JOptionPane.YES_NO_OPTION);
+        int reply = JOptionPane.showConfirmDialog(null, "Confirmme que ha recibido su fondo inicial de $" + txf_FondoInicial.getText(), "Confirmar Fondo Inicial Recibido", JOptionPane.YES_NO_OPTION);
         if (reply == JOptionPane.YES_OPTION) {
-            CortesMainFrame cortesMain = new CortesMainFrame(this.conexion,this.ventaActual,Float.valueOf(txf_FondoInicial.getText()));
+            CortesMainFrame cortesMain = new CortesMainFrame(this.conexion, this.ventaActual, Float.valueOf(txf_FondoInicial.getText()));
             cortesMain.setVisible(true);
             this.setVisible(false);
         } else {

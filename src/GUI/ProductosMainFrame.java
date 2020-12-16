@@ -1,7 +1,26 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ *
+ * @Autor  Marco Alberto Chávez Fernández
+ * @Correo: mchavez297@accitesz.com
+ *
+ * @Autor José Carlos Esparza de Anda
+ * @Correo: jesparza301@accitesz.com
+ *
+ * @Autor José Ángel Madrigal Plancarte
+ * @Correo: jmadrigal323@accitesz.com
+ *
+ * @Docente: Dr. Francisco Rodríguez Díaz
+ * @Asignatura: Ing. de Software
+ * @Escuela: Instituto Tecnologico de Estudios Superiores de Zamora
+ * @Semestre : 7
+ * @Grupo: B
+ * @Carrera: Ing. en Sistemas Computacionales
+ *
+ * Esta clase es la encargada generar la interface para que el usuario pueda
+ * realizar la administracion de los productoa asi como la consulta de los
+ * mismos, contiene ademas los eventos necesarios para que el usuario interactue
+ * con el sistema
+ *
  */
 package GUI;
 
@@ -218,11 +237,11 @@ public class ProductosMainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_tbl_DatosMouseClicked
 
     private void btn_ModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ModificarActionPerformed
-                Integer IdProducto = Integer.parseInt(tbl_Datos.getValueAt(tbl_Datos.getSelectedRow(), 0).toString());
+        Integer IdProducto = Integer.parseInt(tbl_Datos.getValueAt(tbl_Datos.getSelectedRow(), 0).toString());
         Producto p = conexion.consultaProducto(IdProducto);
-       // ModificarProductoFrame modificarProducto = new ModificarProductoFrame(this.conexion, p);
+        // ModificarProductoFrame modificarProducto = new ModificarProductoFrame(this.conexion, p);
         this.setVisible(false);
-       // modificarProducto.setVisible(true);
+        // modificarProducto.setVisible(true);
     }//GEN-LAST:event_btn_ModificarActionPerformed
     private void llenarTabla(ArrayList<Producto> lista) {
         String[] encabezado = {"IdProducto", "IdCategoria", "Nombre", "Descripcion", "Precio Mayoreo", "Precio Menudeo", "Precio Compra", "Presentacion", "EAN", "Contenido", "Tipo Contenido", "Material", "Anchura", "Medida Anchura", "Color", "Estatus"};
@@ -252,16 +271,17 @@ public class ProductosMainFrame extends javax.swing.JFrame {
             public boolean isCellEditable(int rowIndex, int colIndex) {
                 return false; //Disallow the editing of any cell
             }
-            
+
         };
 
         tbl_Datos.setModel(m);
     }
-private void escribirAnchos(){
-    for (int i = 0; i < tbl_Datos.getColumnCount()-1; i++) {
-        System.out.println("INDICE "+i+" "+tbl_Datos.getColumn(i).getPreferredWidth());
+
+    private void escribirAnchos() {
+        for (int i = 0; i < tbl_Datos.getColumnCount() - 1; i++) {
+            System.out.println("INDICE " + i + " " + tbl_Datos.getColumn(i).getPreferredWidth());
+        }
     }
-}
     /**
      * @param args the command line arguments
      */
