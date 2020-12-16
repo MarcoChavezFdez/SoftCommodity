@@ -25,8 +25,6 @@
 package GUI;
 
 import Conexion.ConexionBD;
-import Modelos.Categoria;
-import Modelos.Producto;
 import Modelos.Usuario;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
@@ -61,14 +59,14 @@ public class UsuariosMainFrame extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbl_Datos = new javax.swing.JTable();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cmb_Opcion = new javax.swing.JComboBox<>();
         jButton4 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         btn_AddUsuario = new javax.swing.JButton();
         btn_EliminarUsuario = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         btn_ModificarUsuario = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        txf_Busqueda = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -115,14 +113,14 @@ public class UsuariosMainFrame extends javax.swing.JFrame {
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 170, 1013, 420));
 
-        jComboBox1.setBackground(new java.awt.Color(237, 174, 195));
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nombre" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        cmb_Opcion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nombre", "IdUsuario", "Login" }));
+        cmb_Opcion.setBackground(new java.awt.Color(237, 174, 195));
+        cmb_Opcion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                cmb_OpcionActionPerformed(evt);
             }
         });
-        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 120, -1, -1));
+        jPanel1.add(cmb_Opcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 120, -1, -1));
 
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Usuario/Volver.png"))); // NOI18N
         jButton4.setBorderPainted(false);
@@ -176,13 +174,18 @@ public class UsuariosMainFrame extends javax.swing.JFrame {
         });
         jPanel1.add(btn_ModificarUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 60, -1, -1));
 
-        jTextField1.setBackground(new java.awt.Color(237, 174, 195));
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        txf_Busqueda.setBackground(new java.awt.Color(237, 174, 195));
+        txf_Busqueda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                txf_BusquedaActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 120, 233, -1));
+        txf_Busqueda.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txf_BusquedaKeyReleased(evt);
+            }
+        });
+        jPanel1.add(txf_Busqueda, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 120, 233, -1));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Fondo5_Gra.png"))); // NOI18N
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -110, -1, -1));
@@ -202,13 +205,13 @@ public class UsuariosMainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_EliminarUsuarioActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void txf_BusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txf_BusquedaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_txf_BusquedaActionPerformed
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    private void cmb_OpcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmb_OpcionActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    }//GEN-LAST:event_cmb_OpcionActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         MenuPrincipalFrame menu = new MenuPrincipalFrame(this.conexion);
@@ -233,6 +236,27 @@ public class UsuariosMainFrame extends javax.swing.JFrame {
         this.setVisible(false);
         modificarUsuario.setVisible(true);
     }//GEN-LAST:event_btn_ModificarUsuarioActionPerformed
+
+    private void txf_BusquedaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txf_BusquedaKeyReleased
+        int OpcionBusqueda = cmb_Opcion.getSelectedIndex();
+        ArrayList<Usuario> lista;
+        switch (OpcionBusqueda) {
+            case 0:
+                lista = conexion.consultarUsuariosPorNombre(txf_Busqueda.getText());
+                llenarTabla(lista);
+                break;
+            case 1:
+                lista = conexion.consultarUsuariosPorId(txf_Busqueda.getText());
+                llenarTabla(lista);
+                break;
+            case 2:
+                lista = conexion.consultarUsuariosPorLogin(txf_Busqueda.getText());
+                llenarTabla(lista);
+                break;
+            
+        }
+
+    }//GEN-LAST:event_txf_BusquedaKeyReleased
 
     private void llenarTabla(ArrayList<Usuario> lista) {
         String[] encabezado = {"IdUsuario", "Nombre", "Apellido Paterno", "Apellido Materno", "CURP", "Direccion", "Telefono", "Email", "Rol", "Login", "Contraseña", "Estatus"};
@@ -269,14 +293,14 @@ public class UsuariosMainFrame extends javax.swing.JFrame {
     private javax.swing.JButton btn_AddUsuario;
     private javax.swing.JButton btn_EliminarUsuario;
     private javax.swing.JButton btn_ModificarUsuario;
+    private javax.swing.JComboBox<String> cmb_Opcion;
     private javax.swing.JButton jButton4;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTable tbl_Datos;
+    private javax.swing.JTextField txf_Busqueda;
     // End of variables declaration//GEN-END:variables
 }

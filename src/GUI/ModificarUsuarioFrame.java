@@ -322,6 +322,7 @@ public class ModificarUsuarioFrame extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Usuario modificado con exito");
                 UsuariosMainFrame usuarios = new UsuariosMainFrame(this.conexion);
                 this.setVisible(false);
+                usuarios.setVisible(true);
 
             } else {
                 JOptionPane.showMessageDialog(null, "Error al intentar modificar el usuario");
@@ -377,6 +378,7 @@ public class ModificarUsuarioFrame extends javax.swing.JFrame {
         txf_Telefono.setText(Usuario.getTelefono());
         txf_Email.setText(Usuario.getEmail());
         String rol = Usuario.getRol();
+        System.out.println("Rol "+rol);
         switch (rol) {
             case "A":
                 cmb_Rol.setSelectedIndex(0);
@@ -388,12 +390,13 @@ public class ModificarUsuarioFrame extends javax.swing.JFrame {
         txf_Login.setText(Usuario.getLogin());
         txf_Passw1.setText("*********");
         String estatus = Usuario.getEstatus();
+        System.out.println("Estatus "+estatus);
         switch(estatus){
             case "A":
-                cmb_Estatus.setSelectedItem(0);
+                cmb_Estatus.setSelectedIndex(0);
                 break;
             case "I":
-                 cmb_Estatus.setSelectedItem(1);
+                 cmb_Estatus.setSelectedIndex(1);
                 break;
         }
 

@@ -428,7 +428,7 @@ public class ConexionBD {
                 u.setTelefono(rs.getString("telefono"));
                 u.setEmail(rs.getString("email"));
                 u.setRol(rs.getString("rol"));
-                u.setLogin("login");
+                u.setLogin(rs.getString("login"));
                 u.setPassw(rs.getString("passw"));
                 u.setEstatus(rs.getString("estatus"));
             }
@@ -469,7 +469,7 @@ public class ConexionBD {
                 u.setTelefono(rs.getString("telefono"));
                 u.setEmail(rs.getString("email"));
                 u.setRol(rs.getString("rol"));
-                u.setLogin("login");
+                u.setLogin(rs.getString("login"));
                 u.setPassw(rs.getString("passw"));
                 u.setEstatus(rs.getString("estatus"));
             }
@@ -591,6 +591,133 @@ public class ConexionBD {
     }
 
     /**
+     * Funcion la cual permite realizar la consulta por patron en la columna de
+     * nombre de la tabla de usuarios
+     *
+     *
+     * @return Devuelve un ArrayList tipo Usuario con los registros de la tabla
+     * Usuarios que tienen el patron nombre en la columna nombre
+     *
+     **
+     */
+    public ArrayList<Usuario> consultarUsuariosPorNombre(String Nombre) {
+        String sql = "select * "
+                + "from Usuarios "
+                + "where nombre like CONCAT( '%" + Nombre + "%')";
+        ArrayList<Usuario> lista = new ArrayList<Usuario>();
+        try {
+            PreparedStatement st = con.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                Usuario u = new Usuario();
+                u.setIdUsuario(rs.getInt("idusuario"));
+                u.setNombre(rs.getString("nombre"));
+                u.setApellidoPaterno(rs.getString("apellidopaterno"));
+                u.setApellidoMaterno(rs.getString("apellidoMaterno"));
+                u.setCURP(rs.getString("curp"));
+                u.setDireccion(rs.getString("direccion"));
+                u.setTelefono(rs.getString("telefono"));
+                u.setEmail(rs.getString("email"));
+                u.setRol(rs.getString("rol"));
+                u.setLogin(rs.getString("login"));
+                u.setPassw(rs.getString("passw"));
+                u.setEstatus(rs.getString("estatus"));
+                lista.add(u);
+            }
+            rs.close();
+            st.close();
+            return lista;
+        } catch (SQLException e) {
+            System.out.println("Error:" + e.getMessage());
+        }
+        return null;
+    }
+
+    /**
+     * Funcion la cual permite realizar la consulta por patron en la columna de
+     * id de la tabla de usuarios
+     *
+     *
+     * @return Devuelve un ArrayList tipo Usuario con los registros de la tabla
+     * Usuarios que tienen el patron IdUsuario en la columna id
+     *
+     **
+     */
+    public ArrayList<Usuario> consultarUsuariosPorId(String IdUsuario) {
+        String sql = "select * "
+                + "from Usuarios "
+                + "where idusuario like CONCAT( '%" + IdUsuario + "%')";
+        ArrayList<Usuario> lista = new ArrayList<Usuario>();
+        try {
+            PreparedStatement st = con.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                Usuario u = new Usuario();
+                u.setIdUsuario(rs.getInt("idusuario"));
+                u.setNombre(rs.getString("nombre"));
+                u.setApellidoPaterno(rs.getString("apellidopaterno"));
+                u.setApellidoMaterno(rs.getString("apellidoMaterno"));
+                u.setCURP(rs.getString("curp"));
+                u.setDireccion(rs.getString("direccion"));
+                u.setTelefono(rs.getString("telefono"));
+                u.setEmail(rs.getString("email"));
+                u.setRol(rs.getString("rol"));
+                u.setLogin(rs.getString("login"));
+                u.setPassw(rs.getString("passw"));
+                u.setEstatus(rs.getString("estatus"));
+                lista.add(u);
+            }
+            rs.close();
+            st.close();
+            return lista;
+        } catch (SQLException e) {
+            System.out.println("Error:" + e.getMessage());
+        }
+        return null;
+    }
+    /**
+     * Funcion la cual permite realizar la consulta por patron en la columna de
+     * login de la tabla de usuarios
+     *
+     *
+     * @return Devuelve un ArrayList tipo Usuario con los registros de la tabla
+     * Usuarios que tienen el patron nombre en la columna login
+     *
+     **
+     */
+    public ArrayList<Usuario> consultarUsuariosPorLogin(String Login) {
+        String sql = "select * "
+                + "from Usuarios "
+                + "where login like CONCAT( '%" + Login + "%')";
+        ArrayList<Usuario> lista = new ArrayList<Usuario>();
+        try {
+            PreparedStatement st = con.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                Usuario u = new Usuario();
+                u.setIdUsuario(rs.getInt("idusuario"));
+                u.setNombre(rs.getString("nombre"));
+                u.setApellidoPaterno(rs.getString("apellidopaterno"));
+                u.setApellidoMaterno(rs.getString("apellidoMaterno"));
+                u.setCURP(rs.getString("curp"));
+                u.setDireccion(rs.getString("direccion"));
+                u.setTelefono(rs.getString("telefono"));
+                u.setEmail(rs.getString("email"));
+                u.setRol(rs.getString("rol"));
+                u.setLogin(rs.getString("login"));
+                u.setPassw(rs.getString("passw"));
+                u.setEstatus(rs.getString("estatus"));
+                lista.add(u);
+            }
+            rs.close();
+            st.close();
+            return lista;
+        } catch (SQLException e) {
+            System.out.println("Error:" + e.getMessage());
+        }
+        return null;
+    }
+    /**
      * Funcion la cual permite insertar un nuevo usuario en la tabla de usuarios
      *
      * @param u es el objeto Usuario que se desea insertar en la tabla de
@@ -600,7 +727,7 @@ public class ConexionBD {
      **
      */
     public boolean insertarUsuario(Usuario u) {
-        String sql = "insert  usuarios values(null,?,?,?,?,?,?,?,?,?,?,?)";
+        String sql = "insert into usuarios values(null,?,?,?,?,?,?,?,?,?,?,?)";
         boolean ban = false;
         try {
             PreparedStatement st = con.prepareStatement(sql);
@@ -626,9 +753,9 @@ public class ConexionBD {
     }
 
     public boolean actualizarUsuario(Usuario u) {
-        String sql = "udpdate usuarios set nombre=? , ApellidoPaterno=? , ApellidoMaterno=?, "
-                + " curp=?, Direccion=?, Telefono=? , email=? ,rol=? , login=? ,"
-                + " passw=? , estatus=?"
+        String sql = "update usuarios set nombre=? , ApellidoPaterno=? , ApellidoMaterno=?, "
+                + " curp=?, Direccion=?, Telefono=? , email=? ,rol=? , login=? , "
+                + " passw=? , estatus=? "
                 + "where idusuario=?";
         boolean ban = false;
         try {
