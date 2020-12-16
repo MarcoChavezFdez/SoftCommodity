@@ -9,6 +9,7 @@ import Conexion.ConexionBD;
 import Modelos.Categoria;
 import Modelos.Producto;
 import java.util.ArrayList;
+import java.util.Locale;
 import javafx.scene.control.ComboBox;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
@@ -156,7 +157,7 @@ public class AddProductoFrame extends javax.swing.JFrame {
         jPanel1.add(cmb_Presentacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 100, 139, -1));
 
         cmb_MedidaAnchura.setBackground(new java.awt.Color(237, 174, 195));
-        cmb_MedidaAnchura.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "MILIMETROS", "PULGADAS", "CENTIMETROS NA" }));
+        cmb_MedidaAnchura.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "MILIMETROS", "PULGADAS", "CENTIMETROS", "NA" }));
         cmb_MedidaAnchura.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cmb_MedidaAnchuraItemStateChanged(evt);
@@ -342,15 +343,29 @@ public class AddProductoFrame extends javax.swing.JFrame {
         Categoria catSeleccionada;
         catSeleccionada = conexion.consultarCategoriasPorNombre(cmb_Categorias.getItemAt(cmb_Categorias.getSelectedIndex()));
         nuevoProducto.setIdCategoria(catSeleccionada.getIdCategoria());
-        nuevoProducto.setNombre(txf_Nombre.getText());
-        
+        nuevoProducto.setNombre(txf_Nombre.getText().toUpperCase().toUpperCase());
+        nuevoProducto.setDescripcion(txf_Descripcion.getText().toUpperCase());
+        nuevoProducto.setPrecioMayoreo(Float.valueOf(txf_PrecioMayoreo.getText()));
+        nuevoProducto.setPrecioMenudeo(Float.valueOf(txf_PrecioMenudeo.getText()));
+        nuevoProducto.setPrecioCompra(Float.valueOf(txf_PrecioCompra.getText()));
+        nuevoProducto.setColor(txf_Color.getText().toUpperCase());
+        nuevoProducto.setPresentacion(cmb_Presentacion.getItemAt(cmb_Presentacion.getSelectedIndex()));
+        nuevoProducto.setEAN(txf_EAN.getText());
+        nuevoProducto.setContenido(Integer.valueOf(txf_Contenido.getText()));
+        nuevoProducto.setTipoContenido(cmb_TipoContenido.getItemAt(cmb_TipoContenido.getSelectedIndex()));
+        nuevoProducto.setMaterial(txf_Material.getText().toUpperCase());
+        nuevoProducto.setAnchura(Float.valueOf(txf_Anchura.getText()));
+        nuevoProducto.setMedidaAnchura(cmb_MedidaAnchura.getItemAt(cmb_MedidaAnchura.getSelectedIndex()));
+        nuevoProducto.setEstatus(cmb_Estatus.getItemAt(cmb_Estatus.getSelectedIndex()).substring(0,1));
         try {
             if (conexion.insertarProducto(nuevoProducto)) {
                 JOptionPane.showMessageDialog(null, "Producto Añadido con exito");
                 ProductosMainFrame productos = new ProductosMainFrame(this.conexion);
                 productos.setVisible(true);
                 productos.setVisible(false);
-
+                ProductosMainFrame menu = new ProductosMainFrame(this.conexion);
+                menu.setVisible(true);
+                this.setVisible(false);
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error:" + e.getMessage());

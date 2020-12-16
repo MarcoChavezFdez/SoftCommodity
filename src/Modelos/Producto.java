@@ -209,6 +209,7 @@ public class Producto {
     public void setIdProducto(Integer IdProducto) {
         this.IdProducto = IdProducto;
     }
+    
 
     @Override
     public String toString() {
