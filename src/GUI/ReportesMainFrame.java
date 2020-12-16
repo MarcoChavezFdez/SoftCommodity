@@ -31,71 +31,70 @@ public class ReportesMainFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
         btn_ReporteCortes = new javax.swing.JButton();
         btn_ReporteVentas = new javax.swing.JButton();
         btn_Atras = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("SoftCommodity+ by White Company® ");
         setResizable(false);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btn_ReporteCortes.setText("Reportes Cortes");
+        jPanel1.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btn_ReporteVentas.setText("Reportes Ventas");
+        btn_ReporteCortes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Reportes/Cortes.png"))); // NOI18N
+        btn_ReporteCortes.setBorderPainted(false);
+        btn_ReporteCortes.setContentAreaFilled(false);
+        jPanel1.add(btn_ReporteCortes, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 180, -1, -1));
+
+        btn_ReporteVentas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Reportes/Ventas.png"))); // NOI18N
+        btn_ReporteVentas.setBorderPainted(false);
+        btn_ReporteVentas.setContentAreaFilled(false);
         btn_ReporteVentas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_ReporteVentasActionPerformed(evt);
             }
         });
+        jPanel1.add(btn_ReporteVentas, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 180, 330, 290));
 
-        btn_Atras.setText("Atras");
+        btn_Atras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Volver.png"))); // NOI18N
+        btn_Atras.setBorderPainted(false);
+        btn_Atras.setContentAreaFilled(false);
         btn_Atras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_AtrasActionPerformed(evt);
             }
         });
+        jPanel1.add(btn_Atras, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(120, 120, 120)
-                .addComponent(btn_ReporteVentas)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 139, Short.MAX_VALUE)
-                .addComponent(btn_ReporteCortes)
-                .addGap(73, 73, 73))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(btn_Atras)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addComponent(btn_Atras)
-                .addGap(85, 85, 85)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_ReporteVentas)
-                    .addComponent(btn_ReporteCortes))
-                .addContainerGap(237, Short.MAX_VALUE))
-        );
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Reportes");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 90, -1, -1));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Fondo5_Med.png"))); // NOI18N
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-50, 10, -1, -1));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 770, 550));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btn_ReporteVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ReporteVentasActionPerformed
-        ReporteVentasMainFrame reportesVentas = new ReporteVentasMainFrame(this.conexion);
-        this.setVisible(false);
-        reportesVentas.setVisible(true);
-    }//GEN-LAST:event_btn_ReporteVentasActionPerformed
 
     private void btn_AtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AtrasActionPerformed
        MenuPrincipalFrame menu= new MenuPrincipalFrame(this.conexion);
        this.setVisible(false);
        menu.setVisible(true);
     }//GEN-LAST:event_btn_AtrasActionPerformed
+
+    private void btn_ReporteVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ReporteVentasActionPerformed
+        ReporteVentasMainFrame reportesVentas = new ReporteVentasMainFrame(this.conexion);
+        this.setVisible(false);
+        reportesVentas.setVisible(true);
+    }//GEN-LAST:event_btn_ReporteVentasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -106,5 +105,8 @@ public class ReportesMainFrame extends javax.swing.JFrame {
     private javax.swing.JButton btn_Atras;
     private javax.swing.JButton btn_ReporteCortes;
     private javax.swing.JButton btn_ReporteVentas;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
