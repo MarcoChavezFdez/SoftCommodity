@@ -80,6 +80,11 @@ public class ProductosMainFrame extends javax.swing.JFrame {
         btn_Modificar.setBorderPainted(false);
         btn_Modificar.setContentAreaFilled(false);
         btn_Modificar.setEnabled(false);
+        btn_Modificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_ModificarActionPerformed(evt);
+            }
+        });
         jPanel1.add(btn_Modificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 50, -1, -1));
 
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Login/Volver.png"))); // NOI18N
@@ -94,7 +99,8 @@ public class ProductosMainFrame extends javax.swing.JFrame {
 
         jComboBox1.setBackground(new java.awt.Color(204, 82, 122));
         jComboBox1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "IdProducto", "Nombre", "EAN", "Anchura" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "IdProducto", "Nombre", "EAN" }));
+        jComboBox1.setToolTipText("");
         jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1220, 40, 119, 40));
 
         btn_Eliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Productos/Eliminar.png"))); // NOI18N
@@ -172,16 +178,14 @@ public class ProductosMainFrame extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1499, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 674, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -212,6 +216,14 @@ public class ProductosMainFrame extends javax.swing.JFrame {
         btn_Modificar.setEnabled(true);
         btn_Eliminar.setEnabled(true);
     }//GEN-LAST:event_tbl_DatosMouseClicked
+
+    private void btn_ModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ModificarActionPerformed
+                Integer IdProducto = Integer.parseInt(tbl_Datos.getValueAt(tbl_Datos.getSelectedRow(), 0).toString());
+        Producto p = conexion.consultaProducto(IdProducto);
+       // ModificarProductoFrame modificarProducto = new ModificarProductoFrame(this.conexion, p);
+        this.setVisible(false);
+       // modificarProducto.setVisible(true);
+    }//GEN-LAST:event_btn_ModificarActionPerformed
     private void llenarTabla(ArrayList<Producto> lista) {
         String[] encabezado = {"IdProducto", "IdCategoria", "Nombre", "Descripcion", "Precio Mayoreo", "Precio Menudeo", "Precio Compra", "Presentacion", "EAN", "Contenido", "Tipo Contenido", "Material", "Anchura", "Medida Anchura", "Color", "Estatus"};
         Object[][] datos = new Object[lista.size()][16];
@@ -240,10 +252,16 @@ public class ProductosMainFrame extends javax.swing.JFrame {
             public boolean isCellEditable(int rowIndex, int colIndex) {
                 return false; //Disallow the editing of any cell
             }
+            
         };
+
         tbl_Datos.setModel(m);
     }
-
+private void escribirAnchos(){
+    for (int i = 0; i < tbl_Datos.getColumnCount()-1; i++) {
+        System.out.println("INDICE "+i+" "+tbl_Datos.getColumn(i).getPreferredWidth());
+    }
+}
     /**
      * @param args the command line arguments
      */

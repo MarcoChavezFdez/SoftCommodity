@@ -6,6 +6,9 @@
 package GUI;
 
 import Conexion.ConexionBD;
+import java.sql.Date;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 /**
  *
@@ -71,7 +74,7 @@ public class ReporteVentasMainFrame extends javax.swing.JFrame {
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 110, -1, -1));
 
         jTextField1.setText("jTextField1");
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 120, -1, -1));
+        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 110, -1, -1));
 
         jTextField2.setText("jTextField2");
         getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 160, -1, -1));
@@ -145,7 +148,12 @@ public class ReporteVentasMainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_AtrasActionPerformed
 
     private void btn_AddReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AddReporteActionPerformed
-
+     AddReporteVentaFrame addReporte = new AddReporteVentaFrame(this.conexion);
+     this.setVisible(false);
+     addReporte.setVisible(true);
+     Date fecha = Date.valueOf(LocalDate.now());
+     fecha.getMonth();
+     
     }//GEN-LAST:event_btn_AddReporteActionPerformed
 
     /**

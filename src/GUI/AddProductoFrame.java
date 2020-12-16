@@ -316,9 +316,8 @@ public class AddProductoFrame extends javax.swing.JFrame {
 
     private void btn_AddProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AddProductoActionPerformed
         Producto nuevoProducto = new Producto();
-        Categoria catSeleccionada = new Categoria();
+        Categoria catSeleccionada;
         catSeleccionada=conexion.consultarCategoriasPorNombre(cmb_Categorias.getItemAt(cmb_Categorias.getSelectedIndex()));
-        System.out.println(catSeleccionada.getIdCategoria());
         nuevoProducto.setIdCategoria(catSeleccionada.getIdCategoria());
         nuevoProducto.setNombre(txf_Nombre.getText());
         try{
