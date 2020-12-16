@@ -239,9 +239,9 @@ public class ProductosMainFrame extends javax.swing.JFrame {
     private void btn_ModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ModificarActionPerformed
         Integer IdProducto = Integer.parseInt(tbl_Datos.getValueAt(tbl_Datos.getSelectedRow(), 0).toString());
         Producto p = conexion.consultaProducto(IdProducto);
-        // ModificarProductoFrame modificarProducto = new ModificarProductoFrame(this.conexion, p);
+        ModificarProductoFrame modificarProducto = new ModificarProductoFrame(this.conexion, p);
         this.setVisible(false);
-        // modificarProducto.setVisible(true);
+        modificarProducto.setVisible(true);
     }//GEN-LAST:event_btn_ModificarActionPerformed
     private void llenarTabla(ArrayList<Producto> lista) {
         String[] encabezado = {"IdProducto", "IdCategoria", "Nombre", "Descripcion", "Precio Mayoreo", "Precio Menudeo", "Precio Compra", "Presentacion", "EAN", "Contenido", "Tipo Contenido", "Material", "Anchura", "Medida Anchura", "Color", "Estatus"};
