@@ -44,7 +44,6 @@ public class ConexionBD {
     private final String url = "jdbc:mysql://localhost/softcommodity";
 
     //Creamos un objeto de tipo  PreparedStatement para los querys que queramos hacer a la BD
-    PreparedStatement psPrepararSentencia;
     Connection con = null;
     private Usuario user;
 
@@ -59,12 +58,16 @@ public class ConexionBD {
             //Si logramos conectarnos, con deja de apuntar a null y obtenemos conexion
             if (con != null) {
                 //Si funciona imprimimos en consola un mensaje
+               
+            } else {
 
             }
         } //Agarramos excepciones de tipo SQL
         catch (SQLException e) {
             //las mostramos en consola
-            JOptionPane.showMessageDialog(null, "Tenemos problemas al conectar a la Base de datos, verifique el servicio mysqld" + e.getMessage());
+           JOptionPane.showMessageDialog(null, "MYSQL NO ACTIVO, SE CERRARA LA APLICACION." );
+
+           System.exit(0);
             //agarramos excepciones de tipo clase en java
         } catch (ClassNotFoundException e) {
             //las mostramos en consola
@@ -102,6 +105,10 @@ public class ConexionBD {
      */
     public Connection conectado() {
         return con;
+    }
+    
+    public boolean isClosed() throws SQLException{
+        return con.isClosed();
     }
 
     /**
