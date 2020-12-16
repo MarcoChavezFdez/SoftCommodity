@@ -1,7 +1,25 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ *
+ * @Autor  Marco Alberto Chávez Fernández
+ * @Correo: mchavez297@accitesz.com
+ *
+ * @Autor José Carlos Esparza de Anda
+ * @Correo: jesparza301@accitesz.com
+ *
+ * @Autor José Ángel Madrigal Plancarte
+ * @Correo: jmadrigal323@accitesz.com
+ *
+ * @Docente: Dr. Francisco Rodríguez Díaz
+ * @Asignatura: Ing. de Software
+ * @Escuela: Instituto Tecnologico de Estudios Superiores de Zamora
+ * @Semestre : 7
+ * @Grupo: B
+ * @Carrera: Ing. en Sistemas Computacionales
+ *
+ * Esta clase es la encargada generar la interface para que el usuario pueda
+ * interactuar con el cobro del ticket que ha realizado contiene todos los
+ * eventos necesarios para que el usuario navegue en la interface
+ *
  */
 package GUI;
 
@@ -9,8 +27,6 @@ import Conexion.ConexionBD;
 import Modelos.CorteCaja;
 import Modelos.DetalleCorte;
 import Modelos.Ticket;
-import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.sql.Time;
 import java.time.LocalTime;
 
@@ -453,10 +469,10 @@ public class RealizarPagoFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jb50ActionPerformed
 
     private void jbBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBorrarActionPerformed
-        if(!ftxf_Cantidad.getText().isEmpty()){
+        if (!ftxf_Cantidad.getText().isEmpty()) {
             ftxf_Cantidad.setText(ftxf_Cantidad.getText().substring(0, ftxf_Cantidad.getText().length() - 1));
         }
-        
+
     }//GEN-LAST:event_jbBorrarActionPerformed
 
     private void jb8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb8ActionPerformed
@@ -512,13 +528,12 @@ public class RealizarPagoFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_ftxf_CantidadActionPerformed
 
     private void jbOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbOkActionPerformed
-       if(!ftxf_Cantidad.getText().isEmpty()){
-             txf_Efectivo.setText(ftxf_Cantidad.getText());
-             llenaFields();
-       }
-       else{
-             ftxf_Cantidad.setText("0");
-       }
+        if (!ftxf_Cantidad.getText().isEmpty()) {
+            txf_Efectivo.setText(ftxf_Cantidad.getText());
+            llenaFields();
+        } else {
+            ftxf_Cantidad.setText("0");
+        }
     }//GEN-LAST:event_jbOkActionPerformed
 
     private void btn_500ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_500ActionPerformed
@@ -552,13 +567,12 @@ public class RealizarPagoFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_CobrarActionPerformed
 
     private void ftxf_CantidadPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_ftxf_CantidadPropertyChange
-        
+
     }//GEN-LAST:event_ftxf_CantidadPropertyChange
 
-    
     public void llenaFields() {
         Float cambio;
-        String cant=ftxf_Cantidad.getText();
+        String cant = ftxf_Cantidad.getText();
         if (!cant.isEmpty()) {
             cambio = Float.valueOf(cant) - this.ticketAcutal.getSubTotal();
             if (cambio < 0) {

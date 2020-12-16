@@ -17,6 +17,11 @@
  * @Carrera: Ing. en Sistemas Computacionales
  *
  *
+ * Esta clase es la encargada generar la interface para que el usuario pueda
+ * manejar distintas operaciones sobre un ticket tal como agregar productos,
+ * eliminar productos, y cobrar el mismo contiene ademas los eventos necesarios
+ * para que el usuario interactue con el sistema
+ *
  * @since VER1.0
  */
 package GUI;

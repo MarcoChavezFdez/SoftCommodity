@@ -1,7 +1,25 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ *
+ * @Autor  Marco Alberto Chávez Fernández
+ * @Correo: mchavez297@accitesz.com
+ *
+ * @Autor José Carlos Esparza de Anda
+ * @Correo: jesparza301@accitesz.com
+ *
+ * @Autor José Ángel Madrigal Plancarte
+ * @Correo: jmadrigal323@accitesz.com
+ *
+ * @Docente: Dr. Francisco Rodríguez Díaz
+ * @Asignatura: Ing. de Software
+ * @Escuela: Instituto Tecnologico de Estudios Superiores de Zamora
+ * @Semestre : 7
+ * @Grupo: B
+ * @Carrera: Ing. en Sistemas Computacionales
+ *
+ * Esta clase es la encargada generar la interface para que el usuario pueda
+ * generar un retiro de efectivo de la caja, contiene todos los eventos
+ * necesarios para que el usuario navegue en la interface
+ *
  */
 package GUI;
 
@@ -27,12 +45,12 @@ public class RealizarRetiroFrame extends javax.swing.JFrame {
     ConexionBD conexion;
     CorteCaja corteActual;
     Float montoDisponible;
-    
+
     public RealizarRetiroFrame(ConexionBD conexion, CorteCaja corte) {
         initComponents();
         this.conexion = conexion;
         this.corteActual = corte;
-        
+
     }
 
     /**
@@ -200,7 +218,7 @@ public class RealizarRetiroFrame extends javax.swing.JFrame {
 
         this.montoDisponible = this.corteActual.getTotalVenta();
         Float totalRetiros = this.conexion.consultarCorteCajaTotalRetiros(this.corteActual.getIdCorte());
-        this.montoDisponible-=totalRetiros;
+        this.montoDisponible -= totalRetiros;
         txf_MontoDisponible.setText(String.valueOf(this.montoDisponible));
 
     }//GEN-LAST:event_formWindowOpened
@@ -220,7 +238,7 @@ public class RealizarRetiroFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_txf_MontoaRetirarActionPerformed
 
     private void txf_MontoaRetirarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txf_MontoaRetirarKeyTyped
-        
+
 
     }//GEN-LAST:event_txf_MontoaRetirarKeyTyped
 
@@ -249,7 +267,7 @@ public class RealizarRetiroFrame extends javax.swing.JFrame {
                     cortes.setVisible(true);
                 }
             }
-            
+
         } else {
             lbl_Mensaje.setText("Usuario No Autorizado para realizar Retiros");
         }
@@ -261,7 +279,7 @@ public class RealizarRetiroFrame extends javax.swing.JFrame {
             btn_Retiro.setEnabled(true);
         }
     }
-    
+
     public static float redondeoDecimales(float numero, int numeroDecimales) {
         BigDecimal redondeado = new BigDecimal(numero)
                 .setScale(numeroDecimales, RoundingMode.HALF_EVEN);

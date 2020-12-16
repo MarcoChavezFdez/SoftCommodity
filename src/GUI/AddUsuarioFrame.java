@@ -9,7 +9,7 @@
  * @Autor José Ángel Madrigal Plancarte
  * @Correo: jmadrigal323@accitesz.com
  *
- * @Docente: Dr. Francisco Rodríguez Díaz
+ * @Docente: Dr. FranciAsco Rodríguez Díaz
  * @Asignatura: Ing. de Software
  * @Escuela: Instituto Tecnologico de Estudios Superiores de Zamora
  * @Semestre : 7

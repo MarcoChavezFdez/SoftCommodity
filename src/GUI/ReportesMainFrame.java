@@ -1,7 +1,25 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ *
+ * @Autor  Marco Alberto Chávez Fernández
+ * @Correo: mchavez297@accitesz.com
+ *
+ * @Autor José Carlos Esparza de Anda
+ * @Correo: jesparza301@accitesz.com
+ *
+ * @Autor José Ángel Madrigal Plancarte
+ * @Correo: jmadrigal323@accitesz.com
+ *
+ * @Docente: Dr. Francisco Rodríguez Díaz
+ * @Asignatura: Ing. de Software
+ * @Escuela: Instituto Tecnologico de Estudios Superiores de Zamora
+ * @Semestre : 7
+ * @Grupo: B
+ * @Carrera: Ing. en Sistemas Computacionales
+ *
+ * Esta clase es la encargada generar la interface para que el usuario pueda
+ * realizar diversos reportes, taless como los de ventas o los de caja, contiene
+ * ademas los eventos necesarios para que el usuario interactue con el sistema
+ *
  */
 package GUI;
 
@@ -17,9 +35,10 @@ public class ReportesMainFrame extends javax.swing.JFrame {
      * Creates new form ReportesMainFrame
      */
     ConexionBD conexion;
+
     public ReportesMainFrame(ConexionBD conexion) {
         initComponents();
-        this.conexion=conexion;
+        this.conexion = conexion;
     }
 
     /**
@@ -85,9 +104,9 @@ public class ReportesMainFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_AtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AtrasActionPerformed
-       MenuPrincipalFrame menu= new MenuPrincipalFrame(this.conexion);
-       this.setVisible(false);
-       menu.setVisible(true);
+        MenuPrincipalFrame menu = new MenuPrincipalFrame(this.conexion);
+        this.setVisible(false);
+        menu.setVisible(true);
     }//GEN-LAST:event_btn_AtrasActionPerformed
 
     private void btn_ReporteVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ReporteVentasActionPerformed
@@ -99,7 +118,6 @@ public class ReportesMainFrame extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_Atras;
