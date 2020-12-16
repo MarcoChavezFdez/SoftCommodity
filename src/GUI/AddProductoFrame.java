@@ -343,6 +343,7 @@ public class AddProductoFrame extends javax.swing.JFrame {
         catSeleccionada = conexion.consultarCategoriasPorNombre(cmb_Categorias.getItemAt(cmb_Categorias.getSelectedIndex()));
         nuevoProducto.setIdCategoria(catSeleccionada.getIdCategoria());
         nuevoProducto.setNombre(txf_Nombre.getText());
+        
         try {
             if (conexion.insertarProducto(nuevoProducto)) {
                 JOptionPane.showMessageDialog(null, "Producto Añadido con exito");

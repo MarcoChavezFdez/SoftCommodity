@@ -1,10 +1,28 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ *
+ * @Autor1  Marco Alberto Chávez Fernández
+ * @Correo: mchavez297@accitesz.com
+ *
+ * @Autor2 José Carlos Esparza de Anda
+ * @Correo: jesparza301@accitesz.com
+ *
+ * @Autor3 José Ángel Madrigal Plancarte
+ * @Correo: jmadrigal323@accitesz.com
+ *
+ * @Docente: Dr. Francisco Rodríguez Díaz
+ * @Asignatura: Ing. de Software
+ * @Escuela: Instituto Tecnologico de Estudios Superiores de Zamora
+ * @Semestre : 7
+ * @Grupo: B
+ * @Carrera: Ing. en Sistemas Computacionales
+ *
+ * Esta clase es la encargada generar la interface para que el usuario pueda
+ * agregar una categoria nueva a la tabla de categorias de la base de de datos,
+ * asi como todos los eventos necesarios para la interaccion con el usuario
  */
 package GUI;
 
+//Paquetes necesarios para la clase
 import Conexion.ConexionBD;
 import Modelos.Categoria;
 import java.awt.HeadlessException;
@@ -20,9 +38,10 @@ public class AddCategoriaFrame extends javax.swing.JFrame {
      * Creates new form AddCategoriaFrame
      */
     ConexionBD conexion;
+
     public AddCategoriaFrame(ConexionBD conexion) {
         initComponents();
-        this.conexion=conexion;
+        this.conexion = conexion;
     }
 
     /**
@@ -120,25 +139,23 @@ public class AddCategoriaFrame extends javax.swing.JFrame {
     private void btn_AddCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AddCategoriaActionPerformed
         Categoria nuevaCategoria = new Categoria();
         nuevaCategoria.setNombre(txf_Nombre.getText());
-        try{
-            if(conexion.insertarCategoria(nuevaCategoria)){
+        try {
+            if (conexion.insertarCategoria(nuevaCategoria)) {
                 JOptionPane.showMessageDialog(null, "Categoria añadida con exito");
                 CategoriasMainFrame Categorias = new CategoriasMainFrame(this.conexion);
                 Categorias.setVisible(true);
                 this.setVisible(false);
             }
-        }
-        catch(HeadlessException e){
+        } catch (HeadlessException e) {
             JOptionPane.showMessageDialog(null, "Error:" + e.getMessage());
         }
     }//GEN-LAST:event_btn_AddCategoriaActionPerformed
 
     private void txf_NombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txf_NombreKeyReleased
-        if(conexion.consultarCategoriaRegistrada(txf_Nombre.getText())){
+        if (conexion.consultarCategoriaRegistrada(txf_Nombre.getText())) {
             lbl_Mensaje.setText("Ya existe esa categoria");
             btn_AddCategoria.setEnabled(false);
-        }
-        else{
+        } else {
             lbl_Mensaje.setText("");
             btn_AddCategoria.setEnabled(true);
         }

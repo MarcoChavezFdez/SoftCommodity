@@ -1,7 +1,25 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ *
+ * @Autor1  Marco Alberto Chávez Fernández
+ * @Correo: mchavez297@accitesz.com
+ *
+ * @Autor2 José Carlos Esparza de Anda
+ * @Correo: jesparza301@accitesz.com
+ *
+ * @Autor3 José Ángel Madrigal Plancarte
+ * @Correo: jmadrigal323@accitesz.com
+ *
+ * @Docente: Dr. Francisco Rodríguez Díaz
+ * @Asignatura: Ing. de Software
+ * @Escuela: Instituto Tecnologico de Estudios Superiores de Zamora
+ * @Semestre : 7
+ * @Grupo: B
+ * @Carrera: Ing. en Sistemas Computacionales
+ *
+ * Esta clase es la encargada de visualizar al usuario la interface necesaria
+ * para añadir una nueva bodega a la tabla de bodegas de la bsse de deatos
+ * Contiene todos los eventos necesarios para que el usuario interacue con la
+ * misma
  */
 package GUI;
 

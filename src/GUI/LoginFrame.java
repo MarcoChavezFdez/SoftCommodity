@@ -1,7 +1,24 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ *
+ * @Autor1  Marco Alberto Chávez Fernández
+ * @Correo: mchavez297@accitesz.com
+ *
+ * @Autor2 José Carlos Esparza de Anda
+ * @Correo: jesparza301@accitesz.com
+ *
+ * @Autor3 José Ángel Madrigal Plancarte
+ * @Correo: jmadrigal323@accitesz.com
+ *
+ * @Docente: Dr. Francisco Rodríguez Díaz
+ * @Asignatura: Ing. de Software
+ * @Escuela: Instituto Tecnologico de Estudios Superiores de Zamora
+ * @Semestre : 7
+ * @Grupo: B
+ * @Carrera: Ing. en Sistemas Computacionales
+ *
+ * Esta clase es la encargada generar la interface para que el usuario pueda
+ * ingresar al sistema, junto con todods los metotdos necesarios para inciar la
+ * aplicacion
  */
 package GUI;
 
@@ -157,13 +174,13 @@ public class LoginFrame extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         ConexionBD conexion = new ConexionBD();
-        
+
         try {
-            
+
             String login = txtF_Usuario.getText();
             String pass = jPass_Usuario.getText();
             Usuario currentUser = conexion.consultarUsuarioLogin(login);
-            
+
             if (currentUser.getIdUsuario() == null) {
                 JOptionPane.showMessageDialog(rootPane, "El usuario que ingreso no existe");
             } else if (currentUser.getPassw().equals(pass)) {
