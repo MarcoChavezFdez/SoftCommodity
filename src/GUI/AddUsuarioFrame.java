@@ -119,7 +119,7 @@ public class AddUsuarioFrame extends javax.swing.JFrame {
         jPanel1.add(txf_Nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 140, 158, -1));
 
         cmb_Rol.setBackground(new java.awt.Color(237, 174, 195));
-        cmb_Rol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrador", "Cajero" }));
+        cmb_Rol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ADMINISTRADOR", "CAJERO" }));
         jPanel1.add(cmb_Rol, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 210, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -157,7 +157,7 @@ public class AddUsuarioFrame extends javax.swing.JFrame {
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, -1, -1));
 
         lbl_MensajePassw.setForeground(new java.awt.Color(204, 0, 0));
-        jPanel1.add(lbl_MensajePassw, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 340, 193, 22));
+        jPanel1.add(lbl_MensajePassw, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 420, 193, 22));
 
         txf_ApellidoMaterno.setBackground(new java.awt.Color(237, 174, 195));
         txf_ApellidoMaterno.addActionListener(new java.awt.event.ActionListener() {
@@ -168,7 +168,7 @@ public class AddUsuarioFrame extends javax.swing.JFrame {
         jPanel1.add(txf_ApellidoMaterno, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 220, 168, -1));
 
         lbl_MensajeLogin.setForeground(new java.awt.Color(204, 0, 0));
-        jPanel1.add(lbl_MensajeLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 370, 260, 22));
+        jPanel1.add(lbl_MensajeLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 450, 260, 22));
 
         txf_CURP.setBackground(new java.awt.Color(237, 174, 195));
         txf_CURP.addActionListener(new java.awt.event.ActionListener() {

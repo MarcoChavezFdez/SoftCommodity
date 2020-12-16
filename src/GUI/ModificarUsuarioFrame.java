@@ -39,10 +39,12 @@ public class ModificarUsuarioFrame extends javax.swing.JFrame {
      * Creates new form AddUsuario
      */
     ConexionBD conexion;
+    Usuario Usuario;
 
-    public ModificarUsuarioFrame(ConexionBD conexion) {
+    public ModificarUsuarioFrame(ConexionBD conexion, Usuario u) {
         initComponents();
         this.conexion = conexion;
+        this.Usuario = u;
     }
 
     /**
@@ -63,7 +65,7 @@ public class ModificarUsuarioFrame extends javax.swing.JFrame {
         txf_Nombre = new javax.swing.JTextField();
         cmb_Rol = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
-        btn_AddUsuario = new javax.swing.JButton();
+        btn_ModifUsuario = new javax.swing.JButton();
         txf_ApellidoPaterno = new javax.swing.JTextField();
         btn_Atras = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
@@ -95,6 +97,11 @@ public class ModificarUsuarioFrame extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("SoftCommodity+ by White Company® ");
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
@@ -112,7 +119,7 @@ public class ModificarUsuarioFrame extends javax.swing.JFrame {
                 cmb_EstatusActionPerformed(evt);
             }
         });
-        jPanel1.add(cmb_Estatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 350, -1, -1));
+        jPanel1.add(cmb_Estatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 350, -1, -1));
 
         txf_Nombre.setBackground(new java.awt.Color(237, 174, 195));
         txf_Nombre.addActionListener(new java.awt.event.ActionListener() {
@@ -120,7 +127,7 @@ public class ModificarUsuarioFrame extends javax.swing.JFrame {
                 txf_NombreActionPerformed(evt);
             }
         });
-        jPanel1.add(txf_Nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 140, 158, -1));
+        jPanel1.add(txf_Nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 140, 170, -1));
 
         cmb_Rol.setBackground(new java.awt.Color(237, 174, 195));
         cmb_Rol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrador", "Cajero" }));
@@ -131,19 +138,19 @@ public class ModificarUsuarioFrame extends javax.swing.JFrame {
         jLabel2.setText("Apellido Paterno");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, -1, -1));
 
-        btn_AddUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Usuario/Modificar.png"))); // NOI18N
-        btn_AddUsuario.setBorderPainted(false);
-        btn_AddUsuario.setContentAreaFilled(false);
-        btn_AddUsuario.setEnabled(false);
-        btn_AddUsuario.addActionListener(new java.awt.event.ActionListener() {
+        btn_ModifUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Usuario/Modificar.png"))); // NOI18N
+        btn_ModifUsuario.setBorderPainted(false);
+        btn_ModifUsuario.setContentAreaFilled(false);
+        btn_ModifUsuario.setEnabled(false);
+        btn_ModifUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_AddUsuarioActionPerformed(evt);
+                btn_ModifUsuarioActionPerformed(evt);
             }
         });
-        jPanel1.add(btn_AddUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 390, -1, -1));
+        jPanel1.add(btn_ModifUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 390, -1, -1));
 
         txf_ApellidoPaterno.setBackground(new java.awt.Color(237, 174, 195));
-        jPanel1.add(txf_ApellidoPaterno, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 180, 158, -1));
+        jPanel1.add(txf_ApellidoPaterno, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 180, 170, -1));
 
         btn_Atras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Volver.png"))); // NOI18N
         btn_Atras.setBorderPainted(false);
@@ -297,33 +304,34 @@ public class ModificarUsuarioFrame extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_btn_AtrasActionPerformed
 
-    private void btn_AddUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AddUsuarioActionPerformed
-        Usuario addUsuario = new Usuario();
-        addUsuario.setNombre(txf_Nombre.getText());
-        addUsuario.setApellidoPaterno(txf_ApellidoPaterno.getText());
-        addUsuario.setApellidoMaterno(txf_ApellidoMaterno.getText());
-        addUsuario.setCURP(txf_CURP.getText());
-        addUsuario.setDireccion(txf_Direccion.getText());
-        addUsuario.setTelefono(txf_Telefono.getText());
-        addUsuario.setEmail(txf_Email.getText());
-        addUsuario.setRol(cmb_Rol.getItemAt(cmb_Rol.getSelectedIndex()).substring(0,1));
-        addUsuario.setLogin(txf_Login.getText());
-        addUsuario.setPassw(txf_Passw1.getText());
-        addUsuario.setEstatus(cmb_Estatus.getItemAt(cmb_Estatus.getSelectedIndex()).substring(0, 1));
+    private void btn_ModifUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ModifUsuarioActionPerformed
+
+        this.Usuario.setNombre(txf_Nombre.getText());
+        this.Usuario.setApellidoPaterno(txf_ApellidoPaterno.getText());
+        this.Usuario.setApellidoMaterno(txf_ApellidoMaterno.getText());
+        this.Usuario.setCURP(txf_CURP.getText());
+        this.Usuario.setDireccion(txf_Direccion.getText());
+        this.Usuario.setTelefono(txf_Telefono.getText());
+        this.Usuario.setEmail(txf_Email.getText());
+        this.Usuario.setRol(cmb_Rol.getItemAt(cmb_Rol.getSelectedIndex()).substring(0, 1));
+        this.Usuario.setLogin(txf_Login.getText());
+        this.Usuario.setPassw(txf_Passw1.getText());
+        this.Usuario.setEstatus(cmb_Estatus.getItemAt(cmb_Estatus.getSelectedIndex()).substring(0, 1));
         try {
-            if (conexion.insertarUsuario(addUsuario)) {
-                JOptionPane.showMessageDialog(null, "Usuario Añadido con exito");
+            if (conexion.actualizarUsuario(this.Usuario)) {
+                JOptionPane.showMessageDialog(null, "Usuario modificado con exito");
                 UsuariosMainFrame usuarios = new UsuariosMainFrame(this.conexion);
-            }
-            else{
-                JOptionPane.showMessageDialog(null, "Error al intentar añadir el usuario");
+                this.setVisible(false);
+
+            } else {
+                JOptionPane.showMessageDialog(null, "Error al intentar modificar el usuario");
             }
 
         } catch (HeadlessException e) {
-            JOptionPane.showMessageDialog(null, "Error al añadir el usuario" + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Error al modificar el usuario" + e.getMessage());
         }
 
-    }//GEN-LAST:event_btn_AddUsuarioActionPerformed
+    }//GEN-LAST:event_btn_ModifUsuarioActionPerformed
 
     private void txf_ApellidoMaternoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txf_ApellidoMaternoActionPerformed
         // TODO add your handling code here:
@@ -340,10 +348,10 @@ public class ModificarUsuarioFrame extends javax.swing.JFrame {
     private void txf_Passw2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txf_Passw2KeyReleased
         if (!txf_Passw2.getText().equals(txf_Passw1.getText())) {
             lbl_MensajePassw.setText("Las Contraseñas no coinciden");
-            btn_AddUsuario.setEnabled(false);
+            btn_ModifUsuario.setEnabled(false);
         } else {
             lbl_MensajePassw.setText("");
-            btn_AddUsuario.setEnabled(true);
+            btn_ModifUsuario.setEnabled(true);
         }
     }//GEN-LAST:event_txf_Passw2KeyReleased
 
@@ -352,22 +360,52 @@ public class ModificarUsuarioFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_txf_Passw2ActionPerformed
 
     private void txf_LoginKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txf_LoginKeyReleased
-        if(conexion.consultarUsuarioLoginRegistro(txf_Login.getText())){
+        if (conexion.consultarUsuarioLoginRegistro(txf_Login.getText())) {
             lbl_MensajeLogin.setText("El Login seleccionado ya existe");
-            
-        }
-        else{
+
+        } else {
             lbl_MensajeLogin.setText("");
         }
     }//GEN-LAST:event_txf_LoginKeyReleased
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        txf_Nombre.setText(Usuario.getNombre());
+        txf_ApellidoPaterno.setText(Usuario.getApellidoPaterno());
+        txf_ApellidoMaterno.setText(Usuario.getApellidoMaterno());
+        txf_CURP.setText(Usuario.getCURP());
+        txf_Direccion.setText(Usuario.getDireccion());
+        txf_Telefono.setText(Usuario.getTelefono());
+        txf_Email.setText(Usuario.getEmail());
+        String rol = Usuario.getRol();
+        switch (rol) {
+            case "A":
+                cmb_Rol.setSelectedIndex(0);
+                break;
+            case "C":
+                cmb_Rol.setSelectedIndex(1);
+                break;
+        }
+        txf_Login.setText(Usuario.getLogin());
+        txf_Passw1.setText("*********");
+        String estatus = Usuario.getEstatus();
+        switch(estatus){
+            case "A":
+                cmb_Estatus.setSelectedItem(0);
+                break;
+            case "I":
+                 cmb_Estatus.setSelectedItem(1);
+                break;
+        }
+
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn_AddUsuario;
     private javax.swing.JButton btn_Atras;
+    private javax.swing.JButton btn_ModifUsuario;
     private javax.swing.JComboBox<String> cmb_Estatus;
     private javax.swing.JComboBox<String> cmb_Rol;
     private javax.swing.JLabel jLabel1;

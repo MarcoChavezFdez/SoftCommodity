@@ -58,16 +58,16 @@ public class ConexionBD {
             //Si logramos conectarnos, con deja de apuntar a null y obtenemos conexion
             if (con != null) {
                 //Si funciona imprimimos en consola un mensaje
-               
+
             } else {
 
             }
         } //Agarramos excepciones de tipo SQL
         catch (SQLException e) {
             //las mostramos en consola
-           JOptionPane.showMessageDialog(null, "MYSQL NO ACTIVO, SE CERRARA LA APLICACION." );
+            JOptionPane.showMessageDialog(null, "MYSQL NO ACTIVO, SE CERRARA LA APLICACION.");
 
-           System.exit(0);
+            System.exit(0);
             //agarramos excepciones de tipo clase en java
         } catch (ClassNotFoundException e) {
             //las mostramos en consola
@@ -106,8 +106,8 @@ public class ConexionBD {
     public Connection conectado() {
         return con;
     }
-    
-    public boolean isClosed() throws SQLException{
+
+    public boolean isClosed() throws SQLException {
         return con.isClosed();
     }
 
@@ -442,6 +442,47 @@ public class ConexionBD {
     }
 
     /**
+     * Funcion la cual permite realizar la consulta de un usuario con cierto
+     * login en la tabla de usuarios
+     *
+     * @param IdUsuario es el id del usuario que se desea buscar
+     * @return Devuelve un objeto Usuario de la busqueda realizada
+     *
+     **
+     */
+    public Usuario consultaUsuario(Integer IdUsuario) {
+        String sql = "select * "
+                + "from usuarios "
+                + "where idusuario=?";
+        Usuario u = new Usuario();
+        try {
+            PreparedStatement st = con.prepareStatement(sql);
+            st.setInt(1, IdUsuario);
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                u.setIdUsuario(rs.getInt("idusuario"));
+                u.setNombre(rs.getString("nombre"));
+                u.setApellidoPaterno(rs.getString("apellidopaterno"));
+                u.setApellidoMaterno(rs.getString("apellidoMaterno"));
+                u.setCURP(rs.getString("curp"));
+                u.setDireccion(rs.getString("direccion"));
+                u.setTelefono(rs.getString("telefono"));
+                u.setEmail(rs.getString("email"));
+                u.setRol(rs.getString("rol"));
+                u.setLogin("login");
+                u.setPassw(rs.getString("passw"));
+                u.setEstatus(rs.getString("estatus"));
+            }
+            rs.close();
+            st.close();
+            return u;
+        } catch (SQLException e) {
+            System.out.println("Error:" + e.getMessage());
+        }
+        return null;
+    }
+
+    /**
      * Funcion la cual permite verificar si existe un usuario con cierto login
      * en la tabla de usuarios
      *
@@ -559,7 +600,7 @@ public class ConexionBD {
      **
      */
     public boolean insertarUsuario(Usuario u) {
-        String sql = "insert into usuarios values(null,?,?,?,?,?,?,?,?,?,?,?)";
+        String sql = "insert  usuarios values(null,?,?,?,?,?,?,?,?,?,?,?)";
         boolean ban = false;
         try {
             PreparedStatement st = con.prepareStatement(sql);
@@ -574,6 +615,36 @@ public class ConexionBD {
             st.setString(9, u.getLogin());
             st.setString(10, u.getPassw());
             st.setString(11, u.getEstatus());
+            st.execute();
+            st.close();
+            ban = true;
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error:" + e.getMessage());
+        }
+        return ban;
+    }
+
+    public boolean actualizarUsuario(Usuario u) {
+        String sql = "udpdate usuarios set nombre=? , ApellidoPaterno=? , ApellidoMaterno=?, "
+                + " curp=?, Direccion=?, Telefono=? , email=? ,rol=? , login=? ,"
+                + " passw=? , estatus=?"
+                + "where idusuario=?";
+        boolean ban = false;
+        try {
+            PreparedStatement st = con.prepareStatement(sql);
+            st.setString(1, u.getNombre());
+            st.setString(2, u.getApellidoPaterno());
+            st.setString(3, u.getApellidoMaterno());
+            st.setString(4, u.getCURP());
+            st.setString(5, u.getDireccion());
+            st.setString(6, u.getTelefono());
+            st.setString(7, u.getEmail());
+            st.setString(8, u.getRol());
+            st.setString(9, u.getLogin());
+            st.setString(10, u.getPassw());
+            st.setString(11, u.getEstatus());
+            st.setInt(12, u.getIdUsuario());
             st.execute();
             st.close();
             ban = true;

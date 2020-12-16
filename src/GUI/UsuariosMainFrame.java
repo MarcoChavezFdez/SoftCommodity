@@ -25,6 +25,7 @@
 package GUI;
 
 import Conexion.ConexionBD;
+import Modelos.Categoria;
 import Modelos.Producto;
 import Modelos.Usuario;
 import java.util.ArrayList;
@@ -64,7 +65,7 @@ public class UsuariosMainFrame extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         btn_AddUsuario = new javax.swing.JButton();
-        btn_EliminarBodega = new javax.swing.JButton();
+        btn_EliminarUsuario = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         btn_ModificarUsuario = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
@@ -83,7 +84,6 @@ public class UsuariosMainFrame extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        tbl_Datos.setBackground(new java.awt.Color(237, 174, 195));
         tbl_Datos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null, null, null, null},
@@ -103,7 +103,13 @@ public class UsuariosMainFrame extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tbl_Datos.setBackground(new java.awt.Color(237, 174, 195));
         tbl_Datos.setColumnSelectionAllowed(true);
+        tbl_Datos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbl_DatosMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tbl_Datos);
         tbl_Datos.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
@@ -143,15 +149,16 @@ public class UsuariosMainFrame extends javax.swing.JFrame {
         });
         jPanel1.add(btn_AddUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 60, -1, -1));
 
-        btn_EliminarBodega.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Usuario/Eliminar.png"))); // NOI18N
-        btn_EliminarBodega.setBorderPainted(false);
-        btn_EliminarBodega.setContentAreaFilled(false);
-        btn_EliminarBodega.addActionListener(new java.awt.event.ActionListener() {
+        btn_EliminarUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Usuario/Eliminar.png"))); // NOI18N
+        btn_EliminarUsuario.setBorderPainted(false);
+        btn_EliminarUsuario.setContentAreaFilled(false);
+        btn_EliminarUsuario.setEnabled(false);
+        btn_EliminarUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_EliminarBodegaActionPerformed(evt);
+                btn_EliminarUsuarioActionPerformed(evt);
             }
         });
-        jPanel1.add(btn_EliminarBodega, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 60, -1, -1));
+        jPanel1.add(btn_EliminarUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 60, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -161,6 +168,12 @@ public class UsuariosMainFrame extends javax.swing.JFrame {
         btn_ModificarUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Usuario/Modificar.png"))); // NOI18N
         btn_ModificarUsuario.setBorderPainted(false);
         btn_ModificarUsuario.setContentAreaFilled(false);
+        btn_ModificarUsuario.setEnabled(false);
+        btn_ModificarUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_ModificarUsuarioActionPerformed(evt);
+            }
+        });
         jPanel1.add(btn_ModificarUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 60, -1, -1));
 
         jTextField1.setBackground(new java.awt.Color(237, 174, 195));
@@ -185,9 +198,9 @@ public class UsuariosMainFrame extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_btn_AddUsuarioActionPerformed
 
-    private void btn_EliminarBodegaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_EliminarBodegaActionPerformed
+    private void btn_EliminarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_EliminarUsuarioActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btn_EliminarBodegaActionPerformed
+    }//GEN-LAST:event_btn_EliminarUsuarioActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
@@ -207,6 +220,19 @@ public class UsuariosMainFrame extends javax.swing.JFrame {
 
 
     }//GEN-LAST:event_formWindowOpened
+
+    private void tbl_DatosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_DatosMouseClicked
+        btn_ModificarUsuario.setEnabled(true);
+        btn_EliminarUsuario.setEnabled(true);
+    }//GEN-LAST:event_tbl_DatosMouseClicked
+
+    private void btn_ModificarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ModificarUsuarioActionPerformed
+        Integer IdUsuario = Integer.parseInt(tbl_Datos.getValueAt(tbl_Datos.getSelectedRow(), 0).toString());
+        Usuario u = conexion.consultaUsuario(IdUsuario);
+        ModificarUsuarioFrame modificarUsuario = new ModificarUsuarioFrame(this.conexion, u);
+        this.setVisible(false);
+        modificarUsuario.setVisible(true);
+    }//GEN-LAST:event_btn_ModificarUsuarioActionPerformed
 
     private void llenarTabla(ArrayList<Usuario> lista) {
         String[] encabezado = {"IdUsuario", "Nombre", "Apellido Paterno", "Apellido Materno", "CURP", "Direccion", "Telefono", "Email", "Rol", "Login", "Contraseña", "Estatus"};
@@ -241,7 +267,7 @@ public class UsuariosMainFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_AddUsuario;
-    private javax.swing.JButton btn_EliminarBodega;
+    private javax.swing.JButton btn_EliminarUsuario;
     private javax.swing.JButton btn_ModificarUsuario;
     private javax.swing.JButton jButton4;
     private javax.swing.JComboBox<String> jComboBox1;
